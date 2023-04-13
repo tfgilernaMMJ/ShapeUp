@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('repetitions');
             $table->integer('series');
             $table->string('explanatory_video');
-            $table->foreignId('tag_id')->references('id')->on('tags');
+            $table->foreignId('tag_of_exercise_id')->references('id')->on('tags_of_exercises');
             $table->timestamps();
         });
     }

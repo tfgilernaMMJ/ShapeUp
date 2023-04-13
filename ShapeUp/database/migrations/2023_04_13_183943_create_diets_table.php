@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('training_categories', function (Blueprint $table) {
+        Schema::create('diets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('training_id')->references('id')->on('trainings');
-            $table->foreignId('category_of_training_id')->references('id')->on('categories_of_trainings');
+            $table->string('title');
+            $table->text('description');
+            $table->foreignId('category_of_diet_id')->references('id')->on('categories_of_diets');
+            $table->text('tips');
+            $table->text('not_eat');
+            $table->foreignId('coach_id')->references('id')->on('coaches');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('training_categories');
+        Schema::dropIfExists('diets');
     }
 };

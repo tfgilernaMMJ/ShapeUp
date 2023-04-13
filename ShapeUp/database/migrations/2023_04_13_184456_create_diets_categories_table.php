@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('diets_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('diet_id')->references('id')->on('diets');
+            $table->foreignId('category_of_diet_id')->references('id')->on('categories_of_diets');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('diets_categories');
     }
 };

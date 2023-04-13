@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('training_categories', function (Blueprint $table) {
+        Schema::create('tags_of_ingredients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('training_id')->references('id')->on('trainings');
-            $table->foreignId('category_of_training_id')->references('id')->on('categories_of_trainings');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('training_categories');
+        Schema::dropIfExists('tags_of_ingredients');
     }
 };
