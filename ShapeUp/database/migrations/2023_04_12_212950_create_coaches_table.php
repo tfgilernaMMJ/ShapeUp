@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('coaches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->unique();
             $table->string('password');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('status', ['User', 'Admin'])->default('User');
-            $table->string('country')->nullable();
-            $table->integer('age')->nullable();
-            $table->integer('height')->nullable();
-            $table->integer('weight')->nullable();
-            $table->foreignId('suscription_id')->references('id')->on('suscriptions');
+            $table->string('country');
+            $table->integer('age');
+            $table->text('photo');
+            $table->text('biography');
+            $table->string('experience');
+            $table->double('rating');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('coaches');
     }
 };
