@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: tfgilerna_MMJ
+      MYSQL_DATABASE: shapeupsql
+      MYSQL_USER: tfgilerna
+      MYSQL_PASSWORD: tfgilerna_MMJ
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+        - 8081:80
+    environment:
+        MYSQL_ROOT_PASSWORD: tfgilerna_MMJ
+        PMA_HOST: mysql
+        PMA_USER: tfgilerna
+        PMA_PASSWORD: tfgilerna_MMJ
+    depends_on:
+        - mysql
+    extra_hosts:
+        - "85.10.205.173:85.10.205.173"
+    command: >
+        sh -c "apt-get update &&
+          apt-get install -y curl &&
+          echo '<?php header(\"Location: https://www.db4free.net/phpMyAdmin/index.php?route=/&route=%2F\"); ?>' > /var/www/html/index.php &&
+          php -S 0.0.0.0:80 -t /var/www/html/"
