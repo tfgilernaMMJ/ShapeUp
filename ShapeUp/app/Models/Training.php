@@ -15,7 +15,6 @@ class Training extends Model
         'duration',
         'level',
         'coach_id',
-        'category_of_training_id',
     ];
 
     public function coach()

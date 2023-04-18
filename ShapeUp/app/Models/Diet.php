@@ -12,7 +12,6 @@ class Diet extends Model
     protected $fillable = [
         'title',
         'description',
-        'category_of_diet_id',
         'tips',
         'not_eat',
         'coach_id',

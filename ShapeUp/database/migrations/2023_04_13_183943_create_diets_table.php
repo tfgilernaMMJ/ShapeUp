@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('category_of_diet_id')->references('id')->on('categories_of_diets');
             $table->text('tips');
             $table->text('not_eat');
             $table->foreignId('coach_id')->references('id')->on('coaches');

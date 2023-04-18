@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('category_of_training_id')->references('id')->on('categories_of_trainings');
             $table->integer('duration');
             $table->enum('level', ['Low', 'Medium', 'High']);
             $table->foreignId('coach_id')->references('id')->on('coaches');
