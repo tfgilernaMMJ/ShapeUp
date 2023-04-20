@@ -9,7 +9,7 @@
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href="{{ asset('web/assets/img/favicon.png') }}" rel="icon">
+        <link href="{{ asset('web/assets/img/logo/favicon.png') }}" rel="icon">
         <link href="{{ asset('web/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
         <!-- Google Fonts -->
@@ -39,6 +39,10 @@
         {{-- ABOUT --}}
 
         @yield('about-section')
+
+        {{-- COACHES --}}
+
+        @yield('coaches-section')
 
         {{-- SUBSCRIPTIONS --}}
 

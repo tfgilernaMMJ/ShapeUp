@@ -21,6 +21,10 @@ Route::get('/conocenos', function () {
     return view('web.about');
 })->name('account.about');
 
+Route::get('/entrenadores', function () {
+    return view('web.coaches');
+})->name('account.coaches');
+
 Route::get('/suscripciones', function () {
     return view('web.subscriptions');
 })->name('account.subscriptions');
@@ -28,4 +32,3 @@ Route::get('/suscripciones', function () {
 Route::get('/contacto', function () {
     return view('web.contact');
 })->name('account.contact');
-
