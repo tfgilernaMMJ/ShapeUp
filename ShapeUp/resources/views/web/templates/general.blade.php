@@ -36,9 +36,22 @@
 
         @yield('index-section')
 
+        {{-- ABOUT --}}
+
+        @yield('about-section')
+
+        {{-- SUBSCRIPTIONS --}}
+
+        @yield('subscriptions-section')
+
+        {{-- CONTACT --}}
+
+        @yield('contact-section')
 
 
         @yield('footer')
+
+        @yield('preloader')
 
         {{-- SCRIPTS --}}
         <!-- Vendor JS Files -->

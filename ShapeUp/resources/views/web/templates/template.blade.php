@@ -9,12 +9,12 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="@yield('index-nav')" href="index.html">Inicio</a></li>
-                    <li><a class="@yield('home')" href="about.html">About</a></li>
+                    <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
+                    <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li>
                     <li><a class="@yield('home')" href="courses.html">Courses</a></li>
                     <li><a class="@yield('home')" href="trainers.html">Trainers</a></li>
                     <li><a class="@yield('home')" href="events.html">Events</a></li>
-                    <li><a class="@yield('home')" href="pricing.html">Pricing</a></li>
+                    <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
                     <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -33,12 +33,12 @@
                             <li><a href="#">Drop Down 4</a></li>
                         </ul>
                     </li>
-                    <li><a class="@yield('home')" href="contact.html">Contact</a></li>
+                    <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
 
-            <a href="courses.html" class="get-started-btn">Get Started</a>
+            <a href="courses.html" class="get-started-btn">Suscribete</a>
 
         </div>
     </header>
@@ -115,4 +115,9 @@
             </div>
         </div>
     </footer><!-- End Footer -->
+@endsection
+
+@section('preloader')
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 @endsection
