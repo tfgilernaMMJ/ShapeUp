@@ -12,11 +12,11 @@
                     <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
                     <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li>
                     <li><a class="@yield('home')" href="courses.html">Courses</a></li>
-                    <li><a class="@yield('home')" href="trainers.html">Trainers</a></li>
+                    <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
                     <li><a class="@yield('home')" href="events.html">Events</a></li>
                     <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
-                    <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                    {{-- <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
                             <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -32,7 +32,7 @@
                             <li><a href="#">Drop Down 3</a></li>
                             <li><a href="#">Drop Down 4</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
