@@ -1,10 +1,14 @@
 # ShapeUp
 
 
-<h1 align="center">Hi 👋, We´re Shape Up</h1>
+<h1 align="center">Hi 👋, We´re # ShapeUp</h1>
 <h3 align="center">A passionate students of web development</h3>
 
 <h3 align="left">Connect with me:</h3>
+<a href="https://github.com/marioariza">Mario Ariza</a>
+<a href="https://github.com/ByJosefh11">Jose Fernandez</a>
+<a href="https://github.com/moyazo">Manuel Moya</a>
+
 <p align="left">
 </p>
 
