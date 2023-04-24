@@ -21,9 +21,21 @@ Route::get('/conocenos', function () {
     return view('web.about');
 })->name('account.about');
 
+Route::get('/cursos', function () {
+    return view('web.courses');
+})->name('account.courses');
+
+Route::get('/cursos/detalles', function () {
+    return view('web.course-details');
+})->name('account.courses-details');
+
 Route::get('/entrenadores', function () {
     return view('web.coaches');
 })->name('account.coaches');
+
+Route::get('/eventos', function () {
+    return view('web.events');
+})->name('account.events');
 
 Route::get('/suscripciones', function () {
     return view('web.subscriptions');

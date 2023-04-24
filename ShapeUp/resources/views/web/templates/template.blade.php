@@ -11,9 +11,9 @@
                 <ul>
                     <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
                     <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li>
-                    <li><a class="@yield('home')" href="courses.html">Courses</a></li>
+                    <li><a class="@yield('courses-nav')" href="{{ route('account.courses') }}">Cursos</a></li>
                     <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
-                    <li><a class="@yield('home')" href="events.html">Events</a></li>
+                    <li><a class="@yield('events-nav')" href="{{ route('account.events') }}">Eventos</a></li>
                     <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
                     {{-- <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
