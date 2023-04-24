@@ -40,9 +40,19 @@
 
         @yield('about-section')
 
+        {{-- COURSES --}}
+
+        @yield('courses-section')
+
+        @yield('courses-details-section')
+
         {{-- COACHES --}}
 
         @yield('coaches-section')
+
+        {{-- EVENTS --}}
+
+        @yield('events-section')
 
         {{-- SUBSCRIPTIONS --}}
 
