@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('web.index');
 })->name('account.index');
 
+Route::get('/login', function () {
+    return view('auth\register');
+})->name('signing');
+
 Route::get('/conocenos', function () {
     return view('web.about');
 })->name('account.about');

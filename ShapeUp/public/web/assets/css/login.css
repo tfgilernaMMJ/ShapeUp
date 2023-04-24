@@ -1,0 +1,179 @@
+:root {
+    --background-color: rgb(226, 226, 226);
+    --background-color-box: #fff;
+}
+
+body {
+    background-color: rgba(0, 128, 0, 0.101);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login__container-BlockContainer {
+    width: 70%;
+    height: 70%;
+    background-color: var(--background-color-box);
+    box-shadow: 0px 0px 11px -5px black;
+}
+
+.login__container-GeneralBox{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login__container-FormContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+.formBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-around;
+    padding: 0 10rem;
+    width: 100%;
+}
+
+.form > * {
+    width: 100%;
+}
+
+.buttonsSection {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.login-button, .createAccount-button {
+    box-sizing: border-box;
+    width: 45%;
+    padding: 12px;
+    font-size: 14px; 
+    border-radius: 25px;
+}
+
+.createAccount-button {
+    font-size: 14px;
+    background-image: linear-gradient(90deg, rgba(0,255,25,1) 0%, rgba(0,255,162,1) 67%, rgba(0,255,214,1) 93%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    padding: 10px 20px;
+    border: 0px;
+    font-weight: 700;
+    font-size: 13px; 
+    transition: .45s ease-in;
+    transform: scale(1);
+}
+.createAccount-button:hover {
+    transition: .55s ease-in;
+    transform: scale(1.1);
+}
+
+.active {
+    border: 0;
+    background: rgb(0,255,25);
+    background: linear-gradient(90deg, rgba(0,255,25,1) 0%, rgba(0,255,162,1) 67%, rgba(0,255,214,1) 93%);
+    color: white;
+    font-weight: 800;
+    transition: .45s ease-in;
+    transform: scale(1);
+}
+
+.active:hover {
+    transition: .55s ease-in;
+    transform: scale(1.1);
+}
+
+
+
+
+.logoContainer { 
+    display: flex;
+    margin-left: 160px;
+    position: relative;
+    top: 80px
+}
+
+.logo{
+    width: 15%;
+}
+
+
+.login__container-WelcomeContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login__container-WelcomeBox {
+    position: relative;
+    width: 92%;
+    height: 92%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/login-photo.jpg");
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+h1 {
+    font-size: 35px;
+    text-align: left;
+    color: white;
+}
+h3 {
+    font-size: 25px;
+    text-align: left;
+    color: white;
+    font-weight: 100;
+}
+
+.green-layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 128, 0, 0.176);
+}
+
+.Welcome-text {
+    width: 70%;
+}
+
+span {
+    width: 100%;
+    color: white;
+    text-align: left;
+}
+
+hr {
+    border: 2px solid white;
+    width: 50%;
+    z-index: 15;
+    filter: saturate(4);
+}
