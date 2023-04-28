@@ -44,7 +44,7 @@
                                         <img src="{{ asset('web/assets/img/logo/favicon.png') }}" class="logo" alt="logo">
                                     </div>
 
-                                    <form action="{{route('register')}}" method="POST">
+                                    <form action="{{route('login')}}" method="POST">
                                         @csrf
                                         <p>Please login to your account</p>
 
@@ -77,12 +77,13 @@
 
                                         @enderror
                                         <div class="text-center pt-1 mb-5 pb-2">
-                                            <button class="loginButton" type="submit">Sign Up</button>
+                                            <button class="loginButton" type="submit">Log
+                                                in</button>
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
-                                            <p class="mb-0 me-2">Already have an account?</p>
-                                            <a href="{{route('signin')}}" type="button" class="btn createButton">Sign In</a>
+                                            <p class="mb-0 me-2">Don't have an account?</p>
+                                            <a href="{{route('signup')}}" type="button" class="btn createButton">Create new</a>
                                         </div>
 
                                     </form>
