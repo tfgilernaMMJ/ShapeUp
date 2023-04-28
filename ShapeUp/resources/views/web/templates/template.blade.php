@@ -41,7 +41,7 @@
         <a href="courses.html" class="get-started-btn">Suscribete</a>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle get-started-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ Auth::user()->email }}
+                {{ Auth::user()->username }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
