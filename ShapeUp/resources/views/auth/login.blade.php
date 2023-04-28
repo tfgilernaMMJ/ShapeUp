@@ -1,4 +1,4 @@
-@extends('auth2.layouts.app')
+@extends('auth.layouts.app')
 
 @section('titulo')
 Inicio sesión
@@ -8,7 +8,8 @@ Inicio sesión
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form"  action="{{route('login')}}" method="POST">
+					@csrf
 					<span class="login100-form-title p-b-43">
 						Inicio sesión
 					</span>
@@ -43,7 +44,7 @@ Inicio sesión
                     <div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div>
 							<p class="txt1">
-								¿No tienes cuenta? Regístrate <a href="register.html" class="txt1">aquí</a>.
+								¿No tienes cuenta? Regístrate <a href="{{route('signup')}}" class="txt1">aquí</a>.
 							</p>
 						</div>
 					</div>
@@ -62,8 +63,8 @@ Inicio sesión
 					</div> -->
 				</form>
 
-				<div class="login100-more" style="background-image: url('images/login.jpeg');">
-				</div>
+				<div class="login100-more" style="background-image: url({{ asset('auth2/images/login.jpeg') }});">
+                </div>
 			</div>
 		</div>
 	</div>

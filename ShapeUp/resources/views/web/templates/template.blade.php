@@ -1,113 +1,124 @@
 @extends('web.templates.general')
 
 @section('navbar')
-    <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center">
-            <h1 class="logo me-auto"><a href="index.html">ShapeUp</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="index.html">ShapeUp</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
-                    <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
-                    <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li>
-                    <li><a class="@yield('courses-nav')" href="{{ route('account.courses') }}">Cursos</a></li>
-                    <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
-                    <li><a class="@yield('events-nav')" href="{{ route('account.events') }}">Eventos</a></li>
-                    <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
+                <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li>
+                <li><a class="@yield('courses-nav')" href="{{ route('account.courses') }}">Cursos</a></li>
+                <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
+                <li><a class="@yield('events-nav')" href="{{ route('account.events') }}">Eventos</a></li>
+                <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
-                    <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
+                <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                            <ul>
+                                <li><a href="#">Deep Drop Down 1</a></li>
+                                <li><a href="#">Deep Drop Down 2</a></li>
+                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Drop Down 2</a></li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
+                    </ul>
+                </li>
+                <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
 
-            <a href="courses.html" class="get-started-btn">Suscribete</a>
-
+        <a href="courses.html" class="get-started-btn">Suscribete</a>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle get-started-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->username }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+            </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
-    </header>
+
+    </div>
+</header>
 @endsection
 
 @section('footer')
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>ShapeUp</h3>
-                        <p>
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h3>ShapeUp</h3>
+                    <p>
                         Torre Sevilla<br>
                         41092, Sevilla<br>
                         España<br><br>
                         <strong>Teléfono:</strong> +34 910 111 222<br>
                         <strong>Correo electrónico:</strong> info@shapeup.es<br>
-                        </p>
-                    </div>
+                    </p>
+                </div>
 
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Enlaces útiles</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre nosotros</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Servicios</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Términos de servicio</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de privacidad</a></li>
-                        </ul>
-                    </div>
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Enlaces útiles</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre nosotros</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Servicios</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Términos de servicio</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Política de privacidad</a></li>
+                    </ul>
+                </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Nuestros servicios</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Entrenamientos</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Dietas</a></li>
-                        </ul>
-                    </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Nuestros servicios</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Entrenamientos</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Dietas</a></li>
+                    </ul>
+                </div>
 
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>¡Únete ahora a ShapeUp!</h4>
-                        <p>Si estás interesado en unirte a nuestro equipo de entrenadores, por favor envíanos tu CV y te contactaremos.</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Enviar">
-                        </form>
-                    </div>
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <h4>¡Únete ahora a ShapeUp!</h4>
+                    <p>Si estás interesado en unirte a nuestro equipo de entrenadores, por favor envíanos tu CV y te contactaremos.</p>
+                    <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Enviar">
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container d-md-flex py-4">
-            <div class="me-md-auto text-center text-md-start">
-                <div class="copyright">
+    <div class="container d-md-flex py-4">
+        <div class="me-md-auto text-center text-md-start">
+            <div class="copyright">
                 &copy; Copyright <strong><span>ShapeUp</span></strong>. Todos los derechos reservados.
-                </div>
-            </div>
-            <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-github"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
-    </footer>
+        <div class="social-links text-center text-md-right pt-3 pt-md-0">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-github"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
 @endsection
 
 @section('preloader')
-    <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 @endsection
