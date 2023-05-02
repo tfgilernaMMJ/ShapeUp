@@ -17,20 +17,20 @@ Inicio sesión
 				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
 					<input class="input100" type="text" name="email">
 					<span class="focus-input100"></span>
-					@error('email')
-					<p>{{$message}}</p>
-					@enderror
 					<span class="label-input100">Correo electrónico</span>
 				</div>
+				@error('email')
+					<p>{{$message}}</p>
+				@enderror
 
 				<div class="wrap-input100 validate-input" data-validate="Password is required">
 					<input class="input100" type="password" name="password">
 					<span class="focus-input100"></span>
-					@error('password')
-					<p>{{$message}}</p>
-					@enderror
 					<span class="label-input100">Contraseña</span>
 				</div>
+				@error('password')
+					<p>{{$message}}</p>
+				@enderror
 
 				<div class="flex-sb-m w-full p-t-3 p-b-32">
 					<div>
