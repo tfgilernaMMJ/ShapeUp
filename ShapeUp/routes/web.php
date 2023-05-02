@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+// use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', function () {
     return view('web.index');
-})->name('account.index')->middleware(['auth','verified']);
+})->name('account.index');
 
 Route::get('/signin', function () {
     return view('auth\login');
@@ -55,8 +55,8 @@ Route::get('/contacto', function () {
 })->name('account.contact');
 
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
