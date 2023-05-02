@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('web.index');
-})->name('account.index');
+})->name('account.index')->middleware('auth');
 
 Route::get('/signin', function () {
     return view('auth\login');
 })->name('signin');
+
 Route::get('/signup', function () {
     return view('auth\register');
 })->name('signup');

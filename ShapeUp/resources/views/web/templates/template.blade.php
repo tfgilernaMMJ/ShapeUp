@@ -35,7 +35,7 @@
                 </li>
                 <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
                 @if (Auth::user() && !Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span>{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Perfil</a></li>
                             @if (Auth::user()->status == 'Admin')   
@@ -48,7 +48,7 @@
                         @csrf
                     </form>  
                 @elseif (Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span>{{ Auth::guard('coaches')->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::guard('coaches')->name }}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Perfil</a></li>
                             <li><a href="#">Administración</a></li>
