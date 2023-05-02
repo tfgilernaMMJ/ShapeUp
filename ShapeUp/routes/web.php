@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('web.index');
-})->name('account.index')->middleware('auth');
+})->name('account.index')->middleware(['auth','verified']);
 
 Route::get('/signin', function () {
     return view('auth\login');
@@ -51,3 +53,10 @@ Route::get('/suscripciones', function () {
 Route::get('/contacto', function () {
     return view('web.contact');
 })->name('account.contact');
+
+
+Auth::routes(['verify' => true]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

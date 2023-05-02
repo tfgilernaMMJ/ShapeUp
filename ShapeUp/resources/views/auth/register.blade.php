@@ -74,7 +74,10 @@ Registro
 				</div>
 			</form>
 
-			<div class="login100-more" style="background-image: url({{ asset('auth2/images/login.jpeg') }});">
+			<div class="login100-more" style="background-image: url({{ asset('auth/images/login.jpeg') }});">
+				<div class="glitch-wrapper">
+					<div class="glitch" data-glitch="ShapeUp">ShapeUp</div>
+				</div>
 			</div>
 		</div>
 	</div>

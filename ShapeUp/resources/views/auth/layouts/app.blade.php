@@ -46,7 +46,7 @@
 	@yield('register-section')
 	
 <!--===============================================================================================-->
-    <script src="{{ asset('auth/vendor/jquery/jquery-3.2.1.min.jss') }}"></script>
+    <script src="{{ asset('auth/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
 	{{-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> --}}
 <!--===============================================================================================-->
     <script src="{{ asset('auth/vendor/animsition/js/animsition.min.js') }}"></script>
