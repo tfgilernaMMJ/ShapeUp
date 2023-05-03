@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', 'HomeController@index')->name('account.index')->middleware('auth');
+
+
 Route::get('/', function () {
     return view('web.index');
 })->name('account.index')->middleware('auth');
