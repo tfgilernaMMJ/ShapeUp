@@ -47,22 +47,22 @@
             <div class="container">
                 <div class="row counters">
                     <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{$numUsers}}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Usuarios</p>
                     </div>
 
                     <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{$numTrainings}}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Entrenamientos</p>
                     </div>
 
                     <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{$numDiets}}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Dietas</p>
                     </div>
 
                     <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{$numCoaches}}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Entrenadores</p>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                                 ¿Te interesa conocer tu Índice de Masa Corporal (IMC)? En nuestra plataforma, puedes calcularlo fácilmente y de manera gratuita. El IMC es una medida que se utiliza para evaluar si una persona tiene un peso saludable en relación con su altura. Conocer tu IMC te puede ayudar a entender tu estado de salud y a tomar decisiones informadas sobre tu estilo de vida. Para calcular tu IMC, solo necesitas ingresar tu altura y peso en nuestra calculadora en línea. ¡Pruébala ahora y conoce tu IMC!
                             </p>
                             <div class="text-center">
-                                <a href="about.html" class="more-btn">Calcula tu IMC<i class="bx bx-chevron-right"></i></a>
+                                <a href="{{ route('account.imc') }}" class="more-btn">Calcula tu IMC<i class="bx bx-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -123,16 +123,9 @@
 
                 <div class="clients-slider swiper">
                     <div class="swiper-wrapper align-items-center">
-                        {{-- @foreach ($gyms as $gym)
+                        @foreach ($gyms as $gym)
                             <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/'. $gym->logo) }}" class="img-fluid" alt=""></div>
-                        @endforeach --}}
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/altairsport.jpg') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/gofit.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/inacua.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/mcfit.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/metropolitan.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/o2centrowellness.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/satosport.png') }}" class="img-fluid" alt=""></div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -237,15 +230,9 @@
 
                 <div class="clients-slider swiper">
                     <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/aldi.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/carrefour.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/corte-ingles.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/coviran.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/dia.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/lidl.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/mas.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/mercadona.png') }}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/supersol.png') }}" class="img-fluid" alt=""></div>
+                        @foreach ($supermarkets as $supermarket)
+                            <div class="swiper-slide"><img src="{{ asset('web/assets/img/supermarkets/'. $supermarket->logo) }}" class="img-fluid" alt=""></div>
+                        @endforeach
                     </div>
                 </div>
             </div>

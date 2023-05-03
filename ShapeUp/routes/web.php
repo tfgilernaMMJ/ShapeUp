@@ -15,12 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', 'HomeController@index')->name('account.index')->middleware('auth');
 
-
-Route::get('/', function () {
-    return view('web.index');
-})->name('account.index')->middleware('auth');
+Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('account.index')->middleware('auth');
 
 Route::get('/signin', function () {
     return view('auth\login');
@@ -29,6 +25,10 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth\register');
 })->name('signup');
+
+Route::get('/imc', function () {
+    return view('web.imc');
+})->name('account.imc');
 
 Route::get('/conocenos', function () {
     return view('web.about');
