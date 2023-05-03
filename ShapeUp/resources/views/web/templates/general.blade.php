@@ -35,6 +35,7 @@
         {{-- INDEX --}}
 
         @yield('index-section')
+        @yield('imc-section')
 
         {{-- ABOUT --}}
 
@@ -77,5 +78,43 @@
 
         <!-- Template Main JS File -->
         <script src="{{ asset('web/assets/js/main.js') }}"></script>
+        <script>
+            const pesoInput = document.getElementById('peso');
+            const alturaInput = document.getElementById('altura');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const counter = document.getElementById('counter');
+          
+            pesoInput.addEventListener('input', function() {
+              if (pesoInput.value && alturaInput.value) {
+                calculateBtn.removeAttribute('disabled');
+              } else {
+                calculateBtn.setAttribute('disabled', true);
+              }
+            });
+          
+            alturaInput.addEventListener('input', function() {
+              if (pesoInput.value && alturaInput.value) {
+                calculateBtn.removeAttribute('disabled');
+              } else {
+                calculateBtn.setAttribute('disabled', true);
+              }
+            });
+
+            const bmiText = document.getElementById('bmi-text');
+
+            calculateBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            const weight = Number(pesoInput.value);
+            const height = Number(alturaInput.value);
+
+            const bmi = weight / ((height / 100) ** 2);
+            const roundedBmi = bmi.toFixed(2);
+
+            bmiText.textContent = `Tu índice de masa corporal es ${roundedBmi}`;
+
+            const countsSection = document.getElementById('counts');
+            countsSection.style.display = 'block';
+            });
+          </script>
     </body>
 </html>
