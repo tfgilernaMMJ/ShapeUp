@@ -74,13 +74,12 @@
                 <div class="row">
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="content">
-                            <h3>Why Choose Mentor?</h3>
+                            <h3>¿Quieres calcular tu IMC?</h3>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                                ¿Te interesa conocer tu Índice de Masa Corporal (IMC)? En nuestra plataforma, puedes calcularlo fácilmente y de manera gratuita. El IMC es una medida que se utiliza para evaluar si una persona tiene un peso saludable en relación con su altura. Conocer tu IMC te puede ayudar a entender tu estado de salud y a tomar decisiones informadas sobre tu estilo de vida. Para calcular tu IMC, solo necesitas ingresar tu altura y peso en nuestra calculadora en línea. ¡Pruébala ahora y conoce tu IMC!
                             </p>
                             <div class="text-center">
-                                <a href="about.html" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                                <a href="about.html" class="more-btn">Calcula tu IMC<i class="bx bx-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -124,6 +123,9 @@
 
                 <div class="clients-slider swiper">
                     <div class="swiper-wrapper align-items-center">
+                        {{-- @foreach ($gyms as $gym)
+                            <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/'. $gym->logo) }}" class="img-fluid" alt=""></div>
+                        @endforeach --}}
                         <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/altairsport.jpg') }}" class="img-fluid" alt=""></div>
                         <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/gofit.png') }}" class="img-fluid" alt=""></div>
                         <div class="swiper-slide"><img src="{{ asset('web/assets/img/gyms/inacua.png') }}" class="img-fluid" alt=""></div>
