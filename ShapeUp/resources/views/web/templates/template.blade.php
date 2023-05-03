@@ -10,13 +10,25 @@
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
-                <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li>
-                <li><a class="@yield('courses-nav')" href="{{ route('account.courses') }}">Cursos</a></li>
+                {{-- <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li> --}}
+                {{-- <li><a class="@yield('courses-nav')" href="{{ route('account.courses') }}">Cursos</a></li> --}}
                 <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
-                <li><a class="@yield('events-nav')" href="{{ route('account.events') }}">Eventos</a></li>
+                <li class="dropdown"><a class="@yield('courses-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="{{ route('account.courses') }}">Entrenamientos</a></li>
+                        <li><a href="{{ route('account.courses') }}">Ejercicios</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="@yield('events-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="{{ route('account.events') }}">Dietas</a></li>
+                        <li><a href="{{ route('account.events') }}">Alimentos</a></li>
+                    </ul>
+                </li>
+                {{-- <li><a class="@yield('events-nav')" href="{{ route('account.events') }}">Eventos</a></li> --}}
                 <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
-                <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                {{-- <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Drop Down 1</a></li>
                         <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -32,7 +44,7 @@
                         <li><a href="#">Drop Down 3</a></li>
                         <li><a href="#">Drop Down 4</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
                 @if (Auth::user() && !Auth::guard('coaches')->check())
                     <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
