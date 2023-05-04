@@ -59,6 +59,14 @@ Route::get('/contacto', function () {
 })->name('account.contact');
 
 
+// TESTING DASHBOARD
+
+// ------------------------------------------------------------
+
+Route::get('/dashboard', function () {
+    return view('dashboard.dashboard');
+})->name('dashboard');
+
 // Auth::routes(['verify' => true]);
 
 // Auth::routes();
