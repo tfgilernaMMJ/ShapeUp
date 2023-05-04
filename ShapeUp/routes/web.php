@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('account.index')->middleware('auth');
 
+Route::get('/landing', function () {
+    return view('web.landing');
+})->name('account.landing');
+
 Route::get('/signin', function () {
     return view('auth\login');
 })->name('signin');
