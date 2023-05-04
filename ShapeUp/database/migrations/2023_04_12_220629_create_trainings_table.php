@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('duration');
             $table->enum('level', ['Low', 'Medium', 'High']);
-            $table->foreignId('coach_id')->references('id')->on('coaches');
+            $table->foreignId('user_coach_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

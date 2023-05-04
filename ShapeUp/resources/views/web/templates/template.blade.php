@@ -43,17 +43,21 @@
                     </ul>
                 </li> --}}
                 <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
-                @if (Auth::user() && !Auth::guard('coaches')->check())
+                @if (Auth::user())
                     @if (Auth::user()->suscription_id == 1 && Auth::user()->status == 'User') 
                         <li class="dropdown"><a class="active" href="#"><span><i class="bx bxs-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
                     @elseif (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User')
                         <li class="dropdown"><a class="active" href="#"><span><i class="bx bxs-star"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
                     @elseif (Auth::user()->status == 'Admin')
                         <li class="dropdown"><a class="active" href="#"><span><i class='bx bxs-crown'></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @elseif (Auth::user()->status == 'Coach')
+                        <li class="dropdown"><a class="active" href="#"><span><i class='bx bx-dumbbell'></i></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
                     @endif
                         <ul>
                             <li><a href="#">Perfil</a></li>
                             @if (Auth::user()->status == 'Admin')   
+                                <li><a href="#">Administración</a></li>
+                            @elseif (Auth::user()->status == 'Coach')
                                 <li><a href="#">Administración</a></li>
                             @endif
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li></li>
@@ -62,17 +66,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>  
-                @elseif (Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span><i class='bx bx-dumbbell'></i>&nbsp{{ Auth::guard('coaches')->name }}</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Perfil</a></li>
-                            <li><a href="#">Administración</a></li>
-                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li></li>
-                        </ul>
-                    </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form> 
                 @endif
             </ul>
             

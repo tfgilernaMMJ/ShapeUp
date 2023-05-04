@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('tips');
             $table->text('not_eat');
-            $table->foreignId('coach_id')->references('id')->on('coaches');
+            $table->foreignId('user_coach_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

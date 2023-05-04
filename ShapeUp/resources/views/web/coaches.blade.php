@@ -40,12 +40,12 @@
                                     <span>País: {{ $coach->country }}</span>
                                     <span>Edad: {{ $coach->age }}</span>
                                     <span>Experiencia: {{ $coach->experience }}</span>
-                                    <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('coach_id', $coach->id)->get()) }}</span>
+                                    <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('user_coach_id', $coach->id)->get()) }}</span>
                                     <p>
                                         {{ $coach->biography }}
                                     </p>
                                     <div class="social">
-                                        @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('coach_id', $coach->id)->get()) > 0)
+                                        @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('user_coach_id', $coach->id)->get()) > 0)
                                             <a href="{{ route('account.coaches.follow', ['action' => 'unfollow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
                                             <a href="{{ route('account.imc') }}"><i class="bi bi-chat-left-dots-fill"></i></a>
                                         @else       
