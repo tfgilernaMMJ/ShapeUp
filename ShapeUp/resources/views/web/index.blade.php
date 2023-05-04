@@ -14,7 +14,9 @@
         <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
             <h1>Haz que tu cuerpo sea el mejor Shape Up:<br>Entrenamientos y dieta personalizados</h1>
             <h2>Somos un equipo de expertos en fitness y nutrición, diseñando planes personalizados para transformar tu cuerpo y mejorar tu salud</h2>
-            <a href="courses.html" class="btn-get-started">Suscribete ahora</a>
+            @if (Auth::user()->suscription_id == 1) 
+                <a href="{{ route('account.subscriptions')}}" class="btn-get-started">Suscribete ahora</a>
+            @endif
         </div>
     </section>
 
