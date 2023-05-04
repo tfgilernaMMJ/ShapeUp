@@ -42,9 +42,9 @@ Route::get('/cursos/detalles', function () {
     return view('web.course-details');
 })->name('account.courses-details');
 
-Route::get('/entrenadores', function () {
-    return view('web.coaches');
-})->name('account.coaches');
+// COACHES 
+Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches');
+Route::get('/entrenadores/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow');
 
 Route::get('/eventos', function () {
     return view('web.events');
