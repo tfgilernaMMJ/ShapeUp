@@ -12,8 +12,8 @@
     <main id="main">
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">
-                <h2>Suscripciones</h2>
-                <p>Ofrecemos planes de suscripción flexibles para adaptarnos a cualquier presupuesto. Desde el plan Gratuito hasta el plan SuperShapeUp con características avanzadas, tenemos algo para todos. ¡Elige el plan que mejor se adapte a tus necesidades y comienza a disfrutar de todos los beneficios de nuestra plataforma!</p>
+                <h2>Índice de masa corporal (IMC)</h2>
+                <p>El índice de masa corporal es una medida utilizada para determinar si una persona tiene un peso saludable en función de su altura. Se calcula dividiendo el peso de una persona en kilogramos por el cuadrado de su altura en metros.</p>
             </div>
         </div>
 

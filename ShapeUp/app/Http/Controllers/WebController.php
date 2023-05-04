@@ -46,5 +46,11 @@ class WebController extends Controller
             return back();
         }        
     }
+
+    public function messageCoaches($coach_id)
+    {   
+        $coach = User::where('id', $coach_id)->first();
+        return view('web.messagecoach', ['coach' => $coach]);       
+    }    
     
 }

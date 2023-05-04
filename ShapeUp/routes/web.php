@@ -18,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('account.index')->middleware('auth');
 
-Route::get('/landing', function () {
-    return view('web.landing');
-})->name('account.landing');
-
 Route::get('/signin', function () {
     return view('auth\login');
 })->name('signin');
@@ -29,6 +25,10 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth\register');
 })->name('signup');
+
+Route::get('/landing', function () {
+    return view('web.landing');
+})->name('landing');
 
 Route::get('/imc', function () {
     return view('web.imc');
@@ -49,6 +49,7 @@ Route::get('/cursos/detalles', function () {
 // COACHES 
 Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches');
 Route::get('/entrenadores/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow');
+Route::get('/entrenadores/mensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'messageCoaches'])->name('account.coaches.message');
 
 Route::get('/eventos', function () {
     return view('web.events');
