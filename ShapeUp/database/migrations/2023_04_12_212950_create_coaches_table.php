@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('coaches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username');
             $table->string('password');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -22,7 +23,6 @@ return new class extends Migration
             $table->text('photo');
             $table->text('biography');
             $table->string('experience');
-            $table->double('rating');
             $table->rememberToken();
             $table->timestamps();
         });
