@@ -63,9 +63,13 @@ Route::get('/contacto', function () {
 
 // ------------------------------------------------------------
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard-principal', function () {
     return view('dashboard.dashboard');
-})->name('dashboard');
+})->name('dashboard-principal');
+
+Route::get('/dashboard-tables', function () {
+    return view('dashboard.tables');
+})->name('dashboard-tables');
 
 // Auth::routes(['verify' => true]);
 

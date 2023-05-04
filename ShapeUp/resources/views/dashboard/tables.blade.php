@@ -1,6 +1,6 @@
 @extends('dashboard.templates.general')
 
-@section('dashboard-principal')
+@section('dashboard-tables')
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -13,7 +13,7 @@
   <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-white active bg-gradient-primary" href="../pages/dashboard.html">
+        <a class="nav-link text-white " href="../pages/dashboard.html">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">dashboard</i>
           </div>
@@ -21,7 +21,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white " href="../pages/tables.html">
+        <a class="nav-link text-white active bg-gradient-primary" href="../pages/tables.html">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">table_view</i>
           </div>
@@ -103,9 +103,9 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
           <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
         </ol>
-        <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+        <h6 class="font-weight-bolder mb-0">Tables</h6>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -221,172 +221,23 @@
   <!-- End Navbar -->
   <div class="container-fluid py-4">
     <div class="row">
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">weekend</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-              <h4 class="mb-0">$53k</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-              <h4 class="mb-0">2,300</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">New Clients</p>
-              <h4 class="mb-0">3,462</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6">
-        <div class="card">
-          <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-              <i class="material-icons opacity-10">weekend</i>
-            </div>
-            <div class="text-end pt-1">
-              <p class="text-sm mb-0 text-capitalize">Sales</p>
-              <h4 class="mb-0">$103,430</h4>
-            </div>
-          </div>
-          <hr class="dark horizontal my-0">
-          <div class="card-footer p-3">
-            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col-lg-4 col-md-6 mt-4 mb-4">
-        <div class="card z-index-2 ">
-          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <h6 class="mb-0 ">Website Views</h6>
-            <p class="text-sm ">Last Campaign Performance</p>
-            <hr class="dark horizontal">
-            <div class="d-flex ">
-              <i class="material-icons text-sm my-auto me-1">schedule</i>
-              <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mt-4 mb-4">
-        <div class="card z-index-2  ">
-          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-            <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-              <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <h6 class="mb-0 "> Daily Sales </h6>
-            <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
-            <hr class="dark horizontal">
-            <div class="d-flex ">
-              <i class="material-icons text-sm my-auto me-1">schedule</i>
-              <p class="mb-0 text-sm"> updated 4 min ago </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mt-4 mb-3">
-        <div class="card z-index-2 ">
-          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-            <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-              <div class="chart">
-                <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <h6 class="mb-0 ">Completed Tasks</h6>
-            <p class="text-sm ">Last Campaign Performance</p>
-            <hr class="dark horizontal">
-            <div class="d-flex ">
-              <i class="material-icons text-sm my-auto me-1">schedule</i>
-              <p class="mb-0 text-sm">just updated</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
-        <div class="card">
-          <div class="card-header pb-0">
-            <div class="row">
-              <div class="col-lg-6 col-7">
-                <h6>Projects</h6>
-                <p class="text-sm mb-0">
-                  <i class="fa fa-check text-info" aria-hidden="true"></i>
-                  <span class="font-weight-bold ms-1">30 done</span> this month
-                </p>
-              </div>
-              <div class="col-lg-6 col-5 my-auto text-end">
-                <div class="dropdown float-lg-end pe-4">
-                  <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-ellipsis-v text-secondary"></i>
-                  </a>
-                  <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                  </ul>
-                </div>
-              </div>
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Authors table</h6>
             </div>
           </div>
           <div class="card-body px-0 pb-2">
-            <div class="table-responsive">
+            <div class="table-responsive p-0">
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Members</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                    <th class="text-secondary opacity-7"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -394,231 +245,168 @@
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                          <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Material XD Version</h6>
+                          <h6 class="mb-0 text-sm">John Michael</h6>
+                          <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                          <img src="../assets/img/team-1.jpg" alt="team1">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                          <img src="../assets/img/team-2.jpg" alt="team2">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                          <img src="../assets/img/team-3.jpg" alt="team3">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                          <img src="../assets/img/team-4.jpg" alt="team4">
-                        </a>
-                      </div>
+                      <p class="text-xs font-weight-bold mb-0">Manager</p>
+                      <p class="text-xs text-secondary mb-0">Organization</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> $14,000 </span>
+                      <span class="badge badge-sm bg-gradient-success">Online</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                     </td>
                     <td class="align-middle">
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">60%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                      </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
+                          <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user2">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Add Progress Track</h6>
+                          <h6 class="mb-0 text-sm">Alexa Liras</h6>
+                          <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                          <img src="../assets/img/team-2.jpg" alt="team5">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                          <img src="../assets/img/team-4.jpg" alt="team6">
-                        </a>
-                      </div>
+                      <p class="text-xs font-weight-bold mb-0">Programator</p>
+                      <p class="text-xs text-secondary mb-0">Developer</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> $3,000 </span>
+                      <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
                     </td>
                     <td class="align-middle">
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">10%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info w-10" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                      </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
+                          <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user3">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
+                          <h6 class="mb-0 text-sm">Laurent Perrier</h6>
+                          <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                          <img src="../assets/img/team-3.jpg" alt="team8">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                          <img src="../assets/img/team-1.jpg" alt="team9">
-                        </a>
-                      </div>
+                      <p class="text-xs font-weight-bold mb-0">Executive</p>
+                      <p class="text-xs text-secondary mb-0">Projects</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> Not set </span>
+                      <span class="badge badge-sm bg-gradient-success">Online</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
                     </td>
                     <td class="align-middle">
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">100%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                      </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
+                          <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user4">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
+                          <h6 class="mb-0 text-sm">Michael Levi</h6>
+                          <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                          <img src="../assets/img/team-4.jpg" alt="user1">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                          <img src="../assets/img/team-3.jpg" alt="user2">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                          <img src="../assets/img/team-4.jpg" alt="user3">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                          <img src="../assets/img/team-1.jpg" alt="user4">
-                        </a>
-                      </div>
+                      <p class="text-xs font-weight-bold mb-0">Programator</p>
+                      <p class="text-xs text-secondary mb-0">Developer</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> $20,500 </span>
+                      <span class="badge badge-sm bg-gradient-success">Online</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
                     </td>
                     <td class="align-middle">
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">100%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                      </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
+                          <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user5">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
+                          <h6 class="mb-0 text-sm">Richard Gran</h6>
+                          <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                          <img src="../assets/img/team-4.jpg" alt="user5">
-                        </a>
-                      </div>
+                      <p class="text-xs font-weight-bold mb-0">Manager</p>
+                      <p class="text-xs text-secondary mb-0">Executive</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> $500 </span>
+                      <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
                     </td>
                     <td class="align-middle">
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">25%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
-                        </div>
-                      </div>
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                      </a>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <img src="../assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
+                          <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
+                          <h6 class="mb-0 text-sm">Miriam Eric</h6>
+                          <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                          <img src="../assets/img/team-1.jpg" alt="user6">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                          <img src="../assets/img/team-4.jpg" alt="user7">
-                        </a>
-                      </div>
+                      <p class="text-xs font-weight-bold mb-0">Programator</p>
+                      <p class="text-xs text-secondary mb-0">Developer</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> $2,000 </span>
+                      <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
                     </td>
                     <td class="align-middle">
-                      <div class="progress-wrapper w-75 mx-auto">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-xs font-weight-bold">40%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-gradient-info w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="40"></div>
-                        </div>
-                      </div>
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Edit
+                      </a>
                     </td>
                   </tr>
                 </tbody>
@@ -627,71 +415,228 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card h-100">
-          <div class="card-header pb-0">
-            <h6>Orders overview</h6>
-            <p class="text-sm">
-              <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-              <span class="font-weight-bold">24%</span> this month
-            </p>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Projects table</h6>
+            </div>
           </div>
-          <div class="card-body p-3">
-            <div class="timeline timeline-one-side">
-              <div class="timeline-block mb-3">
-                <span class="timeline-step">
-                  <i class="material-icons text-success text-gradient">notifications</i>
-                </span>
-                <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
-                </div>
-              </div>
-              <div class="timeline-block mb-3">
-                <span class="timeline-step">
-                  <i class="material-icons text-danger text-gradient">code</i>
-                </span>
-                <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
-                </div>
-              </div>
-              <div class="timeline-block mb-3">
-                <span class="timeline-step">
-                  <i class="material-icons text-info text-gradient">shopping_cart</i>
-                </span>
-                <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
-                </div>
-              </div>
-              <div class="timeline-block mb-3">
-                <span class="timeline-step">
-                  <i class="material-icons text-warning text-gradient">credit_card</i>
-                </span>
-                <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
-                </div>
-              </div>
-              <div class="timeline-block mb-3">
-                <span class="timeline-step">
-                  <i class="material-icons text-primary text-gradient">key</i>
-                </span>
-                <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
-                </div>
-              </div>
-              <div class="timeline-block">
-                <span class="timeline-step">
-                  <i class="material-icons text-dark text-gradient">payments</i>
-                </span>
-                <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
-                </div>
-              </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center justify-content-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Completion</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                          <img src="../assets/img/small-logos/logo-asana.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Asana</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">working</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <span class="me-2 text-xs font-weight-bold">60%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <button class="btn btn-link text-secondary mb-0">
+                        <i class="fa fa-ellipsis-v text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                          <img src="../assets/img/small-logos/github.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Github</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">$5,000</p>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">done</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <span class="me-2 text-xs font-weight-bold">100%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                          <img src="../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Atlassian</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">$3,400</p>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">canceled</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <span class="me-2 text-xs font-weight-bold">30%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                          <img src="../assets/img/small-logos/bootstrap.svg" class="avatar avatar-sm rounded-circle me-2" alt="webdev">
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Bootstrap</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">$14,000</p>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">working</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <span class="me-2 text-xs font-weight-bold">80%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 80%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                          <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Slack</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">canceled</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <span class="me-2 text-xs font-weight-bold">0%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div>
+                          <img src="../assets/img/small-logos/devto.svg" class="avatar avatar-sm rounded-circle me-2" alt="xd">
+                        </div>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Devto</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                    </td>
+                    <td>
+                      <span class="text-xs font-weight-bold">done</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <span class="me-2 text-xs font-weight-bold">100%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
