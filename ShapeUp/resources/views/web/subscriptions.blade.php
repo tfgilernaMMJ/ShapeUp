@@ -40,7 +40,9 @@
                                 @if (Auth::user()->suscription_id == 1)
 
                                 @else
-                                <a href="#" class="btn-buy">Volver a Gratuito</a>
+                                    @if (Auth::user()->status == 'User') 
+                                        <a href="#" class="btn-buy">Volver a Gratuito</a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -63,7 +65,13 @@
                                 <li>Ver dietas ShapeUp</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Contratar</a>
+                                @if (Auth::user()->suscription_id == 2)
+
+                                @else
+                                    @if (Auth::user()->status == 'User') 
+                                        <a href="#" class="btn-buy">Contratar</a>
+                                    @endif
+                                @endif
                             </div>
                         </div>
                     </div>
