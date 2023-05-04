@@ -46,10 +46,10 @@
                                     </p>
                                     <div class="social">
                                         @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('coach_id', $coach->id)->get()) > 0)
-                                            <a href="{{ route('account.coaches.follow', ['action', 'unfollow', 'coach_id', $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
+                                            <a href="{{ route('account.coaches.follow', ['action' => 'unfollow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
                                             <a href="{{ route('account.imc') }}"><i class="bi bi-chat-left-dots-fill"></i></a>
                                         @else       
-                                            <a href="{{ route('account.coaches.follow', ['action', 'follow', 'coach_id', $coach->id]) }}"><i class="bi bi-heart"></i></a>
+                                            <a href="{{ route('account.coaches.follow', ['action' => 'follow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart"></i></a>
                                         @endif
                                     </div>
                                 </div>

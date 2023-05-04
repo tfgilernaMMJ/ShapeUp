@@ -98,10 +98,10 @@
                     <h4>Enlaces útiles</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre nosotros</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Servicios</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Términos de servicio</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Política de privacidad</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Entrenadores</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Suscripciones</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Contacto</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">IMC</a></li>
                     </ul>
                 </div>
 
@@ -115,10 +115,10 @@
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>¡Únete ahora a ShapeUp!</h4>
-                    <p>Si estás interesado en unirte a nuestro equipo de entrenadores, por favor envíanos tu CV y te contactaremos.</p>
+                    {{-- <p>Si estás interesado en unirte a nuestro equipo de entrenadores, por favor envíanos tu CV y te contactaremos.</p>
                     <form action="" method="post">
                         <input type="email" name="email"><input type="submit" value="Enviar">
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
