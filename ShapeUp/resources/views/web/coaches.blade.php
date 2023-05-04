@@ -40,6 +40,7 @@
                                     <span>País: {{ $coach->country }}</span>
                                     <span>Edad: {{ $coach->age }}</span>
                                     <span>Experiencia: {{ $coach->experience }}</span>
+                                    <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('coach_id', $coach->id)->get()) }}</span>
                                     <p>
                                         {{ $coach->biography }}
                                     </p>
