@@ -18,12 +18,15 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('status', ['User', 'Admin'])->default('User');
+            $table->enum('status', ['User', 'Admin', 'Coach'])->default('User');
             $table->string('country')->nullable();
             $table->integer('age')->nullable();
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
-            $table->foreignId('suscription_id')->references('id')->on('suscriptions');
+            $table->text('photo')->nullable();
+            $table->text('biography')->nullable();
+            $table->string('experience')->nullable();
+            $table->foreignId('suscription_id')->references('id')->on('suscriptions')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

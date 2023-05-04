@@ -10,8 +10,6 @@
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
-                {{-- <li><a class="@yield('about-nav')" href="{{ route('account.about') }}">Conócenos</a></li> --}}
-                {{-- <li><a class="@yield('courses-nav')" href="{{ route('account.courses') }}">Cursos</a></li> --}}
                 <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
                 <li class="dropdown"><a class="@yield('courses-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -25,7 +23,6 @@
                         <li><a href="{{ route('account.events') }}">Alimentos</a></li>
                     </ul>
                 </li>
-                {{-- <li><a class="@yield('events-nav')" href="{{ route('account.events') }}">Eventos</a></li> --}}
                 <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
                 {{-- <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -46,11 +43,21 @@
                     </ul>
                 </li> --}}
                 <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
-                @if (Auth::user() && !Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                @if (Auth::user())
+                    @if (Auth::user()->suscription_id == 1 && Auth::user()->status == 'User') 
+                        <li class="dropdown"><a class="active" href="#"><span><i class="bx bxs-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @elseif (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User')
+                        <li class="dropdown"><a class="active" href="#"><span><i class="bx bxs-star"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @elseif (Auth::user()->status == 'Admin')
+                        <li class="dropdown"><a class="active" href="#"><span><i class='bx bxs-crown'></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @elseif (Auth::user()->status == 'Coach')
+                        <li class="dropdown"><a class="active" href="#"><span><i class='bx bx-dumbbell'></i></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @endif
                         <ul>
                             <li><a href="#">Perfil</a></li>
                             @if (Auth::user()->status == 'Admin')   
+                                <li><a href="#">Administración</a></li>
+                            @elseif (Auth::user()->status == 'Coach')
                                 <li><a href="#">Administración</a></li>
                             @endif
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li></li>
@@ -59,24 +66,15 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>  
-                @elseif (Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::guard('coaches')->name }}</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Perfil</a></li>
-                            <li><a href="#">Administración</a></li>
-                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li></li>
-                        </ul>
-                    </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form> 
                 @endif
             </ul>
             
             <i class="bi bi-list mobile-nav-toggle"></i>
 
         </nav>
-        <a href="courses.html" class="get-started-btn">Suscribete</a>
+        @if (Auth::user()->suscription_id == 1) 
+            <a href="{{ route('account.subscriptions')}}" class="get-started-btn">Suscribete</a>
+        @endif
     </div>
 </header>
 @endsection
@@ -101,10 +99,10 @@
                     <h4>Enlaces útiles</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre nosotros</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Servicios</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Términos de servicio</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Política de privacidad</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Entrenadores</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Suscripciones</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Contacto</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">IMC</a></li>
                     </ul>
                 </div>
 
@@ -118,10 +116,10 @@
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>¡Únete ahora a ShapeUp!</h4>
-                    <p>Si estás interesado en unirte a nuestro equipo de entrenadores, por favor envíanos tu CV y te contactaremos.</p>
+                    {{-- <p>Si estás interesado en unirte a nuestro equipo de entrenadores, por favor envíanos tu CV y te contactaremos.</p>
                     <form action="" method="post">
                         <input type="email" name="email"><input type="submit" value="Enviar">
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
