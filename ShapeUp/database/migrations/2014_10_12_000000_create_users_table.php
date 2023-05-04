@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
-            $table->foreignId('suscription_id')->references('id')->on('suscriptions');
+            $table->foreignId('suscription_id')->references('id')->on('suscriptions')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
