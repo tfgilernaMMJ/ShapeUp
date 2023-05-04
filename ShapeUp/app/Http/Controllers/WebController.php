@@ -39,11 +39,11 @@ class WebController extends Controller
             $user_follow_coaches->user_id = Auth::user()->id;
             $user_follow_coaches->coach_id = $coach_id;
             $user_follow_coaches->save();
-            return redirect()->route('account.coaches');
+            return back();
         } else if ($action == 'unfollow') {
             $user_id = Auth::user()->id;
             UserFollowCoach::where('user_id', $user_id)->where('coach_id', $coach_id)->delete();
-            return redirect()->route('account.coaches');
+            return back();
         }        
     }
     
