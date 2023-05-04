@@ -44,7 +44,13 @@
                 </li> --}}
                 <li><a class="@yield('contact-nav')" href="{{ route('account.contact') }}">Contacto</a></li>
                 @if (Auth::user() && !Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @if (Auth::user()->suscription_id == 1 && Auth::user()->status == 'User') 
+                        <li class="dropdown"><a class="active" href="#"><span><i class="bx bxs-user"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @elseif (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User')
+                        <li class="dropdown"><a class="active" href="#"><span><i class="bx bxs-star"></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @elseif (Auth::user()->status == 'Admin')
+                        <li class="dropdown"><a class="active" href="#"><span><i class='bx bxs-crown'></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
+                    @endif
                         <ul>
                             <li><a href="#">Perfil</a></li>
                             @if (Auth::user()->status == 'Admin')   
@@ -57,7 +63,7 @@
                         @csrf
                     </form>  
                 @elseif (Auth::guard('coaches')->check())
-                    <li class="dropdown"><a class="active" href="#"><span><i class="bx bx-user"></i>&nbsp{{ Auth::guard('coaches')->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a class="active" href="#"><span><i class='bx bx-dumbbell'></i>&nbsp{{ Auth::guard('coaches')->name }}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Perfil</a></li>
                             <li><a href="#">Administración</a></li>
@@ -73,7 +79,9 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
 
         </nav>
-        <a href="courses.html" class="get-started-btn">Suscribete</a>
+        @if (Auth::user()->suscription_id == 1) 
+            <a href="{{ route('account.subscriptions')}}" class="get-started-btn">Suscribete</a>
+        @endif
     </div>
 </header>
 @endsection
