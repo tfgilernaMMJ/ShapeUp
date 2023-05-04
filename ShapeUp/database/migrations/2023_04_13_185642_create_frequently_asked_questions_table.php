@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('frequently_asked_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('coach_id')->references('id')->on('coaches');
+            $table->foreignId('user_coach_id')->references('id')->on('users');
             $table->text('message');
             $table->timestamps();
         });
