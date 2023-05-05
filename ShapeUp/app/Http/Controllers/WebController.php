@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FrequentlyAskedQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\UserFollowCoach;
@@ -51,6 +52,16 @@ class WebController extends Controller
     {   
         $coach = User::where('id', $coach_id)->first();
         return view('web.messagecoach', ['coach' => $coach]);       
+    } 
+
+    public function sendMessageCoaches(Request $request, $coach_id)
+    {  
+        $message = new FrequentlyAskedQuestion;
+        $message->user_id = Auth::user()->id;
+        $message->user_coach_id = $coach_id;
+        $message->message = $request->input('message');
+        $message->save(); 
+        return redirect()->route('account.coaches');     
     } 
     
     public function paymentSubscription($action = null)
