@@ -8,7 +8,7 @@
     active
 @endsection
 
-@section('imc-section')
+@section('confirmsdisable-section')
     <main id="main">
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">

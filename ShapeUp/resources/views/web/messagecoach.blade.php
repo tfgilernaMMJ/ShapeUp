@@ -8,7 +8,7 @@
     active
 @endsection
 
-@section('contact-section')
+@section('messagecoach-section')
     <main id="main">
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">

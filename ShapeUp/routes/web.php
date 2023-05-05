@@ -53,6 +53,10 @@ Route::get('/entrenadores/{action}/{coach_id}', [App\Http\Controllers\WebControl
 
 Route::get('/entrenadores/mensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'messageCoaches'])->name('account.coaches.message');
 
+// Route::get('/entrenadores/mensajes', function () {
+//     return view('web.messagecoach');
+// })->name('account.coaches.message');
+
 Route::get('/eventos', function () {
     return view('web.events');
 })->name('account.events');
