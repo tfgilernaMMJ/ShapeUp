@@ -69,7 +69,7 @@
 
                                 @else
                                     @if (Auth::user()->status == 'User') 
-                                        <a href="#" class="btn-buy">Contratar</a>
+                                        <a href="{{ route('account.checkout')}}" class="btn-buy">Contratar</a>
                                     @endif
                                 @endif
                             </div>

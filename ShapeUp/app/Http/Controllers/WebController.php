@@ -51,6 +51,14 @@ class WebController extends Controller
     {   
         $coach = User::where('id', $coach_id)->first();
         return view('web.messagecoach', ['coach' => $coach]);       
-    }    
+    } 
+    
+    public function paymentSubscription()
+    {   
+        $user = User::findOrFail(Auth::user()->id);
+        $user->suscription_id = 2;
+        $user->save();
+        return redirect()->route('account.index');       
+    }
     
 }

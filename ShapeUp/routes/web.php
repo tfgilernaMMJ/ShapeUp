@@ -55,9 +55,22 @@ Route::get('/eventos', function () {
     return view('web.events');
 })->name('account.events');
 
+// SUBSCRIPTIONS
 Route::get('/suscripciones', function () {
     return view('web.subscriptions');
 })->name('account.subscriptions');
+
+Route::get('/suscripciones/metodo-de-pago', function () {
+    return view('web.checkout');
+})->name('account.checkout');
+
+Route::get('/suscripciones/metodo-de-pago/paypal', function () {
+    return view('web.paypal');
+})->name('account.paypal');
+
+Route::get('/suscripciones/metodo-de-pago/tarjeta-de-credito', function () {
+    return view('web.creditcard');
+})->name('account.creditcard');
 
 Route::get('/contacto', function () {
     return view('web.contact');
