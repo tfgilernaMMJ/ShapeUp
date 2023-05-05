@@ -85,6 +85,7 @@ Route::post('/suscripciones/metodo-de-pago/pago', [App\Http\Controllers\WebContr
 Route::get('/suscripciones/metodo-de-pago/confirm', function () {
     return view('web.confirmdisable');
 })->name('account.confirmdisable');
+
 Route::get('/suscripciones/metodo-de-pago/{action}', [App\Http\Controllers\WebController::class, 'paymentSubscription'])->name('account.payment.disable');
 
 // CONTACT
