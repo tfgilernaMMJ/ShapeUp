@@ -66,7 +66,7 @@ class WebController extends Controller
     
     public function paymentSubscription($action = null)
     {   
-        if ($action = 'gratuito') {
+        if ($action == 'gratuito') {
             $user = User::findOrFail(Auth::user()->id);
             $user->suscription_id = 1;
             $user->save();
