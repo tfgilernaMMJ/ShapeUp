@@ -91,7 +91,7 @@
                         41092, Sevilla<br>
                         España<br><br>
                         <strong>Teléfono:</strong> +34 910 111 222<br>
-                        <strong>Correo electrónico:</strong> info@shapeup.es<br>
+                        <strong>Correo electrónico:</strong> infocontact.shapeup@gmail.com<br>
                     </p>
                 </div>
 

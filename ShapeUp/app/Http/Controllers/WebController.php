@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\FrequentlyAskedQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail;
 use App\Models\UserFollowCoach;
 use App\Models\Gym;
 use App\Models\Supermarket;
 use App\Models\User;
-use App\Models\Coach;
 use App\Models\Diet;
 use App\Models\Training;
 
@@ -78,5 +79,18 @@ class WebController extends Controller
             return redirect()->route('account.index');
         }    
     }
-    
+
+    public function contactShapeUp(Request $request)
+    {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $subject = $request->input('subject');
+        $message = $request->input('message');
+
+        env('MAIL_FROM_ADDRESS', $email);
+        Mail::to('infocontact.shapeup@gmail.com')->send(new ContactFormMail($name, $email, $subject, $message));
+
+        return redirect()->route('account.index');
+    }
+  
 }
