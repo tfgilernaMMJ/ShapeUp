@@ -72,6 +72,12 @@ Route::get('/suscripciones/metodo-de-pago/tarjeta-de-credito', function () {
     return view('web.creditcard');
 })->name('account.creditcard');
 
+Route::post('/suscripciones/metodo-de-pago/pago', [App\Http\Controllers\WebController::class, 'paymentSubscription'])->name('account.payment');
+Route::get('/suscripciones/metodo-de-pago/confirm', function () {
+    return view('web.confirmdisable');
+})->name('account.confirmdisable');
+Route::get('/suscripciones/metodo-de-pago/{action}', [App\Http\Controllers\WebController::class, 'paymentSubscription'])->name('account.payment.disable');
+
 Route::get('/contacto', function () {
     return view('web.contact');
 })->name('account.contact');
