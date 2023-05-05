@@ -19,7 +19,7 @@ class Diet extends Model
 
     public function coach()
     {
-        return $this->belongsTo(Coach::class);
+        return $this->belongsTo(User::class);
     }
 
     public function categoriesOfDiet()

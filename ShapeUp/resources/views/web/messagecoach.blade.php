@@ -8,7 +8,7 @@
     active
 @endsection
 
-@section('contact-section')
+@section('messagecoach-section')
     <main id="main">
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">
@@ -17,28 +17,24 @@
             </div>
         </div>
 
-        <section id="clients" class="clients">
-            <div class="container" data-aos="zoom-out">
-                <div class="section-title">
-                    <h2>Mensaje para</h2>
-                    <p>{{$coach->name}}</p>
-                </div>
-            </div>
-        </section>
-
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
-                <div class="row mt-5">                 
-                    <div class="col-lg-12 mt-5 mt-lg-0">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <div class="row mt-5"> 
+                    <div class="section-title">
+                        <h2>Mensaje para</h2>
+                        <p>{{$coach->name}}</p>
+                    </div>                
+                    <div class="col-lg-12 mt-2 mt-lg-0">
+                        <form action="{{route('account.coaches.message.send', ['coach_id' => $coach->id])}}" method="post" role="form" class="php-email-form">
+                            @csrf
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
                             </div>
-                            <div class="my-3">
+                            {{-- <div class="my-3">
                                 <div class="loading">Cargando</div>
                                 <div class="error-message"></div>
                                 <div class="sent-message">¡Tu mensaje ha sido enviado. Gracias!</div>
-                            </div>
+                            </div> --}}
                             <div class="text-center"><button type="submit">Enviar mensaje</button></div>
                         </form>
                     </div>                    

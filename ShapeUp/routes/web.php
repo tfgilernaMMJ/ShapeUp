@@ -48,8 +48,16 @@ Route::get('/cursos/detalles', function () {
 
 // COACHES 
 Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches');
-Route::get('/entrenadores/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow');
+
+Route::get('/entrenadores/accion/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow');
+
 Route::get('/entrenadores/mensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'messageCoaches'])->name('account.coaches.message');
+
+Route::post('/entrenadores/enviarmensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'sendMessageCoaches'])->name('account.coaches.message.send');
+
+// Route::get('/entrenadores/mensajes', function () {
+//     return view('web.messagecoach');
+// })->name('account.coaches.message');
 
 Route::get('/eventos', function () {
     return view('web.events');
@@ -73,10 +81,13 @@ Route::get('/suscripciones/metodo-de-pago/tarjeta-de-credito', function () {
 })->name('account.creditcard');
 
 Route::post('/suscripciones/metodo-de-pago/pago', [App\Http\Controllers\WebController::class, 'paymentSubscription'])->name('account.payment');
+
 Route::get('/suscripciones/metodo-de-pago/confirm', function () {
     return view('web.confirmdisable');
 })->name('account.confirmdisable');
 Route::get('/suscripciones/metodo-de-pago/{action}', [App\Http\Controllers\WebController::class, 'paymentSubscription'])->name('account.payment.disable');
+
+// CONTACT
 
 Route::get('/contacto', function () {
     return view('web.contact');
