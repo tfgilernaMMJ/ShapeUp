@@ -1,32 +1,37 @@
 @extends('web.templates.template')
 
 @section('titulo')
-    Suscripciones
+    Cancelar suscripción
 @endsection
 
 @section('subscriptions-nav')
     active
 @endsection
 
-@section('subscriptions-section')
+@section('imc-section')
     <main id="main">
         <div class="breadcrumbs" data-aos="fade-in">
             <div class="container">
-                <h2>Suscripciones</h2>
-                <p>Ofrecemos planes de suscripción flexibles para adaptarnos a cualquier presupuesto. Desde el plan Gratuito hasta el plan SuperShapeUp con características avanzadas, tenemos algo para todos. ¡Elige el plan que mejor se adapte a tus necesidades y comienza a disfrutar de todos los beneficios de nuestra plataforma!</p>
+                <h2>¿Estás seguro de que quieres cancelar tu suscripción SuperShapeUp?</h2>
+                <p>Al cancelar su suscripción a SuperShapeUp, perderá todos los privilegios y beneficios que ofrecía la suscripción. Si está seguro de que desea cancelar su suscripción, haga clic en el botón 'Cancelar suscripción y volver a gratuito' de abajo.</p>
             </div>
-        </div>
-
+        </div>         
+        
         <section id="pricing" class="pricing">
+            <div class="container mb-4" data-aos="fade-up">
+                <div class="row mt-5">
+                    <div class="col-lg-12 mt-5 mt-lg-0">
+                        <div class="text-center">
+                            <div class="d-inline-block"><a href="{{ route('account.subscriptions')}}" class="get-started-btn">Volver atrás</a></div>
+                            <div class="d-inline-block"><a href="{{ route('account.payment.disable', ['action' => 'gratuito'])}}" class="get-started-btn">Cancelar suscripción y volver a gratuito</a></div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
             <div class="container" data-aos="fade-up">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-                        @if (Auth::user()->suscription_id == 1)
                         <div class="box">
-                            <span class="advanced">Contratada</span>
-                        @else
-                        <div class="box featured">
-                        @endif
                             <h3>Gratuito</h3>
                             <h4><sup>€</sup>0<span> / mes</span></h4>
                             <ul>
@@ -36,25 +41,11 @@
                                 <li class="na">Ver entrenamientos ShapeUp</li>
                                 <li class="na">Ver dietas ShapeUp</li>
                             </ul>
-                            <div class="btn-wrap">
-                                @if (Auth::user()->suscription_id == 1)
-
-                                @else
-                                    @if (Auth::user()->status == 'User') 
-                                        <a href="{{ route('account.confirmdisable')}}" class="btn-buy">Volver a Gratuito</a>
-                                    @endif
-                                @endif
-                            </div>
                         </div>
                     </div>
           
                     <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-                        @if (Auth::user()->suscription_id == 2)
-                        <div class="box">
-                            <span class="advanced">Contratada</span>
-                        @else
                         <div class="box featured">
-                        @endif
                             <h3>SuperShapeUp</h3>
                             <h4><sup>€</sup>9.99<span> / mes</span></h4>
                             <ul>
@@ -64,15 +55,6 @@
                                 <li>Ver entrenamientos ShapeUp</li>
                                 <li>Ver dietas ShapeUp</li>
                             </ul>
-                            <div class="btn-wrap">
-                                @if (Auth::user()->suscription_id == 2)
-
-                                @else
-                                    @if (Auth::user()->status == 'User') 
-                                        <a href="{{ route('account.checkout')}}" class="btn-buy">Contratar</a>
-                                    @endif
-                                @endif
-                            </div>
                         </div>
                     </div>
                 </div>

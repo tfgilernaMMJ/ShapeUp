@@ -53,12 +53,19 @@ class WebController extends Controller
         return view('web.messagecoach', ['coach' => $coach]);       
     } 
     
-    public function paymentSubscription()
+    public function paymentSubscription($action = null)
     {   
-        $user = User::findOrFail(Auth::user()->id);
-        $user->suscription_id = 2;
-        $user->save();
-        return redirect()->route('account.index');       
+        if ($action = 'gratuito') {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->suscription_id = 1;
+            $user->save();
+            return redirect()->route('account.index');
+        } else {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->suscription_id = 2;
+            $user->save();
+            return redirect()->route('account.index');
+        }    
     }
     
 }
