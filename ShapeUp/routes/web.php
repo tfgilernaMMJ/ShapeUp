@@ -15,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ------------------------------------------------------------
+
+// WEB
+
+// ------------------------------------------------------------
+
+// INDEX
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('account.index')->middleware('auth');
+
+// AUTH
 
 Route::get('/signin', function () {
     return view('auth\login');
@@ -26,17 +35,25 @@ Route::get('/signup', function () {
     return view('auth\register');
 })->name('signup');
 
+// LANDING
+
 Route::get('/landing', function () {
     return view('web.landing');
 })->name('landing');
+
+// IMC
 
 Route::get('/imc', function () {
     return view('web.imc');
 })->name('account.imc');
 
+// ABOUT
+
 Route::get('/conocenos', function () {
     return view('web.about');
 })->name('account.about');
+
+// COURSES
 
 Route::get('/cursos', function () {
     return view('web.courses');
@@ -47,6 +64,7 @@ Route::get('/cursos/detalles', function () {
 })->name('account.courses-details');
 
 // COACHES 
+
 Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches');
 
 Route::get('/entrenadores/accion/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow');
@@ -55,9 +73,7 @@ Route::get('/entrenadores/mensajes/{coach_id}', [App\Http\Controllers\WebControl
 
 Route::post('/entrenadores/enviarmensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'sendMessageCoaches'])->name('account.coaches.message.send');
 
-// Route::get('/entrenadores/mensajes', function () {
-//     return view('web.messagecoach');
-// })->name('account.coaches.message');
+// EVENTS
 
 Route::get('/eventos', function () {
     return view('web.events');
@@ -94,6 +110,9 @@ Route::get('/contacto', function () {
     return view('web.contact');
 })->name('account.contact');
 
+Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::class, 'contactShapeUp'])->name('account.contact.email.send');
+
+// ------------------------------------------------------------
 
 // TESTING DASHBOARD
 

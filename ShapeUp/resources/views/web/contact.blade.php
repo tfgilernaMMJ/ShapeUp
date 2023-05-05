@@ -23,6 +23,13 @@
                 <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.932583749691!2d-6.013061924202613!3d37.39142657208455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c71c0eda5f3%3A0x6f8db9ee73f3c556!2sTorre%20Sevilla%2C%2041092%20Sevilla!5e0!3m2!1ses!2ses!4v1682373615311!5m2!1ses!2ses" frameborder="0" allowfullscreen></iframe>
             </div>
 
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+
             <div class="container" data-aos="fade-up">
                 <div class="row mt-5">
                     <div class="col-lg-4">
@@ -36,7 +43,7 @@
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Correo electrónico:</h4>
-                                <p>info@shapeup.es</p>
+                                <p>infocontact.shapeup@gmail.com</p>
                             </div>
                     
                             <div class="phone">
@@ -48,7 +55,8 @@
                     </div>                    
 
                     <div class="col-lg-8 mt-5 mt-lg-0">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <form action="{{ route('account.contact.email.send')}}" method="post" role="form" class="php-email-form">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Tu nombre: {{Auth::user()->name}}" required>
@@ -62,11 +70,6 @@
                             </div>
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Cargando</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">¡Tu mensaje ha sido enviado. Gracias!</div>
                             </div>
                             <div class="text-center"><button type="submit">Enviar mensaje</button></div>
                         </form>
