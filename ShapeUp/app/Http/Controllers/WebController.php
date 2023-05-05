@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FrequentlyAskedQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail;
 use App\Models\UserFollowCoach;
 use App\Models\Gym;
 use App\Models\Supermarket;
 use App\Models\User;
-use App\Models\Coach;
 use App\Models\Diet;
 use App\Models\Training;
 
@@ -46,5 +48,49 @@ class WebController extends Controller
             return back();
         }        
     }
+
+    public function messageCoaches($coach_id)
+    {   
+        $coach = User::where('id', $coach_id)->first();
+        return view('web.messagecoach', ['coach' => $coach]);       
+    } 
+
+    public function sendMessageCoaches(Request $request, $coach_id)
+    {  
+        $message = new FrequentlyAskedQuestion;
+        $message->user_id = Auth::user()->id;
+        $message->user_coach_id = $coach_id;
+        $message->message = $request->input('message');
+        $message->save(); 
+        return redirect()->route('account.coaches');     
+    } 
     
+    public function paymentSubscription($action = null)
+    {   
+        if ($action == 'gratuito') {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->suscription_id = 1;
+            $user->save();
+            return redirect()->route('account.index');
+        } else {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->suscription_id = 2;
+            $user->save();
+            return redirect()->route('account.index');
+        }    
+    }
+
+    public function contactShapeUp(Request $request)
+    {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $subject = $request->input('subject');
+        $message = $request->input('message');
+
+        env('MAIL_FROM_ADDRESS', $email);
+        Mail::to('infocontact.shapeup@gmail.com')->send(new ContactFormMail($name, $email, $subject, $message));
+
+        return redirect()->route('account.index');
+    }
+  
 }

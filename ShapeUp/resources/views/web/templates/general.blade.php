@@ -44,12 +44,12 @@
         {{-- COURSES --}}
 
         @yield('courses-section')
-
         @yield('courses-details-section')
 
         {{-- COACHES --}}
 
         @yield('coaches-section')
+        @yield('messagecoach-section')
 
         {{-- EVENTS --}}
 
@@ -58,11 +58,11 @@
         {{-- SUBSCRIPTIONS --}}
 
         @yield('subscriptions-section')
+        @yield('confirmsdisable-section')
 
         {{-- CONTACT --}}
 
         @yield('contact-section')
-
 
         @yield('footer')
 
@@ -115,6 +115,6 @@
             const countsSection = document.getElementById('counts');
             countsSection.style.display = 'block';
             });
-          </script>
+          </script>            
     </body>
 </html>

@@ -64,7 +64,7 @@ Inicio sesión
 
 			<div class="login100-more" style="background-image: url({{ asset('auth/images/login.jpeg') }});">
 				<div class="glitch-wrapper">
-					<div class="glitch" data-glitch="ShapeUp">ShapeUp</div>
+					<div class="glitch" data-glitch="SHAPEUP">SHAPEUP</div>
 				</div>
 			</div>
 		</div>

@@ -27,6 +27,9 @@ class User extends Authenticatable
         'age',
         'height',
         'weight',
+        'photo',
+        'biography',
+        'experience',
         'suscription_id'
     ];
 
