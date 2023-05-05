@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('account.index')->middleware('auth');
 
-Route::get('/landing', function () {
+Route::get('/home', function () {
     return view('web.landing');
 })->name('account.landing');
 

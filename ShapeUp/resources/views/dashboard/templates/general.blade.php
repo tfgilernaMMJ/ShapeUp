@@ -50,6 +50,9 @@
 <!-- PRINCIPAL -->
 @yield('dashboard-principal')
 
+<!-- PRINCIPAL -->
+@yield('dashboard-principal')
+
 <!-- TABLES -->
 @yield('dashboard-tables')
 
