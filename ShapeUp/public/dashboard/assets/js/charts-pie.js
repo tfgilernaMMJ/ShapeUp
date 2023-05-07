@@ -6,7 +6,7 @@ const pieConfig = {
   data: {
     datasets: [
       {
-        data: [33, 33, 33],
+        data: [3, 63, 33],
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
