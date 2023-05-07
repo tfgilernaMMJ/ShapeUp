@@ -117,22 +117,37 @@ Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::clas
 
 // ------------------------------------------------------------
 
-// TESTING DASHBOARD
+// COACH DASHBOARD
 
 // ------------------------------------------------------------
 
-Route::get('/dashboard-principal/{coach_id}', [App\Http\Controllers\DashboardController::class, 'get_users_followers'])->name('dashboard-principal');
+Route::get('/admin-entrenador', function () {
+    return view('coach.index');
+})->name('admin-coach');
 
+Route::get('/admin-entrenador/formularios', function () {
+    return view('coach.forms');
+})->name('admin-coach.forms');
 
+Route::get('/admin-entrenador/tarjetas', function () {
+    return view('coach.cards');
+})->name('admin-coach.cards');
 
-Route::get('/dashboard-tables', function () {
-    return view('dashboard.tables');
-})->name('dashboard-tables');
+Route::get('/admin-entrenador/graficos', function () {
+    return view('coach.charts');
+})->name('admin-coach.charts');
 
-// CONTROLLERS DASHBOARD
+Route::get('/admin-entrenador/botones', function () {
+    return view('coach.buttons');
+})->name('admin-coach.buttons');
 
+Route::get('/admin-entrenador/modales', function () {
+    return view('coach.modals');
+})->name('admin-coach.modals');
 
-
+Route::get('/admin-entrenador/tablas', function () {
+    return view('coach.tables');
+})->name('admin-coach.tables');
 
 // Auth::routes(['verify' => true]);
 
