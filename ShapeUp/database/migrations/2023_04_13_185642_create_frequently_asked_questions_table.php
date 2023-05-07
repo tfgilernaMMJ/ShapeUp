@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('user_coach_id')->references('id')->on('users');
             $table->text('message');
+            $table->boolean('check');
             $table->timestamps();
         });
     }
