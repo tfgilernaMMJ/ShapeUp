@@ -47,8 +47,8 @@
 </head>
 <body>
 
-<!-- PRINCIPAL -->
-@yield('dashboard-principal')
+<!-- HEADER -->
+@yield('sidebar')
 
 <!-- PRINCIPAL -->
 @yield('dashboard-principal')

@@ -121,13 +121,18 @@ Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::clas
 
 // ------------------------------------------------------------
 
-Route::get('/dashboard-principal', function () {
-    return view('dashboard.dashboard');
-})->name('dashboard-principal');
+Route::get('/dashboard-principal/{coach_id}', [App\Http\Controllers\DashboardController::class, 'get_users_followers'])->name('dashboard-principal');
+
+
 
 Route::get('/dashboard-tables', function () {
     return view('dashboard.tables');
 })->name('dashboard-tables');
+
+// CONTROLLERS DASHBOARD
+
+
+
 
 // Auth::routes(['verify' => true]);
 
