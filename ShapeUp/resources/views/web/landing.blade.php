@@ -26,7 +26,7 @@
     {{-- <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> --}}
 
     <link href="{{ asset('landing/assets/css/style.css') }}" rel="icon">
-    {{-- <link href="assets/css/style.css" rel="stylesheet"> --}}
+    <link href="{{asset('landing/assets/css/style.css')}}" rel="stylesheet">
 </head>
 
 <body>

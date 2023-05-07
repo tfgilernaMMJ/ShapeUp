@@ -25,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('account.index')->middleware('auth');
 
+Route::get('/home', function () {
+    return view('web.landing');
+})->name('account.landing');
 // AUTH
 
 Route::get('/signin', function () {
@@ -118,13 +121,18 @@ Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::clas
 
 // ------------------------------------------------------------
 
-Route::get('/dashboard-principal', function () {
-    return view('dashboard.dashboard');
-})->name('dashboard-principal');
+Route::get('/dashboard-principal/{coach_id}', [App\Http\Controllers\DashboardController::class, 'get_users_followers'])->name('dashboard-principal');
+
+
 
 Route::get('/dashboard-tables', function () {
     return view('dashboard.tables');
 })->name('dashboard-tables');
+
+// CONTROLLERS DASHBOARD
+
+
+
 
 // Auth::routes(['verify' => true]);
 
