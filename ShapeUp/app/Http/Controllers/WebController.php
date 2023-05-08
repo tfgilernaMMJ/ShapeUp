@@ -82,15 +82,68 @@ class WebController extends Controller
 
     public function contactShapeUp(Request $request)
     {
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $subject = $request->input('subject');
-        $message = $request->input('message');
+        try {
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $subject = $request->input('subject');
+            $message = $request->input('message');
 
-        env('MAIL_FROM_ADDRESS', $email);
-        Mail::to('infocontact.shapeup@gmail.com')->send(new ContactFormMail($name, $email, $subject, $message));
+            env('MAIL_FROM_ADDRESS', $email);
+            Mail::to('infocontact.shapeup@gmail.com')->send(new ContactFormMail($name, $email, $subject, $message));
 
-        return redirect()->route('account.index');
+            return redirect()->route('account.contact')->with('success', 'El mensaje se han enviado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('account.contact')->with('error', 'Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
+        }
+
+    }
+
+    public function editProfile(Request $request)
+    {
+        try {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->name = $request->input('name');
+            $user->username = $request->input('username');
+            $user->email = $request->input('email');
+            $user->country = $request->input('country');
+            $user->age = $request->input('age');
+            $user->weight = $request->input('weight');
+            $user->height = $request->input('height');
+            $user->save();
+        
+            return redirect()->route('account.profile')->with('success', 'Los datos se han guardado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('account.profile')->with('error', 'Ha ocurrido un error al guardar los datos. Por favor, inténtalo de nuevo más tarde.');
+        }
+        
+    }
+
+    public function editPassword(Request $request)
+    {
+        try {
+
+            $password = $request->input('oldpassword');
+            $hash = Auth::user()->password;
+
+            if (password_verify($password, $hash)) {
+                $newpassword = $request->input('newpassword');
+                $confirmnewpassword = $request->input('confirmnewpassword');
+
+                if($newpassword === $confirmnewpassword) {
+                    $user = User::findOrFail(Auth::user()->id);
+                    $user->password = bcrypt($newpassword);
+                    $user->save();
+                    return redirect()->route('account.profile')->with('success', 'La contraseña se ha cambiado correctamente.');
+                } else {
+                    return redirect()->route('account.profile.password')->with('error', 'La nueva contraseña y la confirmación de nueva contraseña no coinciden. Por favor, inténtalo de nuevo.');
+                }
+            } else {
+                return redirect()->route('account.profile.password')->with('error', 'La contraseña actual no coincide con la introducida. Por favor, inténtalo de nuevo.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('account.profile.password')->with('error', 'Ha ocurrido un error al cambiar la contraseña. Por favor, inténtalo de nuevo más tarde.');
+        }
+        
     }
   
 }

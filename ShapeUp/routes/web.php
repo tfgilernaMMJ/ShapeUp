@@ -115,6 +115,20 @@ Route::get('/contacto', function () {
 
 Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::class, 'contactShapeUp'])->name('account.contact.email.send');
 
+// PROFILE
+
+Route::get('/perfil', function () {
+    return view('web.profile');
+})->name('account.profile');
+
+Route::post('/perfil/editar/', [App\Http\Controllers\WebController::class, 'editProfile'])->name('account.profile.edit');
+
+Route::get('/perfil/cambiar-contraseña', function () {
+    return view('web.editpassword');
+})->name('account.profile.password');
+
+Route::post('/perfil/editar/cambiar-contraseña', [App\Http\Controllers\WebController::class, 'editPassword'])->name('account.profile.edit.password');
+
 // ------------------------------------------------------------
 
 // COACH DASHBOARD
