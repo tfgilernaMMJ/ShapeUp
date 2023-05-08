@@ -121,7 +121,12 @@ Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::clas
 
 // ------------------------------------------------------------
 
-Route::get('/admin-entrenador', [App\Http\Controllers\CoachController::class, 'get_users_followers'])->name('admin-coach');
+Route::get('/admin-entrenador', [App\Http\Controllers\CoachController::class, 'dashboardPrincipal'])->name('admin-coach');
+
+Route::get('/admin-entrenador/trainings', function () {
+    return view('coach.trainings');
+})->name('admin-coach.trainings');
+Route::get('/search',[App\Http\Controllers\CoachController::class, 'searchTrainings'])->name('search-trainings');
 
 Route::get('/admin-entrenador/formularios', function () {
     return view('coach.forms');
