@@ -54,7 +54,9 @@
                         <li class="dropdown"><a class="active" href="#"><span><i class='bx bx-dumbbell'></i></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
                     @endif
                         <ul>
-                            <li><a href="#">Perfil</a></li>
+                            @if (Auth::user()->status == 'User')     
+                                <li><a href="{{ route('account.profile') }}" class="@yield('profile-nav')">Perfil</a></li>
+                            @endif
                             @if (Auth::user()->status == 'Admin')   
                                 <li><a href="#">Administración</a></li>
                             @elseif (Auth::user()->status == 'Coach')
