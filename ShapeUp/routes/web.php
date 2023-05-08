@@ -115,6 +115,14 @@ Route::get('/contacto', function () {
 
 Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::class, 'contactShapeUp'])->name('account.contact.email.send');
 
+// PROFILE
+
+Route::get('/perfil', function () {
+    return view('web.profile');
+})->name('account.profile');
+
+Route::post('/perfil/editar/', [App\Http\Controllers\WebController::class, 'editProfile'])->name('account.profile.edit');
+
 // ------------------------------------------------------------
 
 // COACH DASHBOARD

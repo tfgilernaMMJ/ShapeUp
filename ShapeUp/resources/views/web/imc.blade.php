@@ -30,11 +30,6 @@
                                 <input type="number" class="form-control" name="altura" id="altura" placeholder="Introduce tu altura en cm" required>
                               </div>
                             </div>
-                            <div class="my-3">
-                              <div class="loading">Cargando</div>
-                              <div class="error-message"></div>
-                              <div class="sent-message">¡Tu mensaje ha sido enviado. Gracias!</div>
-                            </div>
                             <div class="text-center"><button type="submit" id="calculate-btn" disabled>Calcular IMC</button></div>
                         </form>
                     </div>                    
