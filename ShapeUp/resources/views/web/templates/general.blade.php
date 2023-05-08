@@ -36,6 +36,7 @@
 
         @yield('index-section')
         @yield('imc-section')
+        @yield('profile-section')
 
         {{-- ABOUT --}}
 
