@@ -39,7 +39,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="row mt-3">
                     <div class="col-lg-12 mt-5 mt-lg-0">
-                        <a type="button" class="mb-3" href="#">Cambiar contraseña</a>
+                        <a type="button" class="mb-3" href="{{route('account.profile.password')}}">Cambiar contraseña</a>
                         <form action="{{route('account.profile.edit')}}" method="post" role="form" class="php-email-form">
                             @csrf
                             <div class="row">

@@ -117,5 +117,33 @@ class WebController extends Controller
         }
         
     }
+
+    public function editPassword(Request $request)
+    {
+        try {
+
+            $password = $request->input('oldpassword');
+            $hash = Auth::user()->password;
+
+            if (password_verify($password, $hash)) {
+                $newpassword = $request->input('newpassword');
+                $confirmnewpassword = $request->input('confirmnewpassword');
+
+                if($newpassword === $confirmnewpassword) {
+                    $user = User::findOrFail(Auth::user()->id);
+                    $user->password = bcrypt($newpassword);
+                    $user->save();
+                    return redirect()->route('account.profile')->with('success', 'La contraseña se ha cambiado correctamente.');
+                } else {
+                    return redirect()->route('account.profile.password')->with('error', 'La nueva contraseña y la confirmación de nueva contraseña no coinciden. Por favor, inténtalo de nuevo.');
+                }
+            } else {
+                return redirect()->route('account.profile.password')->with('error', 'La contraseña actual no coincide con la introducida. Por favor, inténtalo de nuevo.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('account.profile.password')->with('error', 'Ha ocurrido un error al cambiar la contraseña. Por favor, inténtalo de nuevo más tarde.');
+        }
+        
+    }
   
 }
