@@ -214,12 +214,36 @@ INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `r
 (21, 'Estiramiento de cuello', 'Estiramientos para mejorar la flexibilidad en el cuello', 'Mejora la flexibilidad de tu cuello', 300, 30, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 12, 24, NOW(), NOW()),
 (22, 'Estiramiento de hombros', 'Estiramiento para mejorar la flexibilidad en los hombros', 'Mejora la flexibilidad de tus hombros', 300, 30, 3, 'https://www.youtube.com/watch?v=OLtUiP0XC4Q', 12, 24, NOW(), NOW()),
 (23, 'Estiramientos de brazos', 'Estiramientos para mejorar la flexibilidad en los brazos', 'Mejora la flexibilidad de tus brazos', 600, 30, 3, 'https://www.youtube.com/watch?v=4W-xie4ZOfs&t=318s', 12, 24, NOW(), NOW()),
-
 (24, 'Paso de bailarina', 'Este ejercicio de equilibrio se realiza en un solo pie. Levante una pierna y coloque la parte inferior de su pie en la rodilla de la otra pierna. Lentamente, levante su pierna en el aire detrás de usted mientras mantiene el equilibrio sobre la pierna que sostiene todo su peso. Manténgase durante 30 segundos y luego cambie de pierna', 'Este ejercicio ayuda a mejorar la estabilidad y el equilibrio', 30, 1, 3, 'https://www.youtube.com/watch?v=r5FzpRvQkk0', 15, 24, NOW(), NOW()),
 (25, 'Caminata en el cable', 'Para este ejercicio, necesitará una banda elástica o una cuerda de escalada y dos postes o anclajes para sostener la cuerda. Ate la cuerda a una altura adecuada y camine sobre ella mientras mantiene el equilibrio.', 'Este ejercicio ayuda a mejorar la coordinación y la estabilidad del núcleo', 60, 10, 3, 'https://www.youtube.com/watch?v=zTFG6gScuD0', 10, 24, NOW(), NOW()),
 (26, 'Bosu Ball Squat', 'Coloque el Bosu Ball en el suelo con el lado redondeado hacia arriba. Párese con ambos pies en la pelota y baje en una sentadilla mientras mantiene el equilibrio. Mantenga la posición durante 10 segundos y luego levántese lentamente.', 'Este ejercicio ayuda a mejorar la estabilidad y la coordinación del núcleo', 45, 12, 3, 'https://www.youtube.com/watch?v=2eyUkrPt9R0', 10, 24, NOW(), NOW()),
 (27, 'Paso lateral con cono', 'Coloque un cono en el suelo y párese al lado del cono. Levante la pierna opuesta al cono y cruce su cuerpo para tocar el cono con su pie. Vuelva a su posición inicial y repita con la otra pierna.', 'Este ejercicio ayuda a mejorar la coordinación y el equilibrio lateral', 30, 10, 3, 'https://www.youtube.com/watch?v=3yEbnTC890Q', 15, 24, NOW(), NOW()),
-(28, 'Sentadilla en una pierna', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación de las piernas y la pelvis', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación de las piernas y la pelvis', 30, 10, 3, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 10, 24, NOW(), NOW());
+(28, 'Sentadilla en una pierna', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación de las piernas y la pelvis', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación de las piernas y la pelvis', 30, 10, 3, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 10, 24, NOW(), NOW()),
+
+(29, 'Sentadillas con barra', 'De pie con los pies separados al ancho de los hombros, sosteniendo una barra con pesas en la parte posterior de los hombros, baja tu cuerpo doblando las rodillas y las caderas hasta que tus muslos estén paralelos al suelo. Luego, vuelve a la posición inicial.', 'Las sentadillas son un ejercicio compuesto que trabaja los cuádriceps, los glúteos, los isquiotibiales, la espalda baja y el núcleo.', 15, 10, 4, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 3, 25, NOW(), NOW()),
+(30, 'Press de banca', 'Acuéstate en un banco plano con los pies en el suelo y agarra una barra con pesas con las manos separadas al ancho de los hombros. Luego, baja la barra hasta que toque tu pecho y luego empújala hacia arriba hasta que los brazos estén completamente extendidos.', 'El press de banca trabaja los músculos del pecho, los hombros y los tríceps.', 30, 12, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 25, NOW(), NOW()),
+(31, 'Peso muerto', 'De pie con los pies separados al ancho de los hombros, agarrando una barra con pesas con las manos separadas al ancho de los hombros, baja tu cuerpo doblando las rodillas y las caderas hasta que puedas agarrar la barra. Luego, levanta la barra hasta que estés de pie con los brazos extendidos.', 'El press de banca trabaja los músculos del pecho, los hombros y los tríceps.', 20, 10, 4, 'https://www.youtube.com/watch?v=Y1Feac6SHPI', 3, 25, NOW(), NOW()),
+(32, 'Elevación de pantorrillas', 'La elevación de pantorrillas es un ejercicio que se enfoca en fortalecer las pantorrillas, el músculo gastrocnemio y el sóleo', 'Fortalece las pantorrillas.', 30, 15, 4, 'https://www.youtube.com/watch?v=iS1VtOd2bGQ', 3, 25, NOW(), NOW()),
+(33, 'Curl de bíceps con mancuernas', 'El curl de bíceps con mancuernas es un ejercicio de levantamiento de pesas que fortalece los músculos de los brazos, especialmente los bíceps.', 'Fortalece los músculos de los brazos', 45, 12, 4, 'https://www.youtube.com/watch?v=qERAhN-qpaU', 4, 25, NOW(), NOW()),
+(34, 'Sentadillas con salto', 'Las sentadillas con salto son un ejercicio de alto impacto que ayuda a aumentar la frecuencia cardíaca y quemar calorías. Comience con los pies separados a la anchura de los hombros, haga una sentadilla profunda y luego salte lo más alto que pueda.', 'Las sentadillas con salto queman calorías y aumentan la frecuencia cardíaca.', 30, 12, 4, 'https://www.youtube.com/watch?v=IiHH0EWo8-k', 3, 25, NOW(), NOW()),
+(35, 'Zancadas con salto', 'Las zancadas con salto son un ejercicio cardiovascular y de fuerza que ayuda a quemar calorías y mejorar la resistencia. Comience de pie con los pies juntos, de un gran paso hacia adelante con el pie derecho y luego salte lo más alto que pueda antes de cambiar de pierna y repetir.', 'Las zancadas con salto queman calorías y mejoran la resistencia.', 30, 12, 4, 'https://www.youtube.com/watch?v=Gd4H2uKDHIg', 8, 25, NOW(), NOW()),
+(36, 'Burpees', 'Los burpees son un ejercicio cardiovascular de cuerpo completo que ayuda a aumentar la frecuencia cardíaca y quemar calorías. Comience de pie, agáchese y coloque las manos en el suelo, haga un salto hacia atrás para quedar en posición de plancha, haga un push-up, salte hacia adelante, y finalmente salte lo más alto que pueda', 'Los burpees queman calorías y aumentan la frecuencia cardíaca.', 30, 12, 4, 'https://www.youtube.com/watch?v=GELRUlUSxeI', 3, 25, NOW(), NOW()),
+(37, 'Mountain climbers', 'Fortalece y tonifica el cuerpo entero, mejorando la resistencia y el sistema cardiovascular.', 'Mountain climbers queman muchas calorías, fortalecen y tonifican el cuerpo entero, mejoran la resistencia y el sistema cardiovascular. Este ejercicio es especialmente bueno para los músculos de las piernas, glúteos, abdominales y brazos.', 60, 30, 3, 'https://www.youtube.com/watch?v=1bSqG-4bIg4', 8, 25, NOW(), NOW()),
+(38, 'Saltos de tijera', 'Un ejercicio cardiovascular que trabaja todo el cuerpo, mejorando la resistencia y la coordinación.', 'Saltos de tijera son un ejercicio cardiovascular que trabaja todo el cuerpo, mejorando la resistencia y la coordinación. Este ejercicio es especialmente bueno para los músculos de las piernas, glúteos, abdominales y brazos.', 60, 20, 3, 'https://www.youtube.com/watch?v=V6UJW6wqV6g', 8, 25, NOW(), NOW()),
+(39, 'Caminar sobre una línea', 'Coloca una cuerda o una línea en el suelo y camina sobre ella con los pies juntos, tratando de mantener el equilibrio. Si es demasiado fácil, puedes intentar caminar hacia adelante y hacia atrás o incluso caminar hacia adelante y hacia atrás mientras giras el cuerpo. Realiza este ejercicio durante 3 series de 30 segundos cada una.', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación.', 30, 1, 3, 'https://www.youtube.com/watch?v=sK6FqLSVb2A', 8, 25, NOW(), NOW()),
+(40, 'Equilibrio sobre una pierna', 'Este ejercicio ayuda a mejorar la estabilidad y el equilibrio del cuerpo al pararse sobre una pierna durante un tiempo prolongado', 'El equilibrio sobre una pierna es un ejercicio que ayuda a mejorar la estabilidad y la coordinación del cuerpo.', 60, 1, 3, 'https://www.youtube.com/watch?v=_3Z2lc_Om7k', 10, 25, NOW(), NOW()),
+(41, 'Saltos laterales con cono', 'Este ejercicio mejora la coordinación y el equilibrio mientras se salta hacia los lados sobre un cono', 'Los saltos laterales con cono son un ejercicio efectivo para mejorar la coordinación y el equilibrio', 30, 20, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 10, 25, NOW(), NOW()),
+(42, 'Caminar en el lugar con ojos cerrados', 'Este ejercicio mejora el equilibrio y la coordinación al caminar en el lugar con los ojos cerrados', 'Caminar en el lugar con ojos cerrados es un ejercicio simple pero efectivo para mejorar el equilibrio y la coordinación', 60, 1, 3, 'https://www.youtube.com/watch?v=RkRbx5e3Kc0', 10, 25, NOW(), NOW()),
+(43, 'Malabarismo con pelota', 'Este ejercicio mejora la coordinación y el equilibrio al hacer malabarismos con una pelota', 'El malabarismo con pelota es un ejercicio divertido y efectivo para mejorar la coordinación y el equilibrio', 60, 1, 3, 'https://www.youtube.com/watch?v=6pmz5PYEsBE', 10, 25, NOW(), NOW()),
+(44, 'Sprint', 'Correr a máxima velocidad durante una corta distancia.', 'Mejora la velocidad y potencia muscular.', 15, 5, 5, 'https://www.youtube.com/watch?v=4u8c24sGGg8', 19, 25, NOW(), NOW()),
+(45, 'Salto de caja', 'Saltar desde una caja o banco y aterrizar suavemente en el suelo.', 'Mejora la potencia de las piernas, la coordinación y el equilibrio.', 30, 10, 3, 'https://www.youtube.com/watch?v=Y7oZdwP-mcY', 14, 25, NOW(), NOW()),
+(46, 'Escalera de agilidad', 'Pasar a través de una serie de conos o escalones en un patrón específico y lo más rápido posible.', 'Mejora la agilidad, la coordinación y el equilibrio.', 45, 3, 5, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14, 25, NOW(), NOW()),
+(47, 'Plyo push-ups', 'Realizar una flexión de pecho y empujar para despegar las manos del suelo y aterrizar suavemente.', 'Mejora la potencia del tren superior y la coordinación.', 20, 5, 4, 'https://www.youtube.com/watch?v=QlsBDcMK9EY', 14, 25, NOW(), NOW()),
+(48, 'Salto de vallas', 'Salta sobre una serie de vallas colocadas en el suelo.', 'Los saltos de vallas ayudan a mejorar la velocidad y la coordinación.', 30, 10, 3, 'https://www.youtube.com/watch?v=z6PaNxw0bE8', 14, 25, NOW(), NOW()),
+(49, 'Correr zigzag', 'Corre hacia adelante y hacia atrás a través de un conjunto de conos colocados en un patrón zigzag.', 'El correr zigzag ayuda a mejorar la velocidad y la agilidad.', 60, 10, 3, 'https://www.youtube.com/watch?v=cJ6KtDK1fYI', 19, 25, NOW(), NOW()),
+(50, 'Saltos laterales', 'Salta de un lado a otro sobre una línea imaginaria en el suelo.', 'Los saltos laterales ayudan a mejorar la velocidad y la agilidad lateral.', 30, 10, 3, 'https://www.youtube.com/shorts/a2kwZCrrz2c', 14, 25, NOW(), NOW()),
+(51, 'Sprints hacia atrás', 'Corre hacia atrás tan rápido como puedas durante una cierta distancia.', 'Los sprints hacia atrás ayudan a mejorar la velocidad y la agilidad.', 30, 10, 3, 'https://www.youtube.com/shorts/l0M2C_tWW7E', 19, 25, NOW(), NOW()),
+(52, 'Saltos en cuclillas', 'Salta hacia arriba desde una posición de cuclillas.', 'Los saltos en cuclillas ayudan a mejorar la velocidad y la fuerza de las piernas.', 30, 10, 3, 'https://www.youtube.com/watch?v=rp_ZKQ1FZvM', 14, 25, NOW(), NOW());
 
 --
 -- Volcado de datos para la tabla `tags_of_ingredients`
@@ -286,7 +310,12 @@ INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `use
 (3, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 60, 'High', 24, NOW(), NOW()),
 (4, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 45, 'Low', 24, NOW(), NOW()),
 (5, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos estáticos y dinámicos', 45, 'Medium', 24, NOW(), NOW()),	
-(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 50, 'High', 24, NOW(), NOW());
+(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 50, 'High', 24, NOW(), NOW()),
+(7, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 45, 'Low', 25, NOW(), NOW()),
+(8, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 60, 'Medium', 25, NOW(), NOW()),
+(9, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 60, 'Medium', 25, NOW(), NOW()),
+(10, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 45, 'High', 25, NOW(), NOW()),
+(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'Low', 25, NOW(), NOW());
 
 
 
@@ -302,7 +331,12 @@ INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id
 (3, 3, 2, NOW(), NOW()),
 (4, 4, 3, NOW(), NOW()),
 (5, 5, 4, NOW(), NOW()),
-(6, 6, 5, NOW(), NOW());
+(6, 6, 5, NOW(), NOW()),
+(7, 7, 2, NOW(), NOW()),
+(8, 8, 3, NOW(), NOW()),
+(9, 9, 5, NOW(), NOW()),
+(10, 10, 6, NOW(), NOW()),
+(11, 11, 6, NOW(), NOW());
 
 
 
@@ -342,8 +376,34 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (27, 6, 25, NOW(), NOW()),
 (28, 6, 26, NOW(), NOW()),
 (29, 6, 27, NOW(), NOW()),
-(30, 6, 28, NOW(), NOW());
+(30, 6, 28, NOW(), NOW()),
 
+(31, 7, 29, NOW(), NOW()),
+(32, 7, 30, NOW(), NOW()),
+(33, 7, 31, NOW(), NOW()),
+(34, 7, 32, NOW(), NOW()),
+(35, 7, 33, NOW(), NOW()),
+(36, 8, 34, NOW(), NOW()),
+(37, 8, 35, NOW(), NOW()),
+(38, 8, 36, NOW(), NOW()),
+(39, 8, 37, NOW(), NOW()),
+(40, 8, 38, NOW(), NOW()),
 
+(41, 9, 39, NOW(), NOW()),
+(42, 9, 40, NOW(), NOW()),
+(43, 9, 41, NOW(), NOW()),
+(44, 9, 42, NOW(), NOW()),
+(45, 9, 43, NOW(), NOW()),
+(46, 10, 44, NOW(), NOW()),
+(47, 10, 45, NOW(), NOW()),
+(48, 10, 46, NOW(), NOW()),
+(49, 10, 47, NOW(), NOW()),
+(50, 10, 36, NOW(), NOW()),
+
+(51, 11, 48, NOW(), NOW()),
+(52, 11, 49, NOW(), NOW()),
+(53, 11, 50, NOW(), NOW()),
+(54, 11, 51, NOW(), NOW()),
+(55, 11, 52, NOW(), NOW());
 
 -- --------------------------------------------------------
