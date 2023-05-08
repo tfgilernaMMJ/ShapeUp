@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('frequently_asked_question_id')->references('id')->on('frequently_asked_questions');
             $table->text('answer_message');
+            $table->boolean('check');
             $table->timestamps();
         });
     }
