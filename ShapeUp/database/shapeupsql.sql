@@ -190,21 +190,36 @@ INSERT INTO `tags_of_exercises` (`id`, `name`, `created_at`, `updated_at`) VALUE
 -- Volcado de datos para la tabla `exercises`
 --
 
-/* INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `repetitions`, `series`, `explanatory_video`, `tag_of_exercise_id`, `created_at`, `updated_at`) VALUES
-(1, 'Hollow Body Hold', 'Ejercicio de core en posición supina que ayuda a fortalecer y estabilizar los músculos abdominales y lumbares', 'Fortalecimiento de core', 30, 10, 3, 'video test', 10, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(2, 'The Roll-Up', 'Ejercicio clásico de Pilates que fortalece los músculos abdominales, lumbares y de la espalda', 'Fortalecimiento de core', 45, 10, 3, 'video test', 2, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(3, 'Burpees', 'Ejercicio de cuerpo completo que implica movimientos explosivos y aumenta la frecuencia cardíaca', 'Mejora del sistema cardiovascular', 60, 15, 4, 'video test', 20, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(4, 'Sprints', 'Serie de carreras cortas a máxima velocidad con pequeños periodos de descanso en medio', 'Mejora de la resistencia', 30, 8, 6, 'video test', 20, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(5, 'Jump Rope', 'Ejercicio de salto de cuerda que mejora la resistencia y la coordinación', 'Mejora de la coordinación y resistencia', 10, 50, 3, 'video test', 15, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(6, 'Jab-Cross-Hook-Upper', 'Serie de cuatro golpes básicos en boxeo que mejoran la técnica y la potencia', 'Mejora de la técnica de boxeo', 30, 10, 3, 'video test', 20, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(7, 'Mountain Climbers', 'Ejercicio que imita el movimiento de escalada de montaña para mejorar la resistencia', 'Mejora de la resistencia', 30, 10, 3, 'video test', 18, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(8, 'Jumping Jacks', 'Ejercicio de cuerpo completo que involucra saltos y mejora la coordinación', 'Mejora de la coordinación', 60, 20, 3, 'video test', 6, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(9, 'Bicycle Crunches', 'Ejercicio de core que fortalece los músculos abdominales, lumbares y de la espalda', 'Fortalecimiento de core', 30, 20, 3, 'video test', 6, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(10, 'Squats', 'Ejercicio de fuerza que involucra las piernas y glúteos para mejorar la resistencia', 'Mejora de la resistencia muscular', 60, 15, 4, 'video test', 18, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(11, 'Sprint de 50 metros', 'Corre a máxima velocidad durante 50 metros', 'Mejorar la velocidad en carrera corta', 15, 1, 5, 'video test', 19, '2023-04-17 18:54:00', '2023-04-17 18:54:00'),
-(12, 'Escalera de agilidad', 'Realiza diferentes ejercicios de agilidad y coordinación en la escalera', 'Mejorar la agilidad y coordinación', 20, 2, 3, 'video test', 14, '2023-04-17 18:54:00', '2023-04-17 18:54:00'); */
+INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `repetitions`, `series`, `explanatory_video`, `tag_of_exercise_id`, `user_coach_id`, `created_at`, `updated_at`) VALUES
+(1, 'Sentadillas con barra', 'Este es un ejercicio compuesto que trabaja los músculos de las piernas, glúteos y core. Coloca la barra sobre tus hombros y desciende lentamente hasta que tus muslos estén paralelos al suelo, luego levántate lentamente.', 'Mejorar la fuerza y la resistencia de las piernas y el core.', 45, 10, 4, 'https://www.youtube.com/watch?v=3fvw0FIGYF4', 3, 24, NOW(), NOW()),
+(2, 'Prensa de piernas', ' Este ejercicio compuesto trabaja los músculos de las piernas y los glúteos. Siéntate en la prensa de piernas y empuja la plataforma hacia afuera, luego baja lentamente.', 'Mejorar la fuerza y la resistencia de las piernas y los glúteos.', 60, 10, 4, 'https://www.youtube.com/watch?v=S6nnM60yjqk', 3, 24, NOW(), NOW()),
+(3, 'Press de banca', 'Este ejercicio compuesto trabaja los músculos del pecho, hombros y tríceps. Acuéstate en un banco y levanta la barra desde el soporte, bájala lentamente hasta tocar tu pecho y luego levántala.', 'Mejorar la fuerza y la resistencia del pecho, hombros y tríceps.', 45, 10, 4, 'https://www.youtube.com/watch?v=JhcjQHkjklA', 1, 24, NOW(), NOW()),
+(4, 'Remo con barra', 'Un ejercicio que trabaja los músculos de la espalda, hombros y bíceps.', 'Fortalecer espalda, hombros y bíceps', 30	, 10, 4, 'https://www.youtube.com/watch?v=3uiWjik2yEQ', 2, 24, NOW(), NOW()),
+(5, 'Levantamiento de peso muerto', 'Un ejercicio compuesto que trabaja los músculos de la espalda, piernas y glúteos.', 'Fortalecer espalda, piernas y glúteos.', 45, 10, 4, 'https://www.youtube.com/watch?v=7KL8SgCP4KQ', 3, 24, NOW(), NOW()),
+(6, 'Press militar', 'Un ejercicio compuesto que trabaja los músculos de los hombros y tríceps.', 'Fortalecer hombros y tríceps', 45, 10, 4, 'https://www.youtube.com/watch?v=o5M9RZ-vWrc', 5, 24, NOW(), NOW()),
+(7, 'Dominadas', 'Un ejercicio que trabaja los músculos de la espalda, hombros y bíceps', 'Fortalecer espalda, hombros y bíceps', 45, 10, 4, 'https://www.youtube.com/watch?v=94LjCdfkQ-0', 2, 24, NOW(), NOW()),
+(8, 'Zancadas con mancuernas', 'Un ejercicio que trabaja los músculos de las piernas y glúteos.', 'Fortalecer piernas y glúteos', 45, 10, 4, 'https://www.youtube.com/watch?v=Uw56z6JdWGY', 3, 24, NOW(), NOW()),
+(9, 'Curl de bíceps con mancuernas', 'Un ejercicio que trabaja los músculos de los bíceps.', 'Fortalecer los bíceps', 30, 10, 4, 'https://www.youtube.com/watch?v=uICWtGLd4-I', 4, 24, NOW(), NOW()),
+(10, 'Extensión de tríceps con mancuernas', 'Un ejercicio que trabaja los músculos de los tríceps.', 'Fortalecer los tríceps', 30, 10, 4, 'https://www.youtube.com/watch?v=-paLAzl68WU', 4, 24, NOW(), NOW()),
+(11, 'Press de banca con mancuernas', 'Un ejercicio que trabaja los músculos del pecho, hombros y tríceps.', 'Aumentar la masa muscular del pecho', 30, 12, 4, 'https://www.youtube.com/watch?v=jrDDz7x1Dpo', 1, 24, NOW(), NOW()),
+(12, 'Remo con mancuernas', 'Un ejercicio que trabaja los músculos de la espalda y bíceps.', 'Aumentar la masa muscular de la espalda', 30, 12, 4, 'https://www.youtube.com/watch?v=EiGN5ohOYOc', 2, 24, NOW(), NOW()),
+(13, 'Press de hombros con mancuernas', 'Un ejercicio que trabaja los músculos de los hombros.', 'Aumentar la masa muscular de los hombros', 30, 12, 4, 'https://www.youtube.com/watch?v=GELRUlUSxeI', 5, 24, NOW(), NOW()),
+(14, 'Saltos de tijera', 'Este ejercicio implica saltar y alternar las piernas mientras se mantiene una postura en cuclillas.', 'Mejora la fuerza y resistencia muscular, quema calorías y ayuda a mejorar la coordinación.', 120, 30, 4, 'https://www.youtube.com/watch?v=iO8srE_cz3s', 15, 24, NOW(), NOW()),
+(15, 'Burpees', 'Este ejercicio combina una sentadilla, una plancha y un salto para trabajar todo el cuerpo.', 'Mejora la fuerza y resistencia muscular, quema calorías y ayuda a mejorar la coordinación', 120, 12, 4, 'https://www.youtube.com/watch?v=GELRUlUSxeI', 3, 24, NOW(), NOW()),
+(16, 'Caminadora inclinada', 'Este ejercicio implica caminar en una caminadora con una inclinación del 10% o más para aumentar la intensidad', 'Mejora la capacidad cardiovascular y ayuda a quemar calorías', 1200, 1, 1, 'https://www.youtube.com/watch?v=jNIKxC69HGc', 8, 24, NOW(), NOW()),
+(17, 'Entrenamiento de intervalos de alta intensidad (HIIT)', 'Este tipo de entrenamiento implica realizar ejercicios de alta intensidad durante cortos períodos de tiempo, seguidos de períodos de descanso o ejercicios de baja intensidad', 'Mejora la capacidad cardiovascular, aumenta la quema de calorías y ayuda a reducir la grasa corporal', 1200, 1, 4, 'https://www.youtube.com/watch?v=P1HyMCX8NJs', 8, 24, NOW(), NOW()),
+(18, 'Sentadillas con salto', 'Este ejercicio implica realizar una sentadilla y saltar hacia arriba desde la posición de cuclillas', 'Mejora la fuerza y resistencia muscular, quema calorías y ayuda a mejorar la coordinación', 1200, 30, 3, 'https://www.youtube.com/watch?v=P1HyMCX8NJs', 8, 24, NOW(), NOW()),
+(19, 'Estiramientos de piernas', 'Estiramientos para mejorar la flexibilidad en las piernas', 'Mejora la flexibilidad de tus piernas', 600, 30, 3, 'https://www.youtube.com/watch?v=fHvJvnGxH3U', 12, 24, NOW(), NOW()),
+(20, 'Estiramiento de espalda', 'Estiramiento para mejorar la flexibilidad en la espalda', 'Mejora la flexibilidad de tu espalda', 300, 30, 3, 'https://www.youtube.com/watch?v=w2MJJ4gj644', 12, 24, NOW(), NOW()),
+(21, 'Estiramiento de cuello', 'Estiramientos para mejorar la flexibilidad en el cuello', 'Mejora la flexibilidad de tu cuello', 300, 30, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 12, 24, NOW(), NOW()),
+(22, 'Estiramiento de hombros', 'Estiramiento para mejorar la flexibilidad en los hombros', 'Mejora la flexibilidad de tus hombros', 300, 30, 3, 'https://www.youtube.com/watch?v=OLtUiP0XC4Q', 12, 24, NOW(), NOW()),
+(23, 'Estiramientos de brazos', 'Estiramientos para mejorar la flexibilidad en los brazos', 'Mejora la flexibilidad de tus brazos', 600, 30, 3, 'https://www.youtube.com/watch?v=4W-xie4ZOfs&t=318s', 12, 24, NOW(), NOW()),
 
--- --------------------------------------------------------
+(24, 'Paso de bailarina', 'Este ejercicio de equilibrio se realiza en un solo pie. Levante una pierna y coloque la parte inferior de su pie en la rodilla de la otra pierna. Lentamente, levante su pierna en el aire detrás de usted mientras mantiene el equilibrio sobre la pierna que sostiene todo su peso. Manténgase durante 30 segundos y luego cambie de pierna', 'Este ejercicio ayuda a mejorar la estabilidad y el equilibrio', 30, 1, 3, 'https://www.youtube.com/watch?v=r5FzpRvQkk0', 15, 24, NOW(), NOW()),
+(25, 'Caminata en el cable', 'Para este ejercicio, necesitará una banda elástica o una cuerda de escalada y dos postes o anclajes para sostener la cuerda. Ate la cuerda a una altura adecuada y camine sobre ella mientras mantiene el equilibrio.', 'Este ejercicio ayuda a mejorar la coordinación y la estabilidad del núcleo', 60, 10, 3, 'https://www.youtube.com/watch?v=zTFG6gScuD0', 10, 24, NOW(), NOW()),
+(26, 'Bosu Ball Squat', 'Coloque el Bosu Ball en el suelo con el lado redondeado hacia arriba. Párese con ambos pies en la pelota y baje en una sentadilla mientras mantiene el equilibrio. Mantenga la posición durante 10 segundos y luego levántese lentamente.', 'Este ejercicio ayuda a mejorar la estabilidad y la coordinación del núcleo', 45, 12, 3, 'https://www.youtube.com/watch?v=2eyUkrPt9R0', 10, 24, NOW(), NOW()),
+(27, 'Paso lateral con cono', 'Coloque un cono en el suelo y párese al lado del cono. Levante la pierna opuesta al cono y cruce su cuerpo para tocar el cono con su pie. Vuelva a su posición inicial y repita con la otra pierna.', 'Este ejercicio ayuda a mejorar la coordinación y el equilibrio lateral', 30, 10, 3, 'https://www.youtube.com/watch?v=3yEbnTC890Q', 15, 24, NOW(), NOW()),
+(28, 'Sentadilla en una pierna', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación de las piernas y la pelvis', 'Este ejercicio ayuda a mejorar el equilibrio y la coordinación de las piernas y la pelvis', 30, 10, 3, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 10, 24, NOW(), NOW());
 
 --
 -- Volcado de datos para la tabla `tags_of_ingredients`
@@ -266,11 +281,14 @@ INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `
 --
 
 INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `user_coach_id`, `created_at`, `updated_at`) VALUES
-(1, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'High', 2, '2023-04-17 18:11:39', '2023-04-17 18:11:39'),
-(2, 'Entrenamiento de yoga', 'Alcanza la paz interior y flexibilidad con este entrenamiento de yoga para principiantes', 45, 'Low', 4, '2023-04-17 18:11:39', '2023-04-17 18:11:39'),
-(3, 'Entrenamiento de boxeo', 'Mejora tu coordinación, agilidad y resistencia cardiovascular con este entrenamiento de boxeo', 75, 'Medium', 1, '2023-04-17 18:11:39', '2023-04-17 18:11:39'),
-(4, 'Entrenamiento de spinning', 'Quema calorías y mejora tu resistencia cardiovascular con este entrenamiento de spinning de alta intensidad', 45, 'High', 3, '2023-04-17 18:11:39', '2023-04-17 18:11:39'),
-(5, 'Entrenamiento de pilates', 'Fortalece y tonifica tus músculos con este entrenamiento de pilates para todos los niveles', 30, 'Medium', 5, '2023-04-17 18:11:39', '2023-04-17 18:11:39');
+(1, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'High', 24, NOW(), NOW()),
+(2, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 45, 'Medium', 24, NOW(), NOW()),
+(3, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 60, 'High', 24, NOW(), NOW()),
+(4, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 45, 'Low', 24, NOW(), NOW()),
+(5, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos estáticos y dinámicos', 45, 'Medium', 24, NOW(), NOW()),	
+(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 50, 'High', 24, NOW(), NOW());
+
+
 
 -- --------------------------------------------------------
 
@@ -279,19 +297,14 @@ INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `use
 --
 
 INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 9, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(2, 1, 6, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(3, 2, 12, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(4, 2, 4, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(5, 3, 7, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(6, 3, 10, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(7, 3, 1, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(8, 3, 11, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(9, 4, 6, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(10, 4, 1, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(11, 5, 5, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(12, 5, 11, '2023-04-17 18:24:04', '2023-04-17 18:24:04'),
-(13, 5, 12, '2023-04-17 18:24:04', '2023-04-17 18:24:04');
+(1, 1, 1, NOW(), NOW()),
+(2, 2, 1, NOW(), NOW()),
+(3, 3, 2, NOW(), NOW()),
+(4, 4, 3, NOW(), NOW()),
+(5, 5, 4, NOW(), NOW()),
+(6, 6, 5, NOW(), NOW());
+
+
 
 -- --------------------------------------------------------
 
@@ -300,17 +313,37 @@ INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id
 --
 
 INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(2, 5, 2, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(3, 4, 3, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(4, 4, 4, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(5, 3, 5, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(6, 3, 6, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(7, 2, 7, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(8, 2, 8, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(9, 1, 9, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(10, 1, 10, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(11, 1, 11, '2023-04-17 19:01:15', '2023-04-17 19:01:15'),
-(12, 2, 12, '2023-04-17 19:01:15', '2023-04-17 19:01:15');
+(1, 1, 1, NOW(), NOW()),
+(2, 1, 2, NOW(), NOW()),
+(3, 1, 3, NOW(), NOW()),
+(4, 1, 4, NOW(), NOW()),
+(5, 1, 5, NOW(), NOW()),
+(6, 2, 6, NOW(), NOW()),
+(7, 2, 7, NOW(), NOW()),
+(8, 2, 8, NOW(), NOW()),
+(9, 2, 9, NOW(), NOW()),
+(10, 2, 10, NOW(), NOW()),
+(11, 3, 1, NOW(), NOW()),
+(12, 3, 11, NOW(), NOW()),
+(13, 3, 12, NOW(), NOW()),
+(14, 3, 13, NOW(), NOW()),
+(15, 3, 9, NOW(), NOW()),
+(16, 4, 14, NOW(), NOW()),
+(17, 4, 15, NOW(), NOW()),
+(18, 4, 16, NOW(), NOW()),
+(19, 4, 17, NOW(), NOW()),
+(20, 4, 18, NOW(), NOW()),
+(21, 5, 19, NOW(), NOW()),
+(22, 5, 20, NOW(), NOW()),
+(23, 5, 21, NOW(), NOW()),
+(24, 5, 22, NOW(), NOW()),
+(25, 5, 23, NOW(), NOW()),
+(26, 6, 24, NOW(), NOW()),
+(27, 6, 25, NOW(), NOW()),
+(28, 6, 26, NOW(), NOW()),
+(29, 6, 27, NOW(), NOW()),
+(30, 6, 28, NOW(), NOW());
+
+
 
 -- --------------------------------------------------------
