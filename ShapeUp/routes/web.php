@@ -123,6 +123,12 @@ Route::get('/perfil', function () {
 
 Route::post('/perfil/editar/', [App\Http\Controllers\WebController::class, 'editProfile'])->name('account.profile.edit');
 
+Route::get('/perfil/cambiar-contraseña', function () {
+    return view('web.editpassword');
+})->name('account.profile.password');
+
+Route::post('/perfil/editar/cambiar-contraseña', [App\Http\Controllers\WebController::class, 'editPassword'])->name('account.profile.edit.password');
+
 // ------------------------------------------------------------
 
 // COACH DASHBOARD
