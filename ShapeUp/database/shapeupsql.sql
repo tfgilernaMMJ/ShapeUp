@@ -193,6 +193,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (26, 'Bosu Ball Squat', 45, 12, 3, 'https://www.youtube.com/watch?v=2eyUkrPt9R0', 10, 24, NOW(), NOW()),
 (27, 'Paso lateral con cono', 30, 10, 3, 'https://www.youtube.com/watch?v=3yEbnTC890Q', 15, 24, NOW(), NOW()),
 (28, 'Sentadilla en una pierna', 30, 10, 3, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 10, 24, NOW(), NOW()),
+
 /* COACH 25 */
 (29, 'Sentadillas con barra', 15, 10, 4, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 3, 25, NOW(), NOW()),
 (30, 'Press de banca', 30, 12, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 25, NOW(), NOW()),
@@ -218,6 +219,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (50, 'Saltos laterales', 30, 10, 3, 'https://www.youtube.com/shorts/a2kwZCrrz2c', 14, 25, NOW(), NOW()),
 (51, 'Sprints hacia atrás', 30, 10, 3, 'https://www.youtube.com/shorts/l0M2C_tWW7E', 19, 25, NOW(), NOW()),
 (52, 'Saltos en cuclillas', 30, 10, 3, 'https://www.youtube.com/watch?v=rp_ZKQ1FZvM', 14, 25, NOW(), NOW()),
+
 /* COACH 26 */
 (53, 'Sentadillas', 30, 12, 3, 'https://www.youtube.com/watch?v=3fvw0FIGYF4&t=8s', 3, 26, NOW(), NOW()),
 (54, 'Press de banca', 45, 10, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 26, NOW(), NOW()),
@@ -238,6 +240,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (69, 'Escaleras de coordinación', 45, 2, 3, 'https://www.youtube.com/watch?v=PwO5TR3g6ic', 15, 26, NOW(), NOW()),
 (70, 'Saltos de caja', 30, 5, 3, 'https://www.youtube.com/watch?v=Y7oZdwP-mcY', 3, 26, NOW(), NOW()),
 (71, 'Arranques de potencia', 20, 8, 3, 'https://www.youtube.com/watch?v=89wH-6gBX4c', 19, 26, NOW(), NOW()),
+
 /* COACH 27 */
 (72, 'Sentadillas', 60, 12, 3, 'https://www.youtube.com/watch?v=BjixzWEw4EY', 3, 27, NOW(), NOW()),
 (73, 'Press de banca', 45, 8, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 27,  NOW(), NOW()),
@@ -263,8 +266,56 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (93, 'Carrera con obstáculos', 60, 10 , 3, 'https://www.youtube.com/watch?v=s-uxMLF-6iA', 19, 27, NOW(), NOW()),
 (94, 'Escalera de agilidad', 30, 10, 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14, 27, NOW(), NOW()),
 (95,'Saltos en profundidad', 60, 10, 3, 'https://www.youtube.com/watch?v=eV-O2lRJxr0', 14, 27, NOW(), NOW()),
-(96,'Conos de velocidad', 60, 10, 3, 'https://www.youtube.com/watch?v=2ZRfq7SKW2w', 19, 27, NOW(), NOW());
+(96,'Conos de velocidad', 60, 10, 3, 'https://www.youtube.com/watch?v=2ZRfq7SKW2w', 19, 27, NOW(), NOW()),
 
+/* COACH 28 */
+(97, 'Sentadillas con barra', 60, 10, 3, 'https://www.youtube.com/watch?v=3fvw0FIGYF4&t=9s', 3, 28, NOW(), NOW()),
+(98, 'Press de banca con mancuernas', 45, 8, 4, 'https://www.youtube.com/watch?v=jrDDz7x1Dpo', 1, 28, NOW(), NOW()),
+(99, 'Remo con mancuernas', 60, 12, 3, 'https://www.youtube.com/watch?v=EiGN5ohOYOc', 2, 28, NOW(), NOW()),
+(100, 'Zancadas con mancuernas', 45, 10, 3, 'https://www.youtube.com/watch?v=Uw56z6JdWGY', 3, 28, NOW(), NOW()),
+(101, 'Curl de bíceps con mancuernas', 30, 12, 4, 'https://www.youtube.com/watch?v=uICWtGLd4-I', 4, 28, NOW(), NOW()),
+(102, 'Press de banca con barra', 45, 10, 3, 'https://www.youtube.com/watch?v=dWV4uWd2GvM&t=1s', 1, 28, NOW(), NOW()),
+(103, 'Remo con barra', 60, 12, 3, 'https://www.youtube.com/watch?v=3uiWjik2yEQ', 2, 28, NOW(), NOW()),
+(104, 'Peso muerto con barra', 60, 8, 4, 'https://www.youtube.com/watch?v=7KL8SgCP4KQ&t=1s', 3, 28, NOW(), NOW()),
+(105, 'Press militar con barra', 45, 10, 3, 'https://www.youtube.com/watch?v=f3E1jQFRONs', 5, 28, NOW(), NOW()),
+(106, 'Estiramiento de cuádriceps', 30 , 3, 3, 'https://www.youtube.com/watch?v=vQejbT95BzA', 3, 28, NOW(), NOW()),
+(107, 'Estiramiento de isquiotibiales', 30, 3, 3 , 'https://www.youtube.com/watch?v=AN8eTwCfeL4', 3, 28, NOW(), NOW()),
+(108, 'Estiramiento de glúteos', 30, 3, 3, 'https://www.youtube.com/watch?v=ettY0W0qswA', 7, 28, NOW(), NOW()),
+(109, 'Estiramiento de pantorrillas', 30, 3, 3, 'https://www.youtube.com/watch?v=-hQcyy8GqtQ', 3, 28, NOW(), NOW()),
+(110, 'Estiramiento de aductores', 30 , 3, 3, 'https://www.youtube.com/watch?v=T-_X9AJ4wnI', 3, 28, NOW(), NOW()),
+(111, 'Sentadilla unipodal', 30, 3, 3, 'https://www.youtube.com/watch?v=P_7BSCTxaP4', 3, 28, NOW(), NOW()),
+(112, 'Salto con giro', 30, 3, 3, 'https://www.youtube.com/watch?v=xytbbhilXGs', 15, 28, NOW(), NOW()),
+(113, 'Elevación de rodillas', 30, 3, 3, 'https://www.youtube.com/watch?v=iBpgkuFuENY', 15, 28, NOW(), NOW()),
+(114, 'Paso de lado con salto', 30, 3, 3, 'https://www.youtube.com/watch?v=ra4S5--YZR8', 10, 28, NOW(), NOW()),
+(115, 'Plancha lateral con elevación de pierna', 30, 3 , 3, 'https://www.youtube.com/watch?v=zfiOU4yxLKo&t=66s', 10, 28, NOW(), NOW()),
+(116, 'Sprints', 20, 10, 3, 'https://www.youtube.com/watch?v=4u8c24sGGg8&t=190s', 3, 28, NOW(), NOW()),
+(117, 'Saltos de conejo', 30, 10, 3, 'https://www.youtube.com/watch?v=Ocn73njdai4', 3, 28, NOW(), NOW()),
+(118, 'Circuito de obstáculos', 2, 1, 3, 'https://www.youtube.com/watch?v=s-uxMLF-6iA', 3, 28, NOW(), NOW()),
+(119, 'Saltos laterales', 30 , 10, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 3, 28, NOW(), NOW()),
+(120, 'Escalera de agilidad', 2, 1 , 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14, 28, NOW(), NOW()),
+
+/* COACH 29 */
+(121, 'Sentadillas con barra', 45, 10, 4, 'https://www.youtube.com/watch?v=3fvw0FIGYF4&t=9s', 3, 29, NOW(), NOW()),
+(122, 'Press de banca con mancuernas', 60, 10, 4, 'https://www.youtube.com/watch?v=jrDDz7x1Dpo', 1, 29, NOW(), NOW()),
+(123, 'Peso muerto con barra', 55, 10, 4, 'https://www.youtube.com/watch?v=7KL8SgCP4KQ&t=1s', 3, 29, NOW(), NOW()),
+(124, 'Remo con barra', 45, 10, 4, 'https://www.youtube.com/watch?v=3uiWjik2yEQ', 2, 29, NOW(), NOW()),
+(125, 'Flexiones de brazos con peso', 40, 10, 4, 'https://www.youtube.com/watch?v=FvRebC-q5jQ', 1, 29, NOW(), NOW()),
+(126,'Estiramientos de cuello', 30, 2, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 11, 29, NOW(), NOW()),
+(127,'Estiramiento de hombros', 30, 2, 3, 'https://www.youtube.com/watch?v=OLtUiP0XC4Q&t=234s', 11, 29, NOW(), NOW()),
+(128,'Estiramiento de pierna', 30, 2, 3, 'https://www.youtube.com/watch?v=txsha7BIlDo', 11, 29, NOW(), NOW()),
+(129,'Estiramiento de espalda baja', 30, 2, 3, 'https://www.youtube.com/watch?v=uejkZ4sWi3w', 11, 29, NOW(), NOW()),
+(130,'Estiramiento de brazos y pecho', 30, 2, 3 , 'https://www.youtube.com/watch?v=RlMMUBpIzb4', 11, 29, NOW(), NOW()),
+(131,'Estiramiento de isquiotibiales', 30, 2, 3, 'https://www.youtube.com/watch?v=AN8eTwCfeL4&t=502s', 11, 29, NOW(), NOW()),
+(132,'Estiramiento de cuádriceps', 30, 2, 3, 'https://www.youtube.com/watch?v=SHHWGvm9Qyw', 11, 29, NOW(), NOW()),
+(133,'Estiramiento de tobillos', 30, 2, 3, 'https://www.youtube.com/watch?v=H-3VqgEuSVk', 11, 29, NOW(), NOW()),
+(134,'Estiramiento de glúteos', 30, 2, 3, 'https://www.youtube.com/watch?v=ettY0W0qswA&t=292s', 11, 29, NOW(), NOW()),
+(135,'Estiramiento de caderas', 30, 2, 3, 'https://www.youtube.com/watch?v=JvFIcfNPsiQ', 11, 29, NOW(), NOW()),
+
+(136, 'Equilibrio sobre un pie', 30, 2, 3, 'https://www.youtube.com/watch?v=uGS7PzNij2c', 10, 29, NOW(), NOW()),
+(137, 'Saltos laterales', 30, 2, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 15, 29, NOW(), NOW()),
+(138, 'Elevación de talones', 30, 2, 3, 'https://www.youtube.com/watch?v=hBS3yt6nY9s', 10, 29, NOW(), NOW()),
+(139, 'Paso de vallas', 30 , 2, 3, 'https://www.youtube.com/watch?v=93VgZSjdr4I', 15, 29, NOW(), NOW()),
+(140, 'Desplazamiento lateral con cono', 30, 2, 3, 'https://www.youtube.com/watch?v=gibpTNvhoa8', 15, 29, NOW(), NOW());
 -- --------------------------------------------------------
 
 --
@@ -325,7 +376,18 @@ INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `use
 (17, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Alto', 27, NOW(), NOW()),
 (18, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 27, NOW(), NOW()),
 (19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Bajo', 27, NOW(), NOW()),
-(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Alto', 27, NOW(), NOW());
+(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Alto', 27, NOW(), NOW()),
+(21, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 50, 'Bajo', 28, NOW(), NOW()),
+(22, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 60, 'Alto', 28, NOW(), NOW()),
+(23, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Bajo', 28, NOW(), NOW()),
+(24, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Alto', 28, NOW(), NOW()),
+(25, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Bajo', 28, NOW(), NOW()),
+(26, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Medio', 29, NOW(), NOW()),
+(27, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Alto', 29, NOW(), NOW()),
+(28, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Medium', 29, NOW(), NOW()),
+(29, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medium', 29, NOW(), NOW());
+
+
 
 -- --------------------------------------------------------
 
@@ -353,7 +415,16 @@ INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id
 (17, 17, 3, NOW(), NOW()),
 (18, 18, 5, NOW(), NOW()),
 (19, 19, 5, NOW(), NOW()),
-(20, 20, 6, NOW(), NOW());
+(20, 20, 6, NOW(), NOW()),
+(21, 21, 1, NOW(), NOW()),
+(22, 22, 2, NOW(), NOW()),
+(23, 23, 4, NOW(), NOW()),
+(24, 24, 5, NOW(), NOW()),
+(25, 25, 6, NOW(), NOW()),
+(26, 26, 2, NOW(), NOW()),
+(27, 27, 4, NOW(), NOW()),
+(28, 28, 4, NOW(), NOW()),
+(29, 29, 5, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -392,7 +463,6 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (28, 6, 26, NOW(), NOW()),
 (29, 6, 27, NOW(), NOW()),
 (30, 6, 28, NOW(), NOW()),
-
 (31, 7, 29, NOW(), NOW()),
 (32, 7, 30, NOW(), NOW()),
 (33, 7, 31, NOW(), NOW()),
@@ -448,23 +518,67 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (83, 17, 80, NOW(), NOW()),
 (84, 17, 81, NOW(), NOW()),
 (85, 17, 82, NOW(), NOW()),
-
 (86, 18, 83, NOW(), NOW()),
 (87, 18, 84, NOW(), NOW()),
 (88, 18, 85, NOW(), NOW()),
 (89, 18, 86, NOW(), NOW()),
 (90, 18, 87, NOW(), NOW()),
-
 (91, 19, 88, NOW(), NOW()),
 (92, 19, 89, NOW(), NOW()),
 (93, 19, 90, NOW(), NOW()),
 (94, 19, 84, NOW(), NOW()),
 (95, 19, 91, NOW(), NOW()),
-
 (96, 20, 92, NOW(), NOW()),
 (97, 20, 93, NOW(), NOW()),
 (98, 20, 94, NOW(), NOW()),
 (99, 20, 95, NOW(), NOW()),
-(100, 20, 96, NOW(), NOW());
+(100, 20, 96, NOW(), NOW()),
+(101, 21, 97, NOW(), NOW()),
+(102, 21, 98, NOW(), NOW()),
+(103, 21, 99, NOW(), NOW()),
+(104, 21, 100, NOW(), NOW()),
+(105, 21, 101, NOW(), NOW()),
+(106, 22, 97, NOW(), NOW()),
+(107, 22, 102, NOW(), NOW()),
+(108, 22, 103, NOW(), NOW()),
+(109, 22, 104, NOW(), NOW()),
+(110, 22, 105, NOW(), NOW()),
+(111, 23, 106, NOW(), NOW()),
+(112, 23, 107, NOW(), NOW()),
+(113, 23, 108, NOW(), NOW()),
+(114, 23, 109, NOW(), NOW()),
+(115, 23, 110, NOW(), NOW()),
+(117, 24, 111, NOW(), NOW()),
+(118, 24, 112, NOW(), NOW()),
+(119, 24, 113, NOW(), NOW()),
+(120, 24, 114, NOW(), NOW()),
+(121, 24, 115, NOW(), NOW()),
+(122, 25, 116, NOW(), NOW()),
+(123, 25, 117, NOW(), NOW()),
+(124, 25, 118, NOW(), NOW()),
+(125, 25, 119, NOW(), NOW()),
+(126, 25, 120, NOW(), NOW()),
+(127, 26, 121, NOW(), NOW()),
+(128, 26, 122, NOW(), NOW()),
+(129, 26, 123, NOW(), NOW()),
+(130, 26, 124, NOW(), NOW()),
+(131, 26, 125, NOW(), NOW()),
+(132, 27, 126, NOW(), NOW()),
+(133, 27, 127, NOW(), NOW()),
+(134, 27, 128, NOW(), NOW()),
+(135, 27, 129, NOW(), NOW()),
+(136, 27, 130, NOW(), NOW()),
+
+(137, 28, 131, NOW(), NOW()),
+(138, 28, 132, NOW(), NOW()),
+(139, 28, 133, NOW(), NOW()),
+(139, 28, 134, NOW(), NOW()),
+(140, 28, 135, NOW(), NOW()),
+
+(141, 29, 136, NOW(), NOW()),
+(142, 29, 137, NOW(), NOW()),
+(143, 29, 138, NOW(), NOW()),
+(144, 29, 139, NOW(), NOW()),
+(145, 29, 140, NOW(), NOW());
 
 -- --------------------------------------------------------
