@@ -55,7 +55,7 @@
                                         <h4>Nivel: {{$training->level}}</h4>
                                     </div>
 
-                                    <h6><a href="course-details.html">{{$training->title}}</a></h6>
+                                    <h6><a href="{{route('account.trainings.exercises', ['training_id' => $training->id])}}">{{$training->title}}</a></h6>
                                     <p>{{$training->description}}</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
                                         <div class="trainer-profile d-flex align-items-center">

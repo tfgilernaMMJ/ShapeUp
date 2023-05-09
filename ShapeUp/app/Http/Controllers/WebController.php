@@ -33,6 +33,13 @@ class WebController extends Controller
         return view('web.trainings', [ 'trainings' => $trainings ]);       
     }
 
+    public function indexTrainingsExercises($training_id)
+    {
+        $training = Training::find($training_id);
+        $exercises = $training->exercise()->get();
+        return view('web.trainingsexercises', [ 'exercises' => $exercises]);       
+    }
+
     public function indexCoaches()
     {
         $coaches = User::where('status', 'Coach')->get();
