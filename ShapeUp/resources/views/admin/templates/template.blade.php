@@ -1,4 +1,4 @@
-@extends('coach.templates.general')
+@extends('admin.templates.general')
 
 @section('aside')
     <!-- Desktop sidebar -->
@@ -11,7 +11,7 @@
                 <li class="relative px-6 py-3">
                     @yield('index-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')"
-                        href="{{ route('admin-coach') }}">
+                        href="{{ route('admin') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -26,7 +26,7 @@
                 <li class="relative px-6 py-3">
                     @yield('forms-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('forms-nav')"
-                        href="{{ route('admin-coach.forms') }}">
+                        href="{{ route('admin.forms') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -39,7 +39,7 @@
                 <li class="relative px-6 py-3">
                     @yield('cards-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('cards-nav')"
-                        href="{{ route('admin-coach.cards') }}">
+                        href="{{ route('admin.cards') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -52,7 +52,7 @@
                 <li class="relative px-6 py-3">
                     @yield('charts-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('charts-nav')"
-                        href="{{ route('admin-coach.charts') }}">
+                        href="{{ route('admin.charts') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
@@ -64,7 +64,7 @@
                 <li class="relative px-6 py-3">
                     @yield('buttons-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('buttons-nav')"
-                        href="{{ route('admin-coach.buttons') }}">
+                        href="{{ route('admin.buttons') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -77,7 +77,7 @@
                 <li class="relative px-6 py-3">
                     @yield('modals-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('modals-nav')"
-                        href="{{ route('admin-coach.modals') }}">
+                        href="{{ route('admin.modals') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -90,7 +90,7 @@
                 <li class="relative px-6 py-3">
                     @yield('tables-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('tables-nav')"
-                        href="{{ route('admin-coach.tables') }}">
+                        href="{{ route('admin.tables') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
@@ -182,7 +182,7 @@
                 <li class="relative px-6 py-3">
                     @yield('index-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')"
-                        href="{{ route('admin-coach') }}">
+                        href="{{ route('admin') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -197,7 +197,7 @@
                 <li class="relative px-6 py-3">
                     @yield('forms-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('forms-nav')"
-                        href="{{ route('admin-coach.forms') }}">
+                        href="{{ route('admin.forms') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -210,7 +210,7 @@
                 <li class="relative px-6 py-3">
                     @yield('cards-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('cards-nav')"
-                        href="{{ route('admin-coach.cards') }}">
+                        href="{{ route('admin.cards') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -223,7 +223,7 @@
                 <li class="relative px-6 py-3">
                     @yield('charts-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('charts-nav')"
-                        href="{{ route('admin-coach.charts') }}">
+                        href="{{ route('admin.charts') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
@@ -235,7 +235,7 @@
                 <li class="relative px-6 py-3">
                     @yield('buttons-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('buttons-nav')"
-                        href="{{ route('admin-coach.buttons') }}">
+                        href="{{ route('admin.buttons') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -248,7 +248,7 @@
                 <li class="relative px-6 py-3">
                     @yield('modals-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('modals-nav')"
-                        href="{{ route('admin-coach.modals') }}">
+                        href="{{ route('admin.modals') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path
@@ -261,7 +261,7 @@
                 <li class="relative px-6 py-3">
                     @yield('tables-nav-lat')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('tables-nav')"
-                        href="{{ route('admin-coach.tables') }}">
+                        href="{{ route('admin.tables') }}">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
@@ -355,30 +355,21 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <input
+                        <form 
+                            @if(request()->route()->getName() == 'admin')
+                                action="{{ route('admin-search') }}"
+                            @endif
+                        >
+                            <input
                             class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
-                            type="text" placeholder="Search for projects" aria-label="Search" />
+                            type="text" placeholder="
+                            @if(request()->route()->getName() == 'admin')
+                                    Search for Users
+                            @endif" aria-label="Search" name="name" />
+                        </form>
                     </div>
                 </div>
                 <ul class="flex items-center flex-shrink-0 space-x-6">
-                    <!-- Theme toggler -->
-                    <li class="flex">
-                        <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme"
-                            aria-label="Toggle color mode">
-                            <template x-if="!dark">
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                                </svg>
-                            </template>
-                            <template x-if="dark">
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </template>
-                        </button>
-                    </li>
                     <!-- Notifications menu -->
                     {{-- <li class="relative">
                         <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"

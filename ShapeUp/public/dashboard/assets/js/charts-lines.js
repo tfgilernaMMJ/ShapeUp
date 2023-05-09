@@ -1,32 +1,57 @@
+const usersByMonth = document.querySelector('.user-by-month').value;
+const usersParsed = JSON.parse(usersByMonth);
+const months = Object.keys(usersParsed);
+let metric = new Array(12).fill(0);
+
+for (let i = 0; i < months.length; i++) {
+  const monthIndex = parseInt(months[i]) - 1; // Restamos 1 para que enero tenga índice 0
+  metric[monthIndex] = usersParsed[months[i]].length;
+}
+
+if(usersByMonth === 0){
+  metric = 0;
+}
+
+
+const usersByMonthSus = document.querySelector('.user-by-monthSus').value;
+const usersSusParsed = JSON.parse(usersByMonthSus);
+const monthsSus = Object.keys(usersSusParsed);
+let metricSus = new Array(12).fill(0);
+
+for (let i = 0; i < monthsSus.length; i++) {
+  const monthIndex = parseInt(monthsSus[i]) - 1; // Restamos 1 para que enero tenga índice 0
+  metricSus[monthIndex] = usersSusParsed[monthsSus[i]].length;
+}
+
 /**
  * For usage, visit Chart.js docs https://www.chartjs.org/docs/latest/
  */
 const lineConfig = {
   type: 'line',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['Enero', 'Febrero', 'Marza', 'Abril', 'Mayo', 'Junio', 'July','Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     datasets: [
       {
-        label: 'Organic',
+        label: 'SuperShapeUp',
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: '#0694a2',
-        borderColor: '#0694a2',
-        data: [43, 48, 40, 54, 67, 73, 70],
+        backgroundColor: metricSus !== 0 ? '#0694a2' : 'red' ,
+        borderColor: metricSus !== 0 ? '#0694a2' : 'red',
+        data: metricSus !== 0 ? metricSus : [0,0,0,0,0,0,0,0,0,0,0,0],
         fill: false,
       },
       {
-        label: 'Paid',
+        label: 'Usuarios Totales',
         fill: false,
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: '#7e3af2',
-        borderColor: '#7e3af2',
-        data: [24, 50, 64, 74, 52, 51, 65],
+        backgroundColor: metric !== 0 ? '#7e3af2' : 'red',
+        borderColor: metric !== 0 ? '#7e3af2' : 'red',
+        data: metric !== 0 ? metric : [0,0,0,0,0,0,0,0,0,0,0,0],
       },
     ],
   },

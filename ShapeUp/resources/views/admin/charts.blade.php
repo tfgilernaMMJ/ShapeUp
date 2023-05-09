@@ -1,4 +1,4 @@
-@extends('coach.templates.template')
+@extends('admin.templates.template')
 
 @section('titulo')
 Gráficos

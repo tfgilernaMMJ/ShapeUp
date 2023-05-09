@@ -1,0 +1,12 @@
+.createButton{
+    background-color: #7E3AF2;
+    transition: .45s all ease-in-out;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.createButton:hover{
+    background-color: transparent;
+    transition: .45s all ease-in-out;
+    color: #7E3AF2;
+}
