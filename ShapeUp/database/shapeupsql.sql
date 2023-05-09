@@ -13,8 +13,8 @@ USE shapeupsql;
 --
 
 INSERT INTO `suscriptions` (`id`, `name`, `description`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'Gratuita', 'Suscripción gratuita', 0, '2023-05-03 10:22:03', '2023-05-03 10:22:03'),
-(2, 'SuperShapeUp', 'Suscripción SuperShapeUp', 9.99, '2023-05-03 10:22:03', '2023-05-03 10:22:03');
+(1, 'Gratuita', 'Suscripción gratuita', 0, NOW(), NOW()),
+(2, 'SuperShapeUp', 'Suscripción SuperShapeUp', 9.99, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `email_verif
 (24, 'Laura Rodríguez', 'laurarodriguez', '$2a$12$.dFH6gODDAgIK2BZkcEy8uSECQE8jaYo6CNpazYXKG0LL5e8xiXNy', 'laura.rodriguez@coach.com', NOW(), 'Coach', 'España', 32, null, null, '1.jpg', 'Soy una entrenadora personal con un enfoque en el entrenamiento de fuerza, la nutrición deportiva y su bienestar.', '6 años', 2, null, NOW(), NOW()),
 (25, 'Pedro Martínez', 'pedromartinez', '$2a$12$kY1SOu8Ef7i9YADA4t2JMO0j.ysik9yF0qhrq3JEs6t/KrMrgonm6', 'pedro.martinez@coach.com', NOW(), 'Coach', 'México', 39, null, null, '2.jpg', 'Soy un entrenador personal certificado con más de 10 años de experiencia en el entrenamiento de fuerza y el acondicionamiento físico.', '10 años', 2, null, NOW(), NOW()),
 (26, 'Marcela Díaz', 'marceladiaz', '$2a$12$DmtoVViMYZQHD0yY3Avb9u3OgsOZ6JdM7/RnxkpsT.U7vtt6FRsaC', 'marcela.diaz@coach.com', NOW(), 'Coach', 'México', 27, null, null, '3.jpg', 'Soy una entrenadora personal certificada con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '4 años', 2, null, NOW(), NOW()),
-(27, 'Daniel Ramírez', 'danielramirez', '$2a$12$K2QPWE2SnsFdu67SZqtCcObUSuFwAEselfyPhnCrckPFDvOPab6BG', 'daniel.ramirez@coach.com', NOW(), 'Coach', 'Estados Unidos', null, null, 31, '4.jpg', 'Soy un entrenador personal especializado en el entrenamiento de alta intensidad, la pérdida de peso y la nutrición deportiva.', '7 años', 2, null, NOW(), NOW()),
+(27, 'Daniel Ramírez', 'danielramirez', '$2a$12$K2QPWE2SnsFdu67SZqtCcObUSuFwAEselfyPhnCrckPFDvOPab6BG', 'daniel.ramirez@coach.com', NOW(), 'Coach', 'Estados Unidos', 31, null, null, '4.jpg', 'Soy un entrenador personal especializado en el entrenamiento de alta intensidad, la pérdida de peso y la nutrición deportiva.', '7 años', 2, null, NOW(), NOW()),
 (28, 'Javier Fernández', 'javierfernandez', '$2a$12$xX2KSBu2eQ3WhOYdekYmheLowKCVPJItQFkUK6Osp/pNL4MEXwpZW', 'javier.fernandez@coach.com', NOW(), 'Coach', 'España', 35, null, null, '5.jpg', 'Soy un entrenador personal certificado con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '9 años', 2, null, NOW(), NOW()),
 (29, 'Marta Gutiérrez', 'martagutierrez', '$2a$12$VsWNs25ZEbneNQf1ghi4FenhZei9nmxl09SwwPuJk7L5.SWKCIJlO', 'marta.gutierrez@coach.com', NOW(), 'Coach', 'España', 29, null, null, '6.jpg', 'Soy una entrenadora personal con experiencia en el entrenamiento de fuerza y el acondicionamiento físico. Mi objetivo es ayudar a las personas a mejorar su salud.', '5 años', 2, null, NOW(), NOW());
 
@@ -84,45 +84,18 @@ INSERT INTO `categories_of_trainings` (`id`, `name`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `coaches`
---
-
-/*
-INSERT INTO `coaches` (`id`, `name`, `username`, `password`, `email`, `email_verified_at`, `country`, `age`, `photo`, `biography`, `experience`, `remember_token`, `created_at`, `updated_at`) VALUES 
-(1, 'Laura Rodríguez', 'laurarodriguez', '$2a$12$.dFH6gODDAgIK2BZkcEy8uSECQE8jaYo6CNpazYXKG0LL5e8xiXNy', 'laura.rodriguez@coach.com', NULL, 'España', 32, '1.jpg', 'Soy una entrenadora personal con un enfoque en el entrenamiento de fuerza, la nutrición deportiva y su bienestar.', '6 años', NULL, NOW(), NOW()),
-(2, 'Pedro Martínez', 'pedromartinez', '$2a$12$kY1SOu8Ef7i9YADA4t2JMO0j.ysik9yF0qhrq3JEs6t/KrMrgonm6', 'pedro.martinez@coach.com', NULL, 'México', 39, '2.jpg', 'Soy un entrenador personal certificado con más de 10 años de experiencia en el entrenamiento de fuerza y el acondicionamiento físico.', '10 años', NULL, NOW(), NOW()),
-(3, 'Marcela Díaz', 'marceladiaz', '$2a$12$DmtoVViMYZQHD0yY3Avb9u3OgsOZ6JdM7/RnxkpsT.U7vtt6FRsaC', 'marcela.diaz@coach.com', NULL, 'México', 27, '3.jpg', 'Soy una entrenadora personal certificada con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '4 años', NULL, NOW(), NOW()),
-(4, 'Daniel Ramírez', 'danielramirez', '$2a$12$K2QPWE2SnsFdu67SZqtCcObUSuFwAEselfyPhnCrckPFDvOPab6BG', 'daniel.ramirez@coach.com', NULL, 'Estados Unidos', 31, '4.jpg', 'Soy un entrenador personal especializado en el entrenamiento de alta intensidad, la pérdida de peso y la nutrición deportiva.', '7 años', NULL, NOW(), NOW()),
-(5, 'Javier Fernández', 'javierfernandez', '$2a$12$xX2KSBu2eQ3WhOYdekYmheLowKCVPJItQFkUK6Osp/pNL4MEXwpZW', 'javier.fernandez@coach.com', NULL, 'España', 35, '5.jpg', 'Soy un entrenador personal certificado con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '9 años', NULL, NOW(), NOW()),
-(6, 'Marta Gutiérrez', 'martagutierrez', '$2a$12$VsWNs25ZEbneNQf1ghi4FenhZei9nmxl09SwwPuJk7L5.SWKCIJlO', 'marta.gutierrez@coach.com', NULL, 'España', 29, '6.jpg', 'Soy una entrenadora personal con experiencia en el entrenamiento de fuerza y el acondicionamiento físico. Mi objetivo es ayudar a las personas a mejorar su salud.', '5 años', NULL, NOW(), NOW()); */
-
--- --------------------------------------------------------
-
---
 -- Volcado de datos para la tabla `diets`
 --
 
-/* INSERT INTO `diets` (`id`, `title`, `description`, `tips`, `not_eat`, `user_coach_id`, `created_at`, `updated_at`) VALUES
-(1, 'Dieta Mediterránea', 'La dieta mediterránea es una forma de comer basada en los patrones alimentarios tradicionales de los países mediterráneos. Incluye una variedad de alimentos como frutas, verduras, cereales integrales, legumbres, pescado, frutos secos y aceite de oliva. Además, limita la ingesta de carne roja, dulces y alimentos procesados. Esta dieta ha demostrado tener beneficios para la salud cardiovascular, la pérdida de peso y la prevención de enfermedades crónicas.', 'Mantén una dieta equilibrada, bebe suficiente agua, haz ejercicio regularmente y evita el consumo de tabaco y alcohol.', 'Se recomienda evitar los alimentos procesados y refinados, las carnes rojas y los productos lácteos altos en grasa.', 1, '2023-04-17 18:10:48', '2023-04-17 18:10:48'),
-(2, 'Dieta cetogénica', 'La dieta cetogénica es una dieta baja en carbohidratos y alta en grasas que se utiliza para perder peso y mejorar la salud metabólica. Al seguir esta dieta, el cuerpo entra en un estado llamado cetosis, en el cual quema grasa en lugar de carbohidratos para obtener energía. Esta dieta se basa en la ingesta de alimentos ricos en grasas saludables, como aceite de oliva, aguacate, nueces y semillas, junto con proteínas y una cantidad limitada de carbohidratos.', 'Haz un seguimiento de tu ingesta de carbohidratos, asegúrate de obtener suficientes proteínas y grasas saludables y bebe mucha agua.', 'Se deben evitar los alimentos ricos en carbohidratos, como los azúcares, los granos y las frutas con alto contenido de azúcar. También se recomienda limitar el consumo de alcohol y alimentos procesados.', 2, '2023-04-17 18:10:48', '2023-04-17 18:10:48'),
-(3, 'Dieta vegetariana', 'La dieta vegetariana se basa en la exclusión de carne y pescado de la alimentación. Se pueden incluir otros alimentos de origen animal como huevos, leche y queso. Una dieta vegetariana bien equilibrada puede proporcionar todos los nutrientes necesarios para una buena salud, incluyendo proteínas, hierro y calcio. Además, puede ayudar a prevenir enfermedades crónicas como la diabetes y las enfermedades del corazón.', 'Asegúrate de obtener suficientes proteínas de fuentes vegetales, como legumbres, nueces y tofu. Considera tomar suplementos de vitamina B12 y hierro.', 'En una dieta vegetariana se debe evitar cualquier tipo de carne, incluyendo carnes rojas, pollo, pescado y mariscos. También se debe limitar el consumo de productos lácteos y huevos.', 3, '2023-04-17 18:10:48', '2023-04-17 18:10:48'),
-(4, 'Dieta sin gluten', 'La dieta sin gluten se basa en evitar alimentos que contienen gluten, una proteína que se encuentra en el trigo, la cebada y el centeno. Esta dieta se utiliza principalmente para tratar la enfermedad celíaca y la sensibilidad al gluten no celíaca. Se pueden incluir alimentos como frutas, verduras, carne, pescado, huevos y legumbres, así como alimentos sin gluten como arroz, quinoa y maíz.', ' Se deben evitar todos los alimentos que contengan gluten, como el trigo, la cebada, el centeno y la avena. Esto incluye productos de panadería, pastas, cereales y productos procesados que contengan gluten.', 'Lee las etiquetas de los alimentos para evitar ingredientes con gluten. Considera trabajar con un dietista para asegurarte de obtener suficientes nutrientes.', 4, '2023-04-17 18:10:48', '2023-04-17 18:10:48'),
-(5, 'Dieta baja en grasas', 'La dieta baja en grasas se basa en limitar la ingesta de grasas, especialmente grasas saturadas y grasas trans. Esta dieta se ha utilizado para ayudar a perder peso y reducir el riesgo de enfermedades crónicas como la enfermedad cardíaca.', '1. Lee las etiquetas de los alimentos para asegurarte de que sean bajos en grasas. 2. Elige alimentos bajos en grasas saturadas y grasas trans. 3. Cocina los alimentos de manera saludable, como al horno o a la parrilla en lugar de freírlos.', ' se deben evitar todos los alimentos que contengan gluten, como el trigo, la cebada, el centeno y la avena. Esto incluye productos de panadería, pastas, cereales y productos procesados que contengan gluten.', 2, '2023-04-17 18:10:48', '2023-04-17 18:10:48');
-*/
+/* INSERT INTO `diets` (`id`, `title`, `description`, `tips`, `not_eat`, `user_coach_id`, `created_at`, `updated_at`) VALUES */
 -- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `diets_categories`
 --
 
-INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 8, '2023-04-17 19:21:07', '2023-04-17 19:21:07'),
-(2, 1, 9, '2023-04-17 19:21:07', '2023-04-17 19:21:07'),
-(3, 2, 1, '2023-04-17 19:21:07', '2023-04-17 19:21:07'),
-(4, 2, 17, '2023-04-17 19:21:07', '2023-04-17 19:21:07'),
-(5, 3, 4, '2023-04-17 19:21:07', '2023-04-17 19:21:07'),
-(6, 4, 5, '2023-04-17 19:21:07', '2023-04-17 19:21:07'),
-(7, 5, 9, '2023-04-17 19:21:07', '2023-04-17 19:21:07');
+/* INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES */
+
 
 -- --------------------------------------------------------
 
@@ -131,13 +104,13 @@ INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created
 --
 
 INSERT INTO `gyms` (`id`, `name`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'Altair Sport', '1.jpg', '2023-05-03 10:21:44', '2023-05-03 10:21:44'),
-(2, 'GO Fit', '2.png', '2023-05-03 10:21:44', '2023-05-03 10:21:44'),
-(3, 'Inacua', '3.png', '2023-05-03 10:21:44', '2023-05-03 10:21:44'),
-(4, 'MC Fit', '4.png', '2023-05-03 10:21:44', '2023-05-03 10:21:44'),
-(5, 'Metropilian', '5.png', '2023-05-03 10:21:44', '2023-05-03 10:21:44'),
-(6, 'O2 Centro Wellness', '6.png', '2023-05-03 10:21:44', '2023-05-03 10:21:44'),
-(7, 'Sato Spòrt', '7.png', '2023-05-03 10:21:44', '2023-05-03 10:21:44');
+(1, 'Altair Sport', '1.jpg',  NOW(), NOW()),
+(2, 'GO Fit', '2.png',  NOW(), NOW()),
+(3, 'Inacua', '3.png',  NOW(), NOW()),
+(4, 'MC Fit', '4.png',  NOW(), NOW()),
+(5, 'Metropilian', '5.png', NOW(), NOW()),
+(6, 'O2 Centro Wellness', '6.png',  NOW(), NOW()),
+(7, 'Sato Sport', '7.png',  NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -146,15 +119,15 @@ INSERT INTO `gyms` (`id`, `name`, `logo`, `created_at`, `updated_at`) VALUES
 --
 
 INSERT INTO `supermarkets` (`id`, `name`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'Aldi', '1.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(2, 'Carrefour', '2.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(3, 'Corte Inglés', '3.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(4, 'Coviran', '4.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(5, 'Dia', '5.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(6, 'Lidl', '6.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(7, 'Mas', '7.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(8, 'Mercadona', '8.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59'),
-(9, 'Supersol', '9.png', '2023-05-03 10:21:59', '2023-05-03 10:21:59');
+(1, 'Aldi', '1.png',  NOW(), NOW()),
+(2, 'Carrefour', '2.png',  NOW(), NOW()),
+(3, 'Corte Inglés', '3.png',  NOW(), NOW()),
+(4, 'Coviran', '4.png',  NOW(), NOW()),
+(5, 'Dia', '5.png',  NOW(), NOW()),
+(6, 'Lidl', '6.png',  NOW(), NOW()),
+(7, 'Mas', '7.png',  NOW(), NOW()),
+(8, 'Mercadona', '8.png',  NOW(), NOW()),
+(9, 'Supersol', '9.png',  NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -163,26 +136,26 @@ INSERT INTO `supermarkets` (`id`, `name`, `logo`, `created_at`, `updated_at`) VA
 --
 
 INSERT INTO `tags_of_exercises` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Pecho', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(2, 'Espalda', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(3, 'Piernas', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(4, 'Brazos', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(5, 'Hombros', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(6, 'Abdominales', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(7, 'Glúteos', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(8, 'Cardio', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(9, 'Fuerza', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(10, 'Equilibrio', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(11, 'Estiramientos', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(12, 'Flexibilidad', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(13, 'Pliometría', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(14, 'Agilidad', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(15, 'Coordination', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(16, 'Movilidad', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(17, 'Peso corporal', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(18, 'Resistencia', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(19, 'Velocidad', '2023-04-17 18:10:44', '2023-04-17 18:10:44'),
-(20, 'Potencia', '2023-04-17 18:10:44', '2023-04-17 18:10:44');
+(1, 'Pecho',  NOW(), NOW()),
+(2, 'Espalda',  NOW(), NOW()),
+(3, 'Piernas',  NOW(), NOW()),
+(4, 'Brazos',  NOW(), NOW()),
+(5, 'Hombros',  NOW(), NOW()),
+(6, 'Abdominales',  NOW(), NOW()),
+(7, 'Glúteos',  NOW(), NOW()),
+(8, 'Cardio',  NOW(), NOW()),
+(9, 'Fuerza',  NOW(), NOW()),
+(10, 'Equilibrio', NOW(), NOW()),
+(11, 'Estiramientos',  NOW(), NOW()),
+(12, 'Flexibilidad',  NOW(), NOW()),
+(13, 'Pliometría',  NOW(), NOW()),
+(14, 'Agilidad',  NOW(), NOW()),
+(15, 'Cordinación',  NOW(), NOW()),
+(16, 'Movilidad',  NOW(), NOW()),
+(17, 'Peso corporal',  NOW(), NOW()),
+(18, 'Resistencia',  NOW(), NOW()),
+(19, 'Velocidad',  NOW(), NOW()),
+(20, 'Potencia',  NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -288,63 +261,43 @@ INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `r
 
 (92, 'Saltos laterales', 'Salta hacia un lado y hacia el otro de una línea imaginaria en el suelo', 'Incrementa la velocidad y agilidad', 30, 10, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 19, 27, NOW(), NOW()),
 (93, 'Carrera con obstáculos', 'Corre hacia adelante y salta por encima de obstáculos en el camino', 'Mejora la velocidad, agilidad y coordinación', 60, 10 , 3, 'https://www.youtube.com/watch?v=s-uxMLF-6iA', 19, 27, NOW(), NOW()),
-(94,'Escalera de agilidad', 'Pasa a través de una escalera imaginaria dibujada en el suelo', 'Aumenta la velocidad, agilidad y coordinación', 30, 10, 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14 27, NOW(), NOW()),
+(94, 'Escalera de agilidad', 'Pasa a través de una escalera imaginaria dibujada en el suelo', 'Aumenta la velocidad, agilidad y coordinación', 30, 10, 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14 27, NOW(), NOW()),
 (95,'Saltos en profundidad', 'Salta desde una plataforma elevada y aterriza en una posición de sentadilla profunda', 'Mejora la velocidad, agilidad y fuerza', 60, 10, 3, 'https://www.youtube.com/watch?v=eV-O2lRJxr0', 14, 27, NOW(), NOW()),
 (96,'Conos de velocidad', 'Corre alrededor de conos dispuestos en un patrón específico', 'Mejora la velocidad, agilagilidad y fuerza', 60, 10, 3, 'https://www.youtube.com/watch?v=2ZRfq7SKW2w', 19, 27, NOW(), NOW());
 
+-- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `tags_of_ingredients`
 --
 
 INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Proteína', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(2, 'Carbohidratos complejos', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(3, 'Grasas saludables', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(4, 'Vegetales verdes', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(5, 'Frutas frescas', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(6, 'Frutos secos y semillas', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(7, 'Pescado y marisco', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(8, 'Carne magra', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(9, 'Huevos', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(10, 'Legumbres', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(11, 'Cereales integrales', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(12, 'Productos lácteos bajos en grasa', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(13, 'Superalimentos', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(14, 'Alimentos orgánicos', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(15, 'Sin gluten', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(16, 'Bajo en sodio', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(17, 'Bajo en grasas saturadas', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(18, 'Vegano', '2023-04-17 18:10:45', '2023-04-17 18:10:45'),
-(19, 'Alimentos bajos en calorías', '2023-04-17 18:10:45', '2023-04-17 18:10:45');
+(1, 'Proteína', NOW(), NOW()),
+(2, 'Carbohidratos complejos', NOW(), NOW()),
+(3, 'Grasas saludables', NOW(), NOW()),
+(4, 'Vegetales verdes', NOW(), NOW()),
+(5, 'Frutas frescas', NOW(), NOW()),
+(6, 'Frutos secos y semillas', NOW(), NOW()),
+(7, 'Pescado y marisco', NOW(), NOW()),
+(8, 'Carne magra', NOW(), NOW()),
+(9, 'Huevos', NOW(), NOW()),
+(10, 'Legumbres', NOW(), NOW()),
+(11, 'Cereales integrales', NOW(), NOW()),
+(12, 'Productos lácteos bajos en grasa', NOW(), NOW()),
+(13, 'Superalimentos', NOW(), NOW()),
+(14, 'Alimentos orgánicos', NOW(), NOW()),
+(15, 'Sin gluten', NOW(), NOW()),
+(16, 'Bajo en sodio', NOW(), NOW()),
+(17, 'Bajo en grasas saturadas', NOW(), NOW()),
+(18, 'Vegano', NOW(), NOW()),
+(19, 'Alimentos bajos en calorías', NOW(), NOW());
 
 -- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `ingredients`
 --
-/*
-INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `updated_at`) VALUES
-(1, 'ingredient_1', 6, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(2, 'ingredient_2', 10, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(3, 'ingredient_3', 3, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(4, 'ingredient_4', 19, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(5, 'ingredient_5', 7, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(6, 'ingredient_6', 1, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(7, 'ingredient_7', 18, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(8, 'ingredient_8', 14, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(9, 'ingredient_9', 5, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(10, 'ingredient_10', 13, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(11, 'ingredient_11', 9, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(12, 'ingredient_12', 4, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(13, 'ingredient_13', 11, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(14, 'ingredient_14', 16, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(15, 'ingredient_15', 2, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(16, 'ingredient_16', 8, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(17, 'ingredient_17', 15, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(18, 'ingredient_18', 12, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(19, 'ingredient_19', 19, '2023-04-17 19:26:16', '2023-04-17 19:26:16'),
-(20, 'ingredient_20', 17, '2023-04-17 19:26:16', '2023-04-17 19:26:16'); */
+/* INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `updated_at`) VALUES */
 
 -- --------------------------------------------------------
 
@@ -374,8 +327,6 @@ INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `use
 (19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 60, 'Low', 27, NOW(), NOW()),
 (20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'High', 27, NOW(), NOW());
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -403,7 +354,6 @@ INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id
 (18, 18, 5, NOW(), NOW()),
 (19, 19, 5, NOW(), NOW()),
 (20, 20, 6, NOW(), NOW());
-
 
 -- --------------------------------------------------------
 
@@ -498,25 +448,23 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (83, 17, 80, NOW(), NOW()),
 (83, 17, 81, NOW(), NOW()),
 (84, 17, 82, NOW(), NOW()),
+
 (85, 18, 83, NOW(), NOW()),
 (86, 18, 84, NOW(), NOW()),
 (87, 18, 85, NOW(), NOW()),
 (88, 18, 86, NOW(), NOW()),
 (89, 18, 87, NOW(), NOW()),
+
 (90, 19, 88, NOW(), NOW()),
 (91, 19, 89, NOW(), NOW()),
 (92, 19, 90, NOW(), NOW()),
-(93, 19, 91, NOW(), NOW()),
-(94, 19, 92, NOW(), NOW()),
+(93, 19, 84, NOW(), NOW()),
+(94, 19, 91, NOW(), NOW()),
 
-(95, 20, 93, NOW(), NOW()),
-(96, 20, 94, NOW(), NOW()),
-(97, 20, 95, NOW(), NOW()),
-(98, 20, 96, NOW(), NOW()),
-(99, 20, 97, NOW(), NOW());
-
-
-
-
+(95, 20, 92, NOW(), NOW()),
+(96, 20, 93, NOW(), NOW()),
+(97, 20, 94, NOW(), NOW()),
+(98, 20, 95, NOW(), NOW()),
+(99, 20, 96, NOW(), NOW());
 
 -- --------------------------------------------------------
