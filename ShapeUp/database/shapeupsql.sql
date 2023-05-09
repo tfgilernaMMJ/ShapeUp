@@ -1,5 +1,5 @@
-/* DROP DATABASE IF EXISTS shapeupsql;
-CREATE DATABASE shapeupsql CHARACTER SET utf8mb4; */
+DROP DATABASE IF EXISTS shapeupsql;
+CREATE DATABASE shapeupsql CHARACTER SET utf8mb4;
 USE shapeupsql;
 
 --
@@ -261,7 +261,7 @@ INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `r
 
 (92, 'Saltos laterales', 'Salta hacia un lado y hacia el otro de una línea imaginaria en el suelo', 'Incrementa la velocidad y agilidad', 30, 10, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 19, 27, NOW(), NOW()),
 (93, 'Carrera con obstáculos', 'Corre hacia adelante y salta por encima de obstáculos en el camino', 'Mejora la velocidad, agilidad y coordinación', 60, 10 , 3, 'https://www.youtube.com/watch?v=s-uxMLF-6iA', 19, 27, NOW(), NOW()),
-(94, 'Escalera de agilidad', 'Pasa a través de una escalera imaginaria dibujada en el suelo', 'Aumenta la velocidad, agilidad y coordinación', 30, 10, 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14 27, NOW(), NOW()),
+(94, 'Escalera de agilidad', 'Pasa a través de una escalera imaginaria dibujada en el suelo', 'Aumenta la velocidad, agilidad y coordinación', 30, 10, 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14, 27, NOW(), NOW()),
 (95,'Saltos en profundidad', 'Salta desde una plataforma elevada y aterriza en una posición de sentadilla profunda', 'Mejora la velocidad, agilidad y fuerza', 60, 10, 3, 'https://www.youtube.com/watch?v=eV-O2lRJxr0', 14, 27, NOW(), NOW()),
 (96,'Conos de velocidad', 'Corre alrededor de conos dispuestos en un patrón específico', 'Mejora la velocidad, agilagilidad y fuerza', 60, 10, 3, 'https://www.youtube.com/watch?v=2ZRfq7SKW2w', 19, 27, NOW(), NOW());
 
@@ -446,25 +446,25 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (81, 17, 78, NOW(), NOW()),
 (82, 17, 79, NOW(), NOW()),
 (83, 17, 80, NOW(), NOW()),
-(83, 17, 81, NOW(), NOW()),
-(84, 17, 82, NOW(), NOW()),
+(84, 17, 81, NOW(), NOW()),
+(85, 17, 82, NOW(), NOW()),
 
-(85, 18, 83, NOW(), NOW()),
-(86, 18, 84, NOW(), NOW()),
-(87, 18, 85, NOW(), NOW()),
-(88, 18, 86, NOW(), NOW()),
-(89, 18, 87, NOW(), NOW()),
+(86, 18, 83, NOW(), NOW()),
+(87, 18, 84, NOW(), NOW()),
+(88, 18, 85, NOW(), NOW()),
+(89, 18, 86, NOW(), NOW()),
+(90, 18, 87, NOW(), NOW()),
 
-(90, 19, 88, NOW(), NOW()),
-(91, 19, 89, NOW(), NOW()),
-(92, 19, 90, NOW(), NOW()),
-(93, 19, 84, NOW(), NOW()),
-(94, 19, 91, NOW(), NOW()),
+(91, 19, 88, NOW(), NOW()),
+(92, 19, 89, NOW(), NOW()),
+(93, 19, 90, NOW(), NOW()),
+(94, 19, 84, NOW(), NOW()),
+(95, 19, 91, NOW(), NOW()),
 
-(95, 20, 92, NOW(), NOW()),
-(96, 20, 93, NOW(), NOW()),
-(97, 20, 94, NOW(), NOW()),
-(98, 20, 95, NOW(), NOW()),
-(99, 20, 96, NOW(), NOW());
+(96, 20, 92, NOW(), NOW()),
+(97, 20, 93, NOW(), NOW()),
+(98, 20, 94, NOW(), NOW()),
+(99, 20, 95, NOW(), NOW()),
+(100, 20, 96, NOW(), NOW());
 
 -- --------------------------------------------------------

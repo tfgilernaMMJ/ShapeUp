@@ -68,15 +68,25 @@ class WebController extends Controller
     public function paymentSubscription($action = null)
     {   
         if ($action == 'gratuito') {
-            $user = User::findOrFail(Auth::user()->id);
-            $user->suscription_id = 1;
-            $user->save();
-            return redirect()->route('account.index');
+            try {
+                $user = User::findOrFail(Auth::user()->id);
+                $user->suscription_id = 1;
+                $user->save();
+    
+                return redirect()->route('account.subscriptions')->with('success', 'Has cancelado la suscripción SuperShapeUp correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.subscriptions')->with('error', 'Ha ocurrido un error al cancelar la suscripción. Por favor, inténtalo de nuevo más tarde.');
+            }
         } else {
-            $user = User::findOrFail(Auth::user()->id);
-            $user->suscription_id = 2;
-            $user->save();
-            return redirect()->route('account.index');
+            try {
+                $user = User::findOrFail(Auth::user()->id);
+                $user->suscription_id = 2;
+                $user->save();
+    
+                return redirect()->route('account.subscriptions')->with('success', 'Has contratado la suscripción SuperShapeUp correctamente. ¡Ya eres un SuperShapeUp!');
+            } catch (\Exception $e) {
+                return redirect()->route('account.subscriptions')->with('error', 'Ha ocurrido un error al contratar la suscripción. Por favor, inténtalo de nuevo más tarde.');
+            }
         }    
     }
 
