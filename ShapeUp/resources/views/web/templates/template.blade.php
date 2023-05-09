@@ -11,10 +11,10 @@
             <ul>
                 <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
                 <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
-                <li class="dropdown"><a class="@yield('courses-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a class="@yield('trainings-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="{{ route('account.courses') }}">Entrenamientos</a></li>
-                        <li><a href="{{ route('account.courses') }}">Ejercicios</a></li>
+                        <li><a href="{{ route('account.trainings') }}">Entrenamientos</a></li>
+                        <li><a href="{{ route('account.trainings') }}">Ejercicios</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a class="@yield('events-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>

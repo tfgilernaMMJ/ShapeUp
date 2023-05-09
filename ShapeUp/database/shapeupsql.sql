@@ -50,7 +50,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `email_verif
 (25, 'Pedro Martínez', 'pedromartinez', '$2a$12$kY1SOu8Ef7i9YADA4t2JMO0j.ysik9yF0qhrq3JEs6t/KrMrgonm6', 'pedro.martinez@coach.com', NOW(), 'Coach', 'México', 39, null, null, '2.jpg', 'Soy un entrenador personal certificado con más de 10 años de experiencia en el entrenamiento de fuerza y el acondicionamiento físico.', '10 años', 2, null, NOW(), NOW()),
 (26, 'Marcela Díaz', 'marceladiaz', '$2a$12$DmtoVViMYZQHD0yY3Avb9u3OgsOZ6JdM7/RnxkpsT.U7vtt6FRsaC', 'marcela.diaz@coach.com', NOW(), 'Coach', 'México', 27, null, null, '3.jpg', 'Soy una entrenadora personal certificada con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '4 años', 2, null, NOW(), NOW()),
 (27, 'Daniel Ramírez', 'danielramirez', '$2a$12$K2QPWE2SnsFdu67SZqtCcObUSuFwAEselfyPhnCrckPFDvOPab6BG', 'daniel.ramirez@coach.com', NOW(), 'Coach', 'Estados Unidos', 31, null, null, '4.jpg', 'Soy un entrenador personal especializado en el entrenamiento de alta intensidad, la pérdida de peso y la nutrición deportiva.', '7 años', 2, null, NOW(), NOW()),
-(28, 'Javier Fernández', 'javierfernandez', '$2a$12$xX2KSBu2eQ3WhOYdekYmheLowKCVPJItQFkUK6Osp/pNL4MEXwpZW', 'javier.fernandez@coach.com', NOW(), 'Coach', 'España', 35, null, null, '5.jpg', 'Soy un entrenador personal certificado con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '9 años', 2, null, NOW(), NOW()),
+(28, 'Javier Fernández', 'javierfernandez', '$2a$12$xX2KSBu2eQ3WhOYdekYmheBajoKCVPJItQFkUK6Osp/pNL4MEXwpZW', 'javier.fernandez@coach.com', NOW(), 'Coach', 'España', 35, null, null, '5.jpg', 'Soy un entrenador personal certificado con experiencia en el entrenamiento de fuerza, el acondicionamiento físico y la nutrición deportiva.', '9 años', 2, null, NOW(), NOW()),
 (29, 'Marta Gutiérrez', 'martagutierrez', '$2a$12$VsWNs25ZEbneNQf1ghi4FenhZei9nmxl09SwwPuJk7L5.SWKCIJlO', 'marta.gutierrez@coach.com', NOW(), 'Coach', 'España', 29, null, null, '6.jpg', 'Soy una entrenadora personal con experiencia en el entrenamiento de fuerza y el acondicionamiento físico. Mi objetivo es ayudar a las personas a mejorar su salud.', '5 años', 2, null, NOW(), NOW());
 
 -- --------------------------------------------------------
@@ -306,26 +306,26 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 --
 
 INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `user_coach_id`, `created_at`, `updated_at`) VALUES
-(1, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'High', 24, NOW(), NOW()),
-(2, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 45, 'Medium', 24, NOW(), NOW()),
-(3, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 60, 'High', 24, NOW(), NOW()),
-(4, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 45, 'Low', 24, NOW(), NOW()),
-(5, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos estáticos y dinámicos', 45, 'Medium', 24, NOW(), NOW()),	
-(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 50, 'High', 24, NOW(), NOW()),
-(7, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 45, 'Low', 25, NOW(), NOW()),
-(8, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 60, 'Medium', 25, NOW(), NOW()),
-(9, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 60, 'Medium', 25, NOW(), NOW()),
-(10, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 45, 'High', 25, NOW(), NOW()),
-(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'Low', 25, NOW(), NOW()),
-(12, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'Low', 26, NOW(), NOW()),
-(13, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 50, 'Low', 26, NOW(), NOW()),
-(14, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 60, 'Medium', 26, NOW(), NOW()),
-(15, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'Low', 26, NOW(), NOW()),
-(16, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'Medium', 27, NOW(), NOW()),
-(17, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 45, 'High', 27, NOW(), NOW()),
-(18, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 45, 'Medium', 27, NOW(), NOW()),
-(19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 60, 'Low', 27, NOW(), NOW()),
-(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'High', 27, NOW(), NOW());
+(1, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Alto', 24, NOW(), NOW()),
+(2, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 45, 'Medio', 24, NOW(), NOW()),
+(3, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 60, 'Alto', 24, NOW(), NOW()),
+(4, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Bajo', 24, NOW(), NOW()),
+(5, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Medio', 24, NOW(), NOW()),	
+(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 50, 'Alto', 24, NOW(), NOW()),
+(7, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Bajo', 25, NOW(), NOW()),
+(8, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 60, 'Medio', 25, NOW(), NOW()),
+(9, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Medio', 25, NOW(), NOW()),
+(10, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Alto', 25, NOW(), NOW()),
+(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Bajo', 25, NOW(), NOW()),
+(12, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Bajo', 26, NOW(), NOW()),
+(13, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 50, 'Bajo', 26, NOW(), NOW()),
+(14, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 60, 'Medio', 26, NOW(), NOW()),
+(15, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Bajo', 26, NOW(), NOW()),
+(16, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Medio', 27, NOW(), NOW()),
+(17, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Alto', 27, NOW(), NOW()),
+(18, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 27, NOW(), NOW()),
+(19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Bajo', 27, NOW(), NOW()),
+(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Alto', 27, NOW(), NOW());
 
 -- --------------------------------------------------------
 

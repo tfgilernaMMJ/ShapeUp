@@ -58,9 +58,7 @@ Route::get('/conocenos', function () {
 
 // COURSES
 
-Route::get('/cursos', function () {
-    return view('web.courses');
-})->name('account.courses');
+Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'indexTrainings'])->name('account.trainings');
 
 Route::get('/cursos/detalles', function () {
     return view('web.course-details');
