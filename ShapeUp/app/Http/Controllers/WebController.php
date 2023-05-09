@@ -27,11 +27,16 @@ class WebController extends Controller
         return view('web.index', ['gyms' => $gyms, 'supermarkets' => $supermarkets, 'numUsers' => $numUsers, 'numCoaches' => $numCoaches, 'numDiets' => $numDiets, 'numTrainings' => $numTrainings]);
     }
 
+    public function indexTrainings()
+    {
+        $trainings = Training::all();
+        return view('web.trainings', [ 'trainings' => $trainings ]);       
+    }
+
     public function indexCoaches()
     {
         $coaches = User::where('status', 'Coach')->get();
-        $numCoaches = User::where('status', 'Coach')->count();
-        return view('web.coaches', [ 'coaches' => $coaches, 'numCoaches' => $numCoaches]);
+        return view('web.coaches', [ 'coaches' => $coaches]);
     }
 
     public function followCoaches($action, $coach_id)

@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trainings', function (Blueprint $table) {
+        Schema::create('user_follow_diets', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->integer('duration');
-            $table->enum('level', ['Bajo', 'Medio', 'Alto']);
-            $table->foreignId('user_coach_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('diet_id')->references('id')->on('diets');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trainings');
+        Schema::dropIfExists('user_follow_diets');
     }
 };

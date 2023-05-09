@@ -17,17 +17,6 @@
             </div>
         </div>
 
-        <section id="counts" class="counts section-bg">
-            <div class="container">
-                <div class="row counters">
-                    <div class="col-lg-12 col-12 text-center">
-                        <p>Número de entrenadores actuales en ShapeUp: </p>
-                        <span data-purecounter-start="0" data-purecounter-end="{{ $numCoaches }}" data-purecounter-duration="1" class="purecounter"></span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="trainers" class="trainers">
             <div class="container" data-aos="fade-up">
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">  
