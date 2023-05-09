@@ -222,7 +222,7 @@ INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `r
 
 (29, 'Sentadillas con barra', 'De pie con los pies separados al ancho de los hombros, sosteniendo una barra con pesas en la parte posterior de los hombros, baja tu cuerpo doblando las rodillas y las caderas hasta que tus muslos estén paralelos al suelo. Luego, vuelve a la posición inicial.', 'Las sentadillas son un ejercicio compuesto que trabaja los cuádriceps, los glúteos, los isquiotibiales, la espalda baja y el núcleo.', 15, 10, 4, 'https://www.youtube.com/watch?v=ILO0S9wPNwI', 3, 25, NOW(), NOW()),
 (30, 'Press de banca', 'Acuéstate en un banco plano con los pies en el suelo y agarra una barra con pesas con las manos separadas al ancho de los hombros. Luego, baja la barra hasta que toque tu pecho y luego empújala hacia arriba hasta que los brazos estén completamente extendidos.', 'El press de banca trabaja los músculos del pecho, los hombros y los tríceps.', 30, 12, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 25, NOW(), NOW()),
-(31, 'Peso muerto', 'De pie con los pies separados al ancho de los hombros, agarrando una barra con pesas con las manos separadas al ancho de los hombros, baja tu cuerpo doblando las rodillas y las caderas hasta que puedas agarrar la barra. Luego, levanta la barra hasta que estés de pie con los brazos extendidos.', 'El press de banca trabaja los músculos del pecho, los hombros y los tríceps.', 20, 10, 4, 'https://www.youtube.com/watch?v=Y1Feac6SHPI', 3, 25, NOW(), NOW()),
+(31, 'Peso muerto', 'De pie con los pies separados al ancho de los hombros, agarrando una barra con pesas con las manos separadas al ancho de los hombros, baja tu cuerpo doblando las rodillas y las caderas hasta que puedas agarrar la barra. Luego, levanta la barra hasta que estés de pie con los brazos extendidos.', 'Trabaja los musculos de pierna y espalda.', 20, 10, 4, 'https://www.youtube.com/watch?v=Y1Feac6SHPI', 3, 25, NOW(), NOW()),
 (32, 'Elevación de pantorrillas', 'La elevación de pantorrillas es un ejercicio que se enfoca en fortalecer las pantorrillas, el músculo gastrocnemio y el sóleo', 'Fortalece las pantorrillas.', 30, 15, 4, 'https://www.youtube.com/watch?v=iS1VtOd2bGQ', 3, 25, NOW(), NOW()),
 (33, 'Curl de bíceps con mancuernas', 'El curl de bíceps con mancuernas es un ejercicio de levantamiento de pesas que fortalece los músculos de los brazos, especialmente los bíceps.', 'Fortalece los músculos de los brazos', 45, 12, 4, 'https://www.youtube.com/watch?v=qERAhN-qpaU', 4, 25, NOW(), NOW()),
 (34, 'Sentadillas con salto', 'Las sentadillas con salto son un ejercicio de alto impacto que ayuda a aumentar la frecuencia cardíaca y quemar calorías. Comience con los pies separados a la anchura de los hombros, haga una sentadilla profunda y luego salte lo más alto que pueda.', 'Las sentadillas con salto queman calorías y aumentan la frecuencia cardíaca.', 30, 12, 4, 'https://www.youtube.com/watch?v=IiHH0EWo8-k', 3, 25, NOW(), NOW()),
@@ -243,7 +243,55 @@ INSERT INTO `exercises` (`id`, `name`, `description`, `proposal`, `duration`, `r
 (49, 'Correr zigzag', 'Corre hacia adelante y hacia atrás a través de un conjunto de conos colocados en un patrón zigzag.', 'El correr zigzag ayuda a mejorar la velocidad y la agilidad.', 60, 10, 3, 'https://www.youtube.com/watch?v=cJ6KtDK1fYI', 19, 25, NOW(), NOW()),
 (50, 'Saltos laterales', 'Salta de un lado a otro sobre una línea imaginaria en el suelo.', 'Los saltos laterales ayudan a mejorar la velocidad y la agilidad lateral.', 30, 10, 3, 'https://www.youtube.com/shorts/a2kwZCrrz2c', 14, 25, NOW(), NOW()),
 (51, 'Sprints hacia atrás', 'Corre hacia atrás tan rápido como puedas durante una cierta distancia.', 'Los sprints hacia atrás ayudan a mejorar la velocidad y la agilidad.', 30, 10, 3, 'https://www.youtube.com/shorts/l0M2C_tWW7E', 19, 25, NOW(), NOW()),
-(52, 'Saltos en cuclillas', 'Salta hacia arriba desde una posición de cuclillas.', 'Los saltos en cuclillas ayudan a mejorar la velocidad y la fuerza de las piernas.', 30, 10, 3, 'https://www.youtube.com/watch?v=rp_ZKQ1FZvM', 14, 25, NOW(), NOW());
+(52, 'Saltos en cuclillas', 'Salta hacia arriba desde una posición de cuclillas.', 'Los saltos en cuclillas ayudan a mejorar la velocidad y la fuerza de las piernas.', 30, 10, 3, 'https://www.youtube.com/watch?v=rp_ZKQ1FZvM', 14, 25, NOW(), NOW()),
+(53, 'Sentadillas', 'Ejercicio que consiste en flexionar las rodillas y las caderas para bajar el cuerpo hacia el suelo, y luego estirarlas para volver a la posición inicial.', 'Las sentadillas son uno de los mejores ejercicios para trabajar la musculatura de las piernas, especialmente los cuádriceps, los glúteos y los isquiotibiales.', 30, 12, 3, 'https://www.youtube.com/watch?v=3fvw0FIGYF4&t=8s', 3, 26, NOW(), NOW()),
+(54, 'Press de banca', 'Ejercicio que consiste en acostarse sobre un banco y levantar una barra con pesos desde el pecho hasta la posición de extensión completa de los brazos.', 'El press de banca es un excelente ejercicio para desarrollar la musculatura del pecho, los hombros y los tríceps.', 45, 10, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 26, NOW(), NOW()),
+(55, 'Peso muerto', 'Ejercicio que consiste en levantar una barra cargada desde el suelo hasta la posición de extensión completa de las piernas y la cadera.', 'El peso muerto es un ejercicio que trabaja la musculatura de la espalda baja, los glúteos, los isquiotibiales y los cuádriceps.', 60, 8, 5, 'https://www.youtube.com/watch?v=Y1Feac6SHPI', 3, 26, NOW(), NOW()),
+(56, 'Dominadas', 'Ejercicio que consiste en levantar el cuerpo hacia una barra fija y luego bajarlo lentamente hasta la posición inicial.', 'Las dominadas son uno de los mejores ejercicios para desarrollar la musculatura de la espalda, especialmente los músculos dorsales y los bíceps.', 45, 8, 4, 'https://www.youtube.com/watch?v=94LjCdfkQ-0', 2, 26, NOW(), NOW()),
+(57, 'Flexiones de brazos', 'Ejercicio que consiste en elevar el cuerpo desde el suelo mediante la extensión de los brazos.', 'Las flexiones de brazos son uno de los mejores ejercicios para desarrollar la musculatura del pecho, los hombros y los tríceps.', 30, 12, 3, 'https://www.youtube.com/watch?v=24whjX_tS78', 4, 26, NOW(), NOW()),
+(58, 'Sentadillas con barra', 'Levanta una barra cargada con peso en la parte posterior de los hombros y realiza sentadillas', 'Las sentadillas con barra son uno de los ejercicios más efectivos para el desarrollo muscular en las piernas y glúteos', 60, 10, 3, 'https://www.youtube.com/watch?v=3fvw0FIGYF4&t=8s', 3, 26, NOW(), NOW()),
+(59, 'Press de banca con mancuernas', 'Acuéstate en un banco plano y levanta mancuernas para trabajar los músculos del pecho', 'El press de banca con mancuernas es un excelente ejercicio para desarrollar fuerza y masa muscular en el pecho', 45, 8, 4, 'https://www.youtube.com/watch?v=jrDDz7x1Dpo', 1, 26, NOW(), NOW()),
+(60, 'Dominadas con agarre ancho', 'Agarra una barra con las manos separadas más allá del ancho de los hombros y levanta el cuerpo hasta que el mentón esté por encima de la barra', 'Las dominadas con agarre ancho son un excelente ejercicio para desarrollar la fuerza y masa muscular en la espalda', 30, 8, 3, 'https://www.youtube.com/watch?v=ashv772miEw', 2, 26, NOW(), NOW()),
+(61, 'Curl de bíceps con mancuernas', 'El curl de bíceps con mancuernas es un ejercicio de entrenamiento de fuerza que se enfoca en los músculos del bíceps. Para realizar el ejercicio, se sostiene una mancuerna en cada mano y se elevan hacia los hombros, doblando los codos y contrayendo los músculos del bíceps. Luego, se baja lentamente las mancuernas hasta la posición inicial.', 'El curl de bíceps con mancuernas es un ejercicio efectivo para fortalecer los músculos del bíceps y mejorar el tono muscular en los brazos.',  30, 10, 4, 'https://www.youtube.com/watch?v=qERAhN-qpaU&t=1s', 2, 26, NOW(), NOW()),
+(62, 'Sentadillas con salto', 'Las sentadillas con salto son un ejercicio de entrenamiento de fuerza y resistencia que también ayuda a quemar calorías. Comienza en una posición de sentadilla y luego salta hacia arriba, aterrizando suavemente en una nueva posición de sentadilla.', 'Las sentadillas con salto pueden ayudar a quemar hasta 10 calorías por minuto.', 30, 12, 3, 'https://www.youtube.com/watch?v=IiHH0EWo8-k', 3, 26, NOW(), NOW()),
+(63, 'Burpees', 'Los burpees son un ejercicio de entrenamiento cardiovascular y de fuerza que implican una flexión, un salto y una sentadilla. Es una excelente forma de quemar calorías mientras tonificas tus músculos.', 'Los burpees pueden quemar hasta 10 calorías por minuto.', 30, 12, 3, 'https://www.youtube.com/watch?v=GELRUlUSxeI', 8, 26, NOW(), NOW()),
+(64, 'Zancadas con salto', 'Las zancadas con salto son una variante de la zancada tradicional que incorpora un salto. Este ejercicio es excelente para aumentar la frecuencia cardíaca y quemar calorías mientras trabajas en tus piernas y glúteos.', 'Las zancadas con salto pueden ayudar a quemar hasta 8 calorías por minuto.', 30, 12, 3, 'https://www.youtube.com/watch?v=Gd4H2uKDHIg', 3, 26, NOW(), NOW()),
+(65, 'Saltos laterales', 'Los saltos laterales son un ejercicio cardiovascular que implican saltar de lado a lado. Este ejercicio es excelente para quemar calorías mientras trabajas en la coordinación y el equilibrio.', 'Los saltos laterales pueden ayudar a quemar hasta 12 calorías por minuto.', 30, 12, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 3, 26, NOW(), NOW()),
+(66, 'Caminata en cinta', 'Realizar una caminata en cinta durante 30 minutos a una velocidad moderada', 'Mejora la capacidad cardiovascular y ayuda a quemar calorías', 1800, 1, 1, 'https://www.youtube.com/watch?v=-QlU5ewCDBc', 3, 1, NOW(), NOW()),
+(67, 'Sprints de velocidad', 'Carrera a toda velocidad durante 20 metros', 'Aumenta la velocidad', 20, 5, 3 , 'https://www.youtube.com/watch?v=j_L1DWPZxlI', 19, 26, NOW(), NOW()),
+(68, 'Saltos laterales', 'Salta lateralmente de un lado a otro', 'Mejora la agilidad y coordinación', 30 , 10, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 19, 26, NOW(), NOW()),
+(69, 'Escaleras de coordinación', 'Pasa por una escalera de coordinación con los pies', 'Mejora la coordinación y la velocidad de pies', 45, 2, 3, 'https://www.youtube.com/watch?v=PwO5TR3g6ic', 15, 26, NOW(), NOW()),
+(70, 'Saltos de caja', 'Salta sobre una caja a una velocidad rápida', 'Mejora la agilidad y la velocidad', 30, 5, 3, 'https://www.youtube.com/watch?v=Y7oZdwP-mcY', 3, 26, NOW(), NOW()),
+(71, 'Arranques de potencia', 'Salta hacia arriba con una pesa rusa', 'Mejora la fuerza explosiva y la potencia', 20, 8, 3, 'https://www.youtube.com/watch?v=89wH-6gBX4c', 19, 26, NOW(), NOW()),
+
+(72, 'Sentadillas', 'Fortalece tus piernas y glúteos con este ejercicio clásico de fuerza.', 'Las sentadillas son un ejercicio de peso libre que se enfoca en los músculos de las piernas y los glúteos.', 60, 12, 3, 'https://www.youtube.com/watch?v=BjixzWEw4EY', 3, 27, NOW(), NOW()),
+(73, 'Press de banca', 'Este ejercicio es excelente para fortalecer el pecho, hombros y tríceps.', 'El press de banca es un ejercicio de peso libre que se enfoca en el pecho, hombros y tríceps.', 45, 8, 4, 'https://www.youtube.com/watch?v=dWV4uWd2GvM', 1, 27,  NOW(), NOW()),
+(74, 'Remo con barra', 'Fortalece tu espalda y bíceps con este ejercicio compuesto de fuerza.', 'El remo con barra es un ejercicio compuesto que trabaja la espalda y los bíceps.', 60, 10, 4, 'https://www.youtube.com/watch?v=3uiWjik2yEQ', 2, 27,  NOW(), NOW()),
+(75, 'Peso muerto', 'Este ejercicio es excelente para fortalecer la espalda baja y las piernas.', 'El peso muerto es un ejercicio de fuerza que trabaja la espalda baja y las piernas.', 60, 8, 3, 'https://www.youtube.com/watch?v=Y1Feac6SHPI', 3, 27,  NOW(), NOW()),
+(76, 'Dominadas', 'Fortalece tu espalda y bíceps con este ejercicio clásico de fuerza.', 'Las dominadas son un ejercicio de peso corporal que se enfoca en la espalda y los bíceps.', 45, 6, 3, 'https://www.youtube.com/watch?v=94LjCdfkQ-0', 2, 27,  NOW(), NOW()),
+(77, 'Sentadillas con salto', 'Realiza una sentadilla y luego salta explosivamente. Aterriza suavemente y repite.', 'Este ejercicio trabaja los músculos de las piernas, glúteos y core, y mejora la coordinación y el equilibrio.', 30, 12, 3,'https://www.youtube.com/watch?v=IiHH0EWo8-k', 3, 27, NOW(), NOW()),
+(78, 'Burpees', 'Comienza en una posición de pie, luego baja al suelo en una flexión, salta con los pies hacia adelante, salta hacia arriba y extiende los brazos por encima de la cabeza.', 'Este ejercicio trabaja todo el cuerpo, especialmente los brazos, las piernas y el core, y mejora la resistencia cardiovascular.', 45 , 10, 3, 'https://www.youtube.com/watch?v=GELRUlUSxeI', 8, 27, NOW(), NOW()),
+(79, 'Zancadas con mancuernas', 'Sosteniendo una mancuerna en cada mano, da un gran paso adelante y baja el cuerpo hasta que ambas rodillas formen un ángulo de 90 grados. Vuelve a la posición inicial y repite con la otra pierna.', 'Este ejercicio trabaja los músculos de las piernas, los glúteos y los brazos, y también mejora el equilibrio y la coordinación.', 30, 12, 3, 'https://www.youtube.com/watch?v=Uw56z6JdWGY', 3, 27, NOW(), NOW()),
+(80, 'Flexiones de brazos', 'Trabaja los músculos de la parte superior del cuerpo y aumenta el ritmo cardíaco para quemar más calorías.', 'Este ejercicio puede ser adaptado a diferentes niveles de intensidad, desde flexiones en rodillas hasta flexiones con una mano.', 60 , 8, 3, 'https://www.youtube.com/watch?v=24whjX_tS78&t=384s', 4, 27, NOW(), NOW()),
+(81, 'Plancha', 'Este ejercicio trabaja los músculos abdominales y de la espalda, fortaleciéndolos y mejorando la postura.', 'Comienza con una serie corta e incrementa progresivamente el tiempo de la plancha.', 60 , 1, 3, 'https://www.youtube.com/watch?v=d0atctiI7Vw', 2, 27, NOW(), NOW()),
+(82, 'Plancha lateral', 'Acostado de lado, apoyado sobre el antebrazo y el borde externo del pie, levante la cadera hasta que su cuerpo forme una línea recta desde los tobillos hasta los hombros.', 'La plancha lateral es un excelente ejercicio para desarrollar fuerza en los músculos del núcleo y los músculos estabilizadores de la cadera.', 30 , 3, 3, 'https://www.youtube.com/watch?v=bRivOELQVOs', 2, 27, NOW(), NOW()),
+(83, 'Paso lateral con giro', 'Comience en una posición de sentadilla, dando un gran paso hacia la izquierda y girando hacia la izquierda. Luego, lleve su pie derecho hacia su pie izquierdo y enderécese. Repita en la dirección opuesta.', 'Este ejercicio es excelente para mejorar la coordinación y el equilibrio.', 30 , 10, 3, 'https://www.youtube.com/watch?v=uGFAarr1waA', 15, 27, NOW(), NOW()),
+(84, 'Sentadilla en una pierna', 'De pie, levante una pierna del suelo y manténgala hacia adelante. Baje hacia abajo en una sentadilla mientras mantiene la pierna levantada.', 'Este ejercicio ayuda a mejorar el equilibrio y la fuerza de las piernas.', 30, 10, 3 , 'https://www.youtube.com/watch?v=ILO0S9wPNwI&t=4s', 10, 27, NOW(), NOW()),
+(85, 'Balanceo en una pierna', 'Párese sobre una pierna y balancee la otra pierna hacia adelante y hacia atrás, tratando de mantener el equilibrio.', 'Este ejercicio ayuda a mejorar la estabilidad y el equilibrio.', 30, 10, 3, 'https://www.youtube.com/watch?v=B8b_XlFeu3I', 10, 27, NOW(), NOW()),
+(86, 'Tocar los dedos de los pies', 'Párese con los pies juntos y las piernas rectas. Luego, doble la cintura y toque los dedos de los pies con las manos.', 'Este ejercicio ayuda a mejorar la flexibilidad y el equilibrio.', 30, 10, 3, 'https://www.youtube.com/watch?v=04Vu32iZ0iY', 10, 27, NOW(), NOW()),
+
+(87, 'Paso del patinador', 'Coloca los pies juntos y salta hacia la derecha con el pie derecho, dejando el pie izquierdo detrás. Luego, salta hacia la izquierda con el pie izquierdo, dejando el pie derecho detrás. Continúa saltando hacia la derecha e izquierda alternativamente.', 'Mejora el equilibrio y la coordinación.', 60 , 10, 3 , 'https://www.youtube.com/watch?v=_GENnmtzRxk', 10, 27, NOW(), NOW()),
+(88, 'Paso del mono', 'Coloca los pies juntos y salta hacia la derecha con ambos pies. Luego, salta hacia la izquierda con ambos pies. Continúa saltando hacia la derecha e izquierda alternativamente.', 'Mejora el equilibrio y la coordinación.', 60, 10, 3, 'https://www.youtube.com/watch?v=gMpoOjjV0-s', 10, 27, NOW(), NOW()),
+(89, 'Plancha lateral con elevación de pierna', 'Coloca el antebrazo derecho en el suelo y extiende las piernas, levantando la cadera del suelo. Mantén la posición y levanta la pierna izquierda hacia arriba. Baja la pierna y repite con la pierna derecha.', 'Mejora el equilibrio y fortalece los músculos del núcleo.', 30, 10, 3, 'https://www.youtube.com/watch?v=zfiOU4yxLKo', 10, 27, NOW(), NOW()),
+(90, 'Sentadillas con salto y giro', 'Realiza una sentadilla y salta hacia arriba, girando 180 grados en el aire. Aterriza en posición de sentadilla y salta hacia arriba, girando 180 grados en la dirección opuesta.', 'Mejora la coordinación y el equilibrio.', 60, 10 , 3 , 'https://www.youtube.com/watch?v=Yhp28YDReeU', 15, 27, NOW(), NOW()),
+(91, 'Paso de comba', 'Salta una comba imaginaria levantando las rodillas lo más alto que puedas. Asegúrate de mantener la postura correcta y los abdominales tensos para evitar lesiones.', 'Mejora el equilibrio y la coordinación.', 60, 20, 4, 'https://www.youtube.com/watch?v=61viNRuLA1g', 15, 27, NOW(), NOW()),
+
+(92, 'Saltos laterales', 'Salta hacia un lado y hacia el otro de una línea imaginaria en el suelo', 'Incrementa la velocidad y agilidad', 30, 10, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 19, 27, NOW(), NOW()),
+(93, 'Carrera con obstáculos', 'Corre hacia adelante y salta por encima de obstáculos en el camino', 'Mejora la velocidad, agilidad y coordinación', 60, 10 , 3, 'https://www.youtube.com/watch?v=s-uxMLF-6iA', 19, 27, NOW(), NOW()),
+(94,'Escalera de agilidad', 'Pasa a través de una escalera imaginaria dibujada en el suelo', 'Aumenta la velocidad, agilidad y coordinación', 30, 10, 3, 'https://www.youtube.com/watch?v=AxopJJ-_hzY', 14 27, NOW(), NOW()),
+(95,'Saltos en profundidad', 'Salta desde una plataforma elevada y aterriza en una posición de sentadilla profunda', 'Mejora la velocidad, agilidad y fuerza', 60, 10, 3, 'https://www.youtube.com/watch?v=eV-O2lRJxr0', 14, 27, NOW(), NOW()),
+(96,'Conos de velocidad', 'Corre alrededor de conos dispuestos en un patrón específico', 'Mejora la velocidad, agilagilidad y fuerza', 60, 10, 3, 'https://www.youtube.com/watch?v=2ZRfq7SKW2w', 19, 27, NOW(), NOW());
+
 
 --
 -- Volcado de datos para la tabla `tags_of_ingredients`
@@ -315,7 +363,16 @@ INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `use
 (8, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 60, 'Medium', 25, NOW(), NOW()),
 (9, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 60, 'Medium', 25, NOW(), NOW()),
 (10, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 45, 'High', 25, NOW(), NOW()),
-(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'Low', 25, NOW(), NOW());
+(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'Low', 25, NOW(), NOW()),
+(12, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'Low', 26, NOW(), NOW()),
+(13, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen', 50, 'Low', 26, NOW(), NOW()),
+(14, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 60, 'Medium', 26, NOW(), NOW()),
+(15, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'Low', 26, NOW(), NOW()),
+(16, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad', 60, 'Medium', 27, NOW(), NOW()),
+(17, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes', 45, 'High', 27, NOW(), NOW()),
+(18, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 45, 'Medium', 27, NOW(), NOW()),
+(19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento que incluye ejercicios específicos para aumentar la estabilidad y la capacidad de reacción', 60, 'Low', 27, NOW(), NOW()),
+(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad', 60, 'High', 27, NOW(), NOW());
 
 
 
@@ -336,8 +393,16 @@ INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id
 (8, 8, 3, NOW(), NOW()),
 (9, 9, 5, NOW(), NOW()),
 (10, 10, 6, NOW(), NOW()),
-(11, 11, 6, NOW(), NOW());
-
+(11, 11, 6, NOW(), NOW()),
+(12, 12, 1, NOW(), NOW()),
+(13, 13, 2, NOW(), NOW()),
+(14, 14, 3, NOW(), NOW()),
+(15, 15, 6, NOW(), NOW()),
+(16, 16, 1, NOW(), NOW()),
+(17, 17, 3, NOW(), NOW()),
+(18, 18, 5, NOW(), NOW()),
+(19, 19, 5, NOW(), NOW()),
+(20, 20, 6, NOW(), NOW());
 
 
 -- --------------------------------------------------------
@@ -388,7 +453,6 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (38, 8, 36, NOW(), NOW()),
 (39, 8, 37, NOW(), NOW()),
 (40, 8, 38, NOW(), NOW()),
-
 (41, 9, 39, NOW(), NOW()),
 (42, 9, 40, NOW(), NOW()),
 (43, 9, 41, NOW(), NOW()),
@@ -399,11 +463,60 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (48, 10, 46, NOW(), NOW()),
 (49, 10, 47, NOW(), NOW()),
 (50, 10, 36, NOW(), NOW()),
-
 (51, 11, 48, NOW(), NOW()),
 (52, 11, 49, NOW(), NOW()),
 (53, 11, 50, NOW(), NOW()),
 (54, 11, 51, NOW(), NOW()),
-(55, 11, 52, NOW(), NOW());
+(55, 11, 52, NOW(), NOW()),
+(56, 12, 53, NOW(), NOW()),
+(57, 12, 54, NOW(), NOW()),
+(58, 12, 55, NOW(), NOW()),
+(59, 12, 56, NOW(), NOW()),
+(60, 12, 57, NOW(), NOW()),
+(61, 13, 58, NOW(), NOW()),
+(62, 13, 59, NOW(), NOW()),
+(63, 13, 55, NOW(), NOW()),
+(64, 13, 60, NOW(), NOW()),
+(65, 13, 61, NOW(), NOW()),
+(66, 14, 62, NOW(), NOW()),
+(67, 14, 63, NOW(), NOW()),
+(68, 14, 64, NOW(), NOW()),
+(69, 14, 65, NOW(), NOW()),
+(70, 14, 66, NOW(), NOW()),
+(71, 15, 67, NOW(), NOW()),
+(72, 15, 68, NOW(), NOW()),
+(73, 15, 69, NOW(), NOW()),
+(74, 15, 70, NOW(), NOW()),
+(75, 15, 71, NOW(), NOW()),
+(76, 16, 72, NOW(), NOW()),
+(77, 16, 73, NOW(), NOW()),
+(78, 16, 74, NOW(), NOW()),
+(79, 16, 75, NOW(), NOW()),
+(80, 16, 76, NOW(), NOW()),
+(81, 17, 78, NOW(), NOW()),
+(82, 17, 79, NOW(), NOW()),
+(83, 17, 80, NOW(), NOW()),
+(83, 17, 81, NOW(), NOW()),
+(84, 17, 82, NOW(), NOW()),
+(85, 18, 83, NOW(), NOW()),
+(86, 18, 84, NOW(), NOW()),
+(87, 18, 85, NOW(), NOW()),
+(88, 18, 86, NOW(), NOW()),
+(89, 18, 87, NOW(), NOW()),
+(90, 19, 88, NOW(), NOW()),
+(91, 19, 89, NOW(), NOW()),
+(92, 19, 90, NOW(), NOW()),
+(93, 19, 91, NOW(), NOW()),
+(94, 19, 92, NOW(), NOW()),
+
+(95, 20, 93, NOW(), NOW()),
+(96, 20, 94, NOW(), NOW()),
+(97, 20, 95, NOW(), NOW()),
+(98, 20, 96, NOW(), NOW()),
+(99, 20, 97, NOW(), NOW());
+
+
+
+
 
 -- --------------------------------------------------------
