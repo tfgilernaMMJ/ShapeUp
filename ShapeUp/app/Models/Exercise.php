@@ -24,4 +24,9 @@ class Exercise extends Model
     {
         return $this->belongsTo(TagOfExercise::class, 'tag_of_exercise_id');
     }
+
+    public function training()
+    {
+        return $this->belongsToMany(Training::class, 'training_exercises');
+    }
 }

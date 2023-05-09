@@ -26,4 +26,9 @@ class Training extends Model
     {
         return $this->belongsTo(CategoryOfTraining::class, 'category_of_training_id');
     }
+
+    public function exercise()
+    {
+        return $this->belongsToMany(Exercise::class, 'training_exercises');
+    }
 }

@@ -60,9 +60,7 @@ Route::get('/conocenos', function () {
 
 Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'indexTrainings'])->name('account.trainings');
 
-Route::get('/cursos/detalles', function () {
-    return view('web.course-details');
-})->name('account.courses-details');
+Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises');
 
 // COACHES 
 
