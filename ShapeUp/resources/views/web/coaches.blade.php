@@ -17,6 +17,24 @@
             </div>
         </div>
 
+        @if (session('success'))
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
         <section id="trainers" class="trainers">
             <div class="container" data-aos="fade-up">
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">  
