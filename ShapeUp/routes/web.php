@@ -62,6 +62,8 @@ Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'index
 
 Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises');
 
+Route::get('/entrenamientos/accion/{action}/{training_id}', [App\Http\Controllers\WebController::class, 'followTrainings'])->name('account.trainings.follow');
+
 // COACHES 
 
 Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches');
