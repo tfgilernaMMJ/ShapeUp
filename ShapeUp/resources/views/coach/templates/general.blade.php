@@ -29,6 +29,9 @@
     {{-- INDEX --}}
 
     @yield('index-section')
+    {{-- FORMS --}}
+
+    @yield('training-section')
 
     {{-- FORMS --}}
 

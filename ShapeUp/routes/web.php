@@ -133,7 +133,12 @@ Route::post('/perfil/editar/cambiar-contraseña', [App\Http\Controllers\WebContr
 
 // ------------------------------------------------------------
 
-Route::get('/admin-entrenador', [App\Http\Controllers\CoachController::class, 'get_users_followers'])->name('admin-coach');
+Route::get('/admin-entrenador', [App\Http\Controllers\CoachController::class, 'dashboardPrincipal'])->name('admin-coach');
+
+Route::get('/admin-entrenador/trainings', function () {
+    return view('coach.trainings');
+})->name('admin-coach.trainings');
+Route::get('/search',[App\Http\Controllers\CoachController::class, 'searchTrainings'])->name('search-trainings');
 
 Route::get('/admin-entrenador/formularios', function () {
     return view('coach.forms');
@@ -158,6 +163,44 @@ Route::get('/admin-entrenador/modales', function () {
 Route::get('/admin-entrenador/tablas', function () {
     return view('coach.tables');
 })->name('admin-coach.tables');
+
+
+// COACH DASHBOARD
+
+// ------------------------------------------------------------
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboardPrincipal'])->name('admin');
+Route::get('/search',[App\Http\Controllers\AdminController::class, 'dashboardPrincipal'])->name('admin-search');
+
+Route::get('/admin-coaches',[App\Http\Controllers\AdminController::class, 'dashboardCoaches'])->name('admin.coaches');
+
+Route::get('/admin-trainings', function () {
+    return view('admin.trainings');
+})->name('admin.trainings');
+
+Route::get('/admin-formularios', function () {
+    return view('admin.forms');
+})->name('admin.forms');
+
+Route::get('/admin-tarjetas', function () {
+    return view('admin.cards');
+})->name('admin.cards');
+
+Route::get('/admin-graficos', function () {
+    return view('admin.charts');
+})->name('admin.charts');
+
+Route::get('/admin-botones', function () {
+    return view('admin.buttons');
+})->name('admin.buttons');
+
+Route::get('/admin-modales', function () {
+    return view('admin.modals');
+})->name('admin.modals');
+
+Route::get('/admin-tablas', function () {
+    return view('admin.tables');
+})->name('admin.tables');
 
 // Auth::routes(['verify' => true]);
 
