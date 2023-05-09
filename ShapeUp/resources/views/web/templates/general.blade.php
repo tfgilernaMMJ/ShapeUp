@@ -43,10 +43,10 @@
 
         @yield('about-section')
 
-        {{-- COURSES --}}
+        {{-- TRAININGS --}}
 
-        @yield('courses-section')
-        @yield('courses-details-section')
+        @yield('trainings-section')
+        @yield('trainings-exercises-section')
 
         {{-- COACHES --}}
 

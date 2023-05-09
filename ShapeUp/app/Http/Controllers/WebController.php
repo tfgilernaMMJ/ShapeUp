@@ -13,6 +13,7 @@ use App\Models\Supermarket;
 use App\Models\User;
 use App\Models\Diet;
 use App\Models\Training;
+use App\Models\UserFollowTraining;
 
 class WebController extends Controller
 {
@@ -27,25 +28,72 @@ class WebController extends Controller
         return view('web.index', ['gyms' => $gyms, 'supermarkets' => $supermarkets, 'numUsers' => $numUsers, 'numCoaches' => $numCoaches, 'numDiets' => $numDiets, 'numTrainings' => $numTrainings]);
     }
 
+    public function indexTrainings()
+    {
+        $trainings = Training::all();
+        return view('web.trainings', [ 'trainings' => $trainings ]);       
+    }
+
+    public function followTrainings($action, $training_id)
+    {
+        if ($action == 'follow') {
+            try {
+                $user_follow_trainings = new UserFollowTraining;
+                $user_follow_trainings->user_id = Auth::user()->id;
+                $user_follow_trainings->training_id = $training_id;
+                $user_follow_trainings->save();
+    
+                return redirect()->route('account.trainings')->with('success', 'Entrenamiento seguido correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.trainings')->with('error', 'Ha ocurrido un error al seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+            }
+        } else if ($action == 'unfollow') {
+            try {
+                $user_id = Auth::user()->id;
+                UserFollowTraining::where('user_id', $user_id)->where('training_id', $training_id)->delete();
+    
+                return redirect()->route('account.trainings')->with('success', 'Entrenamiento dejado de seguir correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.trainings')->with('error', 'Ha ocurrido un error al dejar de seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+            }
+        }        
+    }
+
+    public function indexTrainingsExercises($training_id)
+    {
+        $training = Training::find($training_id);
+        $exercises = $training->exercise()->get();
+        return view('web.trainingsexercises', [ 'exercises' => $exercises]);       
+    }
+
     public function indexCoaches()
     {
         $coaches = User::where('status', 'Coach')->get();
-        $numCoaches = User::where('status', 'Coach')->count();
-        return view('web.coaches', [ 'coaches' => $coaches, 'numCoaches' => $numCoaches]);
+        return view('web.coaches', [ 'coaches' => $coaches]);
     }
 
     public function followCoaches($action, $coach_id)
     {
         if ($action == 'follow') {
-            $user_follow_coaches = new UserFollowCoach;
-            $user_follow_coaches->user_id = Auth::user()->id;
-            $user_follow_coaches->user_coach_id = $coach_id;
-            $user_follow_coaches->save();
-            return back();
+            try {
+                $user_follow_coaches = new UserFollowCoach;
+                $user_follow_coaches->user_id = Auth::user()->id;
+                $user_follow_coaches->user_coach_id = $coach_id;
+                $user_follow_coaches->save();
+    
+                return redirect()->route('account.coaches')->with('success', 'Entrenador seguido correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.coaches')->with('error', 'Ha ocurrido un error al seguir al entrenador. Por favor, inténtalo de nuevo más tarde.');
+            }
         } else if ($action == 'unfollow') {
-            $user_id = Auth::user()->id;
-            UserFollowCoach::where('user_id', $user_id)->where('user_coach_id', $coach_id)->delete();
-            return back();
+            try {
+                $user_id = Auth::user()->id;
+                UserFollowCoach::where('user_id', $user_id)->where('user_coach_id', $coach_id)->delete();
+    
+                return redirect()->route('account.coaches')->with('success', 'Entrenador dejado de seguir correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.coaches')->with('error', 'Ha ocurrido un error al dejar de seguir al entrenador. Por favor, inténtalo de nuevo más tarde.');
+            }
         }        
     }
 
@@ -57,26 +105,41 @@ class WebController extends Controller
 
     public function sendMessageCoaches(Request $request, $coach_id)
     {  
-        $message = new FrequentlyAskedQuestion;
-        $message->user_id = Auth::user()->id;
-        $message->user_coach_id = $coach_id;
-        $message->message = $request->input('message');
-        $message->save(); 
-        return redirect()->route('account.coaches');     
+        try {
+            $message = new FrequentlyAskedQuestion;
+            $message->user_id = Auth::user()->id;
+            $message->user_coach_id = $coach_id;
+            $message->message = $request->input('message');
+            $message->save(); 
+
+            return redirect()->route('account.coaches')->with('success', 'Mensaje enviado al entrenador correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('account.coaches')->with('error', 'Ha ocurrido un error al enviar el mensaje al entrenador. Por favor, inténtalo de nuevo más tarde.');
+        }
     } 
     
     public function paymentSubscription($action = null)
     {   
         if ($action == 'gratuito') {
-            $user = User::findOrFail(Auth::user()->id);
-            $user->suscription_id = 1;
-            $user->save();
-            return redirect()->route('account.index');
+            try {
+                $user = User::findOrFail(Auth::user()->id);
+                $user->suscription_id = 1;
+                $user->save();
+    
+                return redirect()->route('account.subscriptions')->with('success', 'Has cancelado la suscripción SuperShapeUp correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.subscriptions')->with('error', 'Ha ocurrido un error al cancelar la suscripción. Por favor, inténtalo de nuevo más tarde.');
+            }
         } else {
-            $user = User::findOrFail(Auth::user()->id);
-            $user->suscription_id = 2;
-            $user->save();
-            return redirect()->route('account.index');
+            try {
+                $user = User::findOrFail(Auth::user()->id);
+                $user->suscription_id = 2;
+                $user->save();
+    
+                return redirect()->route('account.subscriptions')->with('success', 'Has contratado la suscripción SuperShapeUp correctamente. ¡Ya eres un SuperShapeUp!');
+            } catch (\Exception $e) {
+                return redirect()->route('account.subscriptions')->with('error', 'Ha ocurrido un error al contratar la suscripción. Por favor, inténtalo de nuevo más tarde.');
+            }
         }    
     }
 

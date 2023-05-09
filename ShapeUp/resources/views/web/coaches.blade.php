@@ -17,16 +17,23 @@
             </div>
         </div>
 
-        <section id="counts" class="counts section-bg">
-            <div class="container">
-                <div class="row counters">
-                    <div class="col-lg-12 col-12 text-center">
-                        <p>Número de entrenadores actuales en ShapeUp: </p>
-                        <span data-purecounter-start="0" data-purecounter-end="{{ $numCoaches }}" data-purecounter-duration="1" class="purecounter"></span>
-                    </div>
+        @if (session('success'))
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-        </section>
+        @endif
+
+        @if (session('error'))
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
 
         <section id="trainers" class="trainers">
             <div class="container" data-aos="fade-up">

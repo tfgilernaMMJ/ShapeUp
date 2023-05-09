@@ -58,13 +58,11 @@ Route::get('/conocenos', function () {
 
 // COURSES
 
-Route::get('/cursos', function () {
-    return view('web.courses');
-})->name('account.courses');
+Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'indexTrainings'])->name('account.trainings');
 
-Route::get('/cursos/detalles', function () {
-    return view('web.course-details');
-})->name('account.courses-details');
+Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises');
+
+Route::get('/entrenamientos/accion/{action}/{training_id}', [App\Http\Controllers\WebController::class, 'followTrainings'])->name('account.trainings.follow');
 
 // COACHES 
 

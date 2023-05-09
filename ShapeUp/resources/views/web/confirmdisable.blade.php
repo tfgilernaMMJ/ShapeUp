@@ -19,8 +19,8 @@
         
         <section id="pricing" class="pricing">
             <div class="container mb-4" data-aos="fade-up">
-                <div class="row mt-5">
-                    <div class="col-lg-12 mt-5 mt-lg-0">
+                <div class="row mt-1">
+                    <div class="col-lg-12 mt-2 mt-lg-0">
                         <div class="text-center">
                             <div class="d-inline-block"><a href="{{ route('account.subscriptions')}}" class="get-started-btn">Volver atrás</a></div>
                             <div class="d-inline-block"><a href="{{ route('account.payment.disable', ['action' => 'gratuito'])}}" class="get-started-btn">Cancelar suscripción y volver a gratuito</a></div>
