@@ -15,7 +15,7 @@
 <body> 
     <div class="container">
         <div class="price">
-            <h1>Importe suscripción ShapeUp: 9,99 €</h1>
+            <h1>Importe suscripción ShapeUp: 4,99 €</h1>
         </div>
     
         <form method="post" action="{{ route('account.payment') }}">

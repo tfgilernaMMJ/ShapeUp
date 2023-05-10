@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->text('not_eat');
             $table->foreignId('user_coach_id')->references('id')->on('users');
             $table->timestamps();
         });

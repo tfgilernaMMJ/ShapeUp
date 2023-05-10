@@ -14,7 +14,7 @@ USE shapeupsql;
 
 INSERT INTO `suscriptions` (`id`, `name`, `description`, `price`, `created_at`, `updated_at`) VALUES
 (1, 'Gratuita', 'Suscripción gratuita', 0, NOW(), NOW()),
-(2, 'SuperShapeUp', 'Suscripción SuperShapeUp', 9.99, NOW(), NOW());
+(2, 'SuperShapeUp', 'Suscripción SuperShapeUp', 4.99, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -161,8 +161,8 @@ INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `use
 (25, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Bajo', 28, NOW(), NOW()),
 (26, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Medio', 29, NOW(), NOW()),
 (27, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Alto', 29, NOW(), NOW()),
-(28, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Medium', 29, NOW(), NOW()),
-(29, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medium', 29, NOW(), NOW());
+(28, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Medio', 29, NOW(), NOW()),
+(29, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 29, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -505,13 +505,13 @@ INSERT INTO `training_exercises` (`id`, `training_id`, `exercise_id`, `created_a
 (137, 28, 131, NOW(), NOW()),
 (138, 28, 132, NOW(), NOW()),
 (139, 28, 133, NOW(), NOW()),
-(139, 28, 134, NOW(), NOW()),
-(140, 28, 135, NOW(), NOW()),
-(141, 29, 136, NOW(), NOW()),
-(142, 29, 137, NOW(), NOW()),
-(143, 29, 138, NOW(), NOW()),
-(144, 29, 139, NOW(), NOW()),
-(145, 29, 140, NOW(), NOW());
+(140, 28, 134, NOW(), NOW()),
+(141, 28, 135, NOW(), NOW()),
+(142, 29, 136, NOW(), NOW()),
+(143, 29, 137, NOW(), NOW()),
+(144, 29, 138, NOW(), NOW()),
+(145, 29, 139, NOW(), NOW()),
+(146, 29, 140, NOW(), NOW());
 
 -- --------------------------------------------------------
 /* DIETAS Y ALIMENTOS */
@@ -536,25 +536,15 @@ INSERT INTO `categories_of_diets` (`id`, `name`, `created_at`, `updated_at`) VAL
 --
 
 INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Proteína', NOW(), NOW()),
-(2, 'Carbohidratos complejos', NOW(), NOW()),
-(3, 'Grasas saludables', NOW(), NOW()),
-(4, 'Vegetales verdes', NOW(), NOW()),
-(5, 'Frutas frescas', NOW(), NOW()),
-(6, 'Frutos secos y semillas', NOW(), NOW()),
-(7, 'Pescado y marisco', NOW(), NOW()),
-(8, 'Carne magra', NOW(), NOW()),
-(9, 'Huevos', NOW(), NOW()),
-(10, 'Legumbres', NOW(), NOW()),
-(11, 'Cereales integrales', NOW(), NOW()),
-(12, 'Productos lácteos bajos en grasa', NOW(), NOW()),
-(13, 'Superalimentos', NOW(), NOW()),
-(14, 'Alimentos orgánicos', NOW(), NOW()),
-(15, 'Sin gluten', NOW(), NOW()),
-(16, 'Bajo en sodio', NOW(), NOW()),
-(17, 'Bajo en grasas saturadas', NOW(), NOW()),
-(18, 'Vegano', NOW(), NOW()),
-(19, 'Alimentos bajos en calorías', NOW(), NOW());
+(1, 'Frutas', NOW(), NOW()),
+(2, 'Verduras', NOW(), NOW()),
+(3, 'Carnes', NOW(), NOW()),
+(4, 'Pescados y mariscos', NOW(), NOW()),
+(5, 'Huevos y productos lácteos', NOW(), NOW()),
+(6, 'Cereales y productos de panadería', NOW(), NOW()),
+(7, 'Legumbres', NOW(), NOW()),
+(8, 'Frutos secos y semillas', NOW(), NOW()),
+(9, 'Bebidas', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -578,3 +568,11 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 -- Volcado de datos para la tabla `ingredients`
 --
 /* INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `updated_at`) VALUES */
+
+-- --------------------------------------------------------
+
+--
+-- Volcado de datos para la tabla `diet_ingredients`
+--
+
+/* INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, `updated_at`) VALUES */

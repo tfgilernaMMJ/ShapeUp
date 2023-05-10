@@ -74,7 +74,7 @@
                         <div class="box featured">
                         @endif
                             <h3>SuperShapeUp</h3>
-                            <h4><sup>€</sup>9.99<span> / mes</span></h4>
+                            <h4><sup>€</sup>4.99<span> / mes</span></h4>
                             <ul>
                                 <li>Ver ejercicios ShapeUp</li>
                                 <li>Ver alimentos ShapeUp</li>
