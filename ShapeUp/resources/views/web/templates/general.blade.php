@@ -117,6 +117,6 @@
             const countsSection = document.getElementById('counts');
             countsSection.style.display = 'block';
             });
-          </script>            
+          </script>   
     </body>
 </html>
