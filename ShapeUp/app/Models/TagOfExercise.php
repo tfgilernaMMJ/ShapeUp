@@ -9,6 +9,8 @@ class TagOfExercise extends Model
 {
     use HasFactory;
 
+    protected $table = 'tags_of_exercises';
+
     protected $fillable = [
         'name'
     ];
