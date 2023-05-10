@@ -536,25 +536,15 @@ INSERT INTO `categories_of_diets` (`id`, `name`, `created_at`, `updated_at`) VAL
 --
 
 INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Proteína', NOW(), NOW()),
-(2, 'Carbohidratos complejos', NOW(), NOW()),
-(3, 'Grasas saludables', NOW(), NOW()),
-(4, 'Vegetales verdes', NOW(), NOW()),
-(5, 'Frutas frescas', NOW(), NOW()),
-(6, 'Frutos secos y semillas', NOW(), NOW()),
-(7, 'Pescado y marisco', NOW(), NOW()),
-(8, 'Carne magra', NOW(), NOW()),
-(9, 'Huevos', NOW(), NOW()),
-(10, 'Legumbres', NOW(), NOW()),
-(11, 'Cereales integrales', NOW(), NOW()),
-(12, 'Productos lácteos bajos en grasa', NOW(), NOW()),
-(13, 'Superalimentos', NOW(), NOW()),
-(14, 'Alimentos orgánicos', NOW(), NOW()),
-(15, 'Sin gluten', NOW(), NOW()),
-(16, 'Bajo en sodio', NOW(), NOW()),
-(17, 'Bajo en grasas saturadas', NOW(), NOW()),
-(18, 'Vegano', NOW(), NOW()),
-(19, 'Alimentos bajos en calorías', NOW(), NOW());
+(1, 'Frutas', NOW(), NOW()),
+(2, 'Verduras', NOW(), NOW()),
+(3, 'Carnes', NOW(), NOW()),
+(4, 'Pescados y mariscos', NOW(), NOW()),
+(5, 'Huevos y productos lácteos', NOW(), NOW()),
+(6, 'Cereales y productos de panadería', NOW(), NOW()),
+(7, 'Legumbres', NOW(), NOW()),
+(8, 'Frutos secos y semillas', NOW(), NOW()),
+(9, 'Bebidas', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -578,3 +568,11 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 -- Volcado de datos para la tabla `ingredients`
 --
 /* INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `updated_at`) VALUES */
+
+-- --------------------------------------------------------
+
+--
+-- Volcado de datos para la tabla `diet_ingredients`
+--
+
+/* INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, `updated_at`) VALUES */
