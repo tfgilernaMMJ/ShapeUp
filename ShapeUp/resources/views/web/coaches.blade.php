@@ -35,6 +35,15 @@
             </div>
         @endif
 
+        <section id="clients" class="clients">
+            <div class="container" data-aos="zoom-out">
+                <div class="section-title">
+                    <h2>Gimnasios</h2>
+                    <p>¿Dónde puedo llevar a cabo mis entrenamientos ShapeUp?</p>
+                </div>
+            </div>
+        </section>
+
         <section id="trainers" class="trainers">
             <div class="container" data-aos="fade-up">
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">  
