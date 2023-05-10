@@ -59,11 +59,11 @@ Route::get('/conocenos', function () {
 
 // COURSES
 
-Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'indexTrainings'])->name('account.trainings')->middleware('auth');
+Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'indexTrainings'])->name('account.trainings')->middleware('auth', 'supershapeup');
 
-Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises')->middleware('auth');
+Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises')->middleware('auth', 'supershapeup');
 
-Route::get('/entrenamientos/accion/{action}/{training_id}', [App\Http\Controllers\WebController::class, 'followTrainings'])->name('account.trainings.follow')->middleware('auth');
+Route::get('/entrenamientos/accion/{action}/{training_id}', [App\Http\Controllers\WebController::class, 'followTrainings'])->name('account.trainings.follow')->middleware('auth', 'supershapeup');
 
 // COACHES 
 
@@ -71,9 +71,9 @@ Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCo
 
 Route::get('/entrenadores/accion/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow')->middleware('auth');
 
-Route::get('/entrenadores/mensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'messageCoaches'])->name('account.coaches.message')->middleware('auth');
+Route::get('/entrenadores/mensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'messageCoaches'])->name('account.coaches.message')->middleware('auth', 'supershapeup');
 
-Route::post('/entrenadores/enviarmensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'sendMessageCoaches'])->name('account.coaches.message.send')->middleware('auth');
+Route::post('/entrenadores/enviarmensajes/{coach_id}', [App\Http\Controllers\WebController::class, 'sendMessageCoaches'])->name('account.coaches.message.send')->middleware('auth', 'supershapeup');
 
 // EVENTS
 
@@ -102,7 +102,7 @@ Route::post('/suscripciones/metodo-de-pago/pago', [App\Http\Controllers\WebContr
 
 Route::get('/suscripciones/metodo-de-pago/confirm', function () {
     return view('web.confirmdisable');
-})->name('account.confirmdisable')->middleware('auth');
+})->name('account.confirmdisable')->middleware('auth', 'supershapeup');
 
 Route::get('/suscripciones/metodo-de-pago/{action}', [App\Http\Controllers\WebController::class, 'paymentSubscription'])->name('account.payment.disable')->middleware('auth');
 
