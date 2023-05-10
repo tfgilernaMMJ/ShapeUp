@@ -31,6 +31,7 @@
                                     <p class="fst-italic text-center">Descanso entre series: {{$exercise->duration}} segundos</p>
                                     <p class="fst-italic text-center">Series: {{$exercise->series}}</p>
                                     <p class="fst-italic text-center">Repeticiones: {{$exercise->repetitions}}</p>
+                                    <p class="fst-italic text-center">Zona que más trabaja: {{$exercise->tag->name}}</p>
                                     <p class="fst-italic text-center">Video explicativo <a href="{{$exercise->explanatory_video}}" target="_blank">aquí</a></p>
                                     {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat fdsfidnasfi dsfdsfds asdeasfads gdfgrgtg dsfsdfasf gfgfbfbf fdsgdfsgfdsg gfdfbgfgf</p> --}}
                                 </div>
