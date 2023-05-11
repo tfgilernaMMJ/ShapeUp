@@ -52,8 +52,8 @@
                     <div class="container" data-aos="fade-up">
                         <div class="row mt-1">
                             <div class="col-lg-12 mt-1 mt-lg-0">
-                                <a type="button" class="mb-3" href="{{route('account.coaches')}}">Reiniciar filtros</a>
-                                <form action="{{route('account.coaches.filters')}}" method="post" role="form" class="php-email-form">
+                                <a type="button" class="mb-3" href="{{route('account.trainings')}}">Reiniciar filtros</a>
+                                <form action="{{route('account.trainings.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-4 form-group">

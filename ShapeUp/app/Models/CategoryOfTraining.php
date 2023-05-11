@@ -20,9 +20,10 @@ class CategoryOfTraining extends Model
         return $this->hasMany(TagOfExercise::class, 'category_of_training_id');
     }
 
-    public function categoriesTrainingsDiets()
+    public function trainings()
     {
-        return $this->hasMany(CategoryTrainingDiet::class, 'category_of_training_id');
+        return $this->hasMany(Training::class, 'category_of_training_id');
     }
+
 }
 

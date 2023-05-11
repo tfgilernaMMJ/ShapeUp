@@ -32,12 +32,32 @@ class WebController extends Controller
 
     public function indexTrainings(Request $request)
     {
-        $trainings = Training::paginate(10);
+        $query = Training::query();
 
+        if ($request->filled('category_sort')) {
+            $query->where('category_of_training_id', $request->input('category_sort'));
+        }
+        
+        if ($request->filled('level_sort')) {
+            $query->where('level', $request->input('level_sort'));
+        }
+        
+        if ($request->input('like_sort') === 'asc' || $request->input('like_sort') === 'desc') {
+            $sortDirection = $request->input('like_sort') === 'asc' ? 'asc' : 'desc';
+            $query->leftJoin('user_follow_trainings', 'trainings.id', '=', 'user_follow_trainings.training_id')
+                ->select('trainings.*', DB::raw('count(user_follow_trainings.id) as likes_count'))
+                ->groupBy('trainings.id')
+                ->orderBy('likes_count', $sortDirection);
+        }        
+
+        $trainings = $query->paginate(10);
         $categories = CategoryOfTraining::all();
-            
-        return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'request' => $request,]);
-    } 
+
+        return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'request' => $request]);
+    }
+
+
+
 
     public function followTrainings($action, $training_id)
     {
