@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FrequentlyAskedQuestion;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -66,10 +67,34 @@ class WebController extends Controller
         return view('web.trainingsexercises', [ 'exercises' => $exercises]);       
     }
 
-    public function indexCoaches()
+    public function indexCoaches(Request $request)
     {
-        $coaches = User::where('status', 'Coach')->get();
-        return view('web.coaches', [ 'coaches' => $coaches]);
+        $query = User::where('status', 'Coach');
+
+        if ($request->input('name_sort') === 'asc' || $request->input('name_sort') === 'desc') {
+            $query->orderBy('name', $request->input('name_sort'));
+        }
+
+        if ($request->input('age_sort') === 'asc' || $request->input('age_sort') === 'desc') {
+            $query->orderBy('age', $request->input('age_sort'));
+        }
+
+        if ($request->input('experience_sort') === 'asc' || $request->input('experience_sort') === 'desc') {
+            $sortDirection = $request->input('experience_sort') === 'asc' ? 'asc' : 'desc';
+            $query->orderByRaw('CAST(experience AS SIGNED) ' . $sortDirection);
+        }
+
+        if ($request->input('followers_sort') === 'asc' || $request->input('followers_sort') === 'desc') {
+            $sortDirection = $request->input('followers_sort') === 'asc' ? 'asc' : 'desc';
+            $query->leftJoin('user_follow_coaches', 'users.id', '=', 'user_follow_coaches.user_coach_id')
+                ->select('users.*', DB::raw('count(user_follow_coaches.id) as followers_count'))
+                ->groupBy('users.id')
+                ->orderBy('followers_count', $sortDirection);
+        }        
+
+        $coaches = $query->get();
+
+        return view('web.coaches', ['coaches' => $coaches, 'request' => $request]);
     }
 
     public function followCoaches($action, $coach_id)

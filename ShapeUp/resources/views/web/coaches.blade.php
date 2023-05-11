@@ -9,6 +9,10 @@
 @endsection
 
 @section('coaches-section')
+    @php
+        $request = request();
+    @endphp
+
     <main id="main" data-aos="fade-in">
         <div class="breadcrumbs">
             <div class="container">
@@ -51,67 +55,65 @@
                 <section id="contact" class="contact contactfiltertrainer" style="display:none">
                     <div class="container" data-aos="fade-up">
                         <div class="row mt-1">
-                            <div class="col-lg-12 mt-2 mt-lg-0">
-                                <form action="{{route('account.profile.edit')}}" method="post" role="form" class="php-email-form">
+                            <div class="col-lg-12 mt-1 mt-lg-0">
+                                <form action="{{route('account.coaches.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <label for="name">Nombre</label>
-                                            <input type="text" name="name" id="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') ?? Auth::user()->name }}" required>
-                                            @if ($errors->has('name'))
+                                        <div class="col-md-3 form-group">
+                                            <label for="name_sort">Nombre:</label>
+                                            <select type="text" class="form-control" name="name_sort">
+                                                <option value="" {{ $request->input('name_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('name_sort') == 'asc' ? 'selected' : '' }}>A-Z</option>
+                                                <option value="desc" {{ $request->input('name_sort') == 'asc' ? 'selected' : '' }}>Z-A</option>
+                                            </select>                                            
+                                            @if ($errors->has('name_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                    <strong>{{ $errors->first('name_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                                            <label for="username">Nombre de usuario</label>
-                                            <input type="text" name="username" id="username" class="form-control {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') ?? Auth::user()->username }}" required>                              
-                                            @if ($errors->has('username'))
+                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                            <label for="age_sort">Edad:</label>
+                                            <select type="text" class="form-control {{ $errors->has('age_sort') ? ' is-invalid' : '' }}"" name="age_sort">
+                                                <option value="" {{ $request->input('age_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('age_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
+                                                <option value="desc" {{ $request->input('age_sort') == 'asc' ? 'selected' : '' }}>Mayor a menor</option>
+                                            </select>
+                                            @if ($errors->has('age_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('username') }}</strong>
+                                                    <strong>{{ $errors->first('age_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                                            <label for="email">Correo electrónico</label>
-                                            <input type="email" name="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') ?? Auth::user()->email }}" required>                              
-                                            @if ($errors->has('email'))
+                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                            <label for="experience_sort">Experiencia:</label>
+                                            <select type="text" class="form-control {{ $errors->has('experience_sort') ? ' is-invalid' : '' }}"" name="experience_sort">
+                                                <option value="" {{ $request->input('experience_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('experience_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
+                                                <option value="desc" {{ $request->input('experience_sort') == 'asc' ? 'selected' : '' }}>Mayor a menor</option>
+                                            </select>
+                                            @if ($errors->has('experience_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    <strong>{{ $errors->first('experience_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                                            <label for="age" class="">Edad</label>
-                                            <input type="number" name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" value="{{ old('age') ?? Auth::user()->age }}" required>                              
-                                            @if ($errors->has('age'))
+                                        <div class="col-md-3 form-group">
+                                            <label for="followers_sort">Número de seguidores:</label>
+                                            <select type="text" class="form-control {{ $errors->has('followers_sort') ? ' is-invalid' : '' }}"" name="followers_sort">
+                                                <option value="" {{ $request->input('followers_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('followers_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
+                                                <option value="desc" {{ $request->input('followers_sort') == 'asc' ? 'selected' : '' }}>Mayor a menor</option>
+                                            </select>
+                                            @if ($errors->has('followers_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('age') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                                            <label for="weight" class="">Peso (en kg)</label>
-                                            <input type="number" name="weight" id="weight" class="form-control {{ $errors->has('weight') ? ' is-invalid' : '' }}" value="{{ old('weight') ?? Auth::user()->weight }}" required>                              
-                                            @if ($errors->has('weight'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('weight') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                                            <label for="height" class="">Altura (en cm)</label>
-                                            <input type="number" name="height" id="height" class="form-control {{ $errors->has('height') ? ' is-invalid' : '' }}" value="{{ old('height') ?? Auth::user()->height }}" required>                              
-                                            @if ($errors->has('height'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('height') }}</strong>
+                                                    <strong>{{ $errors->first('followers_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button type="submit">Guardar</button>
+                                        <button type="submit">Buscar</button>
                                     </div>                            
                                 </form>
                             </div>                    
@@ -129,6 +131,8 @@
                                     <span>Edad: {{ $coach->age }}</span>
                                     <span>Experiencia: {{ $coach->experience }}</span>
                                     <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                    <span>Entrenamientos: {{ count(DB::table('trainings')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                    <span>Dietas: {{ count(DB::table('diets')->where('user_coach_id', $coach->id)->get()) }}</span>
                                     <p>
                                         {{ $coach->biography }}
                                     </p>

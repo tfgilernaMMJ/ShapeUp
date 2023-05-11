@@ -59,6 +59,7 @@ Route::get('/conocenos', function () {
 
 // COURSES
 
+
 Route::get('/entrenamientos', [App\Http\Controllers\WebController::class, 'indexTrainings'])->name('account.trainings')->middleware('auth', 'supershapeup');
 
 Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises')->middleware('auth', 'supershapeup');
@@ -68,6 +69,7 @@ Route::get('/entrenamientos/accion/{action}/{training_id}', [App\Http\Controller
 // COACHES 
 
 Route::get('/entrenadores', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches')->middleware('auth');
+Route::post('/entrenadores/filtros', [App\Http\Controllers\WebController::class, 'indexCoaches'])->name('account.coaches.filters')->middleware('auth');
 
 Route::get('/entrenadores/accion/{action}/{coach_id}', [App\Http\Controllers\WebController::class, 'followCoaches'])->name('account.coaches.follow')->middleware('auth');
 
