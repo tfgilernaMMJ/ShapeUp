@@ -11,18 +11,28 @@
             <ul>
                 <li><a class="@yield('index-nav')" href="{{ route('account.index') }}">Inicio</a></li>
                 <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
-                <li class="dropdown"><a class="@yield('trainings-nav')@yield('exercises-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a class="@yield('trainings-nav')" href="{{ route('account.trainings') }}">Entrenamientos</a></li>
-                        <li><a class="@yield('exercises-nav')" href="{{ route('account.events') }}">Ejercicios</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown"><a class="@yield('events-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="{{ route('account.events') }}">Dietas</a></li>
-                        <li><a href="{{ route('account.events') }}">Alimentos</a></li>
-                    </ul>
-                </li>
+
+                @if (Auth::user()->suscription_id == 1)
+                    <li><a class="@yield('exercises-nav')" href="{{ route('account.events') }}">Ejercicios</a></li>
+                @else
+                    <li class="dropdown"><a class="@yield('trainings-nav')@yield('exercises-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a class="@yield('trainings-nav')" href="{{ route('account.trainings') }}">Entrenamientos</a></li>
+                            <li><a class="@yield('exercises-nav')" href="{{ route('account.events') }}">Ejercicios</a></li>
+                        </ul>
+                    </li>
+                @endif
+
+                @if (Auth::user()->suscription_id == 1)
+                    <li><a href="{{ route('account.events') }}">Alimentos</a></li>
+                @else
+                    <li class="dropdown"><a class="@yield('diets-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a class="@yield('diets-nav')" href="{{ route('account.diets') }}">Dietas</a></li>
+                            <li><a class="@yield('ingredients-nav')" href="{{ route('account.events') }}">Alimentos</a></li>
+                        </ul>
+                    </li>
+                @endif
                 <li><a class="@yield('subscriptions-nav')" href="{{ route('account.subscriptions') }}">Suscripciones</a></li>
 
                 {{-- <li class="dropdown"><a class="@yield('home')" href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>

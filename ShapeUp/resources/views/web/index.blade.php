@@ -130,7 +130,7 @@
             </div>
         </section>
 
-        <section id="popular-courses" class="courses">
+        <section id="entrenamientos-populares" class="courses">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -138,84 +138,54 @@
                     <p>Entrenamientos más populares</p>
                 </div>
 
+                @if (session('successTraining'))
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
+                            {{ session('successTraining') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
+                @if (session('errorTraining'))
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
+                            {{ session('errorTraining') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="course-item">
-                            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Web Development</h4>
-                                    <p class="price">$169</p>
-                                </div>
-
-                                <h3><a href="course-details.html">Website Design</a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                        <span>Antonio</span>
+                    @foreach ($trainings as $training)
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-3">
+                            <div class="course-item">
+                                <img src="{{ asset('web/assets/img/trainings.jpg') }}" class="img-fluid" alt="...">
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Nivel: {{$training->level}}</h4>
                                     </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;50
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;65
+
+                                    <h6><a href="{{route('account.trainings.exercises', ['training_id' => $training->id])}}">{{$training->title}}</a></h6>
+                                    <p>{{$training->description}}</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                        <div class="trainer-profile d-flex align-items-center">
+                                            <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+                                            <span>{{ $training->coach->name }}</span>
+                                        </div>
+                                        <div class="trainer-rank d-flex align-items-center">
+                                            @if(count(DB::table('user_follow_trainings')->where('user_id', Auth::user()->id)->where('training_id', $training->id)->get()) > 0)
+                                                <a href="{{ route('account.trainings.follow', ['action' => 'unfollow', 'view' => 'index' , 'training_id' => $training->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_trainings')->where('training_id', $training->id)->get()) }}
+                                            @else       
+                                                <a href="{{ route('account.trainings.follow', ['action' => 'follow', 'view' => 'index' , 'training_id' => $training->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_trainings')->where('training_id', $training->id)->get()) }}
+                                            @endif
+                                            {{-- <a href=""></a><i class="bx bx-heart"></i>&nbsp;42 --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                        <div class="course-item">
-                            <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Marketing</h4>
-                                    <p class="price">$250</p>
-                                </div>
-
-                                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                                        <span>Lana</span>
-                                    </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;35
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;42
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="course-item">
-                            <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Content</h4>
-                                    <p class="price">$180</p>
-                                </div>
-
-                                <h3><a href="course-details.html">Copywriting</a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
-                                        <span>Brandon</span>
-                                    </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;20
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;85
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -237,7 +207,7 @@
             </div>
         </section>
 
-        <section id="popular-courses" class="courses">
+        <section id="dietas-populares" class="courses">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -245,84 +215,54 @@
                     <p>Dietas más populares</p>
                 </div>
 
+                @if (session('successDiet'))
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
+                            {{ session('successDiet') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
+                @if (session('errorDiet'))
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
+                            {{ session('errorDiet') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="course-item">
-                            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Web Development</h4>
-                                    <p class="price">$169</p>
-                                </div>
+                    @foreach ($diets as $diet)
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-3">
+                            <div class="course-item">
+                                <img src="{{ asset('web/assets/img/diets.jpg') }}" class="img-fluid" alt="...">
+                                <div class="course-content">
+                                    {{-- <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Nivel: {{$training->level}}</h4>
+                                    </div> --}}
 
-                                <h3><a href="course-details.html">Website Design</a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                        <span>Antonio</span>
-                                    </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;50
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;65
+                                    <h6><a href="{{route('account.diets.ingredients', ['diet_id' => $diet->id])}}">{{$diet->title}}</a></h6>
+                                    <p>{{$diet->description}}</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                        <div class="trainer-profile d-flex align-items-center">
+                                            <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+                                            <span>{{ $diet->coach->name }}</span>
+                                        </div>
+                                        <div class="trainer-rank d-flex align-items-center">
+                                            @if(count(DB::table('user_follow_diets')->where('user_id', Auth::user()->id)->where('diet_id', $diet->id)->get()) > 0)
+                                                <a href="{{ route('account.diets.follow', ['action' => 'unfollow', 'view' => 'index' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
+                                            @else       
+                                                <a href="{{ route('account.diets.follow', ['action' => 'follow', 'view' => 'index' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
+                                            @endif
+                                            {{-- <a href=""></a><i class="bx bx-heart"></i>&nbsp;42 --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                        <div class="course-item">
-                            <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Marketing</h4>
-                                    <p class="price">$250</p>
-                                </div>
-
-                                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                                        <span>Lana</span>
-                                    </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;35
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;42
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="course-item">
-                            <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Content</h4>
-                                    <p class="price">$180</p>
-                                </div>
-
-                                <h3><a href="course-details.html">Copywriting</a></h3>
-                                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
-                                        <span>Brandon</span>
-                                    </div>
-                                    <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i>&nbsp;20
-                                        &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;85
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

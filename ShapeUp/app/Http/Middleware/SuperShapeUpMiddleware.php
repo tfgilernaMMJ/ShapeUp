@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class SuperShapeUpMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         
-        if (auth()->check() && auth()->user()->status !== 'Admin') {
+        if (auth()->check() && auth()->user()->suscription_id != '2') {
             return redirect('/');
         }
-
+        
         return $next($request);
     }
 }

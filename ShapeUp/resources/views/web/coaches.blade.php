@@ -9,6 +9,10 @@
 @endsection
 
 @section('coaches-section')
+    @php
+        $request = request();
+    @endphp
+
     <main id="main" data-aos="fade-in">
         <div class="breadcrumbs">
             <div class="container">
@@ -51,67 +55,79 @@
                 <section id="contact" class="contact contactfiltertrainer" style="display:none">
                     <div class="container" data-aos="fade-up">
                         <div class="row mt-1">
-                            <div class="col-lg-12 mt-2 mt-lg-0">
-                                <form action="{{route('account.profile.edit')}}" method="post" role="form" class="php-email-form">
+                            <div class="col-lg-12 mt-1 mt-lg-0">
+                                <a type="button" class="mb-3" href="{{route('account.coaches')}}">Reiniciar filtros</a>
+                                <form action="{{route('account.coaches.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <label for="name">Nombre</label>
-                                            <input type="text" name="name" id="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') ?? Auth::user()->name }}" required>
-                                            @if ($errors->has('name'))
+                                        <div class="col-md-4 form-group">
+                                            <label for="name_sort">Nombre:</label>
+                                            <select type="text" class="form-control" name="name_sort">
+                                                <option value="" {{ $request->input('name_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('name_sort') == 'asc' ? 'selected' : '' }}>A-Z</option>
+                                                <option value="desc" {{ $request->input('name_sort') == 'desc' ? 'selected' : '' }}>Z-A</option>
+                                            </select>                                            
+                                            @if ($errors->has('name_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                    <strong>{{ $errors->first('name_sort') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4 form-group mt-3 mt-md-0">
+                                            <label for="age_sort">Edad:</label>
+                                            <select type="text" class="form-control {{ $errors->has('age_sort') ? ' is-invalid' : '' }}"" name="age_sort">
+                                                <option value="" {{ $request->input('age_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('age_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
+                                                <option value="desc" {{ $request->input('age_sort') == 'desc' ? 'selected' : '' }}>Mayor a menor</option>
+                                            </select>
+                                            @if ($errors->has('age_sort'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('age_sort') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4 form-group mt-3 mt-md-0">
+                                            <label for="experience_sort">Experiencia:</label>
+                                            <select type="text" class="form-control {{ $errors->has('experience_sort') ? ' is-invalid' : '' }}"" name="experience_sort">
+                                                <option value="" {{ $request->input('experience_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('experience_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
+                                                <option value="desc" {{ $request->input('experience_sort') == 'desc' ? 'selected' : '' }}>Mayor a menor</option>
+                                            </select>
+                                            @if ($errors->has('experience_sort'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('experience_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                         <div class="col-md-6 form-group mt-3 mt-md-0">
-                                            <label for="username">Nombre de usuario</label>
-                                            <input type="text" name="username" id="username" class="form-control {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') ?? Auth::user()->username }}" required>                              
-                                            @if ($errors->has('username'))
+                                            <label for="followers_sort">Número de seguidores:</label>
+                                            <select type="text" class="form-control {{ $errors->has('followers_sort') ? ' is-invalid' : '' }}"" name="followers_sort">
+                                                <option value="" {{ $request->input('followers_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="asc" {{ $request->input('followers_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
+                                                <option value="desc" {{ $request->input('followers_sort') == 'desc' ? 'selected' : '' }}>Mayor a menor</option>
+                                            </select>
+                                            @if ($errors->has('followers_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('username') }}</strong>
+                                                    <strong>{{ $errors->first('followers_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                         <div class="col-md-6 form-group mt-3 mt-md-0">
-                                            <label for="email">Correo electrónico</label>
-                                            <input type="email" name="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') ?? Auth::user()->email }}" required>                              
-                                            @if ($errors->has('email'))
+                                            <label for="coacheslike_sort">Entrenadores:</label>
+                                            <select type="text" class="form-control {{ $errors->has('coacheslike_sort') ? ' is-invalid' : '' }}"" name="coacheslike_sort">
+                                                <option value="" {{ $request->input('coacheslike_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="like" {{ $request->input('coacheslike_sort') == 'like' ? 'selected' : '' }}>Seguidos</option>
+                                                <option value="notlike" {{ $request->input('coacheslike_sort') == 'notlike' ? 'selected' : '' }}>No seguidos</option>
+                                            </select>
+                                            @if ($errors->has('coacheslike_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                                            <label for="age" class="">Edad</label>
-                                            <input type="number" name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" value="{{ old('age') ?? Auth::user()->age }}" required>                              
-                                            @if ($errors->has('age'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('age') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                                            <label for="weight" class="">Peso (en kg)</label>
-                                            <input type="number" name="weight" id="weight" class="form-control {{ $errors->has('weight') ? ' is-invalid' : '' }}" value="{{ old('weight') ?? Auth::user()->weight }}" required>                              
-                                            @if ($errors->has('weight'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('weight') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                                            <label for="height" class="">Altura (en cm)</label>
-                                            <input type="number" name="height" id="height" class="form-control {{ $errors->has('height') ? ' is-invalid' : '' }}" value="{{ old('height') ?? Auth::user()->height }}" required>                              
-                                            @if ($errors->has('height'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('height') }}</strong>
+                                                    <strong>{{ $errors->first('coacheslike_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button type="submit">Guardar</button>
+                                        <button type="submit">Buscar</button>
                                     </div>                            
                                 </form>
                             </div>                    
@@ -119,33 +135,76 @@
                     </div>
                 </section>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">  
-                    @foreach ($coaches as $coach)
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                            <div class="member">
-                                <img src="{{ asset('web/assets/img/coaches/'. $coach->photo) }}" class="img-fluid" alt="">
-                                <div class="member-content">
-                                    <h4>{{ $coach->name }}</h4>
-                                    <span>País: {{ $coach->country }}</span>
-                                    <span>Edad: {{ $coach->age }}</span>
-                                    <span>Experiencia: {{ $coach->experience }}</span>
-                                    <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('user_coach_id', $coach->id)->get()) }}</span>
-                                    <p>
-                                        {{ $coach->biography }}
-                                    </p>
-                                    <div class="social">
-                                        @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('user_coach_id', $coach->id)->get()) > 0)
-                                            <a href="{{ route('account.coaches.follow', ['action' => 'unfollow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
-                                            @if (Auth::user()->suscription_id == 2)       
-                                                <a href="{{ route('account.coaches.message', ['coach_id' => $coach->id]) }}"><i class="bi bi-chat-left-dots-fill"></i></a>
+                    @if (count($coaches) == 0)
+                        <p>
+                            No se han encontrado resultados.
+                        </p>
+                    @else
+                        @foreach ($coaches as $coach)
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                <div class="member">
+                                    <img src="{{ asset('web/assets/img/coaches/'. $coach->photo) }}" class="img-fluid" alt="">
+                                    <div class="member-content">
+                                        <h4>{{ $coach->name }}</h4>
+                                        <span>País: {{ $coach->country }}</span>
+                                        <span>Edad: {{ $coach->age }}</span>
+                                        <span>Experiencia: {{ $coach->experience }}</span>
+                                        <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                        <span>Entrenamientos: {{ count(DB::table('trainings')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                        <span>Dietas: {{ count(DB::table('diets')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                        <p>
+                                            {{ $coach->biography }}
+                                        </p>
+                                        <div class="social">
+                                            @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('user_coach_id', $coach->id)->get()) > 0)
+                                                <a href="{{ route('account.coaches.follow', ['action' => 'unfollow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
+                                                @if (Auth::user()->suscription_id == 2)       
+                                                    <a href="{{ route('account.coaches.message', ['coach_id' => $coach->id]) }}"><i class="bi bi-chat-left-dots-fill"></i></a>
+                                                @endif
+                                            @else       
+                                                <a href="{{ route('account.coaches.follow', ['action' => 'follow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart"></i></a>
                                             @endif
-                                        @else       
-                                            <a href="{{ route('account.coaches.follow', ['action' => 'follow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart"></i></a>
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
+                </div>
+                <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+                    <span class="flex items-center col-span-3">
+                        Mostrando {{ $coaches->firstItem() }}-{{ $coaches->lastItem() }} de {{ $coaches->total() }}
+                    </span>
+    
+                    <span class="col-span-2"></span>
+                    <!-- Pagination -->
+                    <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                        <nav aria-label="Table navigation">
+                            <ul class="inline-flex items-center">
+                                <li>
+                                    <a href="{{ $coaches->previousPageUrl() }}" class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-green" aria-label="Previous">
+                                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                                            <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                                @for ($i = 1; $i <= $coaches->lastPage(); $i++)
+                                    <li>
+                                        <a href="{{ $coaches->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $coaches->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                            {{ $i }}
+                                        </a>
+                                    </li>
+                                    @endfor
+                                    <li>
+                                        <a href="{{ $coaches->nextPageUrl() }}" class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-green" aria-label="Next">
+                                            <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                                                <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                            </ul>
+                        </nav>
+                    </span>
                 </div>
             </div>
         </section>
