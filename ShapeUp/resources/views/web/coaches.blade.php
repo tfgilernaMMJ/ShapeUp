@@ -56,6 +56,7 @@
                     <div class="container" data-aos="fade-up">
                         <div class="row mt-1">
                             <div class="col-lg-12 mt-1 mt-lg-0">
+                                <a type="button" class="mb-3" href="{{route('account.coaches')}}">Reiniciar filtros</a>
                                 <form action="{{route('account.coaches.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
@@ -64,7 +65,7 @@
                                             <select type="text" class="form-control" name="name_sort">
                                                 <option value="" {{ $request->input('name_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
                                                 <option value="asc" {{ $request->input('name_sort') == 'asc' ? 'selected' : '' }}>A-Z</option>
-                                                <option value="desc" {{ $request->input('name_sort') == 'asc' ? 'selected' : '' }}>Z-A</option>
+                                                <option value="desc" {{ $request->input('name_sort') == 'desc' ? 'selected' : '' }}>Z-A</option>
                                             </select>                                            
                                             @if ($errors->has('name_sort'))
                                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +78,7 @@
                                             <select type="text" class="form-control {{ $errors->has('age_sort') ? ' is-invalid' : '' }}"" name="age_sort">
                                                 <option value="" {{ $request->input('age_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
                                                 <option value="asc" {{ $request->input('age_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
-                                                <option value="desc" {{ $request->input('age_sort') == 'asc' ? 'selected' : '' }}>Mayor a menor</option>
+                                                <option value="desc" {{ $request->input('age_sort') == 'desc' ? 'selected' : '' }}>Mayor a menor</option>
                                             </select>
                                             @if ($errors->has('age_sort'))
                                                 <span class="invalid-feedback" role="alert">
@@ -90,7 +91,7 @@
                                             <select type="text" class="form-control {{ $errors->has('experience_sort') ? ' is-invalid' : '' }}"" name="experience_sort">
                                                 <option value="" {{ $request->input('experience_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
                                                 <option value="asc" {{ $request->input('experience_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
-                                                <option value="desc" {{ $request->input('experience_sort') == 'asc' ? 'selected' : '' }}>Mayor a menor</option>
+                                                <option value="desc" {{ $request->input('experience_sort') == 'desc' ? 'selected' : '' }}>Mayor a menor</option>
                                             </select>
                                             @if ($errors->has('experience_sort'))
                                                 <span class="invalid-feedback" role="alert">
@@ -103,7 +104,7 @@
                                             <select type="text" class="form-control {{ $errors->has('followers_sort') ? ' is-invalid' : '' }}"" name="followers_sort">
                                                 <option value="" {{ $request->input('followers_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
                                                 <option value="asc" {{ $request->input('followers_sort') == 'asc' ? 'selected' : '' }}>Menor a mayor</option>
-                                                <option value="desc" {{ $request->input('followers_sort') == 'asc' ? 'selected' : '' }}>Mayor a menor</option>
+                                                <option value="desc" {{ $request->input('followers_sort') == 'desc' ? 'selected' : '' }}>Mayor a menor</option>
                                             </select>
                                             @if ($errors->has('followers_sort'))
                                                 <span class="invalid-feedback" role="alert">
@@ -151,6 +152,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{ $coaches->links() }}
             </div>
         </section>
     </main>

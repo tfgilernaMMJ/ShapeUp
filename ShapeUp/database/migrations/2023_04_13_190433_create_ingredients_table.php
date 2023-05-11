@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('tag_of_ingredient_id')->references('id')->on('tags_of_ingredients');
-            $table->foreignId('user_coach_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

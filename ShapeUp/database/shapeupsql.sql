@@ -133,73 +133,36 @@ INSERT INTO `tags_of_exercises` (`id`, `name`, `created_at`, `updated_at`) VALUE
 -- Volcado de datos para la tabla `trainings`
 --
 
-INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `user_coach_id`, `created_at`, `updated_at`) VALUES
-(1, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Alto', 24, NOW(), NOW()),
-(2, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 45, 'Medio', 24, NOW(), NOW()),
-(3, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 60, 'Alto', 24, NOW(), NOW()),
-(4, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Bajo', 24, NOW(), NOW()),
-(5, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Medio', 24, NOW(), NOW()),	
-(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 50, 'Alto', 24, NOW(), NOW()),
-(7, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Bajo', 25, NOW(), NOW()),
-(8, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 60, 'Medio', 25, NOW(), NOW()),
-(9, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Medio', 25, NOW(), NOW()),
-(10, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Alto', 25, NOW(), NOW()),
-(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Bajo', 25, NOW(), NOW()),
-(12, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Bajo', 26, NOW(), NOW()),
-(13, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 50, 'Bajo', 26, NOW(), NOW()),
-(14, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 60, 'Medio', 26, NOW(), NOW()),
-(15, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Bajo', 26, NOW(), NOW()),
-(16, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Medio', 27, NOW(), NOW()),
-(17, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Alto', 27, NOW(), NOW()),
-(18, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 27, NOW(), NOW()),
-(19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Bajo', 27, NOW(), NOW()),
-(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Alto', 27, NOW(), NOW()),
-(21, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 50, 'Bajo', 28, NOW(), NOW()),
-(22, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 60, 'Alto', 28, NOW(), NOW()),
-(23, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Bajo', 28, NOW(), NOW()),
-(24, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Alto', 28, NOW(), NOW()),
-(25, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Bajo', 28, NOW(), NOW()),
-(26, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Medio', 29, NOW(), NOW()),
-(27, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Alto', 29, NOW(), NOW()),
-(28, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Medio', 29, NOW(), NOW()),
-(29, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 29, NOW(), NOW());
-
--- --------------------------------------------------------
-
---
--- Volcado de datos para la tabla `training_categories`
---
-
-INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NOW(), NOW()),
-(2, 2, 1, NOW(), NOW()),
-(3, 3, 2, NOW(), NOW()),
-(4, 4, 3, NOW(), NOW()),
-(5, 5, 4, NOW(), NOW()),
-(6, 6, 5, NOW(), NOW()),
-(7, 7, 2, NOW(), NOW()),
-(8, 8, 3, NOW(), NOW()),
-(9, 9, 5, NOW(), NOW()),
-(10, 10, 6, NOW(), NOW()),
-(11, 11, 6, NOW(), NOW()),
-(12, 12, 1, NOW(), NOW()),
-(13, 13, 2, NOW(), NOW()),
-(14, 14, 3, NOW(), NOW()),
-(15, 15, 6, NOW(), NOW()),
-(16, 16, 1, NOW(), NOW()),
-(17, 17, 3, NOW(), NOW()),
-(18, 18, 5, NOW(), NOW()),
-(19, 19, 5, NOW(), NOW()),
-(20, 20, 6, NOW(), NOW()),
-(21, 21, 1, NOW(), NOW()),
-(22, 22, 2, NOW(), NOW()),
-(23, 23, 4, NOW(), NOW()),
-(24, 24, 5, NOW(), NOW()),
-(25, 25, 6, NOW(), NOW()),
-(26, 26, 2, NOW(), NOW()),
-(27, 27, 4, NOW(), NOW()),
-(28, 28, 4, NOW(), NOW()),
-(29, 29, 5, NOW(), NOW());
+INSERT INTO `trainings` (`id`, `title`, `description`, `duration`, `level`, `user_coach_id`, `category_of_training_id`,  `created_at`, `updated_at`) VALUES
+(1, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Alto', 24, 1, NOW(), NOW()),
+(2, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 45, 'Medio', 24, 1, NOW(), NOW()),
+(3, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 60, 'Alto', 24, 2, NOW(), NOW()),
+(4, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Bajo', 24, 3, NOW(), NOW()),
+(5, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Medio', 24, 4, NOW(), NOW()),	
+(6, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 50, 'Alto', 24, 5, NOW(), NOW()),
+(7, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Bajo', 25, 2, NOW(), NOW()),
+(8, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 60, 'Medio', 25, 3, NOW(), NOW()),
+(9, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Medio', 25, 5, NOW(), NOW()),
+(10, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Alto', 25, 6, NOW(), NOW()),
+(11, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Bajo', 25, 6, NOW(), NOW()),
+(12, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Bajo', 26, 1, NOW(), NOW()),
+(13, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 50, 'Bajo', 26, 2, NOW(), NOW()),
+(14, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 60, 'Medio', 26, 3, NOW(), NOW()),
+(15, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Bajo', 26, 6, NOW(), NOW()),
+(16, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 60, 'Medio', 27, 1, NOW(), NOW()),
+(17, 'Entrenamiento de pérdida de peso', 'Baja tu masa corporal y quema calorías con este entrenamiento para persona principiantes.', 45, 'Alto', 27, 3, NOW(), NOW()),
+(18, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 27, 5, NOW(), NOW()),
+(19, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 60, 'Bajo', 27, 5, NOW(), NOW()),
+(20, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 60, 'Alto', 27, 6, NOW(), NOW()),
+(21, 'Entrenamiento de fuerza', 'Mejora tu fuerza y resistencia muscular con este entrenamiento de alta intensidad.', 50, 'Bajo', 28, 1, NOW(), NOW()),
+(22, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 60, 'Alto', 28, 2, NOW(), NOW()),
+(23, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Bajo', 28, 4, NOW(), NOW()),
+(24, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Alto', 28, 5, NOW(), NOW()),
+(25, 'Entrenamiento de velocidad y agilidad', 'Mejora tu velocidad y agilidad con este entrenamiento para aumentar tu velocidad y agilidad.', 45, 'Bajo', 28, 6, NOW(), NOW()),
+(26, 'Entrenamiento de aumento de masa muscular', 'Aumento tus músculos con este entrenamiento para personas que les cuesta subir volumen.', 45, 'Medio', 29, 2, NOW(), NOW()),
+(27, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 45, 'Alto', 29, 4, NOW(), NOW()),
+(28, 'Entrenamiento de flexibilidad', 'Mejora tu flexibilidad y amplitud de movimiento con este entrenamiento enfocado en estiramientos.', 60, 'Medio', 29, 4, NOW(), NOW()),
+(29, 'Entrenamiento de equilibrio y coordinación', 'Mejora tu equilibrio y coordinación con este entrenamiento para aumentar la estabilidad.', 45, 'Medio', 29, 5, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -552,43 +515,22 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 -- Volcado de datos para la tabla `diets`
 --
 
-INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `created_at`, `updated_at`) VALUES
-(1, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 24, NOW(), NOW()),
-(2, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 24, NOW(), NOW()),
-(3, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 24, NOW(), NOW()),
+INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES
+(1, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 24, 1, NOW(), NOW()),
+(2, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 24, 3, NOW(), NOW()),
+(3, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 24, 6, NOW(), NOW()),
 
-(4, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 25, NOW(), NOW()),
-(5, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 25, NOW(), NOW()),
-(6, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 25, NOW(), NOW()),
+(4, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 25, 2, NOW(), NOW()),
+(5, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 25, 3, NOW(), NOW()),
+(6, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 25, 4, NOW(), NOW()),
 
-(7, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 26, NOW(), NOW()),
-(8, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 26, NOW(), NOW()),
-(9, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 26, NOW(), NOW()),
-(10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, NOW(), NOW()),
+(7, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 26, 1, NOW(), NOW()),
+(8, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 26, 2, NOW(), NOW()),
+(9, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 26, 5, NOW(), NOW()),
+(10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, 6, NOW(), NOW()),
 
-(11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, NOW(), NOW()),
-(12, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 27, NOW(), NOW());
-
--- --------------------------------------------------------
-
---
--- Volcado de datos para la tabla `diets_categories`
---
-
-INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NOW(), NOW()),
-(2, 2, 3, NOW(), NOW()),
-(3, 3, 6, NOW(), NOW()),
-(4, 4, 2, NOW(), NOW()),
-(5, 5, 3, NOW(), NOW()),
-(6, 6, 4, NOW(), NOW()),
-(7, 7, 1, NOW(), NOW()),
-(8, 8, 2, NOW(), NOW()),
-(9, 9, 5, NOW(), NOW()),
-(10, 10, 6, NOW(), NOW()),
-(11, 11, 2, NOW(), NOW()),
-(12, 12, 4, NOW(), NOW());
-
+(11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, 2, NOW(), NOW()),
+(12, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 27, 4, NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -773,5 +715,50 @@ INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, 
 (71, 12, 68, NOW(), NOW()),
 (72, 12, 36, NOW(), NOW());
 
+/* TABLAS COMENTADAS POR SI ACASO: 
 
+INSERT INTO `training_categories` (`id`, `training_id`, `category_of_training_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NOW(), NOW()),
+(2, 2, 1, NOW(), NOW()),
+(3, 3, 2, NOW(), NOW()),
+(4, 4, 3, NOW(), NOW()),
+(5, 5, 4, NOW(), NOW()),
+(6, 6, 5, NOW(), NOW()),
+(7, 7, 2, NOW(), NOW()),
+(8, 8, 3, NOW(), NOW()),
+(9, 9, 5, NOW(), NOW()),
+(10, 10, 6, NOW(), NOW()),
+(11, 11, 6, NOW(), NOW()),
+(12, 12, 1, NOW(), NOW()),
+(13, 13, 2, NOW(), NOW()),
+(14, 14, 3, NOW(), NOW()),
+(15, 15, 6, NOW(), NOW()),
+(16, 16, 1, NOW(), NOW()),
+(17, 17, 3, NOW(), NOW()),
+(18, 18, 5, NOW(), NOW()),
+(19, 19, 5, NOW(), NOW()),
+(20, 20, 6, NOW(), NOW()),
+(21, 21, 1, NOW(), NOW()),
+(22, 22, 2, NOW(), NOW()),
+(23, 23, 4, NOW(), NOW()),
+(24, 24, 5, NOW(), NOW()),
+(25, 25, 6, NOW(), NOW()),
+(26, 26, 2, NOW(), NOW()),
+(27, 27, 4, NOW(), NOW()),
+(28, 28, 4, NOW(), NOW()),
+(29, 29, 5, NOW(), NOW());
+
+INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NOW(), NOW()),
+(2, 2, 3, NOW(), NOW()),
+(3, 3, 6, NOW(), NOW()),
+(4, 4, 2, NOW(), NOW()),
+(5, 5, 3, NOW(), NOW()),
+(6, 6, 4, NOW(), NOW()),
+(7, 7, 1, NOW(), NOW()),
+(8, 8, 2, NOW(), NOW()),
+(9, 9, 5, NOW(), NOW()),
+(10, 10, 6, NOW(), NOW()),
+(11, 11, 2, NOW(), NOW()),
+(12, 12, 4, NOW(), NOW()); */
 

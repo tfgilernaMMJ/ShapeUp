@@ -14,6 +14,7 @@ use App\Models\Supermarket;
 use App\Models\User;
 use App\Models\Diet;
 use App\Models\Training;
+use App\Models\CategoryOfTraining;
 use App\Models\UserFollowTraining;
 
 class WebController extends Controller
@@ -29,11 +30,34 @@ class WebController extends Controller
         return view('web.index', ['gyms' => $gyms, 'supermarkets' => $supermarkets, 'numUsers' => $numUsers, 'numCoaches' => $numCoaches, 'numDiets' => $numDiets, 'numTrainings' => $numTrainings]);
     }
 
-    public function indexTrainings()
+    public function indexTrainings(Request $request)
     {
-        $trainings = Training::all();
-        return view('web.trainings', [ 'trainings' => $trainings ]);       
+        $query = Training::query();
+
+        if ($request->filled('category_sort')) {
+            $query->where('category_of_training_id', $request->input('category_sort'));
+        }
+        
+        if ($request->filled('level_sort')) {
+            $query->where('level', $request->input('level_sort'));
+        }
+        
+        if ($request->input('like_sort') === 'asc' || $request->input('like_sort') === 'desc') {
+            $sortDirection = $request->input('like_sort') === 'asc' ? 'asc' : 'desc';
+            $query->leftJoin('user_follow_trainings', 'trainings.id', '=', 'user_follow_trainings.training_id')
+                ->select('trainings.*', DB::raw('count(user_follow_trainings.id) as likes_count'))
+                ->groupBy('trainings.id')
+                ->orderBy('likes_count', $sortDirection);
+        }        
+
+        $trainings = $query->paginate(10);
+        $categories = CategoryOfTraining::all();
+
+        return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'request' => $request]);
     }
+
+
+
 
     public function followTrainings($action, $training_id)
     {
@@ -92,10 +116,11 @@ class WebController extends Controller
                 ->orderBy('followers_count', $sortDirection);
         }        
 
-        $coaches = $query->get();
+        $coaches = $query->paginate(10);
 
         return view('web.coaches', ['coaches' => $coaches, 'request' => $request]);
     }
+
 
     public function followCoaches($action, $coach_id)
     {
