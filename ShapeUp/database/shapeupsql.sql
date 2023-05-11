@@ -530,7 +530,21 @@ INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `category_of
 (10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, 6, NOW(), NOW()),
 
 (11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, 2, NOW(), NOW()),
-(12, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 27, 4, NOW(), NOW());
+(12, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 27, 4, NOW(), NOW()),
+(13, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 27, 5, NOW(), NOW()),
+(14, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 27, 6, NOW(), NOW()),
+
+(15, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 28, 2, NOW(), NOW()),
+(16, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 28, 3, NOW(), NOW()),
+(17, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 28, 5, NOW(), NOW()),
+
+
+(18, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 29, 1, NOW(), NOW()),
+(19, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 29, 2, NOW(), NOW()),
+(20, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 29, 4, NOW(), NOW()),
+(21, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 29, 5, NOW(), NOW()),
+(22, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 29, 6, NOW(), NOW());
+
 
 -- --------------------------------------------------------
 
@@ -616,7 +630,35 @@ INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `
 (65, 'Pepino', 2, NOW(), NOW()),
 (66, 'Judías verdes', 7, NOW(), NOW()),
 (67, 'Tofu ahumado', 7, NOW(), NOW()),
-(68, 'Avena en copos', 6, NOW(), NOW());
+(68, 'Avena en copos', 6, NOW(), NOW()),
+
+(69, 'Pera', 1, NOW(), NOW()),
+(70, 'Zapallo', 2, NOW(), NOW()),
+(71, 'Rúcula', 2, NOW(), NOW()),
+(72, 'Apio', 2, NOW(), NOW()),
+(73, 'Limón', 1, NOW(), NOW()),
+
+(74, 'Tempeh', 8, NOW(), NOW()),
+(75, 'Batatas', 2, NOW(), NOW()),
+(76, 'Camote', 2, NOW(), NOW()),
+(77, 'Leche descremada', 5, NOW(), NOW()),
+(78, 'Bayas mixtas', 1, NOW(), NOW()),
+(79, 'Girasol', 8, NOW(), NOW()),
+
+(80, 'Huevos de codorniz', 5, NOW(), NOW()),
+(81, 'Queso ricotta bajo en grasa', 5, NOW(), NOW()),
+(82, 'Requesón bajo en grasa', 5, NOW(), NOW()),
+(83, 'Kéfir bajo en grasa', 5, NOW(), NOW()),
+(84, 'Edamame', 2, NOW(), NOW()),
+(85, 'Crema de cacahuete', 5, NOW(), NOW()),
+
+(86,' Albahaca', 2, NOW(), NOW()),
+(87, 'Fresas', 1, NOW(), NOW()),
+(88, 'Sardinas', 4, NOW(), NOW()),
+(89, 'Papaya', 1, NOW(), NOW()),
+(90, 'Jengibre', 2, NOW(), NOW());
+
+
 
 -- --------------------------------------------------------
 
@@ -707,7 +749,83 @@ INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, 
 (69, 12, 66, NOW(), NOW()),
 (70, 12, 67, NOW(), NOW()),
 (71, 12, 68, NOW(), NOW()),
-(72, 12, 36, NOW(), NOW());
+(72, 12, 36, NOW(), NOW()),
+
+(73, 13, 69, NOW(), NOW()),
+(74, 13, 70, NOW(), NOW()),
+(75, 13, 71, NOW(), NOW()),
+(76, 13, 72, NOW(), NOW()),
+(77, 13, 73, NOW(), NOW()),
+(78, 13, 12, NOW(), NOW()),
+
+(79, 14, 74, NOW(), NOW()),
+(80, 14, 75, NOW(), NOW()),
+(81, 14, 76, NOW(), NOW()),
+(82, 14, 77, NOW(), NOW()),
+(83, 14, 78, NOW(), NOW()),
+(84, 14, 79, NOW(), NOW()),
+
+(85, 15, 80, NOW(), NOW()),
+(86, 15, 81, NOW(), NOW()),
+(87, 15, 82, NOW(), NOW()),
+(88, 15, 83, NOW(), NOW()),
+(89, 15, 84, NOW(), NOW()),
+(90, 15, 85, NOW(), NOW()),
+
+(91, 16, 5, NOW(), NOW()),
+(92, 16, 7, NOW(), NOW()),
+(93, 16, 8, NOW(), NOW()),
+(94, 16, 9, NOW(), NOW()),
+(95, 16, 27, NOW(), NOW()),
+(96, 16, 28, NOW(), NOW()),
+
+(97, 17, 86, NOW(), NOW()),
+(98, 17, 87, NOW(), NOW()),
+(99, 17, 88, NOW(), NOW()),
+(100, 17, 89, NOW(), NOW()),
+(101, 17, 90, NOW(), NOW()),
+(102, 17, 49 ,NOW(), NOW()),
+
+(103, 18, 1, NOW(), NOW()),
+(104, 18, 2, NOW(), NOW()),
+(105, 18, 3, NOW(), NOW()),
+(106, 18, 38, NOW(), NOW()),
+(107, 18, 39, NOW(), NOW()),
+(108, 18, 40, NOW(), NOW()),
+
+(108, 19, 14, NOW(), NOW()),
+(109, 19, 19, NOW(), NOW()),
+(110, 19, 20, NOW(), NOW()),
+(111, 19, 61, NOW(), NOW()),
+(112, 19, 62, NOW(), NOW()),
+(113, 19, 63, NOW(), NOW()),
+
+
+(113, 20, 29, NOW(), NOW()),
+(113, 20, 30, NOW(), NOW()),
+(113, 20, 31, NOW(), NOW()),
+(113, 20, 66, NOW(), NOW()),
+(113, 20, 67, NOW(), NOW()),
+(113, 20, 68, NOW(), NOW()),
+
+(114, 21, 47, NOW(), NOW()),
+(115, 21, 48, NOW(), NOW()),
+(116, 21, 49, NOW(), NOW()),
+(117, 21, 71, NOW(), NOW()),
+(118, 21, 72, NOW(), NOW()),
+(119, 21, 73, NOW(), NOW()),
+
+
+(120, 22, 13, NOW(), NOW()),
+(121, 22, 14, NOW(), NOW()),
+(122, 22, 15, NOW(), NOW()),
+(123, 22, 55, NOW(), NOW()),
+(124, 22, 56, NOW(), NOW()),
+(125, 22, 57, NOW(), NOW());
+
+
+
+
 
 /* TABLAS COMENTADAS POR SI ACASO: 
 
