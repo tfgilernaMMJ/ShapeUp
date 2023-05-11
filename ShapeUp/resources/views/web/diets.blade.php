@@ -1,21 +1,21 @@
 @extends('web.templates.template')
 
 @section('titulo')
-    Entrenamientos
+    Dietas
 @endsection
 
-@section('trainings-nav')
+@section('diets-nav')
     active
 @endsection
 
-@section('trainings-section')
+@section('diets-section')
     <main id="main" data-aos="fade-in">
         <div class="breadcrumbs">
             <div class="container">
-                <h2>Entrenamientos</h2>
-                <p>Bienvenido a nuestra página de entrenamientos. Ofrecemos una amplia variedad de programas de ejercicios diseñados para satisfacer las necesidades de todos los niveles, desde principiantes hasta avanzados. Nuestros entrenadores altamente capacitados han creado planes de entrenamiento cuidadosamente estructurados que te ayudarán a alcanzar tus objetivos de fitness y a llevar una vida saludable.</p>
+                <h2>Dietas</h2>
+                <p>Bienvenido a nuestra página de dietas. Aquí encontrarás una variedad de planes de alimentación diseñados para ayudarte a alcanzar tus objetivos de salud y bienestar. Nuestros entrenadores expertos han creado dietas equilibradas y adaptadas a diferentes necesidades y preferencias.</p>
             </div>
-        </div>
+        </div>        
 
         @if (session('success'))
             <div class="d-flex justify-content-center align-items-center mt-3">
@@ -39,7 +39,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="container" data-aos="zoom-out">
                     <div class="section-title">
-                        <h2>Entrenamientos</h2>
+                        <h2>Dietas</h2>
                         <p>
                             Filtros
                             <a type="button" onclick="mostrarFiltroTrainer()">
@@ -52,11 +52,11 @@
                     <div class="container" data-aos="fade-up">
                         <div class="row mt-1">
                             <div class="col-lg-12 mt-1 mt-lg-0">
-                                <a type="button" class="mb-3" href="{{route('account.trainings')}}">Reiniciar filtros</a>
-                                <form action="{{route('account.trainings.filters')}}" method="post" role="form" class="php-email-form">
+                                <a type="button" class="mb-3" href="{{route('account.diets')}}">Reiniciar filtros</a>
+                                <form action="{{route('account.diets.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-3 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="category_sort">Categoría:</label>
                                             <select type="text" class="form-control {{ $errors->has('category_sort') ? ' is-invalid' : '' }}"" name="category_sort">
                                                 <option value="" {{ $request->input('category_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -70,21 +70,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mt-3 mt-md-0">
-                                            <label for="level_sort">Nivel:</label>
-                                            <select type="text" class="form-control {{ $errors->has('level_sort') ? ' is-invalid' : '' }}"" name="level_sort">
-                                                <option value="" {{ $request->input('level_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
-                                                <option value="Alto" {{ $request->input('level_sort') == 'Alto' ? 'selected' : '' }}>Alto</option>
-                                                <option value="Medio" {{ $request->input('level_sort') == 'Medio' ? 'selected' : '' }}>Medio</option>
-                                                <option value="Bajo" {{ $request->input('level_sort') == 'Bajo' ? 'selected' : '' }}>Bajo</option>
-                                            </select>
-                                            @if ($errors->has('level_sort'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('level_sort') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                        <div class="col-md-4 form-group mt-3 mt-md-0">
                                             <label for="coach_sort">Entrenador:</label>
                                             <select type="text" class="form-control {{ $errors->has('coach_sort') ? ' is-invalid' : '' }}"" name="coach_sort">
                                                 <option value="" {{ $request->input('coach_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -98,7 +84,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                        <div class="col-md-4 form-group mt-3 mt-md-0">
                                             <label for="like_sort">Número de me gustas:</label>
                                             <select type="text" class="form-control {{ $errors->has('like_sort') ? ' is-invalid' : '' }}"" name="like_sort">
                                                 <option value="" {{ $request->input('like_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -121,27 +107,27 @@
                     </div>
                 </section>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    @foreach ($trainings as $training)
+                    @foreach ($diets as $diet)
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-3">
                             <div class="course-item">
-                                <img src="{{ asset('web/assets/img/trainings.jpg') }}" class="img-fluid" alt="...">
+                                <img src="{{ asset('web/assets/img/diets.jpg') }}" class="img-fluid" alt="...">
                                 <div class="course-content">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                    {{-- <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>Nivel: {{$training->level}}</h4>
-                                    </div>
+                                    </div> --}}
 
-                                    <h6><a href="{{route('account.trainings.exercises', ['training_id' => $training->id])}}">{{$training->title}}</a></h6>
-                                    <p>{{$training->description}}</p>
+                                    <h6><a href="{{route('account.diets.ingredients', ['diet_id' => $diet->id])}}">{{$diet->title}}</a></h6>
+                                    <p>{{$diet->description}}</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
                                         <div class="trainer-profile d-flex align-items-center">
                                             <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                                            <span>{{ $training->coach->name }}</span>
+                                            <span>{{ $diet->coach->name }}</span>
                                         </div>
                                         <div class="trainer-rank d-flex align-items-center">
-                                            @if(count(DB::table('user_follow_trainings')->where('user_id', Auth::user()->id)->where('training_id', $training->id)->get()) > 0)
-                                                <a href="{{ route('account.trainings.follow', ['action' => 'unfollow', 'training_id' => $training->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_trainings')->where('training_id', $training->id)->get()) }}
+                                            @if(count(DB::table('user_follow_diets')->where('user_id', Auth::user()->id)->where('diet_id', $diet->id)->get()) > 0)
+                                                <a href="{{ route('account.diets.follow', ['action' => 'unfollow', 'diet_id' => $diet->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
                                             @else       
-                                                <a href="{{ route('account.trainings.follow', ['action' => 'follow', 'training_id' => $training->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_trainings')->where('training_id', $training->id)->get()) }}
+                                                <a href="{{ route('account.diets.follow', ['action' => 'follow', 'diet_id' => $diet->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
                                             @endif
                                             {{-- <a href=""></a><i class="bx bx-heart"></i>&nbsp;42 --}}
                                         </div>

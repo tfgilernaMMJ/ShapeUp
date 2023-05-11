@@ -26,10 +26,10 @@
                 @if (Auth::user()->suscription_id == 1)
                     <li><a href="{{ route('account.events') }}">Alimentos</a></li>
                 @else
-                    <li class="dropdown"><a class="@yield('events-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a class="@yield('diets-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{ route('account.events') }}">Dietas</a></li>
-                            <li><a href="{{ route('account.events') }}">Alimentos</a></li>
+                            <li><a class="@yield('diets-nav')" href="{{ route('account.diets') }}">Dietas</a></li>
+                            <li><a class="@yield('ingredients-nav')" href="{{ route('account.events') }}">Alimentos</a></li>
                         </ul>
                     </li>
                 @endif
