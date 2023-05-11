@@ -516,21 +516,21 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 --
 
 INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES
-(1, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 24, 1, NOW(), NOW()),
+(1, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 24, 1, NOW(), NOW()),
 (2, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 24, 3, NOW(), NOW()),
 (3, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 24, 6, NOW(), NOW()),
 
 (4, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 25, 2, NOW(), NOW()),
 (5, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 25, 3, NOW(), NOW()),
-(6, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 25, 4, NOW(), NOW()),
+(6, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 25, 4, NOW(), NOW()),
 
-(7, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 26, 1, NOW(), NOW()),
+(7, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 26, 1, NOW(), NOW()),
 (8, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 26, 2, NOW(), NOW()),
 (9, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 26, 5, NOW(), NOW()),
 (10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, 6, NOW(), NOW()),
 
 (11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, 2, NOW(), NOW()),
-(12, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 27, 4, NOW(), NOW());
+(12, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 27, 4, NOW(), NOW());
 
 -- --------------------------------------------------------
 

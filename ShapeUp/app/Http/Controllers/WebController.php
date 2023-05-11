@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
+use App\Models\CategoryOfDiet;
 use App\Models\UserFollowCoach;
 use App\Models\Gym;
 use App\Models\Supermarket;
@@ -15,6 +16,7 @@ use App\Models\User;
 use App\Models\Diet;
 use App\Models\Training;
 use App\Models\CategoryOfTraining;
+use App\Models\UserFollowDiet;
 use App\Models\UserFollowTraining;
 
 class WebController extends Controller
@@ -41,6 +43,10 @@ class WebController extends Controller
         if ($request->filled('level_sort')) {
             $query->where('level', $request->input('level_sort'));
         }
+
+        if ($request->filled('coach_sort')) {
+            $query->where('user_coach_id', $request->input('coach_sort'));
+        }
         
         if ($request->input('like_sort') === 'asc' || $request->input('like_sort') === 'desc') {
             $sortDirection = $request->input('like_sort') === 'asc' ? 'asc' : 'desc';
@@ -52,12 +58,10 @@ class WebController extends Controller
 
         $trainings = $query->paginate(10);
         $categories = CategoryOfTraining::all();
+        $coaches = User::where('status', 'Coach')->get();
 
-        return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'request' => $request]);
+        return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'coaches' => $coaches, 'request' => $request]);
     }
-
-
-
 
     public function followTrainings($action, $training_id)
     {
@@ -89,6 +93,65 @@ class WebController extends Controller
         $training = Training::find($training_id);
         $exercises = $training->exercise()->get();
         return view('web.trainingsexercises', [ 'exercises' => $exercises]);       
+    }
+
+    public function indexDiets(Request $request)
+    {
+        $query = Diet::query();
+
+        if ($request->filled('category_sort')) {
+            $query->where('category_of_diet_id', $request->input('category_sort'));
+        }
+
+        if ($request->filled('coach_sort')) {
+            $query->where('user_coach_id', $request->input('coach_sort'));
+        } 
+        
+        if ($request->input('like_sort') === 'asc' || $request->input('like_sort') === 'desc') {
+            $sortDirection = $request->input('like_sort') === 'asc' ? 'asc' : 'desc';
+            $query->leftJoin('user_follow_diets', 'diets.id', '=', 'user_follow_diets.diet_id')
+                ->select('diets.*', DB::raw('count(user_follow_diets.id) as likes_count'))
+                ->groupBy('diets.id')
+                ->orderBy('likes_count', $sortDirection);
+        } 
+
+        $diets = $query->paginate(10);
+        $categories = CategoryOfDiet::all();
+        $coaches = User::where('status', 'Coach')->get();
+
+        return view('web.diets', ['diets' => $diets, 'categories' => $categories, 'coaches' => $coaches, 'request' => $request]);
+    }
+
+    public function followDiets($action, $diet_id)
+    {
+        if ($action == 'follow') {
+            try {
+                $user_follow_diets = new UserFollowDiet;
+                $user_follow_diets->user_id = Auth::user()->id;
+                $user_follow_diets->diet_id = $diet_id;
+                $user_follow_diets->save();
+    
+                return redirect()->route('account.diets')->with('success', 'Dieta seguida correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.diets')->with('error', 'Ha ocurrido un error al seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+            }
+        } else if ($action == 'unfollow') {
+            try {
+                $user_id = Auth::user()->id;
+                UserFollowDiet::where('user_id', $user_id)->where('diet_id', $diet_id)->delete();
+    
+                return redirect()->route('account.diets')->with('success', 'Dieta dejada de seguir correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->route('account.diets')->with('error', 'Ha ocurrido un error al dejar de seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+            }
+        }        
+    }
+
+    public function indexDietsIngredients($diet_id)
+    {
+        $diet = Diet::find($diet_id);
+        $ingredient = $diet->ingredient()->get();
+        return view('web.dietingredients', [ 'ingredient' => $ingredient]);       
     }
 
     public function indexCoaches(Request $request)
