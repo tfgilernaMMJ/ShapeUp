@@ -125,9 +125,9 @@
                                         </div>
                                         <div class="trainer-rank d-flex align-items-center">
                                             @if(count(DB::table('user_follow_diets')->where('user_id', Auth::user()->id)->where('diet_id', $diet->id)->get()) > 0)
-                                                <a href="{{ route('account.diets.follow', ['action' => 'unfollow', 'diet_id' => $diet->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
+                                                <a href="{{ route('account.diets.follow', ['action' => 'unfollow', 'view' => 'diet' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
                                             @else       
-                                                <a href="{{ route('account.diets.follow', ['action' => 'follow', 'diet_id' => $diet->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
+                                                <a href="{{ route('account.diets.follow', ['action' => 'follow', 'view' => 'diet' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
                                             @endif
                                             {{-- <a href=""></a><i class="bx bx-heart"></i>&nbsp;42 --}}
                                         </div>

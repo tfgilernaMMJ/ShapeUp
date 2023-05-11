@@ -31,4 +31,10 @@ class Diet extends Model
     {
         return $this->belongsToMany(Ingredient::class, 'diet_ingredients');
     }
+
+    public function userFollowDiets()
+    {
+        return $this->hasMany(UserFollowDiet::class);
+    }
+
 }

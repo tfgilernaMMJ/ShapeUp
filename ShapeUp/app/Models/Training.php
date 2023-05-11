@@ -31,4 +31,10 @@ class Training extends Model
     {
         return $this->belongsToMany(Exercise::class, 'training_exercises');
     }
+
+    public function userFollowTrainings()
+    {
+        return $this->hasMany(UserFollowTraining::class);
+    }
+
 }

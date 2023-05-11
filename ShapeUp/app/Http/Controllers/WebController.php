@@ -29,7 +29,20 @@ class WebController extends Controller
         $numCoaches = User::where('status', 'Coach')->count();
         $numDiets = Diet::count();
         $numTrainings = Training::count();
-        return view('web.index', ['gyms' => $gyms, 'supermarkets' => $supermarkets, 'numUsers' => $numUsers, 'numCoaches' => $numCoaches, 'numDiets' => $numDiets, 'numTrainings' => $numTrainings]);
+
+        $trainingsWithMostLikes = Training::withCount('userFollowTrainings')
+            ->orderByDesc('user_follow_trainings_count')
+            ->take(3)
+            ->get();
+
+
+        $dietsWithMostLikes = Diet::withCount('userFollowDiets')
+            ->orderByDesc('user_follow_diets_count')
+            ->take(3)
+            ->get();
+        
+        return view('web.index', ['gyms' => $gyms, 'supermarkets' => $supermarkets, 'numUsers' => $numUsers, 'numCoaches' => $numCoaches, 'numDiets' => $numDiets, 'numTrainings' => $numTrainings, 'trainings' => $trainingsWithMostLikes, 'diets' => $dietsWithMostLikes]);
+            
     }
 
     public function indexTrainings(Request $request)
@@ -63,27 +76,51 @@ class WebController extends Controller
         return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'coaches' => $coaches, 'request' => $request]);
     }
 
-    public function followTrainings($action, $training_id)
+    public function followTrainings($action, $view, $training_id)
     {
         if ($action == 'follow') {
-            try {
-                $user_follow_trainings = new UserFollowTraining;
-                $user_follow_trainings->user_id = Auth::user()->id;
-                $user_follow_trainings->training_id = $training_id;
-                $user_follow_trainings->save();
-    
-                return redirect()->route('account.trainings')->with('success', 'Entrenamiento seguido correctamente.');
-            } catch (\Exception $e) {
-                return redirect()->route('account.trainings')->with('error', 'Ha ocurrido un error al seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+            if ($view == 'training') {
+                try {
+                    $user_follow_trainings = new UserFollowTraining;
+                    $user_follow_trainings->user_id = Auth::user()->id;
+                    $user_follow_trainings->training_id = $training_id;
+                    $user_follow_trainings->save();
+        
+                    return redirect()->route('account.trainings')->with('success', 'Entrenamiento seguido correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.trainings')->with('error', 'Ha ocurrido un error al seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+                }
+            } else {
+                try {
+                    $user_follow_trainings = new UserFollowTraining;
+                    $user_follow_trainings->user_id = Auth::user()->id;
+                    $user_follow_trainings->training_id = $training_id;
+                    $user_follow_trainings->save();
+        
+                    return redirect()->route('account.index')->with('successTraining', 'Entrenamiento seguido correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.index')->with('errorTraining', 'Ha ocurrido un error al seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+                }
             }
         } else if ($action == 'unfollow') {
-            try {
-                $user_id = Auth::user()->id;
-                UserFollowTraining::where('user_id', $user_id)->where('training_id', $training_id)->delete();
-    
-                return redirect()->route('account.trainings')->with('success', 'Entrenamiento dejado de seguir correctamente.');
-            } catch (\Exception $e) {
-                return redirect()->route('account.trainings')->with('error', 'Ha ocurrido un error al dejar de seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+            if ($view == 'training') {
+                try {
+                    $user_id = Auth::user()->id;
+                    UserFollowTraining::where('user_id', $user_id)->where('training_id', $training_id)->delete();
+        
+                    return redirect()->route('account.trainings')->with('success', 'Entrenamiento dejado de seguir correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.trainings')->with('error', 'Ha ocurrido un error al dejar de seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+                }
+            } else {
+                try {
+                    $user_id = Auth::user()->id;
+                    UserFollowTraining::where('user_id', $user_id)->where('training_id', $training_id)->delete();
+        
+                    return redirect()->route('account.index')->with('successTraining', 'Entrenamiento dejado de seguir correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.index')->with('errorTraining', 'Ha ocurrido un error al dejar de seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+                }
             }
         }        
     }
@@ -122,27 +159,51 @@ class WebController extends Controller
         return view('web.diets', ['diets' => $diets, 'categories' => $categories, 'coaches' => $coaches, 'request' => $request]);
     }
 
-    public function followDiets($action, $diet_id)
+    public function followDiets($action, $view, $diet_id)
     {
         if ($action == 'follow') {
-            try {
-                $user_follow_diets = new UserFollowDiet;
-                $user_follow_diets->user_id = Auth::user()->id;
-                $user_follow_diets->diet_id = $diet_id;
-                $user_follow_diets->save();
-    
-                return redirect()->route('account.diets')->with('success', 'Dieta seguida correctamente.');
-            } catch (\Exception $e) {
-                return redirect()->route('account.diets')->with('error', 'Ha ocurrido un error al seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+            if ($view == 'diet') {
+                try {
+                    $user_follow_diets = new UserFollowDiet;
+                    $user_follow_diets->user_id = Auth::user()->id;
+                    $user_follow_diets->diet_id = $diet_id;
+                    $user_follow_diets->save();
+        
+                    return redirect()->route('account.diets')->with('success', 'Dieta seguida correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.diets')->with('error', 'Ha ocurrido un error al seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+                }
+            } else {
+                try {
+                    $user_follow_diets = new UserFollowDiet;
+                    $user_follow_diets->user_id = Auth::user()->id;
+                    $user_follow_diets->diet_id = $diet_id;
+                    $user_follow_diets->save();
+        
+                    return redirect()->route('account.index')->with('successDiet', 'Dieta seguida correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.index')->with('errorDiet', 'Ha ocurrido un error al seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+                }
             }
         } else if ($action == 'unfollow') {
-            try {
-                $user_id = Auth::user()->id;
-                UserFollowDiet::where('user_id', $user_id)->where('diet_id', $diet_id)->delete();
-    
-                return redirect()->route('account.diets')->with('success', 'Dieta dejada de seguir correctamente.');
-            } catch (\Exception $e) {
-                return redirect()->route('account.diets')->with('error', 'Ha ocurrido un error al dejar de seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+            if ($view == 'diet') {
+                try {
+                    $user_id = Auth::user()->id;
+                    UserFollowDiet::where('user_id', $user_id)->where('diet_id', $diet_id)->delete();
+        
+                    return redirect()->route('account.diets')->with('success', 'Dieta dejada de seguir correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.diets')->with('error', 'Ha ocurrido un error al dejar de seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+                }
+            } else {
+                try {
+                    $user_id = Auth::user()->id;
+                    UserFollowDiet::where('user_id', $user_id)->where('diet_id', $diet_id)->delete();
+        
+                    return redirect()->route('account.index')->with('successDiet', 'Dieta dejada de seguir correctamente.');
+                } catch (\Exception $e) {
+                    return redirect()->route('account.index')->with('errorDiet', 'Ha ocurrido un error al dejar de seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+                }
             }
         }        
     }
