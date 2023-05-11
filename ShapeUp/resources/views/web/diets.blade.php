@@ -101,8 +101,8 @@
                                             <label for="dietslike_sort">Dietas:</label>
                                             <select type="text" class="form-control {{ $errors->has('dietslike_sort') ? ' is-invalid' : '' }}"" name="dietslike_sort">
                                                 <option value="" {{ $request->input('dietslike_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
-                                                <option value="like" {{ $request->input('dietslike_sort') == 'like' ? 'selected' : '' }}>Marcados como me gusta</option>
-                                                <option value="notlike" {{ $request->input('dietslike_sort') == 'notlike' ? 'selected' : '' }}>No marcados como me gusta</option>
+                                                <option value="like" {{ $request->input('dietslike_sort') == 'like' ? 'selected' : '' }}>Marcadas como me gusta</option>
+                                                <option value="notlike" {{ $request->input('dietslike_sort') == 'notlike' ? 'selected' : '' }}>No marcadas como me gusta</option>
                                             </select>
                                             @if ($errors->has('trainingslike_sort'))
                                                 <span class="invalid-feedback" role="alert">
@@ -120,35 +120,42 @@
                     </div>
                 </section>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    @foreach ($diets as $diet)
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-3">
-                            <div class="course-item">
-                                <img src="{{ asset('web/assets/img/diets.jpg') }}" class="img-fluid" alt="...">
-                                <div class="course-content">
-                                    {{-- <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4>Nivel: {{$training->level}}</h4>
-                                    </div> --}}
 
-                                    <h6><a href="{{route('account.diets.ingredients', ['diet_id' => $diet->id])}}">{{$diet->title}}</a></h6>
-                                    <p>{{$diet->description}}</p>
-                                    <div class="trainer d-flex justify-content-between align-items-center">
-                                        <div class="trainer-profile d-flex align-items-center">
-                                            <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                                            <span>{{ $diet->coach->name }}</span>
-                                        </div>
-                                        <div class="trainer-rank d-flex align-items-center">
-                                            @if(count(DB::table('user_follow_diets')->where('user_id', Auth::user()->id)->where('diet_id', $diet->id)->get()) > 0)
-                                                <a href="{{ route('account.diets.follow', ['action' => 'unfollow', 'view' => 'diet' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
-                                            @else       
-                                                <a href="{{ route('account.diets.follow', ['action' => 'follow', 'view' => 'diet' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
-                                            @endif
-                                            {{-- <a href=""></a><i class="bx bx-heart"></i>&nbsp;42 --}}
+                    @if (count($diets) == 0)
+                        <p>
+                            No se han encontrado resultados.
+                        </p>
+                    @else
+                        @foreach ($diets as $diet)
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-3">
+                                <div class="course-item">
+                                    <img src="{{ asset('web/assets/img/diets.jpg') }}" class="img-fluid" alt="...">
+                                    <div class="course-content">
+                                        {{-- <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h4>Nivel: {{$training->level}}</h4>
+                                        </div> --}}
+
+                                        <h6><a href="{{route('account.diets.ingredients', ['diet_id' => $diet->id])}}">{{$diet->title}}</a></h6>
+                                        <p>{{$diet->description}}</p>
+                                        <div class="trainer d-flex justify-content-between align-items-center">
+                                            <div class="trainer-profile d-flex align-items-center">
+                                                <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+                                                <span>{{ $diet->coach->name }}</span>
+                                            </div>
+                                            <div class="trainer-rank d-flex align-items-center">
+                                                @if(count(DB::table('user_follow_diets')->where('user_id', Auth::user()->id)->where('diet_id', $diet->id)->get()) > 0)
+                                                    <a href="{{ route('account.diets.follow', ['action' => 'unfollow', 'view' => 'diet' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart-fill"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
+                                                @else       
+                                                    <a href="{{ route('account.diets.follow', ['action' => 'follow', 'view' => 'diet' , 'diet_id' => $diet->id]) }}"><i class="bi bi-heart"></i></a>&nbsp;{{ count(DB::table('user_follow_diets')->where('diet_id', $diet->id)->get()) }}
+                                                @endif
+                                                {{-- <a href=""></a><i class="bx bx-heart"></i>&nbsp;42 --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
                 {{-- <div class="mt-3 align-items-center">
                     <div class="row">
