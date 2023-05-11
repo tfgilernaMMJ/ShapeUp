@@ -592,14 +592,12 @@ INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `
 (45, 'Carne picada', 3, NOW(), NOW()),
 (46, 'Clara de huevos', 5, NOW(), NOW()),
 
-
 (47, 'Aceite de oliva', 8, NOW(), NOW()),
 (48, 'Papa', 2, NOW(), NOW()),
 (49, 'Soya', 7, NOW(), NOW()),
 (50, 'Maíz', 6, NOW(), NOW()),
 (51, 'Alforfón', 7, NOW(), NOW()),
 (52, 'Amaranto', 8, NOW(), NOW()),
-
 
 (53, 'Tomates cherry', 2, NOW(), NOW()),
 (54, 'Pimiento rojo', 2, NOW(), NOW()),
@@ -619,8 +617,6 @@ INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `
 (66, 'Judías verdes', 7, NOW(), NOW()),
 (67, 'Tofu ahumado', 7, NOW(), NOW()),
 (68, 'Avena en copos', 6, NOW(), NOW());
-
-
 
 -- --------------------------------------------------------
 
@@ -650,7 +646,6 @@ INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, 
 (17, 3, 17, NOW(), NOW()),
 (18, 3, 18, NOW(), NOW()),
 
-
 (19, 4, 14, NOW(), NOW()),
 (20, 4, 19, NOW(), NOW()),
 (21, 4, 20, NOW(), NOW()),
@@ -664,7 +659,6 @@ INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, 
 (28, 5, 27, NOW(), NOW()),
 (29, 5, 28, NOW(), NOW()),
 (30, 5, 5, NOW(), NOW()),
-
 
 (31, 6, 29, NOW(), NOW()),
 (32, 6, 30, NOW(), NOW()),
@@ -761,4 +755,3 @@ INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created
 (10, 10, 6, NOW(), NOW()),
 (11, 11, 2, NOW(), NOW()),
 (12, 12, 4, NOW(), NOW()); */
-
