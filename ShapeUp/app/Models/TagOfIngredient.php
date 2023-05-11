@@ -9,6 +9,8 @@ class TagOfIngredient extends Model
 {
     use HasFactory;
 
+    protected $table = 'tags_of_ingredients';
+
     protected $fillable = [
         'name',
     ];

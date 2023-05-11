@@ -65,7 +65,7 @@ Route::post('/entrenamientos/filtros', [App\Http\Controllers\WebController::clas
 
 Route::get('/entrenamientos/ejercicios/{training_id}', [App\Http\Controllers\WebController::class, 'indexTrainingsExercises'])->name('account.trainings.exercises')->middleware('auth', 'supershapeup');
 
-Route::get('/entrenamientos/accion/{action}/{training_id}', [App\Http\Controllers\WebController::class, 'followTrainings'])->name('account.trainings.follow')->middleware('auth', 'supershapeup');
+Route::get('/entrenamientos/accion/{action}/{view}/{training_id}', [App\Http\Controllers\WebController::class, 'followTrainings'])->name('account.trainings.follow')->middleware('auth', 'supershapeup');
 
 // DIETS
 
@@ -75,7 +75,7 @@ Route::post('/dietas/filtros', [App\Http\Controllers\WebController::class, 'inde
 
 Route::get('/dietas/alimentos/{diet_id}', [App\Http\Controllers\WebController::class, 'indexDietsIngredients'])->name('account.diets.ingredients')->middleware('auth', 'supershapeup');
 
-Route::get('/dietas/accion/{action}/{diet_id}', [App\Http\Controllers\WebController::class, 'followDiets'])->name('account.diets.follow')->middleware('auth', 'supershapeup');
+Route::get('/dietas/accion/{action}/{view}/{diet_id}', [App\Http\Controllers\WebController::class, 'followDiets'])->name('account.diets.follow')->middleware('auth', 'supershapeup');
 
 // COACHES 
 
