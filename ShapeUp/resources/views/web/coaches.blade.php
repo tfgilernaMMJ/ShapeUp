@@ -152,6 +152,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{ $coaches->links() }}
             </div>
         </section>
     </main>

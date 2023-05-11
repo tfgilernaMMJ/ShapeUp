@@ -92,10 +92,11 @@ class WebController extends Controller
                 ->orderBy('followers_count', $sortDirection);
         }        
 
-        $coaches = $query->get();
+        $coaches = $query->paginate(10);
 
         return view('web.coaches', ['coaches' => $coaches, 'request' => $request]);
     }
+
 
     public function followCoaches($action, $coach_id)
     {
