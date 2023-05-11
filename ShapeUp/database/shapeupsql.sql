@@ -552,14 +552,42 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 -- Volcado de datos para la tabla `diets`
 --
 
-/* INSERT INTO `diets` (`id`, `title`, `description`, `tips`, `not_eat`, `user_coach_id`, `created_at`, `updated_at`) VALUES */
+INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `created_at`, `updated_at`) VALUES
+(1, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 24, NOW(), NOW()),
+(2, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 24, NOW(), NOW()),
+(3, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 24, NOW(), NOW()),
+
+(4, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 25, NOW(), NOW()),
+(5, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 25, NOW(), NOW()),
+(6, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 25, NOW(), NOW()),
+
+(7, 'Dieta baja en carbohidratos', 'Dieta diseñada para reducir el consumo de carbohidratos y promover la pérdida de peso.', 26, NOW(), NOW()),
+(8, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 26, NOW(), NOW()),
+(9, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 26, NOW(), NOW()),
+(10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, NOW(), NOW()),
+
+(11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, NOW(), NOW()),
+(12, 'Dieta vegana', 'Dieta diseñada para personas que no consumen ningún producto de origen animal.', 27, NOW(), NOW());
+
 -- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `diets_categories`
 --
 
-/* INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES */
+INSERT INTO `diets_categories` (`id`, `diet_id`, `category_of_diet_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NOW(), NOW()),
+(2, 2, 3, NOW(), NOW()),
+(3, 3, 6, NOW(), NOW()),
+(4, 4, 2, NOW(), NOW()),
+(5, 5, 3, NOW(), NOW()),
+(6, 6, 4, NOW(), NOW()),
+(7, 7, 1, NOW(), NOW()),
+(8, 8, 2, NOW(), NOW()),
+(9, 9, 5, NOW(), NOW()),
+(10, 10, 6, NOW(), NOW()),
+(11, 11, 2, NOW(), NOW()),
+(12, 12, 4, NOW(), NOW());
 
 
 -- --------------------------------------------------------
@@ -567,7 +595,90 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 --
 -- Volcado de datos para la tabla `ingredients`
 --
-/* INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `updated_at`) VALUES */
+INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `updated_at`) VALUES 
+(1, 'Pollo', 3, NOW(), NOW()),
+(2, 'Salmón', 4, NOW(), NOW()),
+(3, 'Brócoli', 2, NOW(), NOW()),
+(4, 'Huevos', 5, NOW(), NOW()),
+(5, 'Aguacate', 1, NOW(), NOW()),
+(6, 'Nueces', 8, NOW(), NOW()),
+
+(7, 'Espinacas', 2, NOW(), NOW()),
+(8, 'Garbanzos', 7, NOW(), NOW()),
+(9, 'Tofu', 7, NOW(), NOW()),
+(10, 'Arroz integral', 7, NOW(), NOW()),
+(11, 'Lentejas', 7, NOW(), NOW()),
+(12, 'Queso feta', 5, NOW(), NOW()),
+
+(13, 'Ternera', 3, NOW(), NOW()),
+(14, 'Atún', 4, NOW(), NOW()),
+(15, 'Quinoa', 8, NOW(), NOW()),
+(16, 'Arroz', 7, NOW(), NOW()),
+(17, 'Frijoles negros', 7, NOW(), NOW()),
+(18, 'Zanahoria', 2, NOW(), NOW()),
+
+(19, 'Queso cottage', 5, NOW(), NOW()),
+(20, 'Camarones', 4, NOW(), NOW()),
+(21, 'Yogur griego', 5, NOW(), NOW()),
+(22, 'Carne de res magra', 3, NOW(), NOW()),
+(23, 'Pavo molido', 3, NOW(), NOW()),
+
+(24, 'Apio', 2, NOW(), NOW()),
+(25, 'Guisantes', 7, NOW(), NOW()),
+(26, 'Pimiento rojo', 2, NOW(), NOW()),
+(27, 'Lechuga', 2, NOW(), NOW()),
+(28, 'Champiñones', 2, NOW(), NOW()),
+
+(29, 'Berenjena', 1, NOW(), NOW()),
+(30, 'Cebolla', 2, NOW(), NOW()),
+(31, 'Calabacín', 2, NOW(), NOW()),
+(32, 'Alubias negras', 7, NOW(), NOW()),
+(33, 'Leche de soja', 9, NOW(), NOW()),
+(34, 'Almendras', 8, NOW(), NOW()),
+
+(35, 'Espárragos', 2, NOW(), NOW()),
+(36, 'Coliflor', 2, NOW(), NOW()),
+(37, 'Queso cheddar', 5, NOW(), NOW()),
+(38, 'Acelgas', 2, NOW(), NOW()),
+(39, 'Tocino', 3, NOW(), NOW()),
+(40, 'Ajo', 2, NOW(), NOW()),
+
+(41, 'Pescado blanco', 4, NOW(), NOW()),
+(42, 'Ternera', 3, NOW(), NOW()),
+(43, 'Proteína en polvo', 8, NOW(), NOW()),
+(44, 'Pavo', 3, NOW(), NOW()),
+(45, 'Carne picada', 3, NOW(), NOW()),
+(46, 'Clara de huevos', 5, NOW(), NOW()),
+
+
+(47, 'Aceite de oliva', 8, NOW(), NOW()),
+(48, 'Papa', 2, NOW(), NOW()),
+(49, 'Soya', 7, NOW(), NOW()),
+(50, 'Maíz', 6, NOW(), NOW()),
+(51, 'Alforfón', 7, NOW(), NOW()),
+(52, 'Amaranto', 8, NOW(), NOW()),
+
+
+(53, 'Tomates cherry', 2, NOW(), NOW()),
+(54, 'Pimiento rojo', 2, NOW(), NOW()),
+(55, 'Cebolla roja', 2, NOW(), NOW()),
+(56, 'Aceitunas negras', 8, NOW(), NOW()),
+(57, 'Frijoles', 7, NOW(), NOW()),
+
+(58, 'Anacardos', 8, NOW(), NOW()),
+(59, 'Queso de cabra', 5, NOW(), NOW()),
+(60, 'Queso fresco', 5, NOW(), NOW()),
+(61, 'Chuleta de cerdo', 3, NOW(), NOW()),
+(62, 'Gambas', 4, NOW(), NOW()),
+(63, 'Higado de pollo', 3, NOW(), NOW()),
+
+(64, 'Tomate', 2, NOW(), NOW()),
+(65, 'Pepino', 2, NOW(), NOW()),
+(66, 'Judías verdes', 7, NOW(), NOW()),
+(67, 'Tofu ahumado', 7, NOW(), NOW()),
+(68, 'Avena en copos', 6, NOW(), NOW());
+
+
 
 -- --------------------------------------------------------
 
@@ -575,4 +686,92 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 -- Volcado de datos para la tabla `diet_ingredients`
 --
 
-/* INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, `updated_at`) VALUES */
+INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, `updated_at`) VALUES 
+(1, 1, 1, NOW(), NOW()),
+(2, 1, 2, NOW(), NOW()),
+(3, 1, 3, NOW(), NOW()),
+(4, 1, 4, NOW(), NOW()),
+(5, 1, 5, NOW(), NOW()),
+(6, 1, 6, NOW(), NOW()),
+
+(7, 2, 7, NOW(), NOW()),
+(8, 2, 8, NOW(), NOW()),
+(9, 2, 9, NOW(), NOW()),
+(10, 2, 10, NOW(), NOW()),
+(11, 2, 11, NOW(), NOW()),
+(12, 2, 12, NOW(), NOW()),
+
+(13, 3, 13, NOW(), NOW()),
+(14, 3, 14, NOW(), NOW()),
+(15, 3, 15, NOW(), NOW()),
+(16, 3, 16, NOW(), NOW()),
+(17, 3, 17, NOW(), NOW()),
+(18, 3, 18, NOW(), NOW()),
+
+
+(19, 4, 14, NOW(), NOW()),
+(20, 4, 19, NOW(), NOW()),
+(21, 4, 20, NOW(), NOW()),
+(22, 4, 21, NOW(), NOW()),
+(23, 4, 22, NOW(), NOW()),
+(24, 4, 23, NOW(), NOW()),
+
+(25, 5, 24, NOW(), NOW()),
+(26, 5, 25, NOW(), NOW()),
+(27, 5, 26, NOW(), NOW()),
+(28, 5, 27, NOW(), NOW()),
+(29, 5, 28, NOW(), NOW()),
+(30, 5, 5, NOW(), NOW()),
+
+
+(31, 6, 29, NOW(), NOW()),
+(32, 6, 30, NOW(), NOW()),
+(33, 6, 31, NOW(), NOW()),
+(34, 6, 32, NOW(), NOW()),
+(35, 6, 33, NOW(), NOW()),
+(36, 6, 34, NOW(), NOW()),
+
+(37, 7, 35, NOW(), NOW()),
+(38, 7, 36, NOW(), NOW()),
+(39, 7, 37, NOW(), NOW()),
+(40, 7, 38, NOW(), NOW()),
+(41, 7, 39, NOW(), NOW()),
+(42, 7, 40, NOW(), NOW()),
+
+(43, 8, 41, NOW(), NOW()),
+(44, 8, 42, NOW(), NOW()),
+(45, 8, 43, NOW(), NOW()),
+(46, 8, 44, NOW(), NOW()),
+(47, 8, 45, NOW(), NOW()),
+(48, 8, 46, NOW(), NOW()),
+
+(49, 9, 47, NOW(), NOW()),
+(50, 9, 48, NOW(), NOW()),
+(51, 9, 49, NOW(), NOW()),
+(52, 9, 50, NOW(), NOW()),
+(53, 9, 51, NOW(), NOW()),
+(54, 9, 52, NOW(), NOW()),
+
+(55, 10, 53, NOW(), NOW()),
+(56, 10, 54, NOW(), NOW()),
+(57, 10, 55, NOW(), NOW()),
+(58, 10, 56, NOW(), NOW()),
+(59, 10, 57, NOW(), NOW()),
+(60, 10, 7, NOW(), NOW()),
+
+(61, 11, 58, NOW(), NOW()),
+(62, 11, 59, NOW(), NOW()),
+(63, 11, 60, NOW(), NOW()),
+(64, 11, 61, NOW(), NOW()),
+(65, 11, 62, NOW(), NOW()),
+(66, 11, 63, NOW(), NOW()),
+
+(67, 12, 64, NOW(), NOW()),
+(68, 12, 65, NOW(), NOW()),
+(69, 12, 66, NOW(), NOW()),
+(70, 12, 67, NOW(), NOW()),
+(71, 12, 68, NOW(), NOW()),
+(72, 12, 36, NOW(), NOW());
+
+
+
