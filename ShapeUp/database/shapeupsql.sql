@@ -652,13 +652,11 @@ INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `
 (84, 'Edamame', 2, NOW(), NOW()),
 (85, 'Crema de cacahuete', 5, NOW(), NOW()),
 
-(86,' Albahaca', 2, NOW(), NOW()),
+(86, 'Albahaca', 2, NOW(), NOW()),
 (87, 'Fresas', 1, NOW(), NOW()),
 (88, 'Sardinas', 4, NOW(), NOW()),
 (89, 'Papaya', 1, NOW(), NOW()),
 (90, 'Jengibre', 2, NOW(), NOW());
-
-
 
 -- --------------------------------------------------------
 
@@ -799,6 +797,15 @@ INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, 
 (130, 22, 55, NOW(), NOW()),
 (131, 22, 56, NOW(), NOW()),
 (132, 22, 57, NOW(), NOW());
+
+-- --------------------------------------------------------
+
+--
+-- Alter table de suscription_id para la tabla `users`
+--
+
+ALTER TABLE users
+ALTER COLUMN suscription_id SET DEFAULT 1;
 
 
 /* TABLAS COMENTADAS POR SI ACASO: 
