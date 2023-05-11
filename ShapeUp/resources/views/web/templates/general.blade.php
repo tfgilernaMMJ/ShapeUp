@@ -49,10 +49,18 @@
         @yield('trainings-section')
         @yield('trainings-exercises-section')
 
+        {{-- EXERCISES --}}
+
+        @yield('exercises-section')
+
         {{-- DIETS --}}
 
         @yield('diets-section')
         @yield('diets-ingredients-section')
+
+        {{-- INGREDIENTS --}}
+
+        @yield('ingredients-section')
 
         {{-- COACHES --}}
 
