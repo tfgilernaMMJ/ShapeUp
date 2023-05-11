@@ -51,6 +51,7 @@
         {{-- DIETS --}}
 
         @yield('diets-section')
+        @yield('diets-ingredients-section')
 
         {{-- COACHES --}}
 

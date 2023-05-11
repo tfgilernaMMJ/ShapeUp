@@ -150,8 +150,8 @@ class WebController extends Controller
     public function indexDietsIngredients($diet_id)
     {
         $diet = Diet::find($diet_id);
-        $ingredient = $diet->ingredient()->get();
-        return view('web.dietingredients', [ 'ingredient' => $ingredient]);       
+        $ingredients = $diet->ingredient()->get();
+        return view('web.dietingredients', [ 'ingredients' => $ingredients]);       
     }
 
     public function indexCoaches(Request $request)

@@ -26,4 +26,9 @@ class Diet extends Model
     {
         return $this->belongsToMany(CategoryOfDiet::class, 'diets_categories', 'diet_id', 'category_of_diet_id');
     }
+
+    public function ingredient()
+    {
+        return $this->belongsToMany(Ingredient::class, 'diet_ingredients');
+    }
 }
