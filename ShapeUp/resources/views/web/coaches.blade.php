@@ -135,35 +135,41 @@
                     </div>
                 </section>
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">  
-                    @foreach ($coaches as $coach)
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                            <div class="member">
-                                <img src="{{ asset('web/assets/img/coaches/'. $coach->photo) }}" class="img-fluid" alt="">
-                                <div class="member-content">
-                                    <h4>{{ $coach->name }}</h4>
-                                    <span>País: {{ $coach->country }}</span>
-                                    <span>Edad: {{ $coach->age }}</span>
-                                    <span>Experiencia: {{ $coach->experience }}</span>
-                                    <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('user_coach_id', $coach->id)->get()) }}</span>
-                                    <span>Entrenamientos: {{ count(DB::table('trainings')->where('user_coach_id', $coach->id)->get()) }}</span>
-                                    <span>Dietas: {{ count(DB::table('diets')->where('user_coach_id', $coach->id)->get()) }}</span>
-                                    <p>
-                                        {{ $coach->biography }}
-                                    </p>
-                                    <div class="social">
-                                        @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('user_coach_id', $coach->id)->get()) > 0)
-                                            <a href="{{ route('account.coaches.follow', ['action' => 'unfollow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
-                                            @if (Auth::user()->suscription_id == 2)       
-                                                <a href="{{ route('account.coaches.message', ['coach_id' => $coach->id]) }}"><i class="bi bi-chat-left-dots-fill"></i></a>
+                    @if (count($coaches) == 0)
+                        <p>
+                            No se han encontrado resultados.
+                        </p>
+                    @else
+                        @foreach ($coaches as $coach)
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                <div class="member">
+                                    <img src="{{ asset('web/assets/img/coaches/'. $coach->photo) }}" class="img-fluid" alt="">
+                                    <div class="member-content">
+                                        <h4>{{ $coach->name }}</h4>
+                                        <span>País: {{ $coach->country }}</span>
+                                        <span>Edad: {{ $coach->age }}</span>
+                                        <span>Experiencia: {{ $coach->experience }}</span>
+                                        <span>Seguidores: {{ count(DB::table('user_follow_coaches')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                        <span>Entrenamientos: {{ count(DB::table('trainings')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                        <span>Dietas: {{ count(DB::table('diets')->where('user_coach_id', $coach->id)->get()) }}</span>
+                                        <p>
+                                            {{ $coach->biography }}
+                                        </p>
+                                        <div class="social">
+                                            @if(count(DB::table('user_follow_coaches')->where('user_id', Auth::user()->id)->where('user_coach_id', $coach->id)->get()) > 0)
+                                                <a href="{{ route('account.coaches.follow', ['action' => 'unfollow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart-fill"></i></a>
+                                                @if (Auth::user()->suscription_id == 2)       
+                                                    <a href="{{ route('account.coaches.message', ['coach_id' => $coach->id]) }}"><i class="bi bi-chat-left-dots-fill"></i></a>
+                                                @endif
+                                            @else       
+                                                <a href="{{ route('account.coaches.follow', ['action' => 'follow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart"></i></a>
                                             @endif
-                                        @else       
-                                            <a href="{{ route('account.coaches.follow', ['action' => 'follow', 'coach_id' => $coach->id]) }}"><i class="bi bi-heart"></i></a>
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
                 {{ $coaches->links() }}
             </div>
