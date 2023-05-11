@@ -14,6 +14,7 @@ use App\Models\Supermarket;
 use App\Models\User;
 use App\Models\Diet;
 use App\Models\Training;
+use App\Models\CategoryOfTraining;
 use App\Models\UserFollowTraining;
 
 class WebController extends Controller
@@ -29,11 +30,14 @@ class WebController extends Controller
         return view('web.index', ['gyms' => $gyms, 'supermarkets' => $supermarkets, 'numUsers' => $numUsers, 'numCoaches' => $numCoaches, 'numDiets' => $numDiets, 'numTrainings' => $numTrainings]);
     }
 
-    public function indexTrainings()
+    public function indexTrainings(Request $request)
     {
-        $trainings = Training::all();
-        return view('web.trainings', [ 'trainings' => $trainings ]);       
-    }
+        $trainings = Training::paginate(10);
+
+        $categories = CategoryOfTraining::all();
+            
+        return view('web.trainings', ['trainings' => $trainings, 'categories' => $categories, 'request' => $request,]);
+    } 
 
     public function followTrainings($action, $training_id)
     {

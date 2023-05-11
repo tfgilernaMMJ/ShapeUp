@@ -9,6 +9,8 @@ class CategoryOfTraining extends Model
 {
     use HasFactory;
 
+    protected $table = 'categories_of_trainings';
+
     protected $fillable = [
         'name',
     ];
