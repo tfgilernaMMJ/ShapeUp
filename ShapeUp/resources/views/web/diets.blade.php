@@ -56,7 +56,7 @@
                                 <form action="{{route('account.diets.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-3 form-group">
                                             <label for="category_sort">Categoría:</label>
                                             <select type="text" class="form-control {{ $errors->has('category_sort') ? ' is-invalid' : '' }}"" name="category_sort">
                                                 <option value="" {{ $request->input('category_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -70,7 +70,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
+                                        <div class="col-md-3 form-group mt-3 mt-md-0">
                                             <label for="coach_sort">Entrenador:</label>
                                             <select type="text" class="form-control {{ $errors->has('coach_sort') ? ' is-invalid' : '' }}"" name="coach_sort">
                                                 <option value="" {{ $request->input('coach_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -84,7 +84,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-4 form-group mt-3 mt-md-0">
+                                        <div class="col-md-3 form-group mt-3 mt-md-0">
                                             <label for="like_sort">Número de me gustas:</label>
                                             <select type="text" class="form-control {{ $errors->has('like_sort') ? ' is-invalid' : '' }}"" name="like_sort">
                                                 <option value="" {{ $request->input('like_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -94,6 +94,19 @@
                                             @if ($errors->has('like_sort'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('like_sort') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                            <label for="dietslike_sort">Dietas:</label>
+                                            <select type="text" class="form-control {{ $errors->has('dietslike_sort') ? ' is-invalid' : '' }}"" name="dietslike_sort">
+                                                <option value="" {{ $request->input('dietslike_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="like" {{ $request->input('dietslike_sort') == 'like' ? 'selected' : '' }}>Marcados como me gusta</option>
+                                                <option value="notlike" {{ $request->input('dietslike_sort') == 'notlike' ? 'selected' : '' }}>No marcados como me gusta</option>
+                                            </select>
+                                            @if ($errors->has('trainingslike_sort'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('trainingslike_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
