@@ -47,7 +47,7 @@
                     <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
                         <div class="box featured">
                             <h3>SuperShapeUp</h3>
-                            <h4><sup>€</sup>9.99<span> / mes</span></h4>
+                            <h4><sup>€</sup>4.99<span> / mes</span></h4>
                             <ul>
                                 <li>Ver ejercicios ShapeUp</li>
                                 <li>Ver alimentos ShapeUp</li>
