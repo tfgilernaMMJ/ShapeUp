@@ -130,7 +130,7 @@
             </div>
         </section>
 
-        <section id="popular-courses" class="courses">
+        <section id="entrenamientos-populares" class="courses">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -207,7 +207,7 @@
             </div>
         </section>
 
-        <section id="popular-courses" class="courses">
+        <section id="dietas-populares" class="courses">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">

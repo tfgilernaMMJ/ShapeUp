@@ -67,7 +67,21 @@ class WebController extends Controller
                 ->select('trainings.*', DB::raw('count(user_follow_trainings.id) as likes_count'))
                 ->groupBy('trainings.id')
                 ->orderBy('likes_count', $sortDirection);
-        }        
+        }  
+        
+        if ($request->input('trainingslike_sort') == 'like') {
+            $query->whereExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                    ->from('user_follow_trainings')
+                    ->whereColumn('trainings.id', 'user_follow_trainings.training_id');
+            });
+        } else if ($request->input('trainingslike_sort') == 'notlike') {
+            $query->whereNotExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                    ->from('user_follow_trainings')
+                    ->whereColumn('trainings.id', 'user_follow_trainings.training_id');
+            });
+        }
 
         $trainings = $query->paginate(10);
         $categories = CategoryOfTraining::all();
@@ -97,9 +111,9 @@ class WebController extends Controller
                     $user_follow_trainings->training_id = $training_id;
                     $user_follow_trainings->save();
         
-                    return redirect()->route('account.index')->with('successTraining', 'Entrenamiento seguido correctamente.');
+                    return redirect()->to(route('account.index') . '#entrenamientos-populares')->with('successTraining', 'Entrenamiento seguido correctamente.');
                 } catch (\Exception $e) {
-                    return redirect()->route('account.index')->with('errorTraining', 'Ha ocurrido un error al seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+                    return redirect()->to(route('account.index') . '#entrenamientos-populares')->with('errorTraining', 'Ha ocurrido un error al seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
                 }
             }
         } else if ($action == 'unfollow') {
@@ -117,9 +131,9 @@ class WebController extends Controller
                     $user_id = Auth::user()->id;
                     UserFollowTraining::where('user_id', $user_id)->where('training_id', $training_id)->delete();
         
-                    return redirect()->route('account.index')->with('successTraining', 'Entrenamiento dejado de seguir correctamente.');
+                    return redirect()->to(route('account.index') . '#entrenamientos-populares')->with('successTraining', 'Entrenamiento dejado de seguir correctamente.');
                 } catch (\Exception $e) {
-                    return redirect()->route('account.index')->with('errorTraining', 'Ha ocurrido un error al dejar de seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
+                    return redirect()->to(route('account.index') . '#entrenamientos-populares')->with('errorTraining', 'Ha ocurrido un error al dejar de seguir el entrenamiento. Por favor, inténtalo de nuevo más tarde.');
                 }
             }
         }        
@@ -152,6 +166,20 @@ class WebController extends Controller
                 ->orderBy('likes_count', $sortDirection);
         } 
 
+        if ($request->input('dietslike_sort') == 'like') {
+            $query->whereExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                    ->from('user_follow_diets')
+                    ->whereColumn('diets.id', 'user_follow_diets.diet_id');
+            });
+        } else if ($request->input('dietslike_sort') == 'notlike') {
+            $query->whereNotExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                    ->from('user_follow_diets')
+                    ->whereColumn('diets.id', 'user_follow_diets.diet_id');
+            });
+        }
+
         $diets = $query->paginate(10);
         $categories = CategoryOfDiet::all();
         $coaches = User::where('status', 'Coach')->get();
@@ -180,9 +208,9 @@ class WebController extends Controller
                     $user_follow_diets->diet_id = $diet_id;
                     $user_follow_diets->save();
         
-                    return redirect()->route('account.index')->with('successDiet', 'Dieta seguida correctamente.');
+                    return redirect()->to(route('account.index') . '#dietas-populares')->with('successDiet', 'Dieta seguida correctamente.');
                 } catch (\Exception $e) {
-                    return redirect()->route('account.index')->with('errorDiet', 'Ha ocurrido un error al seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+                    return redirect()->to(route('account.index') . '#dietas-populares')->with('errorDiet', 'Ha ocurrido un error al seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
                 }
             }
         } else if ($action == 'unfollow') {
@@ -200,9 +228,9 @@ class WebController extends Controller
                     $user_id = Auth::user()->id;
                     UserFollowDiet::where('user_id', $user_id)->where('diet_id', $diet_id)->delete();
         
-                    return redirect()->route('account.index')->with('successDiet', 'Dieta dejada de seguir correctamente.');
+                    return redirect()->to(route('account.index') . '#dietas-populares')->with('successDiet', 'Dieta dejada de seguir correctamente.');
                 } catch (\Exception $e) {
-                    return redirect()->route('account.index')->with('errorDiet', 'Ha ocurrido un error al dejar de seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
+                    return redirect()->to(route('account.index') . '#dietas-populares')->with('errorDiet', 'Ha ocurrido un error al dejar de seguir la dieta. Por favor, inténtalo de nuevo más tarde.');
                 }
             }
         }        
@@ -238,7 +266,21 @@ class WebController extends Controller
                 ->select('users.*', DB::raw('count(user_follow_coaches.id) as followers_count'))
                 ->groupBy('users.id')
                 ->orderBy('followers_count', $sortDirection);
-        }        
+        }
+        
+        if ($request->input('coacheslike_sort') == 'like') {
+            $query->whereExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                    ->from('user_follow_coaches')
+                    ->whereColumn('users.id', 'user_follow_coaches.user_coach_id');
+            });
+        } else if ($request->input('coacheslike_sort') == 'notlike') {
+            $query->whereNotExists(function ($subquery) {
+                $subquery->select(DB::raw(1))
+                    ->from('user_follow_coaches')
+                    ->whereColumn('users.id', 'user_follow_coaches.user_coach_id');
+            });
+        }
 
         $coaches = $query->paginate(10);
 

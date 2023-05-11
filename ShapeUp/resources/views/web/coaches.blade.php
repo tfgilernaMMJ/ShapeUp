@@ -60,7 +60,7 @@
                                 <form action="{{route('account.coaches.filters')}}" method="post" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-3 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="name_sort">Nombre:</label>
                                             <select type="text" class="form-control" name="name_sort">
                                                 <option value="" {{ $request->input('name_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -73,7 +73,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                        <div class="col-md-4 form-group mt-3 mt-md-0">
                                             <label for="age_sort">Edad:</label>
                                             <select type="text" class="form-control {{ $errors->has('age_sort') ? ' is-invalid' : '' }}"" name="age_sort">
                                                 <option value="" {{ $request->input('age_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -86,7 +86,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mt-3 mt-md-0">
+                                        <div class="col-md-4 form-group mt-3 mt-md-0">
                                             <label for="experience_sort">Experiencia:</label>
                                             <select type="text" class="form-control {{ $errors->has('experience_sort') ? ' is-invalid' : '' }}"" name="experience_sort">
                                                 <option value="" {{ $request->input('experience_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -99,7 +99,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group">
+                                        <div class="col-md-6 form-group mt-3 mt-md-0">
                                             <label for="followers_sort">Número de seguidores:</label>
                                             <select type="text" class="form-control {{ $errors->has('followers_sort') ? ' is-invalid' : '' }}"" name="followers_sort">
                                                 <option value="" {{ $request->input('followers_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
@@ -109,6 +109,19 @@
                                             @if ($errors->has('followers_sort'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('followers_sort') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                                            <label for="coacheslike_sort">Entrenadores:</label>
+                                            <select type="text" class="form-control {{ $errors->has('coacheslike_sort') ? ' is-invalid' : '' }}"" name="coacheslike_sort">
+                                                <option value="" {{ $request->input('coacheslike_sort') == '' ? 'selected' : '' }}>Sin filtro</option>
+                                                <option value="like" {{ $request->input('coacheslike_sort') == 'like' ? 'selected' : '' }}>Seguidos</option>
+                                                <option value="notlike" {{ $request->input('coacheslike_sort') == 'notlike' ? 'selected' : '' }}>No seguidos</option>
+                                            </select>
+                                            @if ($errors->has('coacheslike_sort'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('coacheslike_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
