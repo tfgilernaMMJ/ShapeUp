@@ -99,7 +99,8 @@ INSERT INTO `categories_of_trainings` (`id`, `name`, `created_at`, `updated_at`)
 (3, 'Entrenamiento de perdida de peso', NOW(), NOW()),
 (4, 'Entrenamiento de flexibilidad', NOW(), NOW()),
 (5, 'Entrenamiento de equilibrio y coordinación', NOW(), NOW()),
-(6, 'Entrenamiento de velocidad y agilidad', NOW(), NOW());
+(6, 'Entrenamiento de velocidad y agilidad', NOW(), NOW()),
+(7, 'Sin categoría', NOW(), NOW());
 
 --
 -- Volcado de datos para la tabla `tags_of_exercises`
@@ -125,7 +126,8 @@ INSERT INTO `tags_of_exercises` (`id`, `name`, `created_at`, `updated_at`) VALUE
 (17, 'Peso corporal',  NOW(), NOW()),
 (18, 'Resistencia',  NOW(), NOW()),
 (19, 'Velocidad',  NOW(), NOW()),
-(20, 'Potencia',  NOW(), NOW());
+(20, 'Potencia',  NOW(), NOW()),
+(21, 'Sin tipo', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -307,7 +309,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (123, 'Peso muerto con barra', 55, 10, 4, 'https://www.youtube.com/watch?v=7KL8SgCP4KQ&t=1s', 3, 29, NOW(), NOW()),
 (124, 'Remo con barra', 45, 10, 4, 'https://www.youtube.com/watch?v=3uiWjik2yEQ', 2, 29, NOW(), NOW()),
 (125, 'Flexiones de brazos con peso', 40, 10, 4, 'https://www.youtube.com/watch?v=FvRebC-q5jQ', 1, 29, NOW(), NOW()),
-(126,'Estiramientos de cuello', 30, 2, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 11, 29, NOW(), NOW()),
+(126, 'Estiramientos de cuello', 30, 2, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 11, 29, NOW(), NOW()),
 (127,'Estiramiento de hombros', 30, 2, 3, 'https://www.youtube.com/watch?v=OLtUiP0XC4Q&t=234s', 11, 29, NOW(), NOW()),
 (128,'Estiramiento de pierna', 30, 2, 3, 'https://www.youtube.com/watch?v=txsha7BIlDo', 11, 29, NOW(), NOW()),
 (129,'Estiramiento de espalda baja', 30, 2, 3, 'https://www.youtube.com/watch?v=uejkZ4sWi3w', 11, 29, NOW(), NOW()),
@@ -317,7 +319,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (133,'Estiramiento de tobillos', 30, 2, 3, 'https://www.youtube.com/watch?v=H-3VqgEuSVk', 11, 29, NOW(), NOW()),
 (134,'Estiramiento de glúteos', 30, 2, 3, 'https://www.youtube.com/watch?v=ettY0W0qswA&t=292s', 11, 29, NOW(), NOW()),
 (135,'Estiramiento de caderas', 30, 2, 3, 'https://www.youtube.com/watch?v=JvFIcfNPsiQ', 11, 29, NOW(), NOW()),
-(136, 'Equilibrio sobre un pie', 30, 2, 3, 'https://www.youtube.com/watch?v=uGS7PzNij2c', 10, 29, NOW(), NOW()),
+(136,'Equilibrio sobre un pie', 30, 2, 3, 'https://www.youtube.com/watch?v=uGS7PzNij2c', 10, 29, NOW(), NOW()),
 (137, 'Saltos laterales', 30, 2, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 15, 29, NOW(), NOW()),
 (138, 'Elevación de talones', 30, 2, 3, 'https://www.youtube.com/watch?v=hBS3yt6nY9s', 10, 29, NOW(), NOW()),
 (139, 'Paso de vallas', 30 , 2, 3, 'https://www.youtube.com/watch?v=93VgZSjdr4I', 15, 29, NOW(), NOW()),
@@ -490,7 +492,8 @@ INSERT INTO `categories_of_diets` (`id`, `name`, `created_at`, `updated_at`) VAL
 (3, 'Dieta vegetariana', NOW(), NOW()),
 (4, 'Dieta vegana', NOW(), NOW()),
 (5, 'Dieta sin gluten', NOW(), NOW()),
-(6, 'Dieta flexible', NOW(), NOW());
+(6, 'Dieta flexible', NOW(), NOW()),
+(7, 'Sin categoría', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -507,7 +510,8 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 (6, 'Cereales y productos de panadería', NOW(), NOW()),
 (7, 'Legumbres', NOW(), NOW()),
 (8, 'Frutos secos y semillas', NOW(), NOW()),
-(9, 'Bebidas', NOW(), NOW());
+(9, 'Bebidas', NOW(), NOW()),
+(10, 'Sin tipo', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -519,26 +523,20 @@ INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `category_of
 (1, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 24, 1, NOW(), NOW()),
 (2, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 24, 3, NOW(), NOW()),
 (3, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 24, 6, NOW(), NOW()),
-
 (4, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 25, 2, NOW(), NOW()),
 (5, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 25, 3, NOW(), NOW()),
 (6, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 25, 4, NOW(), NOW()),
-
 (7, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 26, 1, NOW(), NOW()),
 (8, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 26, 2, NOW(), NOW()),
 (9, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 26, 5, NOW(), NOW()),
 (10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, 6, NOW(), NOW()),
-
 (11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, 2, NOW(), NOW()),
 (12, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 27, 4, NOW(), NOW()),
 (13, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 27, 5, NOW(), NOW()),
 (14, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 27, 6, NOW(), NOW()),
-
 (15, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 28, 2, NOW(), NOW()),
 (16, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 28, 3, NOW(), NOW()),
 (17, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 28, 5, NOW(), NOW()),
-
-
 (18, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 29, 1, NOW(), NOW()),
 (19, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 29, 2, NOW(), NOW()),
 (20, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 29, 4, NOW(), NOW()),
