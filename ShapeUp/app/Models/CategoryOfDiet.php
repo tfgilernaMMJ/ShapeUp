@@ -9,6 +9,7 @@ class CategoryOfDiet extends Model
 {
     use HasFactory;
 
+    protected $table = 'categories_of_diets';
     protected $fillable = [
         'name',
     ];

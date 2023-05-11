@@ -58,7 +58,7 @@
                                 <li><a href="{{ route('account.profile') }}" class="@yield('profile-nav')">Perfil</a></li>
                             @endif
                             @if (Auth::user()->status == 'Admin')   
-                                <li><a href="#">Administración</a></li>
+                                <li><a href="{{ route('admin') }}">Administración</a></li>
                             @elseif (Auth::user()->status == 'Coach')
                                 <li><a href="{{ route('admin-coach') }}">Administración</a></li>
                             @endif
