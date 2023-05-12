@@ -17,8 +17,8 @@
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                            @foreach($columns as $key => $column)
-                                <th class="px-4 py-3">{{$column}}</th>
+                            @foreach($columnsNames as $key => $columnsName)
+                            <th class="px-4 py-3">{{$columnsName}}</th>
                             @endforeach
                         </tr>
                     </thead>
@@ -33,32 +33,48 @@
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>
-                                    <p class="font-semibold">{{$row[$columns[0]]}}</p>
-
+                                        @if(!empty($row[$columns[0]]))
+                                        <p class="font-semibold">{{$row[$columns[0]]}}</p>
+                                        {{ $row->id}}
+                                        @endif
                                     </div>
                                 </div>
                             </td>
+                            @if(!empty($row[$columns[1]]))
                             <td class="px-4 py-3 text-xs">
                                 <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    @if (is_object($row[$columns[1]]))
+                                    {{$row[$columns[1]]->name}}
+                                    @else
                                     {{$row[$columns[1]]}}
+                                    @endif
                                 </span>
                             </td>
+                            @endif
+                            @if(count($columns) > 2)
+                            @if(!empty($row[$columns[2]]))
                             <td class="px-4 py-3 text-xs">
                                 <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                @if (is_object($row[$columns[2]]))
+                                    @if (is_object($row[$columns[2]]))
                                     {{$row[$columns[2]]->name}}
-                                @else
+                                    @else
                                     {{$row[$columns[2]]}}
-                                @endif
+                                    @endif
                                 </span>
                             </td>
+                            @endif
+                            @endif
+                            @if(count($columns) > 3)
+                            @if(!empty($row[$columns[3]]))
                             <td class="px-4 py-3 text-sm">
                                 @if (is_object($row[$columns[3]]))
-                                    {{$row[$columns[3]]->name}}
+                                {{$row[$columns[3]]->name}}
                                 @else
-                                    {{$row[$columns[3]]}}
+                                {{$row[$columns[3]]}}
                                 @endif
                             </td>
+                            @endif
+                            @endif
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
                                     <button data-bs-toggle="modal" data-bs-target="#modalId" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit" data-toggle="modal" data-target="#editModal">
@@ -67,7 +83,8 @@
                                         </svg>
                                     </button>
 
-                                    <button data-bs-toggle="modal" data-bs-target="#modalDelete" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete" data-toggle="modal" data-target="#deleteModal">
+                                    <button data-bs-toggle="modal" data-bs-target="#modalId-{{$row->id}}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete" data-toggle="modal" data-target="#deleteModal-{{$row->id}}">
+
                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                         </svg>
@@ -80,7 +97,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                                                    <h5 class="modal-title" id="modalTitleId">Borrar {{$createTexxtButton}}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -97,21 +114,52 @@
                                     </div>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                    <div class="modal fade" id="modalId-{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                                                    <h5 class="modal-title" id="modalTitleId">Borrar {{$createTexxtButton}}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="container-fluid">
-                                                        eldiablo
+                                                        Deseas borrar el {{$createTexxtButton}}
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save</button>
+                                                @if (request()->route()->getName() == 'admin.coaches')
+                                                    <form action="{{ route('destroy', ['type' => 'coach', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.users')
+                                                    <form action="{{ route('destroy', ['type' => 'user', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.admins')
+                                                    <form action="{{ route('destroy', ['type' => 'admin', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.trainings') 
+                                                    <form action="{{ route('destroy', ['type' => 'training', 'id' => $row->id]) }}" method="POST" name="form_{{$key}}">
+                                                @elseif (request()->route()->getName() == 'admin.exercises') 
+                                                    <form action="{{ route('destroy', ['type' => 'exercise', 'id' =>  $row->id]) }}" method="POST" name="form_{{$key}}">
+                                                    {{ $row->id}}
+                                                    @elseif (request()->route()->getName() == 'admin.diets') 
+                                                    <form action="{{ route('destroy', ['type' => 'diet', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.ingredients') 
+                                                    <form action="{{ route('destroy', ['type' => 'ingredient', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.gyms') 
+                                                    <form action="{{ route('destroy', ['type' => 'gym', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.markets') 
+                                                    <form action="{{ route('destroy', ['type' => 'market', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.exercises-categories') 
+                                                    <form action="{{ route('destroy', ['type' => 'exercises-categories', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.trainings-categories') 
+                                                    <form action="{{ route('destroy', ['type' => 'trainings-categories', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.diets-categories') 
+                                                    <form action="{{ route('destroy', ['type' => 'diets-categories', 'id' => $row->id]) }}" method="POST">
+                                                @elseif (request()->route()->getName() == 'admin.ingredients-categories') 
+                                                    <form action="{{ route('destroy', ['type' => 'ingredients-categories', 'id' => $row->id]) }}" method="POST">
+                                                @endif
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Eliminar</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-primary">No</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +176,7 @@
 
                                             // Use above variables to manipulate the DOM
                                         });
-                                        var modalDelete = document.getElementById('modalDelete');
+                                        var modalDelete = document.getElementById('modalDelete-{{$row->id}}');
 
                                         modalDelete.addEventListener('show.bs.modal', function(event) {
                                             // Button that triggered the modal
@@ -156,6 +204,13 @@
                 <span class="col-span-2"></span>
                 <!-- Pagination -->
                 <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                    @php
+                    $pageLimit = 5; // Define aquí la cantidad máxima de páginas a mostrar
+                    $currentPage = $rows->currentPage();
+                    $start = max($currentPage - floor($pageLimit / 2), 1);
+                    $end = min($start + $pageLimit - 1, $rows->lastPage());
+                    @endphp
+
                     <nav aria-label="Table navigation">
                         <ul class="inline-flex items-center">
                             <li>
@@ -165,11 +220,10 @@
                                     </svg>
                                 </a>
                             </li>
-                            @for ($i = 1; $i <= $rows->lastPage(); $i++)
-                                <li>
-                                    <a href="{{ $rows->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $rows->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-purple @endif">
-                                        {{ $i }}
-                                    </a>
+                            @for ($i = $start; $i <= $end; $i++) <li>
+                                <a href="{{ $rows->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $currentPage) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-purple @endif">
+                                    {{ $i }}
+                                </a>
                                 </li>
                                 @endfor
                                 <li>
@@ -181,6 +235,7 @@
                                 </li>
                         </ul>
                     </nav>
+
                 </span>
             </div>
         </div>

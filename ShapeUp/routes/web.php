@@ -186,14 +186,43 @@ Route::get('/admin-entrenador/tablas', function () {
 
 // ------------------------------------------------------------
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboardPrincipal'])->name('admin');
-Route::get('/search',[App\Http\Controllers\AdminController::class, 'dashboardPrincipal'])->name('admin-search');
+Route::middleware(['auth','admin'])->group(function () {
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboardPrincipal'])->name('admin');
+    Route::get('/search', [App\Http\Controllers\AdminController::class, 'dashboardPrincipal'])->name('admin-search');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        // ADMIN USERS VIEWS
+        // ----------------------------
+        Route::get('/coaches', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('coaches');
+        Route::get('/users', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('users');
+        Route::get('/admins', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('admins');
 
-Route::get('/admin-coaches',[App\Http\Controllers\AdminController::class, 'dashboardCoaches'])->name('admin.coaches');
+        // ADMIN TRAININGS VIEWS
+        // ----------------------------
+        Route::get('/trainings', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('trainings');
+        Route::get('/exercises', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('exercises');
 
-Route::get('/admin-trainings', function () {
-    return view('admin.trainings');
-})->name('admin.trainings');
+        // ADMIN DIETS VIEWS
+        // ----------------------------
+        Route::get('/diets', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('diets');
+        Route::get('/ingredients', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('ingredients');
+
+        // ADMIN BRANDS VIEWS
+        // ----------------------------
+        Route::get('/gyms', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('gyms');
+        Route::get('/markets', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('markets');
+
+        // ADMIN CATEOGRIES VIEWS
+        // ----------------------------
+        Route::get('/trainings-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('trainings-categories');
+        Route::get('/exercises-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('exercises-categories');
+        Route::get('/diets-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('diets-categories');
+        Route::get('/ingredients-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('ingredients-categories');
+    });
+});
+
+Route::delete('/admin/{type}/{id}', [App\Http\Controllers\AdminController::class, 'deleteData'])->name('destroy');
+
+
 
 Route::get('/admin-formularios', function () {
     return view('admin.forms');

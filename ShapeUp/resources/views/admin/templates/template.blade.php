@@ -10,7 +10,7 @@
         <ul class="mt-6">
             <li class="relative px-6 py-3">
                 @yield('index-nav-lat')
-                <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')" href="{{ route('admin') }}">
+                <button id="index" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')" href="{{ route('admin') }}">
                 <i class='bx bxs-home w-5 h-5' aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"></i>
                     <span class="ml-4">Inicio</span>
                 </button>
@@ -477,4 +477,4 @@
             </ul>
         </div>
     </header>
-    @endsection
+@endsection

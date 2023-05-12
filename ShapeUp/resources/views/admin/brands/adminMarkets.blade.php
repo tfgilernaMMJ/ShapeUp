@@ -1,4 +1,4 @@
-@extends('admin.templates.general')
+@extends('admin.templates.template')
 
 
 @section('dashboard-markets')

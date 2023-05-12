@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('user_coach_id')->references('id')->on('users');
-            $table->foreignId('category_of_diet_id')->references('id')->on('categories_of_diets');
+            $table->foreignId('user_coach_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('category_of_diet_id')->references('id')->on('categories_of_diets')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

@@ -13,10 +13,12 @@ use App\Models\TagOfExercise;
 use App\Models\TagOfIngredient;
 use App\Models\User;
 use App\Models\Training;
+use App\Models\TrainingExercise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\UserFollowCoach;
 use Illuminate\Support\Facades\Auth;
+use PDOException;
 
 class AdminController extends Controller
 {
@@ -92,6 +94,123 @@ class AdminController extends Controller
         );
     }
 
+    public function deleteData(Request $request)
+    {
+        if ($request->type == 'coach') {
+            try {
+                User::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'user') {
+            try {
+                User::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'admins') {        
+            try {
+                User::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'training') {
+            try {
+                Training::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'exercise') {
+            try {
+                $trainingsOfExercise = TrainingExercise::where('exercise_id', $request->id)->pluck('training_id');
+                Exercise::find($request->id)->delete();
+                foreach ($trainingsOfExercise as $trainingId) {
+                    $trainingCount = TrainingExercise::where('training_id', $trainingId)->count();
+                    if ($trainingCount == 0) {
+                        Training::find($trainingId)->delete();
+                    }
+                }
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'diet') {
+            try {
+                Diet::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'ingredient') {
+            // Ingredient::find($request->id)->delete();
+            // try {
+            //     $trainingsOfExercise = DietIngre::where('exercise_id', $request->id)->pluck('training_id');
+            //     Ingredient::find($request->id)->delete();
+            //     foreach ($trainingsOfExercise as $trainingId) {
+            //         $trainingCount = TrainingExercise::where('training_id', $trainingId)->count();
+            //         if ($trainingCount == 0) {
+            //             Training::find($trainingId)->delete();
+            //         }
+            //     }
+            // } catch (PDOException $e) {
+            //     return back()->with('error', $e->getMessage());
+            // }
+        } else if ($request->type == 'gym') {
+            try {
+                Gym::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'market') {
+            try {
+                Supermarket::find($request->id)->delete();
+            } catch (PDOException $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        } else if ($request->type == 'trainings-categories') {
+            try {
+                $categoryOfTraining = CategoryOfTraining::find($request->id);
+
+                $categoryOfTraining->trainings()->update(['category_of_training_id' => 7]);
+
+                $categoryOfTraining->delete();
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+        } else if ($request->type == 'exercises-categories') {
+            try {
+                $tagOfExercise = TagOfExercise::find($request->id);
+
+                $tagOfExercise->exercises()->update(['tag_of_exercise_id' => 7]);
+
+                $tagOfExercise->delete();
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+        } else if ($request->type == 'diets-categories') {
+            try {
+                $categoryOfDiet = CategoryOfDiet::find($request->id);
+
+                $categoryOfDiet->diets()->update(['category_of_diet_id' => 7]);
+
+                $categoryOfDiet->delete();
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+        } else if ($request->type == 'ingredients-categories') {
+            try {
+                $tagOfIngredient = TagOfIngredient::find($request->id);
+
+                $tagOfIngredient->ingredients()->update(['tag_of_ingredient_id' => 7]);
+
+                $tagOfIngredient->delete();
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+        } else {
+            abort(404, 'F al borrar');
+        }
+        return redirect()->back();
+    }
+
     public function bringGeneralData(Request $request)
     {
         $title = '';
@@ -100,22 +219,28 @@ class AdminController extends Controller
         $numberOfColumns = '';
         $rows = array();
         $numberOfRows = '';
-        $extra1 = null;
-        $extra2 = null;
-        $extra3 = null;
-        if($request->route()->getName() == 'admin.coaches'){
+        $extra1 = [];
+        $extra2 = [];
+        $extra3 = [];
+        if ($request->route()->getName() == 'admin.coaches') {
             // debe aparecer username y suscription
             $title = 'Entrenadores';
             $createTexxtButton = ' Entrenador';
-            $rows = User::where('status','Coach')->paginate(10);
+            $rows = User::where('status', 'Coach')->paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['name','email','age','country'];
+            $columns = ['name', 'email', 'age', 'country'];
+            $columnsNames = ['nombre', 'correo', 'edad', 'país'];
             $numberOfColumns = count($columns);
+            foreach ($rows as $row) {
+                array_push($extra1, $row['username']);
+                array_push($extra2, $row['suscription_id']);
+            }
             return view(
                 'admin.users.adminCoaches',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -125,22 +250,25 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.users'){
-            // debe aparecer username, suscription y status
+        } else if ($request->route()->getName() == 'admin.users') {
+            // debe aparecer username, suscription
             $title = 'Usuarios';
             $createTexxtButton = ' Usuario';
             $rows = User::where('status', 'User')->paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['nmae','email','age','country'];
+            $columns = ['nmae', 'email', 'age', 'country'];
+            $columnsNames = ['nombre', 'correo', 'edad', 'país'];
             $numberOfColumns = count($columns);
-            // $extra1 = 
-            // $extra2 =
-            // $extra3 =
+            foreach ($rows as $row) {
+                array_push($extra1, $row['username']);
+                array_push($extra2, $row['suscription_id']);
+            }
             return view(
                 'admin.users.adminUsers',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -150,21 +278,25 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.admins'){
+        } else if ($request->route()->getName() == 'admin.admins') {
             // debe aparecer username y suscription
             $title = 'Administradores';
             $createTexxtButton = ' Administrador';
-            $rows = User::where('status','Admin')->paginate(10);
+            $rows = User::where('status', 'Admin')->paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['name','email','age','country'];
+            $columns = ['name', 'email', 'age', 'country'];
+            $columnsNames = ['nombre', 'correo', 'edad', 'país'];
             $numberOfColumns = count($columns);
-            // $extra1 =
-            // $extra2 =
+            foreach ($rows as $row) {
+                array_push($extra1, $row['username']);
+                array_push($extra2, $row['suscription_id']);
+            }
             return view(
                 'admin.users.adminAdmin',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -174,18 +306,20 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.trainings'){
+        } else if ($request->route()->getName() == 'admin.trainings') {
             $title = 'Entrenamientos';
             $createTexxtButton = ' Entrenamiento';
             $rows = Training::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['title','duration','level','coach'];
+            $columns = ['title', 'duration', 'level', 'coach'];
+            $columnsNames = ['titulo', 'duración', 'nivel', 'entrenador'];
             $numberOfColumns = count($columns);
             return view(
                 'admin.trainings.adminTrainings',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -195,19 +329,20 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.exercises'){
-            // Debe salir el nombre del entrenaminto
+        } else if ($request->route()->getName() == 'admin.exercises') {
             $title = 'Ejercicios';
             $createTexxtButton = ' Ejercicio';
             $rows = Exercise::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['name','series','tag','coach'];
+            $columns = ['name', 'series', 'tag', 'coach'];
+            $columnsNames = ['nombre', 'series', 'tipo', 'entrenador'];
             // $extra1 =
             return view(
                 'admin.trainings.adminExercises',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -217,20 +352,20 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.diets'){
+        } else if ($request->route()->getName() == 'admin.diets') {
             // Debe salir el nombre del coach y categoria
             $title = 'Dietas';
             $createTexxtButton = ' Dieta';
             $rows = Diet::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['title','description','id','coach'];
-            // $extra1 =
-            // $extra2 =
+            $columns = ['title', 'description', 'category', 'coach'];
+            $columnsNames = ['titulo', 'descripción', 'categoría', 'Entrenador'];
             return view(
                 'admin.diets.adminDiets',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -240,21 +375,19 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.ingredients'){
-            // Debe salir el nombre del coach y categoria y dietas
+        } else if ($request->route()->getName() == 'admin.ingredients') {
             $title = 'Ingredientes';
             $createTexxtButton = ' Ingrediente';
-            $rows = Ingredient::all();
+            $rows = Ingredient::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Category','Coach'];
-            // $extra1 =
-            // $extra2 =
-            // $extra3 =
+            $columns = ['name', 'tag'];
+            $columnsNames = ['nombre', 'tipo'];
             return view(
                 'admin.diets.adminIngredients',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -264,17 +397,19 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.gyms'){
+        } else if ($request->route()->getName() == 'admin.gyms') {
             $title = 'Gimnasios';
             $createTexxtButton = ' Gimnasio';
-            $rows = Gym::all();
+            $rows = Gym::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Logo'];
+            $columns = ['name', 'logo'];
+            $columnsNames = ['nombre', 'logo'];
             return view(
                 'admin.brands.adminGyms',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -284,17 +419,19 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.markets'){
+        } else if ($request->route()->getName() == 'admin.markets') {
             $title = 'Super Mercados';
             $createTexxtButton = ' Super mercado';
-            $rows = Supermarket::all();
+            $rows = Supermarket::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Logo'];
+            $columns = ['name', 'logo'];
+            $columnsNames = ['nombre', 'logo'];
             return view(
                 'admin.brands.adminMarkets',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -304,18 +441,20 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.trainings-categories'){
+        } else if ($request->route()->getName() == 'admin.trainings-categories') {
             $title = 'Categorías de entrenamientos';
             $createTexxtButton = 'Categoría';
-            $rows = CategoryOfTraining::all();
+            $rows = CategoryOfTraining::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Cantidad de Entrenamientos'];
+            $columns = ['id', 'name'];
+            $columnsNames = ['id', 'nombre'];
             // $extra1 =
             return view(
                 'admin.categories.adminTrainingsCategories',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -325,18 +464,19 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.exercises-categories'){
+        } else if ($request->route()->getName() == 'admin.exercises-categories') {
             $title = 'Categorías de ejercicios';
             $createTexxtButton = 'Categoría';
-            $rows = TagOfExercise::all();
+            $rows = TagOfExercise::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Cantidad de Ejercicios'];
-            // $extra1 =
+            $columns = ['id', 'name'];
+            $columnsNames = ['id', 'nombre'];
             return view(
                 'admin.categories.adminExercisesCategories',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -346,18 +486,19 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.diets-categories'){
+        } else if ($request->route()->getName() == 'admin.diets-categories') {
             $title = 'Categorías de dietas';
             $createTexxtButton = 'Categoría';
-            $rows = CategoryOfDiet::all();
+            $rows = CategoryOfDiet::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Cantidad de Dietas'];
-            // $extra1 =
+            $columns = ['id', 'name'];
+            $columnsNames = ['id', 'nombre'];
             return view(
                 'admin.categories.adminDietsCategories',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -367,18 +508,19 @@ class AdminController extends Controller
                     'extra3' => $extra3
                 ]
             );
-        } else if ($request->route()->getName() == 'admin.ingredients-categories'){
+        } else if ($request->route()->getName() == 'admin.ingredients-categories') {
             $title = 'Categorías de ingredientes';
             $createTexxtButton = 'Categoría';
-            $rows = TagOfIngredient::all();
+            $rows = TagOfIngredient::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['Name','Cantidad de Ingredientes'];
-            // $extra1 =
+            $columns = ['id', 'name'];
+            $columnsNames = ['id', 'nombre'];
             return view(
                 'admin.categories.adminIngredientsCategories',
                 [
                     'title' => $title,
                     'createTexxtButton' => $createTexxtButton,
+                    'columnsNames' => $columnsNames,
                     'columns' => $columns,
                     'numberOfColumns' => $numberOfColumns,
                     'rows' => $rows,
@@ -389,8 +531,7 @@ class AdminController extends Controller
                 ]
             );
         } else {
-            abort(404,'VISTA DE ADMIN NO ENCONTRADA');
+            abort(404, 'VISTA DE ADMIN NO ENCONTRADA');
         }
-        
     }
 }

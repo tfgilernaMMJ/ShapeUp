@@ -62,6 +62,8 @@
 
         @yield('dashboard-gyms')
         @yield('dashboard-markets')
+
+
         <!-- {{-- CARDS --}}
 
         @yield('cards-section')
