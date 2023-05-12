@@ -16,6 +16,10 @@ use App\Models\User;
 use App\Models\Diet;
 use App\Models\Training;
 use App\Models\CategoryOfTraining;
+use App\Models\Exercise;
+use App\Models\Ingredient;
+use App\Models\TagOfExercise;
+use App\Models\TagOfIngredient;
 use App\Models\UserFollowDiet;
 use App\Models\UserFollowTraining;
 
@@ -146,6 +150,28 @@ class WebController extends Controller
         return view('web.trainingsexercises', [ 'exercises' => $exercises]);       
     }
 
+    public function indexExercises(Request $request)
+    {
+        $query = Exercise::query();
+
+        if ($request->input('name_sort') === 'asc' || $request->input('name_sort') === 'desc') {
+            $query->orderBy('name', $request->input('name_sort'));
+        }
+
+        if ($request->filled('tag_sort')) {
+            $query->where('tag_of_exercise_id', $request->input('tag_sort'));
+        }
+
+        if ($request->filled('coach_sort')) {
+            $query->where('user_coach_id', $request->input('coach_sort'));
+        }
+
+        $exercises = $query->paginate(15);
+        $tags = TagOfExercise::all();
+        $coaches = User::where('status', 'Coach')->get();
+        return view('web.exercises', ['exercises' => $exercises, 'coaches' => $coaches,'tags' => $tags, 'request' => $request]);       
+    }
+
     public function indexDiets(Request $request)
     {
         $query = Diet::query();
@@ -241,6 +267,23 @@ class WebController extends Controller
         $diet = Diet::find($diet_id);
         $ingredients = $diet->ingredient()->get();
         return view('web.dietingredients', [ 'ingredients' => $ingredients]);       
+    }
+
+    public function indexIngredients(Request $request)
+    {
+        $query = Ingredient::query();
+
+        if ($request->input('name_sort') === 'asc' || $request->input('name_sort') === 'desc') {
+            $query->orderBy('name', $request->input('name_sort'));
+        }
+
+        if ($request->filled('tag_sort')) {
+            $query->where('tag_of_ingredient_id', $request->input('tag_sort'));
+        }
+
+        $ingredients = $query->paginate(10);
+        $tags = TagOfIngredient::all();
+        return view('web.ingredients', ['ingredients' => $ingredients,'tags' => $tags, 'request' => $request]);       
     }
 
     public function indexCoaches(Request $request)

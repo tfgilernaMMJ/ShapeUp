@@ -171,6 +171,7 @@
                         @endforeach
                     @endif
                 </div>
+                @if(count($coaches) != 0)
                 <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
                     <span class="flex items-center col-span-3">
                         Mostrando {{ $coaches->firstItem() }}-{{ $coaches->lastItem() }} de {{ $coaches->total() }}
@@ -182,7 +183,7 @@
                         <nav aria-label="Table navigation">
                             <ul class="inline-flex items-center">
                                 <li>
-                                    <a href="{{ $coaches->previousPageUrl() }}" class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-green" aria-label="Previous">
+                                    <a href="{{ $coaches->appends(['name_sort' => $request->input('name_sort'), 'age_sort' => $request->input('age_sort'), 'experience_sort' => $request->input('experience_sort'), 'followers_sort' => $request->input('followers_sort'), 'coacheslike_sort' => $request->input('coacheslike_sort')])->previousPageUrl() }}" class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-green" aria-label="Previous">
                                         <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
                                             <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
                                         </svg>
@@ -190,22 +191,23 @@
                                 </li>
                                 @for ($i = 1; $i <= $coaches->lastPage(); $i++)
                                     <li>
-                                        <a href="{{ $coaches->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $coaches->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                        <a href="{{ $coaches->appends(['name_sort' => $request->input('name_sort'), 'age_sort' => $request->input('age_sort'), 'experience_sort' => $request->input('experience_sort'), 'followers_sort' => $request->input('followers_sort'), 'coacheslike_sort' => $request->input('coacheslike_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $coaches->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
                                             {{ $i }}
                                         </a>
                                     </li>
-                                    @endfor
-                                    <li>
-                                        <a href="{{ $coaches->nextPageUrl() }}" class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-green" aria-label="Next">
-                                            <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                                                <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                                            </svg>
-                                        </a>
-                                    </li>
-                            </ul>
+                                @endfor
+                                <li>
+                                    <a href="{{ $coaches->appends(['name_sort' => $request->input('name_sort'), 'age_sort' => $request->input('age_sort'), 'experience_sort' => $request->input('experience_sort'), 'followers_sort' => $request->input('followers_sort'), 'coacheslike_sort' => $request->input('coacheslike_sort')])->nextPageUrl() }}" class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-green" aria-label="Next">
+                                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                                            <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>                            
                         </nav>
                     </span>
                 </div>
+                @endif
             </div>
         </section>
     </main>

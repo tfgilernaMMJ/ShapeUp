@@ -18,7 +18,7 @@
                     <li class="dropdown"><a class="@yield('trainings-nav')@yield('exercises-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a class="@yield('trainings-nav')" href="{{ route('account.trainings') }}">Entrenamientos</a></li>
-                            <li><a class="@yield('exercises-nav')" href="{{ route('account.events') }}">Ejercicios</a></li>
+                            <li><a class="@yield('exercises-nav')" href="{{ route('account.exercises') }}">Ejercicios</a></li>
                         </ul>
                     </li>
                 @endif
@@ -26,10 +26,10 @@
                 @if (Auth::user()->suscription_id == 1)
                     <li><a href="{{ route('account.events') }}">Alimentos</a></li>
                 @else
-                    <li class="dropdown"><a class="@yield('diets-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a class="@yield('diets-nav')@yield('ingredients-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a class="@yield('diets-nav')" href="{{ route('account.diets') }}">Dietas</a></li>
-                            <li><a class="@yield('ingredients-nav')" href="{{ route('account.events') }}">Alimentos</a></li>
+                            <li><a class="@yield('ingredients-nav')" href="{{ route('account.ingredients') }}">Alimentos</a></li>
                         </ul>
                     </li>
                 @endif
@@ -110,20 +110,29 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Enlaces útiles</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Entrenadores</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Suscripciones</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Contacto</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">IMC</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.index')}}">Inicio</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.coaches')}}">Entrenadores</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.subscriptions')}}">Suscripciones</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.contact')}}">Contacto</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.imc')}}">IMC</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Nuestros servicios</h4>
+                    @if(Auth::user()->suscription_id == 2)
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Entrenamientos</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Dietas</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.trainings')}}">Entrenamientos</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.diets')}}">Dietas</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.exercises')}}">Ejercicios</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.ingredients')}}">Alimentos</a></li>
                     </ul>
+                    @else
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.exercises')}}">Ejercicios</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('account.ingredients')}}">Alimentos</a></li>
+                    </ul>
+                    @endif
                 </div>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
@@ -144,11 +153,11 @@
             </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            {{-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-github"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> --}}
+            <a href="https://github.com/tfgilernaMMJ/ShapeUp" target="_blank" class="google-plus"><i class="bx bxl-github"></i></a>
+            {{-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
         </div>
     </div>
 </footer>

@@ -99,7 +99,8 @@ INSERT INTO `categories_of_trainings` (`id`, `name`, `created_at`, `updated_at`)
 (3, 'Entrenamiento de perdida de peso', NOW(), NOW()),
 (4, 'Entrenamiento de flexibilidad', NOW(), NOW()),
 (5, 'Entrenamiento de equilibrio y coordinación', NOW(), NOW()),
-(6, 'Entrenamiento de velocidad y agilidad', NOW(), NOW());
+(6, 'Entrenamiento de velocidad y agilidad', NOW(), NOW()),
+(7, 'Sin categoría', NOW(), NOW());
 
 --
 -- Volcado de datos para la tabla `tags_of_exercises`
@@ -125,7 +126,8 @@ INSERT INTO `tags_of_exercises` (`id`, `name`, `created_at`, `updated_at`) VALUE
 (17, 'Peso corporal',  NOW(), NOW()),
 (18, 'Resistencia',  NOW(), NOW()),
 (19, 'Velocidad',  NOW(), NOW()),
-(20, 'Potencia',  NOW(), NOW());
+(20, 'Potencia',  NOW(), NOW()),
+(21, 'Sin tipo', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -307,7 +309,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (123, 'Peso muerto con barra', 55, 10, 4, 'https://www.youtube.com/watch?v=7KL8SgCP4KQ&t=1s', 3, 29, NOW(), NOW()),
 (124, 'Remo con barra', 45, 10, 4, 'https://www.youtube.com/watch?v=3uiWjik2yEQ', 2, 29, NOW(), NOW()),
 (125, 'Flexiones de brazos con peso', 40, 10, 4, 'https://www.youtube.com/watch?v=FvRebC-q5jQ', 1, 29, NOW(), NOW()),
-(126,'Estiramientos de cuello', 30, 2, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 11, 29, NOW(), NOW()),
+(126, 'Estiramientos de cuello', 30, 2, 3, 'https://www.youtube.com/watch?v=stQ4yI44Law', 11, 29, NOW(), NOW()),
 (127,'Estiramiento de hombros', 30, 2, 3, 'https://www.youtube.com/watch?v=OLtUiP0XC4Q&t=234s', 11, 29, NOW(), NOW()),
 (128,'Estiramiento de pierna', 30, 2, 3, 'https://www.youtube.com/watch?v=txsha7BIlDo', 11, 29, NOW(), NOW()),
 (129,'Estiramiento de espalda baja', 30, 2, 3, 'https://www.youtube.com/watch?v=uejkZ4sWi3w', 11, 29, NOW(), NOW()),
@@ -317,7 +319,7 @@ INSERT INTO `exercises` (`id`, `name`, `duration`, `repetitions`, `series`, `exp
 (133,'Estiramiento de tobillos', 30, 2, 3, 'https://www.youtube.com/watch?v=H-3VqgEuSVk', 11, 29, NOW(), NOW()),
 (134,'Estiramiento de glúteos', 30, 2, 3, 'https://www.youtube.com/watch?v=ettY0W0qswA&t=292s', 11, 29, NOW(), NOW()),
 (135,'Estiramiento de caderas', 30, 2, 3, 'https://www.youtube.com/watch?v=JvFIcfNPsiQ', 11, 29, NOW(), NOW()),
-(136, 'Equilibrio sobre un pie', 30, 2, 3, 'https://www.youtube.com/watch?v=uGS7PzNij2c', 10, 29, NOW(), NOW()),
+(136,'Equilibrio sobre un pie', 30, 2, 3, 'https://www.youtube.com/watch?v=uGS7PzNij2c', 10, 29, NOW(), NOW()),
 (137, 'Saltos laterales', 30, 2, 3, 'https://www.youtube.com/watch?v=1mStIPjEYqA', 15, 29, NOW(), NOW()),
 (138, 'Elevación de talones', 30, 2, 3, 'https://www.youtube.com/watch?v=hBS3yt6nY9s', 10, 29, NOW(), NOW()),
 (139, 'Paso de vallas', 30 , 2, 3, 'https://www.youtube.com/watch?v=93VgZSjdr4I', 15, 29, NOW(), NOW()),
@@ -490,7 +492,8 @@ INSERT INTO `categories_of_diets` (`id`, `name`, `created_at`, `updated_at`) VAL
 (3, 'Dieta vegetariana', NOW(), NOW()),
 (4, 'Dieta vegana', NOW(), NOW()),
 (5, 'Dieta sin gluten', NOW(), NOW()),
-(6, 'Dieta flexible', NOW(), NOW());
+(6, 'Dieta flexible', NOW(), NOW()),
+(7, 'Sin categoría', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -507,7 +510,8 @@ INSERT INTO `tags_of_ingredients` (`id`, `name`, `created_at`, `updated_at`) VAL
 (6, 'Cereales y productos de panadería', NOW(), NOW()),
 (7, 'Legumbres', NOW(), NOW()),
 (8, 'Frutos secos y semillas', NOW(), NOW()),
-(9, 'Bebidas', NOW(), NOW());
+(9, 'Bebidas', NOW(), NOW()),
+(10, 'Sin tipo', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -519,26 +523,20 @@ INSERT INTO `diets` (`id`, `title`, `description`, `user_coach_id`, `category_of
 (1, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 24, 1, NOW(), NOW()),
 (2, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 24, 3, NOW(), NOW()),
 (3, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 24, 6, NOW(), NOW()),
-
 (4, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 25, 2, NOW(), NOW()),
 (5, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 25, 3, NOW(), NOW()),
 (6, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 25, 4, NOW(), NOW()),
-
 (7, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 26, 1, NOW(), NOW()),
 (8, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 26, 2, NOW(), NOW()),
 (9, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 26, 5, NOW(), NOW()),
 (10, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 26, 6, NOW(), NOW()),
-
 (11, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 27, 2, NOW(), NOW()),
 (12, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 27, 4, NOW(), NOW()),
 (13, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 27, 5, NOW(), NOW()),
 (14, 'Dieta flexible', 'Dieta diseñada para personas que buscan una alimentación variada y equilibrada, sin restricciones extremas.', 27, 6, NOW(), NOW()),
-
 (15, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 28, 2, NOW(), NOW()),
 (16, 'Dieta vegetariana', 'Dieta diseñada para personas que no consumen carne, pero sí otros productos de origen animal como lácteos o huevos.', 28, 3, NOW(), NOW()),
 (17, 'Dieta sin gluten', 'Esta dieta está diseñada para evitar el consumo de gluten y promover la salud intestinal. Incluye una variedad de alimentos frescos, sin procesar y sin gluten.', 28, 5, NOW(), NOW()),
-
-
 (18, 'Dieta baja en carbohidratos', 'Dieta especializada en la disminución de carbohidratos para favorecer la pérdida de peso y mejorar la composición corporal de forma saludable.', 29, 1, NOW(), NOW()),
 (19, 'Dieta alta en proteínas', 'Esta dieta se enfoca en aumentar la ingesta de proteínas para ayudar en la construcción de músculo y la recuperación después del ejercicio.', 29, 2, NOW(), NOW()),
 (20, 'Dieta vegana', 'Dieta vegana rigurosa, excluyendo todos los productos de origen animal, para promover una alimentación saludable y ética.', 29, 4, NOW(), NOW()),
@@ -652,13 +650,11 @@ INSERT INTO `ingredients` (`id`, `name`, `tag_of_ingredient_id`, `created_at`, `
 (84, 'Edamame', 2, NOW(), NOW()),
 (85, 'Crema de cacahuete', 5, NOW(), NOW()),
 
-(86,' Albahaca', 2, NOW(), NOW()),
+(86, 'Albahaca', 2, NOW(), NOW()),
 (87, 'Fresas', 1, NOW(), NOW()),
 (88, 'Sardinas', 4, NOW(), NOW()),
 (89, 'Papaya', 1, NOW(), NOW()),
 (90, 'Jengibre', 2, NOW(), NOW());
-
-
 
 -- --------------------------------------------------------
 
@@ -673,158 +669,141 @@ INSERT INTO `diet_ingredients` (`id`, `diet_id`, `ingredient_id`, `created_at`, 
 (4, 1, 4, NOW(), NOW()),
 (5, 1, 5, NOW(), NOW()),
 (6, 1, 6, NOW(), NOW()),
-
 (7, 2, 7, NOW(), NOW()),
 (8, 2, 8, NOW(), NOW()),
 (9, 2, 9, NOW(), NOW()),
 (10, 2, 10, NOW(), NOW()),
 (11, 2, 11, NOW(), NOW()),
 (12, 2, 12, NOW(), NOW()),
-
 (13, 3, 13, NOW(), NOW()),
 (14, 3, 14, NOW(), NOW()),
 (15, 3, 15, NOW(), NOW()),
 (16, 3, 16, NOW(), NOW()),
 (17, 3, 17, NOW(), NOW()),
 (18, 3, 18, NOW(), NOW()),
-
 (19, 4, 14, NOW(), NOW()),
 (20, 4, 19, NOW(), NOW()),
 (21, 4, 20, NOW(), NOW()),
 (22, 4, 21, NOW(), NOW()),
 (23, 4, 22, NOW(), NOW()),
 (24, 4, 23, NOW(), NOW()),
-
 (25, 5, 24, NOW(), NOW()),
 (26, 5, 25, NOW(), NOW()),
 (27, 5, 26, NOW(), NOW()),
 (28, 5, 27, NOW(), NOW()),
 (29, 5, 28, NOW(), NOW()),
 (30, 5, 5, NOW(), NOW()),
-
 (31, 6, 29, NOW(), NOW()),
 (32, 6, 30, NOW(), NOW()),
 (33, 6, 31, NOW(), NOW()),
 (34, 6, 32, NOW(), NOW()),
 (35, 6, 33, NOW(), NOW()),
 (36, 6, 34, NOW(), NOW()),
-
 (37, 7, 35, NOW(), NOW()),
 (38, 7, 36, NOW(), NOW()),
 (39, 7, 37, NOW(), NOW()),
 (40, 7, 38, NOW(), NOW()),
 (41, 7, 39, NOW(), NOW()),
 (42, 7, 40, NOW(), NOW()),
-
 (43, 8, 41, NOW(), NOW()),
 (44, 8, 42, NOW(), NOW()),
 (45, 8, 43, NOW(), NOW()),
 (46, 8, 44, NOW(), NOW()),
 (47, 8, 45, NOW(), NOW()),
 (48, 8, 46, NOW(), NOW()),
-
 (49, 9, 47, NOW(), NOW()),
 (50, 9, 48, NOW(), NOW()),
 (51, 9, 49, NOW(), NOW()),
 (52, 9, 50, NOW(), NOW()),
 (53, 9, 51, NOW(), NOW()),
 (54, 9, 52, NOW(), NOW()),
-
 (55, 10, 53, NOW(), NOW()),
 (56, 10, 54, NOW(), NOW()),
 (57, 10, 55, NOW(), NOW()),
 (58, 10, 56, NOW(), NOW()),
 (59, 10, 57, NOW(), NOW()),
 (60, 10, 7, NOW(), NOW()),
-
 (61, 11, 58, NOW(), NOW()),
 (62, 11, 59, NOW(), NOW()),
 (63, 11, 60, NOW(), NOW()),
 (64, 11, 61, NOW(), NOW()),
 (65, 11, 62, NOW(), NOW()),
 (66, 11, 63, NOW(), NOW()),
-
 (67, 12, 64, NOW(), NOW()),
 (68, 12, 65, NOW(), NOW()),
 (69, 12, 66, NOW(), NOW()),
 (70, 12, 67, NOW(), NOW()),
 (71, 12, 68, NOW(), NOW()),
 (72, 12, 36, NOW(), NOW()),
-
 (73, 13, 69, NOW(), NOW()),
 (74, 13, 70, NOW(), NOW()),
 (75, 13, 71, NOW(), NOW()),
 (76, 13, 72, NOW(), NOW()),
 (77, 13, 73, NOW(), NOW()),
 (78, 13, 12, NOW(), NOW()),
-
 (79, 14, 74, NOW(), NOW()),
 (80, 14, 75, NOW(), NOW()),
 (81, 14, 76, NOW(), NOW()),
 (82, 14, 77, NOW(), NOW()),
 (83, 14, 78, NOW(), NOW()),
 (84, 14, 79, NOW(), NOW()),
-
 (85, 15, 80, NOW(), NOW()),
 (86, 15, 81, NOW(), NOW()),
 (87, 15, 82, NOW(), NOW()),
 (88, 15, 83, NOW(), NOW()),
 (89, 15, 84, NOW(), NOW()),
 (90, 15, 85, NOW(), NOW()),
-
 (91, 16, 5, NOW(), NOW()),
 (92, 16, 7, NOW(), NOW()),
 (93, 16, 8, NOW(), NOW()),
 (94, 16, 9, NOW(), NOW()),
 (95, 16, 27, NOW(), NOW()),
 (96, 16, 28, NOW(), NOW()),
-
 (97, 17, 86, NOW(), NOW()),
 (98, 17, 87, NOW(), NOW()),
 (99, 17, 88, NOW(), NOW()),
 (100, 17, 89, NOW(), NOW()),
 (101, 17, 90, NOW(), NOW()),
 (102, 17, 49 ,NOW(), NOW()),
-
 (103, 18, 1, NOW(), NOW()),
 (104, 18, 2, NOW(), NOW()),
 (105, 18, 3, NOW(), NOW()),
 (106, 18, 38, NOW(), NOW()),
 (107, 18, 39, NOW(), NOW()),
 (108, 18, 40, NOW(), NOW()),
+(109, 19, 14, NOW(), NOW()),
+(110, 19, 19, NOW(), NOW()),
+(111, 19, 20, NOW(), NOW()),
+(112, 19, 61, NOW(), NOW()),
+(113, 19, 62, NOW(), NOW()),
+(114, 19, 63, NOW(), NOW()),
+(115, 20, 29, NOW(), NOW()),
+(116, 20, 30, NOW(), NOW()),
+(117, 20, 31, NOW(), NOW()),
+(118, 20, 66, NOW(), NOW()),
+(119, 20, 67, NOW(), NOW()),
+(120, 20, 68, NOW(), NOW()),
+(121, 21, 47, NOW(), NOW()),
+(122, 21, 48, NOW(), NOW()),
+(123, 21, 49, NOW(), NOW()),
+(124, 21, 71, NOW(), NOW()),
+(125, 21, 72, NOW(), NOW()),
+(126, 21, 73, NOW(), NOW()),
+(127, 22, 13, NOW(), NOW()),
+(128, 22, 14, NOW(), NOW()),
+(129, 22, 15, NOW(), NOW()),
+(130, 22, 55, NOW(), NOW()),
+(131, 22, 56, NOW(), NOW()),
+(132, 22, 57, NOW(), NOW());
 
-(108, 19, 14, NOW(), NOW()),
-(109, 19, 19, NOW(), NOW()),
-(110, 19, 20, NOW(), NOW()),
-(111, 19, 61, NOW(), NOW()),
-(112, 19, 62, NOW(), NOW()),
-(113, 19, 63, NOW(), NOW()),
+-- --------------------------------------------------------
 
+--
+-- Alter table de suscription_id para la tabla `users`
+--
 
-(113, 20, 29, NOW(), NOW()),
-(113, 20, 30, NOW(), NOW()),
-(113, 20, 31, NOW(), NOW()),
-(113, 20, 66, NOW(), NOW()),
-(113, 20, 67, NOW(), NOW()),
-(113, 20, 68, NOW(), NOW()),
-
-(114, 21, 47, NOW(), NOW()),
-(115, 21, 48, NOW(), NOW()),
-(116, 21, 49, NOW(), NOW()),
-(117, 21, 71, NOW(), NOW()),
-(118, 21, 72, NOW(), NOW()),
-(119, 21, 73, NOW(), NOW()),
-
-
-(120, 22, 13, NOW(), NOW()),
-(121, 22, 14, NOW(), NOW()),
-(122, 22, 15, NOW(), NOW()),
-(123, 22, 55, NOW(), NOW()),
-(124, 22, 56, NOW(), NOW()),
-(125, 22, 57, NOW(), NOW());
-
-
-
+ALTER TABLE users
+ALTER COLUMN suscription_id SET DEFAULT 1;
 
 
 /* TABLAS COMENTADAS POR SI ACASO: 

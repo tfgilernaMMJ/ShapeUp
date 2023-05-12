@@ -53,7 +53,7 @@
                         <div class="row mt-1">
                             <div class="col-lg-12 mt-1 mt-lg-0">
                                 <a type="button" class="mb-3" href="{{route('account.diets')}}">Reiniciar filtros</a>
-                                <form action="{{route('account.diets.filters')}}" method="post" role="form" class="php-email-form">
+                                <form action="{{route('account.diets.filters')}}" method="get" role="form" class="php-email-form">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-3 form-group">
@@ -104,9 +104,9 @@
                                                 <option value="like" {{ $request->input('dietslike_sort') == 'like' ? 'selected' : '' }}>Marcadas como me gusta</option>
                                                 <option value="notlike" {{ $request->input('dietslike_sort') == 'notlike' ? 'selected' : '' }}>No marcadas como me gusta</option>
                                             </select>
-                                            @if ($errors->has('trainingslike_sort'))
+                                            @if ($errors->has('dietslike_sort'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('trainingslike_sort') }}</strong>
+                                                    <strong>{{ $errors->first('dietslike_sort') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -157,6 +157,7 @@
                         @endforeach
                     @endif
                 </div>
+                @if(count($diets) != 0)
                 <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
                     <span class="flex items-center col-span-3">
                         Mostrando {{ $diets->firstItem() }}-{{ $diets->lastItem() }} de {{ $diets->total() }}
@@ -168,7 +169,7 @@
                         <nav aria-label="Table navigation">
                             <ul class="inline-flex items-center">
                                 <li>
-                                    <a href="{{ $diets->previousPageUrl() }}" class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-green" aria-label="Previous">
+                                    <a href="{{ $diets->appends(['category_sort' => $request->input('category_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'dietslike_sort' => $request->input('dietslike_sort')])->previousPageUrl() }}" class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-green" aria-label="Previous">
                                         <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
                                             <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
                                         </svg>
@@ -176,22 +177,23 @@
                                 </li>
                                 @for ($i = 1; $i <= $diets->lastPage(); $i++)
                                     <li>
-                                        <a href="{{ $diets->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $diets->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                        <a href="{{ $diets->appends(['category_sort' => $request->input('category_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'dietslike_sort' => $request->input('dietslike_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $diets->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
                                             {{ $i }}
                                         </a>
                                     </li>
-                                    @endfor
-                                    <li>
-                                        <a href="{{ $diets->nextPageUrl() }}" class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-green" aria-label="Next">
-                                            <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                                                <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                                            </svg>
-                                        </a>
-                                    </li>
-                            </ul>
+                                @endfor
+                                <li>
+                                    <a href="{{ $diets->appends(['category_sort' => $request->input('category_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'dietslike_sort' => $request->input('dietslike_sort')])->nextPageUrl() }}" class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-green" aria-label="Next">
+                                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                                            <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>                            
                         </nav>
                     </span>
                 </div>
+                @endif
             </div>
         </section>
     </main>
