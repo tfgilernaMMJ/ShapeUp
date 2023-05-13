@@ -10,9 +10,8 @@
             </svg>
             Nuevo {{$createTexxtButton}}
         </button>
-
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
-
+        {!! Toastr::message() !!}
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>

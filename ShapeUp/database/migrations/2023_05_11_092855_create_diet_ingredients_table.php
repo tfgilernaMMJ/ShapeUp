@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('diet_ingredients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('diet_id')->references('id')->on('diets');
+            $table->foreignId('diet_id')->references('id')->on('diets')->cascadeOnDelete();;
             $table->foreignId('ingredient_id')->references('id')->on('ingredients');
             $table->timestamps();
         });

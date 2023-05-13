@@ -1,5 +1,5 @@
 "use strict";
-
+window.Toastify = require('toastify-js');
 // Obtén los botones de editar y eliminar
 const editBtn = document.querySelector("#editBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
@@ -42,5 +42,6 @@ dropdownSubmenus.forEach(function (dropdownSubmenu) {
         dropdownSubmenu.classList.toggle("show");
     });
 });
+
 
 
