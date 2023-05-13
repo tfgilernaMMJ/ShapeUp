@@ -19,4 +19,8 @@ class TagOfExercise extends Model
         'created_at',
         'updated_at'
     ];
+    public function exercises()
+    {
+        return $this->hasMany(Exercise::class, 'tag_of_exercise_id');
+    }
 }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('repetitions');
             $table->integer('series');
             $table->string('explanatory_video');
-            $table->foreignId('tag_of_exercise_id')->references('id')->on('tags_of_exercises');
-            $table->foreignId('user_coach_id')->references('id')->on('users');
+            $table->foreignId('tag_of_exercise_id')->references('id')->on('tags_of_exercises')->cascadeOnUpdate();
+            $table->foreignId('user_coach_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

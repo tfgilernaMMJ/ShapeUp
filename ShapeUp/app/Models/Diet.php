@@ -22,9 +22,9 @@ class Diet extends Model
         return $this->belongsTo(User::class, 'user_coach_id');
     }
 
-    public function categoriesOfDiet()
+    public function category()
     {
-        return $this->belongsToMany(CategoryOfDiet::class, 'diets_categories', 'diet_id', 'category_of_diet_id');
+        return $this->belongsTo(CategoryOfDiet::class, 'category_of_diet_id');
     }
 
     public function ingredient()

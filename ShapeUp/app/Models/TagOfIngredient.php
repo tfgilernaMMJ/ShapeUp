@@ -14,4 +14,8 @@ class TagOfIngredient extends Model
     protected $fillable = [
         'name',
     ];
+    public function ingredients()
+    {
+        return $this->hasMany(Ingredient::class, 'tag_of_ingredient_id');
+    }
 }

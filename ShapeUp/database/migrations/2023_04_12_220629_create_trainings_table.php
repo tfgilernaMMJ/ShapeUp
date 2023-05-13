@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->integer('duration');
             $table->enum('level', ['Bajo', 'Medio', 'Alto']);
-            $table->foreignId('user_coach_id')->references('id')->on('users');
-            $table->foreignId('category_of_training_id')->references('id')->on('categories_of_trainings');
+            $table->foreignId('user_coach_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('category_of_training_id')->references('id')->on('categories_of_trainings')->cascadeOnUpdate();
             $table->timestamps();
         });
     }
