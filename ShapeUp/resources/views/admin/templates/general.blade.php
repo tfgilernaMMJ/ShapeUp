@@ -67,6 +67,11 @@
         @yield('dashboard-gyms')
         @yield('dashboard-markets')
 
+        {{-- FORMS --}}
+
+        @yield('dashboard-createForm')
+        @yield('dashboard-editForm')
+
 
         <!-- {{-- CARDS --}}
 
