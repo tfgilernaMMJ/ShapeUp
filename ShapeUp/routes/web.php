@@ -233,7 +233,8 @@ Route::middleware(['auth','admin'])->group(function () {
 });
 
 Route::delete('/admin/{type}/{id}', [App\Http\Controllers\AdminController::class, 'deleteData'])->name('destroy');
-
+Route::get('/admin/{type}', [App\Http\Controllers\AdminController::class, 'showFormView'])->name('admin.form');
+Route::get('/admin-create/{entity}', [App\Http\Controllers\AdminController::class, 'createData'])->name('admin.create');
 
 
 Route::get('/admin-formularios', function () {

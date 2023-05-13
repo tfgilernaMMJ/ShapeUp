@@ -4,12 +4,12 @@
             {{$title}}
         </h2>
         <!-- CTA -->
-        <button class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton">
+        <a href="{{route('admin.form' , ['type' => 'create' ,'entity' => $createTexxtButton])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
             </svg>
             Nuevo {{$createTexxtButton}}
-        </button>
+        </a>
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
         {!! Toastr::message() !!}
             <div class="w-full overflow-x-auto">

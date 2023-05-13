@@ -500,4 +500,251 @@ class AdminController extends Controller
             abort(404, 'VISTA DE ADMIN NO ENCONTRADA');
         }
     }
+
+    public function showFormView(Request $request) {
+
+        $createTitle = '';
+        $entity = $request->entity;
+        $data = [];
+        $dataInput = [];
+        if($request->type == 'create') {
+            if($entity == 'Entrenador') {
+                $data = [
+                    'Nombre',
+                    'User name',
+                    'email',
+                    'Contraseña',
+                    'País',
+                    'Año',
+                    'Foto',
+                    'Biografía',
+                    'Experiencia',
+                ];
+                $dataInput = [
+                    'name',
+                    'username',
+                    'email',
+                    'password',
+                    'country',
+                    'age',
+                    'photo',
+                    'biography',
+                    'experience',
+                ];
+            } elseif ($entity == 'Usuario') {
+                $data = [
+                    'Nombre',
+                    'User name',
+                    'Email',
+                    'Contraseña',
+                    'País',
+                    'Edad',
+                    'Altura en cm',
+                    'Peso en kg',
+                    'Suscripción' // 1 or 2
+                ];
+                $dataInput = [
+                    'name',
+                    'username',
+                    'email',
+                    'password',
+                    'country',
+                    'age',
+                    'height',
+                    'weight',
+                    'suscription_id' // 1 or 2
+                ];
+            } elseif ($entity == 'Administrador') {
+                $data = [
+                    'Nombre',
+                    'User name',
+                    'email',
+                    'Contraseña',
+                    'País',
+                ];
+                $dataInput = [
+                    'name',
+                    'username',
+                    'email',
+                    'password',
+                    'country',
+                ];
+            } elseif ($entity == 'Entrenamiento') {
+                $coaches = User::where('status', 'Coach')->select('id', 'name')->get();
+                $categories = CategoryOfTraining::select('id', 'name')->get();
+                $data = [
+                    'Titulo',
+                    'Description',
+                    'Duration',
+                    'Nivel',
+                    'Entrenador' => $coaches,
+                    'Categoría' => $categories
+                ];
+                $dataInput = [
+                    'title',
+                    'description',
+                    'duration',
+                    'level',
+                    'Entrenador' => 'user_coach_id',
+                    'Categoría' => 'category_of_training_id'
+                ];
+            } elseif ($entity == 'Ejercicio') {
+                $coaches = User::select('id', 'name')->get();
+                $types = TagOfIngredient::select('id', 'name')->get();
+                $data = [
+                    'Nombre',
+                    'Duración',
+                    'Repeticiónes',
+                    'Series',
+                    'Video',
+                    'Entrenador' => $coaches,
+                    'Tipo' => $types
+                    ];
+                    $dataInput = [
+                        'name',
+                        'duration',
+                        'repetitions',
+                        'series',
+                        'explanatory_video',
+                        'Entrenador' => 'coach_id',
+                        'Tipo' => 'tag_od_exercise_id'
+                    ];
+            } elseif ($entity == 'Dieta') {
+                $coaches = User::select('id', 'name')->get();
+                $categories = CategoryOfDiet::select('id', 'name')->get();
+                $data = [
+                    'Titulo',
+                    'Descripción',
+                    'Entrenador' => $coaches,
+                    'Categorías'  => $categories
+                ];
+                $dataInput = [
+                    'title',
+                    'description',
+                    'Entrenador' => 'coach_id',
+                    'Categorías'  => 'category_of_diet_id'
+                ];
+                
+            } elseif ($entity == 'Ingrediente') {
+                $types = TagOfIngredient::select('id', 'name')->get();
+                $data = [
+                    'Nombre' ,
+                    'Tipo' => $types
+                ];
+                $dataInput = [
+                    'name' ,
+                    'Tipo' => 'tag_of_ingredient_id'
+                ];
+                
+            } elseif ($entity == 'Gimnasio') {
+                $data = [
+                    'Nombre' ,
+                    'Logo'
+                ];
+                $dataInput = [
+                    'name' ,
+                    'logo'
+                ];
+            } elseif ($entity == 'Super mercado') {
+                $data = [
+                    'Nombre' ,
+                    'Logo'
+                ];
+                $dataInput = [
+                    'name' ,
+                    'logo'
+                ];
+            } elseif ($entity == 'Categoría') {
+                $data = [
+                    'Nombre'
+                ];
+                $dataInput = [
+                    'name' 
+                ];
+            } else {
+                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000","progressBar" => true]);
+                return back(); 
+            }
+
+            return view('admin.forms.createForm',['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity]);
+        } else {
+            return view('admin.forms.editForm');
+        }
+        
+    }
+
+    public function createData(Request $request) {
+        $entity = $request->entity;
+        $columns = json_decode($request->dataInput);
+        try {
+            if($entity == 'Entrenador') {
+                $newCoach = new User();
+                $count = User::all()->count();
+                foreach ($columns as $key => $column) {
+                    if($column == 'password') {
+                        
+                        $newCoach->$column = bcrypt($request[$column]);
+                    } else{
+                        $newCoach->$column = $request[$column];
+                    }
+                }
+                $newCoach->status = 'Coach';
+                $newCoach->save();
+            } elseif ($entity == 'Usuario') {
+                $newCoach = new User();
+                foreach ($columns as $key => $column) {
+                    if($column == 'password') {
+                        
+                        $newCoach->$column = bcrypt($request[$column]);
+                    }else{
+                        $newCoach->$column = $request[$column];
+                    }
+                }
+                $newCoach->status = 'User';
+                $newCoach->save();
+            } elseif ($entity == 'Administrador') {
+                $newCoach = new User();
+                foreach ($columns as $key => $column) {
+                    if($column == 'password') {
+                        
+                        $newCoach->$column = bcrypt($request[$column]);
+                    }else{
+                        $newCoach->$column = $request[$column];
+                    }
+                }
+                $newCoach->status = 'Admin';
+                $newCoach->save();
+            } elseif ($entity == 'Entrenamiento') {
+                $newTraining = new Training();
+                foreach ($columns as $key => $column) {
+                    $newTraining->$column = $request[$column];
+                }
+                $newTraining->save();
+            } elseif ($entity == 'Ejercicio') {
+
+            } elseif ($entity == 'Dieta') {
+
+
+                
+            } elseif ($entity == 'Ingrediente') {
+
+
+                
+            } elseif ($entity == 'Gimnasio') {
+
+            } elseif ($entity == 'Super mercado') {
+
+            } elseif ($entity == 'Categoría') {
+
+            } else {
+                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000","progressBar" => true]);
+                return back(); 
+            }
+            Toastr::success($entity . 'insertado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000","progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000","progressBar" => true]);
+            return redirect()->back();
+        }
+}
 }
