@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS shapeupsql;
-CREATE DATABASE shapeupsql CHARACTER SET utf8mb4;
-USE shapeupsql;
+/* DROP DATABASE IF EXISTS shapeupsql;
+CREATE DATABASE shapeupsql CHARACTER SET utf8mb4; */
+/* USE shapeupsql; */
 
 --
 -- Base de datos: `shapeupsql`
