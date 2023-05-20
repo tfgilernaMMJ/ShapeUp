@@ -18,4 +18,9 @@ class Ingredient extends Model
     {
         return $this->belongsTo(TagOfIngredient::class, 'tag_of_ingredient_id');
     }
+
+    public function diet()
+    {
+        return $this->belongsToMany(Diet::class, 'diet_ingredients');
+    }
 }

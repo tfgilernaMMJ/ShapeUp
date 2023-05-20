@@ -59,4 +59,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Suscription::class);
     }
+    public function exercises()
+    {
+        return $this->hasMany(Exercise::class, 'user_coach_id');
+    }
+    public function trainings()
+    {
+        return $this->hasMany(Training::class, 'user_coach_id');
+    }
 }

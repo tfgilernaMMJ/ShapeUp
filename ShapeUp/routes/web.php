@@ -229,12 +229,19 @@ Route::middleware(['auth','admin'])->group(function () {
         Route::get('/exercises-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('exercises-categories');
         Route::get('/diets-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('diets-categories');
         Route::get('/ingredients-categories', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('ingredients-categories');
+        
+
+        // ADMIN ADD EXERCISE
+        Route::get('/add-exercise/{training_id}', [App\Http\Controllers\AdminController::class, 'addExercise'])->name('addExercise');
+        Route::post('/add-exercise/{training_id}', [App\Http\Controllers\AdminController::class, 'addToTraining'])->name('addExercise');
+        Route::get('/add-ingredient/{diet_id}', [App\Http\Controllers\AdminController::class, 'addIngredient'])->name('addIngredient');
+        Route::post('/add-ingredient/{diet_id}', [App\Http\Controllers\AdminController::class, 'addToDiet'])->name('addIngredient');
     });
 });
 
 Route::delete('/admin/{type}/{id}', [App\Http\Controllers\AdminController::class, 'deleteData'])->name('destroy');
-Route::get('/admin/{type}', [App\Http\Controllers\AdminController::class, 'showFormView'])->name('admin.form');
-Route::get('/admin-create/{entity}', [App\Http\Controllers\AdminController::class, 'createData'])->name('admin.create');
+Route::get('/admin/{type}/{category}', [App\Http\Controllers\AdminController::class, 'showFormView'])->name('admin.form');
+Route::get('/admin-create/{entity}/{category}', [App\Http\Controllers\AdminController::class, 'createData'])->name('admin.create');
 
 
 Route::get('/admin-formularios', function () {
