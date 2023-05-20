@@ -14,12 +14,12 @@ class Training extends Model
         'description',
         'duration',
         'level',
-        'coach_id',
+        'user_coach_id',
     ];
 
     public function coach()
     {
-        return $this->belongsTo(User::class, 'user_coach_id');
+        return $this->belongsTo(User::class);
     }
 
     public function category()

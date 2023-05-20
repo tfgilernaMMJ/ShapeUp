@@ -8,7 +8,7 @@
 </h2>
 {!! Toastr::message() !!}
 <div class="container bg-transparent mt-5">
-<form action="{{ route('admin.create', ['entity' => $entidad]) }}" method="GET">
+<form action="{{ route('admin.create', ['entity' => $entidad, 'category' => request()->category]) }}" method="GET">
     <input type="hidden" id="data-input" value="{{ json_encode($dataInput) }}" name="dataInput">
         @foreach($data as $key => $input)
         <div class="mb-4">
