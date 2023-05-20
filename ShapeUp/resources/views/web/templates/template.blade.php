@@ -13,7 +13,7 @@
                 <li><a class="@yield('coaches-nav')" href="{{ route('account.coaches') }}">Entrenadores</a></li>
 
                 @if (Auth::user()->suscription_id == 1)
-                    <li><a class="@yield('exercises-nav')" href="{{ route('account.events') }}">Ejercicios</a></li>
+                    <li><a class="@yield('exercises-nav')" href="{{ route('account.exercises') }}">Ejercicios</a></li>
                 @else
                     <li class="dropdown"><a class="@yield('trainings-nav')@yield('exercises-nav')" href="#"><span>Entrenamientos</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -24,7 +24,7 @@
                 @endif
 
                 @if (Auth::user()->suscription_id == 1)
-                    <li><a href="{{ route('account.events') }}">Alimentos</a></li>
+                    <li><a href="{{ route('account.ingredients') }}">Alimentos</a></li>
                 @else
                     <li class="dropdown"><a class="@yield('diets-nav')@yield('ingredients-nav')" href="#"><span>Dietas</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>

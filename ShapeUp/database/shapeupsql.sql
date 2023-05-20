@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS shapeupsql;
-CREATE DATABASE shapeupsql CHARACTER SET utf8mb4;
-USE shapeupsql;
+/* DROP DATABASE IF EXISTS shapeupsql;
+CREATE DATABASE shapeupsql CHARACTER SET utf8mb4; */
+/* USE shapeupsql; */
 
 --
 -- Base de datos: `shapeupsql`
@@ -44,7 +44,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `email_verif
 (19, 'Cristina González', 'cristinagonzalez', '$2a$12$kLKpGkKkwumkS2hLSRt2HOEMFD4s4v1MHpvSHNbUbIyEd7i7ss2dW', 'cristina.gonzalez@gmail.com', NOW(), 'User', 'España', 29, 170, 65, null, null, null, 1, null, NOW(), NOW()),
 (20, 'Miguel López', 'miguellopez', '$2a$12$bd1ntx05wGbYhjg4Mc1m/eCs2JuUDcGoy8eXHbCTWufPlwPw.VJtG', 'miguel.lopez@gmailgmail.com', NOW(), 'User', 'España', 35, 175, 75, null, null, null, 1, null, NOW(), NOW()),
 (21, 'Isabel Fernández', 'isabelfernandez', '$2a$12$TjyXJQFCz7Iw.QKcTz8eVOAU1/WUBJDRyFgAY5.4xKmw5Ih1OdqwO', 'isabel.fernandez@gmail.com', NOW(),'User', 'España', 25, 160, 55, null, null, null, 2, null, NOW(), NOW()),
-(22, 'Francisco Sánchez', 'franciscosanchez', '$2a$12$5BhdWSVp6ZqjHMFZ2YTrS.ugCpCDNDSJiHauPt5.6xR0RT6.jwYnC', 'francisco.sanchez@gmail.com', NOW(), 'User', 'España', 32, 185, 85, null, null, null, 1, null, NOW(), NOW()),
+(22, 'Francisco Sánchez', 'franciscosanchez', '$2a$12$5BhdWSVp6ZqjHMFZ2YTrS.ugCpCDNDSJiHauPt5.6xR0RT6.jwYnC', 'francisco.sanchez@gmail.com', NOW(), 'User', 'España', 32, 185, 85, null, null, null, 2, null, NOW(), NOW()),
 (23, 'Pablo García', 'pablogarcia', '$2a$12$gxRsg95aYRCmb8AJB4HkNOw0CnZiPceIIjEFMs4TOV45ESot09llW', 'pablo.garcia@gmail.com', NOW(), 'User', 'España', 27, 175, 75, null, null, null, 1, null, NOW(), NOW()),
 (24, 'Laura Rodríguez', 'laurarodriguez', '$2a$12$.dFH6gODDAgIK2BZkcEy8uSECQE8jaYo6CNpazYXKG0LL5e8xiXNy', 'laura.rodriguez@coach.com', NOW(), 'Coach', 'España', 32, null, null, '1.jpg', 'Soy una entrenadora personal con un enfoque en el entrenamiento de fuerza, la nutrición deportiva y su bienestar.', '6 años', 2, null, NOW(), NOW()),
 (25, 'Pedro Martínez', 'pedromartinez', '$2a$12$kY1SOu8Ef7i9YADA4t2JMO0j.ysik9yF0qhrq3JEs6t/KrMrgonm6', 'pedro.martinez@coach.com', NOW(), 'Coach', 'México', 39, null, null, '2.jpg', 'Soy un entrenador personal certificado con más de 10 años de experiencia en el entrenamiento de fuerza y el acondicionamiento físico.', '10 años', 2, null, NOW(), NOW()),
