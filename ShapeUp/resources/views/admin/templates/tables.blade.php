@@ -4,14 +4,14 @@
             {{$title}}
         </h2>
         <!-- CTA -->
-        <a href="{{route('admin.form' , ['type' => 'create' ,'entity' => $createTexxtButton])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
+        <a href="{{route('admin.form' , ['type' => 'create' ,'entity' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
             </svg>
             Nuevo {{$createTexxtButton}}
         </a>
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
-        {!! Toastr::message() !!}
+            {!! Toastr::message() !!}
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>
@@ -89,7 +89,63 @@
                                         </svg>
                                     </button>
 
+                                    @if (request()->route()->getName() == 'admin.trainings')
+                                    <button data-bs-toggle="modal" data-bs-target="#modalAddExercise" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ejercicio">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
+                                            <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
+                                        </svg>
+                                    </button>
+                                    <!-- Modal Body -->
+                                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                    <div class="modal fade" id="modalAddExercise" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h5 class="fw-4">¿Quieres añadir Ejercicios?</h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                                    <a href="{{route('admin.addExercise',['training_id' => $row->id])}}" type="button" class="btn bg-purple-600 text-light">Si</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+
+                                    <!-- Optional: Place to the bottom of scripts -->
+                                    <script>
+                                        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                    </script>
+                                    @endif
+
+                                    @if (request()->route()->getName() == 'admin.diets')
+                                    <button data-bs-toggle="modal" data-bs-target="#modalAddIngredient" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ingrediente">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
+                                            <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
+                                        </svg>
+                                    </button>
+                                    <!-- Modal Body -->
+                                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                    <div class="modal fade" id="modalAddIngredient" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h5 class="fw-4">¿Quieres añadir Ingredientes?</h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                                    <a href="{{route('admin.addIngredient',['diet_id' => $row->id])}}" type="button" class="btn bg-purple-600 text-light">Si</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Optional: Place to the bottom of scripts -->
+                                    <script>
+                                        const myModal2 = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                    </script>
+                                    @endif
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -126,39 +182,39 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                @if (request()->route()->getName() == 'admin.coaches')
+                                                    @if (request()->route()->getName() == 'admin.coaches')
                                                     <form action="{{ route('destroy', ['type' => 'coach', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.users')
-                                                    <form action="{{ route('destroy', ['type' => 'user', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.admins')
-                                                    <form action="{{ route('destroy', ['type' => 'admin', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.trainings') 
-                                                    <form action="{{ route('destroy', ['type' => 'training', 'id' => $row->id]) }}" method="POST" name="form_{{$key}}">
-                                                @elseif (request()->route()->getName() == 'admin.exercises') 
-                                                    <form action="{{ route('destroy', ['type' => 'exercise', 'id' =>  $row->id]) }}" method="POST" name="form_{{$key}}">
-                                                    {{ $row->id}}
-                                                    @elseif (request()->route()->getName() == 'admin.diets') 
-                                                    <form action="{{ route('destroy', ['type' => 'diet', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.ingredients') 
-                                                    <form action="{{ route('destroy', ['type' => 'ingredient', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.gyms') 
-                                                    <form action="{{ route('destroy', ['type' => 'gym', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.markets') 
-                                                    <form action="{{ route('destroy', ['type' => 'market', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.exercises-categories') 
-                                                    <form action="{{ route('destroy', ['type' => 'exercises-categories', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.trainings-categories') 
-                                                    <form action="{{ route('destroy', ['type' => 'trainings-categories', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.diets-categories') 
-                                                    <form action="{{ route('destroy', ['type' => 'diets-categories', 'id' => $row->id]) }}" method="POST">
-                                                @elseif (request()->route()->getName() == 'admin.ingredients-categories') 
-                                                    <form action="{{ route('destroy', ['type' => 'ingredients-categories', 'id' => $row->id]) }}" method="POST">
-                                                @endif
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Eliminar</button>
-                                                    </form>
-                                                    <button type="button" class="btn btn-primary">No</button>
+                                                        @elseif (request()->route()->getName() == 'admin.users')
+                                                        <form action="{{ route('destroy', ['type' => 'user', 'id' => $row->id]) }}" method="POST">
+                                                            @elseif (request()->route()->getName() == 'admin.admins')
+                                                            <form action="{{ route('destroy', ['type' => 'admin', 'id' => $row->id]) }}" method="POST">
+                                                                @elseif (request()->route()->getName() == 'admin.trainings')
+                                                                <form action="{{ route('destroy', ['type' => 'training', 'id' => $row->id]) }}" method="POST" name="form_{{$key}}">
+                                                                    @elseif (request()->route()->getName() == 'admin.exercises')
+                                                                    <form action="{{ route('destroy', ['type' => 'exercise', 'id' =>  $row->id]) }}" method="POST" name="form_{{$key}}">
+                                                                        {{ $row->id}}
+                                                                        @elseif (request()->route()->getName() == 'admin.diets')
+                                                                        <form action="{{ route('destroy', ['type' => 'diet', 'id' => $row->id]) }}" method="POST">
+                                                                            @elseif (request()->route()->getName() == 'admin.ingredients')
+                                                                            <form action="{{ route('destroy', ['type' => 'ingredient', 'id' => $row->id]) }}" method="POST">
+                                                                                @elseif (request()->route()->getName() == 'admin.gyms')
+                                                                                <form action="{{ route('destroy', ['type' => 'gym', 'id' => $row->id]) }}" method="POST">
+                                                                                    @elseif (request()->route()->getName() == 'admin.markets')
+                                                                                    <form action="{{ route('destroy', ['type' => 'market', 'id' => $row->id]) }}" method="POST">
+                                                                                        @elseif (request()->route()->getName() == 'admin.exercises-categories')
+                                                                                        <form action="{{ route('destroy', ['type' => 'exercises-categories', 'id' => $row->id]) }}" method="POST">
+                                                                                            @elseif (request()->route()->getName() == 'admin.trainings-categories')
+                                                                                            <form action="{{ route('destroy', ['type' => 'trainings-categories', 'id' => $row->id]) }}" method="POST">
+                                                                                                @elseif (request()->route()->getName() == 'admin.diets-categories')
+                                                                                                <form action="{{ route('destroy', ['type' => 'diets-categories', 'id' => $row->id]) }}" method="POST">
+                                                                                                    @elseif (request()->route()->getName() == 'admin.ingredients-categories')
+                                                                                                    <form action="{{ route('destroy', ['type' => 'ingredients-categories', 'id' => $row->id]) }}" method="POST">
+                                                                                                        @endif
+                                                                                                        @csrf
+                                                                                                        @method('DELETE')
+                                                                                                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Eliminar</button>
+                                                                                                    </form>
+                                                                                                    <button type="button" class="btn btn-primary">No</button>
                                                 </div>
                                             </div>
                                         </div>

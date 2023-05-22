@@ -43,7 +43,7 @@
                         <form action="{{route('account.profile.edit')}}" method="post" role="form" class="php-email-form">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="name">Nombre</label>
                                     <input type="text" name="name" id="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') ?? Auth::user()->name }}" required>
                                     @if ($errors->has('name'))
@@ -52,7 +52,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <div class="col-md-4 form-group mt-3 mt-md-0">
                                     <label for="username">Nombre de usuario</label>
                                     <input type="text" name="username" id="username" class="form-control {{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') ?? Auth::user()->username }}" required>                              
                                     @if ($errors->has('username'))
@@ -61,7 +61,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <div class="col-md-4 form-group mt-3 mt-md-0">
                                     <label for="email">Correo electrónico</label>
                                     <input type="email" name="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') ?? Auth::user()->email }}" required>                              
                                     @if ($errors->has('email'))
@@ -70,9 +70,15 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <div class="section-title mt-5">
+                                    <h2>Datos opcionales</h2>
+                                </div>
+                                <a type="button" class="mb-3" href="{{route('account.profile.reset')}}">Reiniciar datos opcionales</a>
+
+                                <div class="col-md-3 form-group mt-0 mt-md-0">
                                     <label for="country" class="">País</label>
                                     <select type="text" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"" name="country">
+                                        <option {{ Auth::user()->country == 'null' ? 'selected' : ''}} value="null" disabled>Introduce tu país</option>
                                         <option {{ Auth::user()->country == 'Afganistán' ? 'selected' : ''}} value="Afganistán">Afganistán</option>
                                         <option {{ Auth::user()->country == 'Albania' ? 'selected' : ''}} value="Albania">Albania</option>
                                         <option {{ Auth::user()->country == 'Alemania' ? 'selected' : ''}} value="Alemania">Alemania</option>
@@ -314,27 +320,27 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <div class="col-md-3 form-group mt-3 mt-md-0">
                                     <label for="age" class="">Edad</label>
-                                    <input type="number" name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" value="{{ old('age') ?? Auth::user()->age }}" required>                              
+                                    <input type="number" name="age" id="age" min="0" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" value="{{ old('age') ?? Auth::user()->age }}" placeholder="{{ Auth::user()->age == null ? 'Introduce tu edad' : '' }}">                            
                                     @if ($errors->has('age'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('age') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <div class="col-md-3 form-group mt-3 mt-md-0">
                                     <label for="weight" class="">Peso (en kg)</label>
-                                    <input type="number" name="weight" id="weight" class="form-control {{ $errors->has('weight') ? ' is-invalid' : '' }}" value="{{ old('weight') ?? Auth::user()->weight }}" required>                              
+                                    <input type="number" name="weight" id="weight" min="0" class="form-control {{ $errors->has('weight') ? ' is-invalid' : '' }}" value="{{ old('weight') ?? Auth::user()->weight }}" placeholder="{{ Auth::user()->weight == null ? 'Introduce tu peso' : '' }}">                              
                                     @if ($errors->has('weight'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('weight') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <div class="col-md-3 form-group mt-3 mt-md-0">
                                     <label for="height" class="">Altura (en cm)</label>
-                                    <input type="number" name="height" id="height" class="form-control {{ $errors->has('height') ? ' is-invalid' : '' }}" value="{{ old('height') ?? Auth::user()->height }}" required>                              
+                                    <input type="number" name="height" id="height" min="0" class="form-control {{ $errors->has('height') ? ' is-invalid' : '' }}" value="{{ old('height') ?? Auth::user()->height }}" placeholder="{{ Auth::user()->height == null ? 'Introduce tu altura' : '' }}">                              
                                     @if ($errors->has('height'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('height') }}</strong>

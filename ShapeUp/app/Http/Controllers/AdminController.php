@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CategoryOfDiet;
 use App\Models\CategoryOfTraining;
 use App\Models\Diet;
+use App\Models\DietIngredient;
 use App\Models\Exercise;
 use App\Models\Gym;
 use App\Models\Ingredient;
@@ -108,7 +109,7 @@ class AdminController extends Controller
             } else if ($request->type == 'training') {
                 Training::find($request->id)->delete();
             } else if ($request->type == 'exercise') {
-    
+
                 $trainingsOfExercise = TrainingExercise::where('exercise_id', $request->id)->pluck('training_id');
                 Exercise::find($request->id)->delete();
                 foreach ($trainingsOfExercise as $trainingId) {
@@ -118,7 +119,7 @@ class AdminController extends Controller
                     }
                 }
             } else if ($request->type == 'diet') {
-    
+
                 Diet::find($request->id)->delete();
             } else if ($request->type == 'ingredient') {
                 // Ingredient::find($request->id)->delete();
@@ -139,42 +140,41 @@ class AdminController extends Controller
             } else if ($request->type == 'market') {
                 Supermarket::find($request->id)->delete();
             } else if ($request->type == 'trainings-categories') {
-    
+
                 $categoryOfTraining = CategoryOfTraining::find($request->id);
-    
+
                 $categoryOfTraining->trainings()->update(['category_of_training_id' => 7]);
-    
+
                 $categoryOfTraining->delete();
             } else if ($request->type == 'exercises-categories') {
-    
+
                 $tagOfExercise = TagOfExercise::find($request->id);
-    
+
                 $tagOfExercise->exercises()->update(['tag_of_exercise_id' => 7]);
-    
+
                 $tagOfExercise->delete();
             } else if ($request->type == 'diets-categories') {
                 $categoryOfDiet = CategoryOfDiet::find($request->id);
-    
+
                 $categoryOfDiet->diets()->update(['category_of_diet_id' => 7]);
-    
+
                 $categoryOfDiet->delete();
             } else if ($request->type == 'ingredients-categories') {
-    
+
                 $tagOfIngredient = TagOfIngredient::find($request->id);
-    
+
                 $tagOfIngredient->ingredients()->update(['tag_of_ingredient_id' => 7]);
-    
+
                 $tagOfIngredient->delete();
             } else {
                 abort(404, 'F al borrar');
             }
-            Toastr::success( ucfirst($request->type) . ' eliminado', 'Eliminación', ["positionClass" => "toast-top-center","timeOut" => "5000","progressBar" => true]);
+            Toastr::success(ucfirst($request->type) . ' eliminado', 'Eliminación', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         } catch (PDOException  $e) {
-            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000","progressBar" => true]);
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         }
-        
     }
 
     public function bringGeneralData(Request $request)
@@ -501,14 +501,15 @@ class AdminController extends Controller
         }
     }
 
-    public function showFormView(Request $request) {
+    public function showFormView(Request $request)
+    {
 
         $createTitle = '';
         $entity = $request->entity;
         $data = [];
         $dataInput = [];
-        if($request->type == 'create') {
-            if($entity == 'Entrenador') {
+        if ($request->type == 'create') {
+            if ($entity == 'Entrenador') {
                 $data = [
                     'Nombre',
                     'User name',
@@ -589,7 +590,7 @@ class AdminController extends Controller
                     'Categoría' => 'category_of_training_id'
                 ];
             } elseif ($entity == 'Ejercicio') {
-                $coaches = User::select('id', 'name')->get();
+                $coaches = User::where('status', 'Coach')->select('id', 'name')->get();
                 $types = TagOfIngredient::select('id', 'name')->get();
                 $data = [
                     'Nombre',
@@ -599,18 +600,18 @@ class AdminController extends Controller
                     'Video',
                     'Entrenador' => $coaches,
                     'Tipo' => $types
-                    ];
-                    $dataInput = [
-                        'name',
-                        'duration',
-                        'repetitions',
-                        'series',
-                        'explanatory_video',
-                        'Entrenador' => 'coach_id',
-                        'Tipo' => 'tag_od_exercise_id'
-                    ];
+                ];
+                $dataInput = [
+                    'name',
+                    'duration',
+                    'repetitions',
+                    'series',
+                    'explanatory_video',
+                    'Entrenador' => 'user_coach_id',
+                    'Tipo' => 'tag_of_exercise_id'
+                ];
             } elseif ($entity == 'Dieta') {
-                $coaches = User::select('id', 'name')->get();
+                $coaches = User::where('status','Coach')->select('id', 'name')->get();
                 $categories = CategoryOfDiet::select('id', 'name')->get();
                 $data = [
                     'Titulo',
@@ -621,37 +622,35 @@ class AdminController extends Controller
                 $dataInput = [
                     'title',
                     'description',
-                    'Entrenador' => 'coach_id',
+                    'Entrenador' => 'user_coach_id',
                     'Categorías'  => 'category_of_diet_id'
                 ];
-                
             } elseif ($entity == 'Ingrediente') {
                 $types = TagOfIngredient::select('id', 'name')->get();
                 $data = [
-                    'Nombre' ,
+                    'Nombre',
                     'Tipo' => $types
                 ];
                 $dataInput = [
-                    'name' ,
+                    'name',
                     'Tipo' => 'tag_of_ingredient_id'
                 ];
-                
             } elseif ($entity == 'Gimnasio') {
                 $data = [
-                    'Nombre' ,
+                    'Nombre',
                     'Logo'
                 ];
                 $dataInput = [
-                    'name' ,
+                    'name',
                     'logo'
                 ];
             } elseif ($entity == 'Super mercado') {
                 $data = [
-                    'Nombre' ,
+                    'Nombre',
                     'Logo'
                 ];
                 $dataInput = [
-                    'name' ,
+                    'name',
                     'logo'
                 ];
             } elseif ($entity == 'Categoría') {
@@ -659,32 +658,32 @@ class AdminController extends Controller
                     'Nombre'
                 ];
                 $dataInput = [
-                    'name' 
+                    'name'
                 ];
             } else {
-                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000","progressBar" => true]);
-                return back(); 
+                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                return back();
             }
 
-            return view('admin.forms.createForm',['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity]);
+            return view('admin.forms.createForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity]);
         } else {
             return view('admin.forms.editForm');
         }
-        
     }
 
-    public function createData(Request $request) {
+    public function createData(Request $request)
+    {
         $entity = $request->entity;
         $columns = json_decode($request->dataInput);
         try {
-            if($entity == 'Entrenador') {
+            if ($entity == 'Entrenador') {
                 $newCoach = new User();
                 $count = User::all()->count();
                 foreach ($columns as $key => $column) {
-                    if($column == 'password') {
-                        
+                    if ($column == 'password') {
+
                         $newCoach->$column = bcrypt($request[$column]);
-                    } else{
+                    } else {
                         $newCoach->$column = $request[$column];
                     }
                 }
@@ -693,10 +692,10 @@ class AdminController extends Controller
             } elseif ($entity == 'Usuario') {
                 $newCoach = new User();
                 foreach ($columns as $key => $column) {
-                    if($column == 'password') {
-                        
+                    if ($column == 'password') {
+
                         $newCoach->$column = bcrypt($request[$column]);
-                    }else{
+                    } else {
                         $newCoach->$column = $request[$column];
                     }
                 }
@@ -705,14 +704,15 @@ class AdminController extends Controller
             } elseif ($entity == 'Administrador') {
                 $newCoach = new User();
                 foreach ($columns as $key => $column) {
-                    if($column == 'password') {
-                        
+                    if ($column == 'password') {
+
                         $newCoach->$column = bcrypt($request[$column]);
-                    }else{
+                    } else {
                         $newCoach->$column = $request[$column];
                     }
                 }
                 $newCoach->status = 'Admin';
+                $newCoach->suscription_id = 2;
                 $newCoach->save();
             } elseif ($entity == 'Entrenamiento') {
                 $newTraining = new Training();
@@ -721,30 +721,156 @@ class AdminController extends Controller
                 }
                 $newTraining->save();
             } elseif ($entity == 'Ejercicio') {
-
+                $newExercise = new Exercise();
+                foreach ($columns as $key => $column) {
+                    $newExercise->$column = $request[$column];
+                }
+                $newExercise->save(); 
             } elseif ($entity == 'Dieta') {
-
-
-                
+                $newDiet = new Diet();
+                foreach ($columns as $key => $column) {
+                    $newDiet->$column = $request[$column];
+                }
+                $newDiet->save(); 
             } elseif ($entity == 'Ingrediente') {
-
-
-                
+                $newIngredient = new Ingredient();
+                foreach ($columns as $key => $column) {
+                    $newIngredient->$column = $request[$column];
+                }
+                $newIngredient->save(); 
             } elseif ($entity == 'Gimnasio') {
-
+                $newGym = new Gym();
+                foreach ($columns as $key => $column) {
+                    $newGym->$column = $request[$column];
+                }
+                $newGym->save(); 
             } elseif ($entity == 'Super mercado') {
-
-            } elseif ($entity == 'Categoría') {
-
-            } else {
-                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000","progressBar" => true]);
-                return back(); 
+                $newMarket = new Supermarket();
+                foreach ($columns as $key => $column) {
+                    $newMarket->$column = $request[$column];
+                }
+                $newMarket->save(); 
+            } elseif ($request->category == 'admin.trainings-categories') {
+                $newCategory = new CategoryOfTraining();
+                foreach ($columns as $key => $column) {
+                    $newCategory->$column = $request[$column];
+                }
+                $newCategory->save(); 
+            } elseif ($request->category == 'admin.exercises-categories') {
+                $newCategory = new TagOfExercise();
+                foreach ($columns as $key => $column) {
+                    $newCategory->$column = $request[$column];
+                }
+                $newCategory->save(); 
+            } elseif ($request->category == 'admin.diets-categories') {
+                $newCategory = new CategoryOfDiet();
+                foreach ($columns as $key => $column) {
+                    $newCategory->$column = $request[$column];
+                }
+                $newCategory->save(); 
+            } elseif ($request->category == 'admin.ingredients-categories') {
+                $newCategory = new TagOfIngredient();
+                foreach ($columns as $key => $column) {
+                    $newCategory->$column = $request[$column];
+                }
+                $newCategory->save(); 
             }
-            Toastr::success($entity . 'insertado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000","progressBar" => true]);
+            else {
+                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                return back();
+            }
+            Toastr::success($entity . 'insertado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
-            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000","progressBar" => true]);
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         }
-}
+    }
+
+    public function addExercise(Request $request)
+    {
+        try {
+
+            $trainingData = Training::where('id', $request->training_id)->select('user_coach_id', 'title')->first();
+            $trainingExercises = TrainingExercise::where('training_id', $request->training_id)->count();
+            if($trainingExercises > 4) {
+                Toastr::info('Limite de ejercicios alcanzado', 'Debes borrar algún ejercicio', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return redirect()->back();
+            }
+            $coach = User::where('id', $trainingData->user_coach_id)->with('exercises')->first();
+            $coachExercises = $coach->exercises;
+            return view(
+                'admin.forms.addExercise',
+                [
+                    'coach' => $coach,
+                    'coachExercises' => $coachExercises,
+                    'title' => $trainingData->title,
+                    'request' => $request
+                ]
+            );
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+    public function addToTraining(Request $request)
+    {
+        try {
+
+            $training = Training::where('id', $request->training_id)->first();
+            $coach = Exercise::where('id', $request->exercise)->first();
+            $newTrainignExercise = new TrainingExercise();
+            $newTrainignExercise->training_id = $request->training_id;
+            $newTrainignExercise->exercise_id = $request->exercise;
+            $newTrainignExercise->save();
+            Toastr::success('Añadido', 'SUUUUUU!', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function addIngredient(Request $request)
+    {
+        try {
+
+            $dietData = Diet::where('id', $request->diet_id)->select('id','title')->first();
+            $dietIngredientsConut = DietIngredient::where('diet_id', $request->diet_id)->count();
+            if($dietIngredientsConut > 5) {
+                Toastr::info('Limite de ingredientes alcanzado', 'Debes borrar algún ingrediente', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return redirect()->back();
+            }
+            $ingredients = Ingredient::all();
+
+            return view(
+                'admin.forms.addIngredient',
+                [
+                    'ingredients' => $ingredients,
+                    'title' => $dietData->title,
+                    'request' => $request
+                ]
+            );
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+    public function addToDiet(Request $request)
+    {
+        try {
+
+            // $diet = Diet::where('id', $request->diet_id)->first();
+            // $exercise = Ingredient::where('id', $request->ingredient)->first();
+            $newDietIngredient = new DietIngredient();
+            $newDietIngredient->diet_id = $request->diet_id;
+            $newDietIngredient->ingredient_id = $request->ingredient;
+            $newDietIngredient->save();
+            Toastr::success('Añadido', 'SUUUUUU!', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
 }

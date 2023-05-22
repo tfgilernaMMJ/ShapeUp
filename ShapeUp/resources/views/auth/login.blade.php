@@ -32,13 +32,13 @@ Inicio sesión
 					<p>{{$message}}</p>
 				@enderror
 
-				<div class="flex-sb-m w-full p-t-3 p-b-32">
+				{{-- <div class="flex-sb-m w-full p-t-3 p-b-32">
 					<div>
 						<a href="#" class="txt1">
 							¿Has olvidado la contraseña?
 						</a>
 					</div>
-				</div>
+				</div> --}}
 
 				<div class="flex-sb-m w-full p-t-3 p-b-32">
 					<div>
