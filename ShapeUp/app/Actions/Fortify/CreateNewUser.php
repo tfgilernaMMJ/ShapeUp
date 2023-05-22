@@ -36,28 +36,6 @@ class CreateNewUser implements CreatesNewUsers
             'username' => [
                 'required',
                 'string'
-            ],
-            'country' => [
-                'required',
-                'string'
-            ],
-            'age' => [
-                'required',
-                'numeric',
-                'min:0',
-                'max:150'
-            ],
-            'weight' => [
-                'required',
-                'numeric',
-                'min:10',
-                'max:400'
-            ],
-            'height' => [
-                'required',
-                'numeric',
-                'min:50',
-                'max:300'
             ]
         ])->validate();        
 
@@ -65,11 +43,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'name' => $input['name'],
-            'username' => $input['username'],
-            'country' => $input['country'],
-            'age' => $input['age'],
-            'weight' => $input['weight'],
-            'height' => $input['height']
+            'username' => $input['username']
         ]);        
     }
 }

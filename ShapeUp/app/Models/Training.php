@@ -19,7 +19,7 @@ class Training extends Model
 
     public function coach()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_coach_id');
     }
 
     public function category()
