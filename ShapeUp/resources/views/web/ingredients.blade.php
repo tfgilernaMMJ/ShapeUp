@@ -126,7 +126,7 @@
                                 </li>
                                 @for ($i = 1; $i <= $ingredients->lastPage(); $i++)
                                     <li>
-                                        <a href="{{ $ingredients->appends(['name_sort' => $request->input('name_sort'), 'tag_sort' => $request->input('tag_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $ingredients->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                        <a href="{{ $ingredients->appends(['name_sort' => $request->input('name_sort'), 'tag_sort' => $request->input('tag_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $ingredients->currentPage()) text-white bg-green-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
                                             {{ $i }}
                                         </a>
                                     </li>

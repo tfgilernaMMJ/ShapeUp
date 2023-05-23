@@ -177,7 +177,7 @@
                                 </li>
                                 @for ($i = 1; $i <= $diets->lastPage(); $i++)
                                     <li>
-                                        <a href="{{ $diets->appends(['category_sort' => $request->input('category_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'dietslike_sort' => $request->input('dietslike_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $diets->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                        <a href="{{ $diets->appends(['category_sort' => $request->input('category_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'dietslike_sort' => $request->input('dietslike_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $diets->currentPage()) text-white bg-green-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
                                             {{ $i }}
                                         </a>
                                     </li>

@@ -440,6 +440,23 @@ class WebController extends Controller
         
     }
 
+    public function resetProfile()
+    {
+        try {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->country = null;
+            $user->age = null;
+            $user->weight = null;
+            $user->height = null;
+            $user->save();
+        
+            return redirect()->route('account.profile')->with('success', 'Los datos opcionales se han reiniciado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('account.profile')->with('error', 'Ha ocurrido un error al reiniciar los datos opcionales. Por favor, inténtalo de nuevo más tarde.');
+        }
+        
+    }
+
     public function editPassword(Request $request)
     {
         try {
