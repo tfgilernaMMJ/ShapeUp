@@ -4,7 +4,7 @@
             {{$title}}
         </h2>
         <!-- CTA -->
-        <a href="{{route('admin.form' , ['type' => 'create' ,'entity' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
+        <a href="{{route('formCreateView' , ['type' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
             </svg>
@@ -157,12 +157,40 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="container-fluid">
-                                                        Add rows here
+                                                            ¿Deseas editar?
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save</button>
+                                                    
+                                                @if (request()->route()->getName() == 'admin.coaches')
+                                                <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                        @elseif (request()->route()->getName() == 'admin.users')
+                                                        <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                            @elseif (request()->route()->getName() == 'admin.admins')
+                                                            <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                @elseif (request()->route()->getName() == 'admin.trainings')
+                                                                <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                    @elseif (request()->route()->getName() == 'admin.exercises')
+                                                                    <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                        @elseif (request()->route()->getName() == 'admin.diets')
+                                                                        <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                            @elseif (request()->route()->getName() == 'admin.ingredients')
+                                                                            <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                @elseif (request()->route()->getName() == 'admin.gyms')
+                                                                                <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                    @elseif (request()->route()->getName() == 'admin.markets')
+                                                                                    <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                        @elseif (request()->route()->getName() == 'admin.exercises-categories')
+                                                                                        <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                            @elseif (request()->route()->getName() == 'admin.trainings-categories')
+                                                                                            <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                                @elseif (request()->route()->getName() == 'admin.diets-categories')
+                                                                                                <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                                    @elseif (request()->route()->getName() == 'admin.ingredients-categories')
+                                                                                                        
+                                                                                                        <a href="{{ route('edit', ['type' => $createTexxtButton, 'id' => $row->id, 'category' => request()->route()->getName()]) }}" class="btn btn-secondary">Editar</a>
+                                                                                                    @endif
+                                                                                                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
