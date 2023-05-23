@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_follow_trainings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('training_id')->references('id')->on('trainings');
             $table->timestamps();
         });
