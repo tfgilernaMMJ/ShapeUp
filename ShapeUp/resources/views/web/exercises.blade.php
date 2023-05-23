@@ -140,7 +140,7 @@
                                 </li>
                                 @for ($i = 1; $i <= $exercises->lastPage(); $i++)
                                     <li>
-                                        <a href="{{ $exercises->appends(['name_sort' => $request->input('name_sort'), 'tag_sort' => $request->input('tag_sort'), 'coach_sort' => $request->input('coach_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $exercises->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                        <a href="{{ $exercises->appends(['name_sort' => $request->input('name_sort'), 'tag_sort' => $request->input('tag_sort'), 'coach_sort' => $request->input('coach_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $exercises->currentPage()) text-white bg-green-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
                                             {{ $i }}
                                         </a>
                                     </li>
