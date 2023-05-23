@@ -10,6 +10,7 @@ use App\Models\Exercise;
 use App\Models\Gym;
 use App\Models\Ingredient;
 use App\Models\Supermarket;
+use App\Models\Suscription;
 use App\Models\TagOfExercise;
 use App\Models\TagOfIngredient;
 use App\Models\User;
@@ -191,7 +192,7 @@ class AdminController extends Controller
         if ($request->route()->getName() == 'admin.coaches') {
             // debe aparecer username y suscription
             $title = 'Entrenadores';
-            $createTexxtButton = ' Entrenador';
+            $createTexxtButton = 'Entrenador';
             $rows = User::where('status', 'Coach')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'email', 'age', 'country'];
@@ -247,7 +248,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.admins') {
             // debe aparecer username y suscription
             $title = 'Administradores';
-            $createTexxtButton = ' Administrador';
+            $createTexxtButton = 'Administrador';
             $rows = User::where('status', 'Admin')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'email', 'age', 'country'];
@@ -274,7 +275,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.trainings') {
             $title = 'Entrenamientos';
-            $createTexxtButton = ' Entrenamiento';
+            $createTexxtButton = 'Entrenamiento';
             $rows = Training::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['title', 'duration', 'level', 'coach'];
@@ -297,7 +298,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.exercises') {
             $title = 'Ejercicios';
-            $createTexxtButton = ' Ejercicio';
+            $createTexxtButton = 'Ejercicio';
             $rows = Exercise::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'series', 'tag', 'coach'];
@@ -321,7 +322,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.diets') {
             // Debe salir el nombre del coach y categoria
             $title = 'Dietas';
-            $createTexxtButton = ' Dieta';
+            $createTexxtButton = 'Dieta';
             $rows = Diet::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['title', 'description', 'category', 'coach'];
@@ -343,7 +344,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.ingredients') {
             $title = 'Ingredientes';
-            $createTexxtButton = ' Ingrediente';
+            $createTexxtButton = 'Ingrediente';
             $rows = Ingredient::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'tag'];
@@ -365,7 +366,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.gyms') {
             $title = 'Gimnasios';
-            $createTexxtButton = ' Gimnasio';
+            $createTexxtButton = 'Gimnasio';
             $rows = Gym::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -387,7 +388,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.markets') {
             $title = 'Super Mercados';
-            $createTexxtButton = ' Super mercado';
+            $createTexxtButton = 'Super mercado';
             $rows = Supermarket::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -508,6 +509,7 @@ class AdminController extends Controller
         $entity = $request->type;
         $data = [];
         $dataInput = [];
+        $extra = [];
             if ($entity == 'Entrenador') {
                 $data = [
                     'Nombre',
@@ -532,6 +534,8 @@ class AdminController extends Controller
                     'experience',
                 ];
             } elseif ($entity == 'Usuario') {
+                $extra = Suscription::select('id', 'name')->get();
+
                 $data = [
                     'Nombre',
                     'User name',
@@ -663,16 +667,18 @@ class AdminController extends Controller
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            return view('admin.forms.createForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity]);
+            return view('admin.forms.createForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity, 'extra' => $extra]);
     }
     public function showEditView(Request $request)
     {
         $createTitle = '';
-        $entity = $request->type;
+        $entity = $request->type;;
         $data = [];
         $dataInput = [];
         $current = [];
+        $extra = [];
             if ($entity == 'Entrenador') {
+                $current = User::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
                     'User name',
@@ -696,6 +702,7 @@ class AdminController extends Controller
                     'experience',
                 ];
             } elseif ($entity == 'Usuario') {
+                $extra = Suscription::select('id', 'name')->get();
                 $current = User::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
@@ -720,6 +727,7 @@ class AdminController extends Controller
                     'suscription_id' // 1 or 2
                 ];
             } elseif ($entity == 'Administrador') {
+                $current = User::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
                     'User name',
@@ -735,6 +743,7 @@ class AdminController extends Controller
                     'country',
                 ];
             } elseif ($entity == 'Entrenamiento') {
+                $current = Training::where('id',$request->id)->first();
                 $coaches = User::where('status', 'Coach')->select('id', 'name')->get();
                 $categories = CategoryOfTraining::select('id', 'name')->get();
                 $data = [
@@ -754,6 +763,7 @@ class AdminController extends Controller
                     'Categoría' => 'category_of_training_id'
                 ];
             } elseif ($entity == 'Ejercicio') {
+                $current = Exercise::where('id',$request->id)->first();
                 $coaches = User::where('status', 'Coach')->select('id', 'name')->get();
                 $types = TagOfIngredient::select('id', 'name')->get();
                 $data = [
@@ -775,6 +785,7 @@ class AdminController extends Controller
                     'Tipo' => 'tag_of_exercise_id'
                 ];
             } elseif ($entity == 'Dieta') {
+                $current = Diet::where('id',$request->id)->first();
                 $coaches = User::where('status','Coach')->select('id', 'name')->get();
                 $categories = CategoryOfDiet::select('id', 'name')->get();
                 $data = [
@@ -790,6 +801,7 @@ class AdminController extends Controller
                     'Categorías'  => 'category_of_diet_id'
                 ];
             } elseif ($entity == 'Ingrediente') {
+                $current = Ingredient::where('id',$request->id)->first();
                 $types = TagOfIngredient::select('id', 'name')->get();
                 $data = [
                     'Nombre',
@@ -800,6 +812,7 @@ class AdminController extends Controller
                     'Tipo' => 'tag_of_ingredient_id'
                 ];
             } elseif ($entity == 'Gimnasio') {
+                $current = Gym::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
                     'Logo'
@@ -809,6 +822,7 @@ class AdminController extends Controller
                     'logo'
                 ];
             } elseif ($entity == 'Super mercado') {
+                $current = Supermarket::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
                     'Logo'
@@ -818,6 +832,7 @@ class AdminController extends Controller
                     'logo'
                 ];
             } elseif ($entity == 'Categoría') {
+                $current = Exercise::where('id',$request->id)->first();
                 $data = [
                     'Nombre'
                 ];
@@ -828,7 +843,7 @@ class AdminController extends Controller
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            return view('admin.forms.editForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity, 'current' => $current]);
+            return view('admin.forms.editForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity, 'current' => $current, 'extra' => $extra]);
 
     }
 
@@ -954,7 +969,7 @@ class AdminController extends Controller
         $columns = json_decode($request->dataInput);
         try {
             if ($entity == 'Entrenador') {
-                $coach = User::where('id', $request->id);
+                $coach = User::where('id', $request->id)->first();
                 $count = User::all()->count();
                 foreach ($columns as $key => $column) {
                     if ($column == 'password') {
@@ -991,61 +1006,82 @@ class AdminController extends Controller
                 
                 $user->save();
             } elseif ($entity == 'Entrenamiento') {
-                $training = Training::where('id', $request->id);
+                $training = Training::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
-                    $training->$column = $request[$column];
+                        $training->$column = $request[$column];
                 }
                 $training->save();
             } elseif ($entity == 'Ejercicio') {
-                $exercise = Exercise::where('id', $request->id);
+                $exercise = Exercise::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     $exercise->$column = $request[$column];
                 }
                 $exercise->save(); 
             } elseif ($entity == 'Dieta') {
-                $diet = Diet::where('id', $request->id);
+                $diet = Diet::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     $diet->$column = $request[$column];
                 }
                 $diet->save(); 
             } elseif ($entity == 'Ingrediente') {
-                $ingredient = Ingredient::where('id', $request->id);
-                foreach ($columns as $key => $column) {
-                    $ingredient->$column = $request[$column];
+                $ingredientToEdit = Ingredient::where('id', $request->id)->first();
+                $ingredients = Ingredient::all();
+                foreach ($ingredients as $key => $ingredient) {
+                    if($request['name'] == $ingredient->name) {
+                        Toastr::error('El nombre de ingrediente ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
-                $ingredient->save(); 
+                foreach ($columns as $key => $column) {
+                    $ingredientToEdit->$column = $request[$column];
+                }
+                $ingredientToEdit->save(); 
             } elseif ($entity == 'Gimnasio') {
-                $gym = Gym::where('id', $request->id);
-                foreach ($columns as $key => $column) {
-                    $gym->$column = $request[$column];
+                $gymToEdit = Gym::where('id', $request->id)->first();
+                $gyms = Gym::all();
+                foreach ($gyms as $key => $gym) {
+                    if($request['name'] == $gym->name) {
+                        Toastr::error('El gimnasio ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
-                $gym->save(); 
+                foreach ($columns as $key => $column) {
+                    $gymToEdit->$column = $request[$column];
+                }
+                $gymToEdit->save(); 
             } elseif ($entity == 'Super mercado') {
-                $market = Supermarket::where('id', $request->id);
-                foreach ($columns as $key => $column) {
-                    $market->$column = $request[$column];
+                $marketToEdit = Supermarket::where('id', $request->id)->first();
+                $markets = Supermarket::all();
+                foreach ($markets as $key => $market) {
+                    if($request['name'] == $market->name) {
+                        Toastr::error('El supermercado ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
-                $market->save(); 
+                foreach ($columns as $key => $column) {
+                    $marketToEdit->$column = $request[$column];
+                }
+                $marketToEdit->save(); 
             } elseif ($request->category == 'admin.trainings-categories') {
-                $category = CategoryOfTraining::where('id', $request->id);
+                $category = CategoryOfTraining::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
                 $category->save(); 
             } elseif ($request->category == 'admin.exercises-categories') {
-                $category = TagOfExercise::where('id', $request->id);
+                $category = TagOfExercise::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
                 $category->save(); 
             } elseif ($request->category == 'admin.diets-categories') {
-                $category = CategoryOfDiet::where('id', $request->id);
+                $category = CategoryOfDiet::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
                 $category->save(); 
             } elseif ($request->category == 'admin.ingredients-categories') {
-                $category = TagOfIngredient::where('id', $request->id);
+                $category = TagOfIngredient::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
