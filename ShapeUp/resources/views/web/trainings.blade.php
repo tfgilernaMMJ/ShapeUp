@@ -191,7 +191,7 @@
                                 </li>
                                 @for ($i = 1; $i <= $trainings->lastPage(); $i++)
                                     <li>
-                                        <a href="{{ $trainings->appends(['category_sort' => $request->input('category_sort'), 'level_sort' => $request->input('level_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'trainingslike_sort' => $request->input('trainingslike_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $trainings->currentPage()) text-white bg-purple-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
+                                        <a href="{{ $trainings->appends(['category_sort' => $request->input('category_sort'), 'level_sort' => $request->input('level_sort'), 'coach_sort' => $request->input('coach_sort'), 'like_sort' => $request->input('like_sort'), 'trainingslike_sort' => $request->input('trainingslike_sort')])->url($i) }}" class="px-3 py-1 rounded-md @if ($i === $trainings->currentPage()) text-white bg-green-600 border border-r-0 border-green-600 rounded-md @else focus:outline-none focus:shadow-outline-green @endif">
                                             {{ $i }}
                                         </a>
                                     </li>
