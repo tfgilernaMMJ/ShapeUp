@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryOfDiet;
-use App\Models\CategoryOfTraining;
-use App\Models\Diet;
-use App\Models\DietIngredient;
-use App\Models\Exercise;
+use PDOException;
 use App\Models\Gym;
+use App\Models\Diet;
+use App\Models\User;
+use App\Models\Exercise;
+use App\Models\Training;
 use App\Models\Ingredient;
 use App\Models\Supermarket;
 use App\Models\Suscription;
-use App\Models\TagOfExercise;
-use App\Models\TagOfIngredient;
-use App\Models\User;
-use App\Models\Training;
-use App\Models\TrainingExercise;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use App\Models\TagOfExercise;
+use App\Models\CategoryOfDiet;
+use App\Models\DietIngredient;
 use Illuminate\Support\Carbon;
+use App\Models\TagOfIngredient;
 use App\Models\UserFollowCoach;
+use App\Models\TrainingExercise;
+use App\Models\CategoryOfTraining;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
-use PDOException;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -857,13 +859,21 @@ class AdminController extends Controller
                 $count = User::all()->count();
                 foreach ($columns as $key => $column) {
                     if ($column == 'password') {
-
                         $newCoach->$column = bcrypt($request[$column]);
                     } else {
                         $newCoach->$column = $request[$column];
                     }
                 }
                 $newCoach->status = 'Coach';
+                $newCoach->save();
+
+                if($request->file('photo')){
+                    $file = $request->file('photo');
+                    $destinationPath = 'dashboard/assets/img/test';
+                    $filename = $newCoach->id . '.' . $file->getClientOriginalExtension();;
+                    $file->move($destinationPath, $filename);
+                    $newCoach->photo = $filename . 'jpg';
+                }
                 $newCoach->save();
             } elseif ($entity == 'Usuario') {
                 $newCoach = new User();
@@ -979,6 +989,27 @@ class AdminController extends Controller
                         $coach->$column = $request[$column];
                     }
                 }
+
+                if ($request->file('photo')) {
+                    $file = $request->file('photo');
+                    $destinationPath = 'dashboard/assets/img/test';
+                    $filename = $coach->id . '.' . $file->getClientOriginalExtension();
+                
+                    // Eliminar la foto existente si existe
+                    $existingPhotoPath = public_path($destinationPath . '/' . $coach->photo);
+                    if (File::exists($existingPhotoPath)) {
+                        File::delete($existingPhotoPath);
+                    }
+                
+                    // Mover el archivo temporal al directorio de destino con el nombre deseado
+                    $file->move(public_path($destinationPath), $filename);
+                
+                    // Actualizar el nombre de la foto en el objeto $coach
+                    $coach->photo = $filename;
+                }
+                
+                $coach->save();
+                
                 $coach->save();
             } elseif ($entity == 'Usuario') {
                 $user = User::where('id', $request->id)->first();

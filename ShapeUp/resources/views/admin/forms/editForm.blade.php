@@ -8,10 +8,10 @@
 </h2>
 {!! Toastr::message() !!}
 <div class="container bg-transparent mt-5">
-<form action="{{ route('admin.edit', ['entity' => $entidad, 'category' => request()->category, 'id' => request()->id]) }}" method="GET">
+<form action="{{ route('admin.edit', ['entity' => $entidad, 'category' => request()->category, 'id' => request()->id]) }}" enctype="multipart/form-data" method="POST">
     <input type="hidden" id="data-input" value="{{ json_encode($dataInput) }}" name="dataInput">
+        @csrf
         @method('PUT')
-        @CSRF
         @foreach($data as $key => $input)
         <div class="mb-4">
             <label for="{{ $dataInput[$key] }}" class="block text-bold mb-1">
@@ -39,6 +39,8 @@
                     <input type="number" value="{{ old($dataInput[$key], $current->{$dataInput[$key]}) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
                 @elseif($input == 'Peso en kg')
                     <input type="number" value="{{ old($dataInput[$key], $current->{$dataInput[$key]}) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
+                @elseif($input == 'Foto')
+                    <input type="file" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
                 @elseif($input == 'Suscripción')
                 <select name="{{ $dataInput[$key] }}" id="{{ $key }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example">
                     @foreach($extra as $option)

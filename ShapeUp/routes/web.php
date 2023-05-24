@@ -244,8 +244,8 @@ Route::middleware(['auth','admin'])->group(function () {
 Route::delete('/admin/{type}/{id}', [App\Http\Controllers\AdminController::class, 'deleteData'])->name('destroy');
 Route::get('/admin-editView/{type}/{id}/{category}', [App\Http\Controllers\AdminController::class, 'showEditView'])->name('admin.editView');
 Route::get('/admin-createView/{type}/{category}', [App\Http\Controllers\AdminController::class, 'showFormView'])->name('admin.createView');
-Route::get('/admin-create/{entity}/{category}', [App\Http\Controllers\AdminController::class, 'createData'])->name('admin.create');
-Route::get('/admin-edit/{entity}/{category}/{id}', [App\Http\Controllers\AdminController::class, 'editData'])->name('admin.edit');
+Route::post('/admin-create/{entity}/{category}', [App\Http\Controllers\AdminController::class, 'createData'])->name('admin.create');
+Route::put('/admin-edit/{entity}/{category}/{id}', [App\Http\Controllers\AdminController::class, 'editData'])->name('admin.edit');
 
 
 Route::get('/admin-formularios', function () {
