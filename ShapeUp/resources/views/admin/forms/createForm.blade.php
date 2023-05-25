@@ -40,7 +40,9 @@
                     <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
                 @elseif($input == 'Peso (en kg)')
                     <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
-                @elseif($input == 'Foto')
+                @elseif($input == 'Foto (introducir 1 archivo de dimensión 1:1)')
+                    <input type="file" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
+                @elseif($input == 'Logo (introducir 1 archivo de dimensión 1:1)')
                     <input type="file" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
                 @elseif($input == 'Suscripción')
                 <select name="{{ $dataInput[$key] }}" id="{{ $key }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example">
