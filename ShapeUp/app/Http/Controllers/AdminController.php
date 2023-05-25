@@ -1018,6 +1018,7 @@ class AdminController extends Controller
 
                 $gyms = Gym::all();
                 $newGym = new Gym();
+
                 foreach ($columns as $key => $column) {
                     if ($column == 'name') {
                         foreach($gyms as $gym) {
@@ -1029,7 +1030,7 @@ class AdminController extends Controller
                     }
                     $newGym->$column = $request[$column];
                 }
-
+                $newGym->save(); 
                 if($request->file('logo')){
                     $file = $request->file('logo');
                     $destinationPath = 'dashboard/assets/img/test';
@@ -1051,6 +1052,7 @@ class AdminController extends Controller
 
                 $supermarkets = Supermarket::all();
                 $newMarket = new Supermarket();
+
                 foreach ($columns as $key => $column) {
                     if ($column == 'name') {
                         foreach($supermarkets as $supermarket) {
@@ -1082,26 +1084,55 @@ class AdminController extends Controller
 
             } elseif ($request->category == 'admin.trainings-categories') {
                 $newCategory = new CategoryOfTraining();
+                $categories = CategoryOfTraining::all();
                 foreach ($columns as $key => $column) {
                     $newCategory->$column = $request[$column];
+                }
+                
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name) {
+                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
                 $newCategory->save(); 
             } elseif ($request->category == 'admin.exercises-categories') {
                 $newCategory = new TagOfExercise();
+                $categories = TagOfExercise::all();
                 foreach ($columns as $key => $column) {
                     $newCategory->$column = $request[$column];
+                }
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name) {
+                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
                 $newCategory->save(); 
             } elseif ($request->category == 'admin.diets-categories') {
                 $newCategory = new CategoryOfDiet();
+                $categories = CategoryOfDiet::all();
                 foreach ($columns as $key => $column) {
                     $newCategory->$column = $request[$column];
+                }
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name) {
+                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
                 $newCategory->save(); 
             } elseif ($request->category == 'admin.ingredients-categories') {
                 $newCategory = new TagOfIngredient();
+                $categories = TagOfIngredient::all();
                 foreach ($columns as $key => $column) {
                     $newCategory->$column = $request[$column];
+                }
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name) {
+                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
                 }
                 $newCategory->save(); 
             }
@@ -1371,25 +1402,56 @@ class AdminController extends Controller
                 $marketToEdit->save(); 
 
             } elseif ($request->category == 'admin.trainings-categories') {
-                $category = CategoryOfTraining::where('id', $request->id)->first();
+                $categoryToEdit = CategoryOfTraining::where('id', $request->id)->first();
+                $categories = CategoryOfTraining::all();
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
+                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+                }
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
                 $category->save(); 
             } elseif ($request->category == 'admin.exercises-categories') {
-                $category = TagOfExercise::where('id', $request->id)->first();
+                $categoryToEdit = TagOfExercise::where('id', $request->id)->first();
+                $categories = TagOfExercise::all();
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
+                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+                }
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
                 $category->save(); 
             } elseif ($request->category == 'admin.diets-categories') {
-                $category = CategoryOfDiet::where('id', $request->id)->first();
+                $categoryToEdit = CategoryOfDiet::where('id', $request->id)->first();
+                $categories = CategoryOfDiet::all();
+
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
+                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+                }
+
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
                 $category->save(); 
             } elseif ($request->category == 'admin.ingredients-categories') {
-                $category = TagOfIngredient::where('id', $request->id)->first();
+                $categoryToEdit = TagOfIngredient::where('id', $request->id)->first();
+                $categories = CategoryOfDiet::all();
+
+                foreach ($categories as $key => $category) {
+                    if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
+                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+                }
                 foreach ($columns as $key => $column) {
                     $category->$column = $request[$column];
                 }
