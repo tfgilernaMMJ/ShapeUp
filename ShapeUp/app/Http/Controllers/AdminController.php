@@ -1048,7 +1048,27 @@ class AdminController extends Controller
             if ($entity == 'Entrenador') {
                 $coach = User::where('id', $request->id)->first();
                 $count = User::all()->count();
+                $coaches = User::where('status', 'Coach')->get();
                 foreach ($columns as $key => $column) {
+
+                    if ($column == 'username') {
+                        foreach($coaches as $coach) {
+                            if ($coach->username == $request[$column]) {
+                                Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'email') {
+                        foreach($coaches as $coach) {
+                            if ($coach->email == $request[$column]) {
+                                Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
                     if ($column == 'password') {
 
                         $coach->$column = bcrypt($request[$column]);
@@ -1083,7 +1103,27 @@ class AdminController extends Controller
 
             } elseif ($entity == 'Usuario') {
                 $user = User::where('id', $request->id)->first();
+                $users = User::where('status', 'User')->get();
                 foreach ($columns as $key => $column) {
+
+                    if ($column == 'username') {
+                        foreach($users as $user) {
+                            if ($user->username == $request[$column]) {
+                                Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'email') {
+                        foreach($users as $user) {
+                            if ($user->email == $request[$column]) {
+                                Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
                     if($request[$column]) {
                         if ($column == 'password') {
                             $user->$column = bcrypt($request[$column]);
@@ -1096,7 +1136,27 @@ class AdminController extends Controller
                 $user->save();
             } elseif ($entity == 'Administrador') {
                 $user = User::where('id', $request->id)->first();
+                $admins = User::where('status', 'Admin')->get();
                 foreach ($columns as $key => $column) {
+
+                    if ($column == 'username') {
+                        foreach($admins as $admin) {
+                            if ($admin->username == $request[$column]) {
+                                Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'email') {
+                        foreach($admins as $admin) {
+                            if ($admin->email == $request[$column]) {
+                                Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
                     if ($column == 'password') {
                         $user->$column = bcrypt($request[$column]);
                     } else {
