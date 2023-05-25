@@ -676,7 +676,8 @@ class AdminController extends Controller
     public function showEditView(Request $request)
     {
         $createTitle = '';
-        $entity = $request->type;;
+        $entity = $request->type;
+        $category = $request->category;
         $data = [];
         $dataInput = [];
         $current = [];
@@ -836,13 +837,26 @@ class AdminController extends Controller
                     'logo'
                 ];
             } elseif ($entity == 'Categoría') {
-                $current = Exercise::where('id',$request->id)->first();
+                if($category == 'admin.exercises-categories'){
+                    $current = TagOfExercise::where('id',$request->id)->first();
+                }
+                if($category == 'admin.trainings-categories'){
+                    $current = CategoryOfTraining::where('id',$request->id)->first();
+                }
+                if($category == 'admin.ingredients-categories'){
+                    $current = TagOfIngredient::where('id',$request->id)->first();
+                }
+                if($category == 'admin.diets-categories'){
+                    $current = CategoryOfDiet::where('id',$request->id)->first();
+                }
+                
                 $data = [
                     'Nombre'
                 ];
                 $dataInput = [
                     'name'
                 ];
+
             } else {
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
@@ -1085,6 +1099,7 @@ class AdminController extends Controller
     public function editData(Request $request)
     {
         $entity = $request->entity;
+        $category = $request->category;
         $columns = json_decode($request->dataInput);
         try {
             if ($entity == 'Entrenador') {
@@ -1255,27 +1270,7 @@ class AdminController extends Controller
                 foreach ($columns as $key => $column) {
                     $gymToEdit->$column = $request[$column];
                 }
-                if ($request->file('logo')) {
-                    $file = $request->file('logo');
-                    $destinationPath = 'dashboard/assets/img/test';
-                    $filename = $gymToEdit->id . '.' . $file->getClientOriginalExtension();
-                    $existingFiles = glob(public_path($destinationPath) . '/' . $gymToEdit->id . '.*');
 
-                    [$width, $height] = getimagesize($file);
-                
-                    if ($width != $height) {
-                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
-                    }
-
-                    foreach ($existingFiles as $existingFile) {
-                        if (is_file($existingFile)) {
-                            unlink($existingFile); // Eliminar el archivo existente
-                        }
-                    }
-                    $file->move(public_path($destinationPath), $filename);
-                    $gymToEdit->logo = $filename;
-                }
                 $gymToEdit->save(); 
             } elseif ($entity == 'Super mercado') {
 
