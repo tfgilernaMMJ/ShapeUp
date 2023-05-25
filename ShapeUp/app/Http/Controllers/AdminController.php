@@ -1411,9 +1411,9 @@ class AdminController extends Controller
                     }
                 }
                 foreach ($columns as $key => $column) {
-                    $category->$column = $request[$column];
+                    $categoryToEdit->$column = $request[$column];
                 }
-                $category->save(); 
+                $categoryToEdit->save(); 
             } elseif ($request->category == 'admin.exercises-categories') {
                 $categoryToEdit = TagOfExercise::where('id', $request->id)->first();
                 $categories = TagOfExercise::all();
@@ -1424,9 +1424,9 @@ class AdminController extends Controller
                     }
                 }
                 foreach ($columns as $key => $column) {
-                    $category->$column = $request[$column];
+                    $categoryToEdit->$column = $request[$column];
                 }
-                $category->save(); 
+                $categoryToEdit->save(); 
             } elseif ($request->category == 'admin.diets-categories') {
                 $categoryToEdit = CategoryOfDiet::where('id', $request->id)->first();
                 $categories = CategoryOfDiet::all();
@@ -1439,9 +1439,9 @@ class AdminController extends Controller
                 }
 
                 foreach ($columns as $key => $column) {
-                    $category->$column = $request[$column];
+                    $categoryToEdit->$column = $request[$column];
                 }
-                $category->save(); 
+                $categoryToEdit->save(); 
             } elseif ($request->category == 'admin.ingredients-categories') {
                 $categoryToEdit = TagOfIngredient::where('id', $request->id)->first();
                 $categories = CategoryOfDiet::all();
@@ -1453,9 +1453,9 @@ class AdminController extends Controller
                     }
                 }
                 foreach ($columns as $key => $column) {
-                    $category->$column = $request[$column];
+                    $categoryToEdit->$column = $request[$column];
                 }
-                $category->save(); 
+                $categoryToEdit->save(); 
             }
             else {
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
