@@ -48,7 +48,7 @@ class AdminController extends Controller
             }
         }
         unset($result);
-        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios ShuperShapeUp', 'Ingresos por suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
+        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios SuperShapeUp', 'Ingresos por suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
         $resultsIcon = ['bx bxs-user', 'bx bx-dumbbell', 'bx bxs-star', 'bx bx-money-withdraw', 'bx bx-dumbbell', 'bx bx-dumbbell', 'bx bx-bowl-rice', 'bx bx-baguette'];
         $resultsColors = [
             'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
@@ -80,6 +80,7 @@ class AdminController extends Controller
                 'trainingsCount' =>  $trainingsCount,
                 'exerciseCount' =>  $exercisesCount,
                 'ingredientsCount' =>  $ingredientsCount,
+                'dietsCount' =>  $dietsCount,
                 'cardsResults' => $cardsResults,
                 'resultsTitle' => $resultsTitle,
                 'resultsIcon' => $resultsIcon,
@@ -644,7 +645,7 @@ class AdminController extends Controller
             } elseif ($entity == 'Gimnasio') {
                 $data = [
                     'Nombre',
-                    'Logo'
+                    'Logo (introducir 1 archivo de dimensión 1:1)'
                 ];
                 $dataInput = [
                     'name',
@@ -653,7 +654,7 @@ class AdminController extends Controller
             } elseif ($entity == 'Super mercado') {
                 $data = [
                     'Nombre',
-                    'Logo'
+                    'Logo (introducir 1 archivo de dimensión 1:1)'
                 ];
                 $dataInput = [
                     'name',
@@ -818,7 +819,7 @@ class AdminController extends Controller
                 $current = Gym::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
-                    'Logo'
+                    'Logo (introducir 1 archivo de dimensión 1:1)'
                 ];
                 $dataInput = [
                     'name',
@@ -828,7 +829,7 @@ class AdminController extends Controller
                 $current = Supermarket::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
-                    'Logo'
+                    'Logo (introducir 1 archivo de dimensión 1:1)'
                 ];
                 $dataInput = [
                     'name',
@@ -855,6 +856,7 @@ class AdminController extends Controller
         $entity = $request->entity;
         $columns = json_decode($request->dataInput);
         try {
+
             if ($entity == 'Entrenador') {
                 $newCoach = new User();
                 $count = User::all()->count();
@@ -891,9 +893,16 @@ class AdminController extends Controller
                 if($request->file('photo')){
                     $file = $request->file('photo');
                     $destinationPath = 'dashboard/assets/img/test';
-                    $filename = $newCoach->id . '.' . $file->getClientOriginalExtension();;
+                    $filename = $newCoach->id . '.' . $file->getClientOriginalExtension();
+                    [$width, $height] = getimagesize($file);
+                
+                    if ($width != $height) {
+                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+
                     $file->move($destinationPath, $filename);
-                    $newCoach->photo = $filename . 'jpg';
+                    $newCoach->photo = $filename;
                 }
                 $newCoach->save();
 
@@ -996,11 +1005,44 @@ class AdminController extends Controller
                     $newGym->$column = $request[$column];
                 }
                 $newGym->save(); 
+                if($request->file('logo')){
+                    $file = $request->file('logo');
+                    $destinationPath = 'dashboard/assets/img/test';
+                    $filename = $newGym->id . '.' . $file->getClientOriginalExtension();
+                    [$width, $height] = getimagesize($file);
+
+                    if ($width != $height) {
+                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+
+                    $file->move($destinationPath, $filename);
+                    $newGym->logo = $filename;
+                }
+                $newGym->save();
             } elseif ($entity == 'Super mercado') {
                 $newMarket = new Supermarket();
                 foreach ($columns as $key => $column) {
                     $newMarket->$column = $request[$column];
                 }
+        
+                $newMarket->save(); 
+
+                if($request->file('logo')){
+                    $file = $request->file('logo');
+                    $destinationPath = 'dashboard/assets/img/test';
+                    $filename = $newMarket->id . '.' . $file->getClientOriginalExtension();
+                    [$width, $height] = getimagesize($file);
+
+                    if ($width != $height) {
+                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+
+                    $file->move($destinationPath, $filename);
+                    $newMarket->logo = $filename;
+                }
+
                 $newMarket->save(); 
             } elseif ($request->category == 'admin.trainings-categories') {
                 $newCategory = new CategoryOfTraining();
@@ -1046,14 +1088,14 @@ class AdminController extends Controller
         $columns = json_decode($request->dataInput);
         try {
             if ($entity == 'Entrenador') {
-                $coach = User::where('id', $request->id)->first();
+                $coachToEdit = User::where('id', $request->id)->first();
                 $count = User::all()->count();
                 $coaches = User::where('status', 'Coach')->get();
                 foreach ($columns as $key => $column) {
 
                     if ($column == 'username') {
                         foreach($coaches as $coach) {
-                            if ($coach->username == $request[$column]) {
+                            if ($coach->username == $request[$column] && $coach->username != $coachToEdit->username) {
                                 Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1062,7 +1104,7 @@ class AdminController extends Controller
 
                     if ($column == 'email') {
                         foreach($coaches as $coach) {
-                            if ($coach->email == $request[$column]) {
+                            if ($coach->email == $request[$column] && $coach->username != $coachToEdit->username) {
                                 Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1071,35 +1113,39 @@ class AdminController extends Controller
 
                     if ($column == 'password') {
 
-                        $coach->$column = bcrypt($request[$column]);
-                    } else {
-                        $coach->$column = $request[$column];
-                    }
-                }
-
-                if ($request->file('photo')) {
-                    $file = $request->file('photo');
-                    $destinationPath = 'dashboard/assets/img/test';
-                    $filename = $coach->id . '.' . $file->getClientOriginalExtension();
-                    $existingFiles = glob(public_path($destinationPath) . '/' . $coach->id . '.*');
-
-                    [$width, $height] = getimagesize($file);
-                
-                    if ($width != $height) {
-                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
+                        $coachToEdit->$column = bcrypt($request[$column]);
                     }
 
-                    foreach ($existingFiles as $existingFile) {
-                        if (is_file($existingFile)) {
-                            unlink($existingFile); // Eliminar el archivo existente
+                    if($column == 'photo') {
+                        if (!empty($request->file('photo'))) {
+                            $file = $request->file('photo');
+                            $destinationPath = 'dashboard/assets/img/test';
+                            $filename = $coachToEdit->id . '.' . $file->getClientOriginalExtension();
+                            $existingFiles = glob(public_path($destinationPath) . '/' . $coachToEdit->id . '.*');
+        
+                            [$width, $height] = getimagesize($file);
+                        
+                            if ($width != $height) {
+                                Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+        
+                            foreach ($existingFiles as $existingFile) {
+                                if (is_file($existingFile)) {
+                                    unlink($existingFile); // Eliminar el archivo existente
+                                }
+                            }
+                            $file->move(public_path($destinationPath), $filename);
+                            $coachToEdit->photo = $filename;
                         }
+
+                    } else {
+                        $coachToEdit->$column = $request[$column];
                     }
-                    $file->move(public_path($destinationPath), $filename);
-                    $coach->photo = $filename;
                 }
 
-                $coach->save();
+
+                $coachToEdit->save();
 
             } elseif ($entity == 'Usuario') {
                 $user = User::where('id', $request->id)->first();
@@ -1201,7 +1247,7 @@ class AdminController extends Controller
                 $gymToEdit = Gym::where('id', $request->id)->first();
                 $gyms = Gym::all();
                 foreach ($gyms as $key => $gym) {
-                    if($request['name'] == $gym->name) {
+                    if($request['name'] == $gym->name && $gym->name != $gymToEdit->name) {
                         Toastr::error('El gimnasio ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
@@ -1209,18 +1255,61 @@ class AdminController extends Controller
                 foreach ($columns as $key => $column) {
                     $gymToEdit->$column = $request[$column];
                 }
+                if ($request->file('logo')) {
+                    $file = $request->file('logo');
+                    $destinationPath = 'dashboard/assets/img/test';
+                    $filename = $gymToEdit->id . '.' . $file->getClientOriginalExtension();
+                    $existingFiles = glob(public_path($destinationPath) . '/' . $gymToEdit->id . '.*');
+
+                    [$width, $height] = getimagesize($file);
+                
+                    if ($width != $height) {
+                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+
+                    foreach ($existingFiles as $existingFile) {
+                        if (is_file($existingFile)) {
+                            unlink($existingFile); // Eliminar el archivo existente
+                        }
+                    }
+                    $file->move(public_path($destinationPath), $filename);
+                    $gymToEdit->logo = $filename;
+                }
                 $gymToEdit->save(); 
             } elseif ($entity == 'Super mercado') {
+
                 $marketToEdit = Supermarket::where('id', $request->id)->first();
                 $markets = Supermarket::all();
                 foreach ($markets as $key => $market) {
-                    if($request['name'] == $market->name) {
+                    if($request['name'] == $market->name && $market->name != $marketToEdit->name) {
                         Toastr::error('El supermercado ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
                 foreach ($columns as $key => $column) {
                     $marketToEdit->$column = $request[$column];
+                }
+                if ($request->file('logo')) {
+                    $file = $request->file('logo');
+                    $destinationPath = 'dashboard/assets/img/test';
+                    $filename = $marketToEdit->id . '.' . $file->getClientOriginalExtension();
+                    $existingFiles = glob(public_path($destinationPath) . '/' . $marketToEdit->id . '.*');
+
+                    [$width, $height] = getimagesize($file);
+                
+                    if ($width != $height) {
+                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+
+                    foreach ($existingFiles as $existingFile) {
+                        if (is_file($existingFile)) {
+                            unlink($existingFile); // Eliminar el archivo existente
+                        }
+                    }
+                    $file->move(public_path($destinationPath), $filename);
+                    $marketToEdit->logo = $filename;
                 }
                 $marketToEdit->save(); 
             } elseif ($request->category == 'admin.trainings-categories') {

@@ -16,7 +16,7 @@ text-gray-800 dark:text-gray-100
 <main class="h-full overflow-y-auto">
   <div class="container px-6 mx-auto grid">
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Dashboard
+      Inicio
     </h2>
     <!-- CTA -->
     <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="https://github.com/tfgilernaMMJ/ShapeUp" target="_blank">
@@ -61,10 +61,11 @@ text-gray-800 dark:text-gray-100
   <div class="grid gap-6 mb-8 md:grid-cols-2">
     <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
       <!-- Chart legend -->
-      @if($trainingsCount == 0 && $exerciseCount == 0 && $ingredientsCount == 0)
-      <input class="countTrainings" hidden value="{{0}}" />
-      <input class="countExercise" hidden value="{{0}}" />
-      <input class="countIngredients" hidden value="{{0}}" />
+      @if($trainingsCount == 0 && $exerciseCount == 0 && $ingredientsCount == 0 && $dietsCount == 0)
+      <input class="countTrainings" hidden value="0" />
+      <input class="countExercise" hidden value="0" />
+      <input class="countIngredients" hidden value="0" />
+      <input class="countDiets" hidden value="0" />
       <canvas id="pie"></canvas>
       <div class="flex items-center">
         <span class="inline-block w-3 h-3 mr-1 bg-red-500 rounded-full"></span>
@@ -74,6 +75,7 @@ text-gray-800 dark:text-gray-100
       <input class="countTrainings" hidden value="{{$trainingsCount}}" />
       <input class="countExercise" hidden value="{{$exerciseCount}}" />
       <input class="countIngredients" hidden value="{{$ingredientsCount}}" />
+      <input class="countDiets" hidden value="{{$dietsCount}}" />
       <canvas id="pie"></canvas>
       <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
         <!-- Chart legend -->
@@ -88,6 +90,10 @@ text-gray-800 dark:text-gray-100
         <div class="flex items-center">
           <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
           <span>Ingredientes</span>
+        </div>
+        <div class="flex items-center">
+          <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
+          <span>Dietas</span>
         </div>
       </div>
       @endif
