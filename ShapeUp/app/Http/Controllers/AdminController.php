@@ -48,7 +48,7 @@ class AdminController extends Controller
             }
         }
         unset($result);
-        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios ShuperShapeUp', 'Dinero por Suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
+        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios ShuperShapeUp', 'Ingresos por suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
         $resultsIcon = ['bx bxs-user', 'bx bx-dumbbell', 'bx bxs-star', 'bx bx-money-withdraw', 'bx bx-dumbbell', 'bx bx-dumbbell', 'bx bx-bowl-rice', 'bx bx-baguette'];
         $resultsColors = [
             'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
@@ -1252,7 +1252,7 @@ class AdminController extends Controller
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            Toastr::success($entity . ' editado' , 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success($entity . ' - Edición realizada con éxito.' , 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
