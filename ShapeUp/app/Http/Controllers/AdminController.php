@@ -391,8 +391,8 @@ class AdminController extends Controller
                 ]
             );
         } else if ($request->route()->getName() == 'admin.markets') {
-            $title = 'Super Mercados';
-            $createTexxtButton = 'Super mercado';
+            $title = 'Supermercados';
+            $createTexxtButton = 'Supermercado';
             $rows = Supermarket::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -651,7 +651,7 @@ class AdminController extends Controller
                     'name',
                     'logo'
                 ];
-            } elseif ($entity == 'Super mercado') {
+            } elseif ($entity == 'Supermercado') {
                 $data = [
                     'Nombre',
                     'Logo (introducir 1 archivo de dimensión 1:1)'
@@ -826,7 +826,7 @@ class AdminController extends Controller
                     'name',
                     'logo'
                 ];
-            } elseif ($entity == 'Super mercado') {
+            } elseif ($entity == 'Supermercado') {
                 $current = Supermarket::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
@@ -901,8 +901,8 @@ class AdminController extends Controller
                         $newCoach->$column = $request[$column];
                     }
                 }
+
                 $newCoach->status = 'Coach';
-                $newCoach->save();
 
                 if($request->file('photo')){
                     $file = $request->file('photo');
@@ -918,6 +918,7 @@ class AdminController extends Controller
                     $file->move($destinationPath, $filename);
                     $newCoach->photo = $filename;
                 }
+
                 $newCoach->save();
 
             } elseif ($entity == 'Usuario') {
@@ -1014,11 +1015,21 @@ class AdminController extends Controller
                 }
                 $newIngredient->save(); 
             } elseif ($entity == 'Gimnasio') {
+
+                $gyms = Gym::all();
                 $newGym = new Gym();
                 foreach ($columns as $key => $column) {
+                    if ($column == 'name') {
+                        foreach($gyms as $gym) {
+                            if ($gym->name == $request[$column]) {
+                                Toastr::error('Este nombre ya existe en otro gimnasio', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
                     $newGym->$column = $request[$column];
                 }
-                $newGym->save(); 
+
                 if($request->file('logo')){
                     $file = $request->file('logo');
                     $destinationPath = 'dashboard/assets/img/test';
@@ -1033,14 +1044,24 @@ class AdminController extends Controller
                     $file->move($destinationPath, $filename);
                     $newGym->logo = $filename;
                 }
+
                 $newGym->save();
-            } elseif ($entity == 'Super mercado') {
+
+            } elseif ($entity == 'Supermercado') {
+
+                $supermarkets = Supermarket::all();
                 $newMarket = new Supermarket();
                 foreach ($columns as $key => $column) {
+                    if ($column == 'name') {
+                        foreach($supermarkets as $supermarket) {
+                            if ($supermarket->name == $request[$column]) {
+                                Toastr::error('Este nombre ya existe en otro supermercado', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
                     $newMarket->$column = $request[$column];
                 }
-        
-                $newMarket->save(); 
 
                 if($request->file('logo')){
                     $file = $request->file('logo');
@@ -1058,6 +1079,7 @@ class AdminController extends Controller
                 }
 
                 $newMarket->save(); 
+
             } elseif ($request->category == 'admin.trainings-categories') {
                 $newCategory = new CategoryOfTraining();
                 foreach ($columns as $key => $column) {
@@ -1159,7 +1181,6 @@ class AdminController extends Controller
                     }
                 }
 
-
                 $coachToEdit->save();
 
             } elseif ($entity == 'Usuario') {
@@ -1259,54 +1280,96 @@ class AdminController extends Controller
                 }
                 $ingredientToEdit->save(); 
             } elseif ($entity == 'Gimnasio') {
+
                 $gymToEdit = Gym::where('id', $request->id)->first();
                 $gyms = Gym::all();
-                foreach ($gyms as $key => $gym) {
-                    if($request['name'] == $gym->name && $gym->name != $gymToEdit->name) {
-                        Toastr::error('El gimnasio ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
-                    }
-                }
+                
                 foreach ($columns as $key => $column) {
-                    $gymToEdit->$column = $request[$column];
+                    if ($column == 'name') {
+                        foreach ($gyms as $gym) {
+                            if($request['name'] == $gym->name && $gym->name != $gymToEdit->name) {
+                                Toastr::error('Este nombre ya existe en otro gimnasio', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    } 
+                    
+                    if($column == 'logo') {
+                        if (!empty($request->file('logo'))) {
+                            $file = $request->file('logo');
+                            $destinationPath = 'dashboard/assets/img/test';
+                            $filename = $gymToEdit->id . '.' . $file->getClientOriginalExtension();
+                            $existingFiles = glob(public_path($destinationPath) . '/' . $gymToEdit->id . '.*');
+        
+                            [$width, $height] = getimagesize($file);
+                        
+                            if ($width != $height) {
+                                Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+        
+                            foreach ($existingFiles as $existingFile) {
+                                if (is_file($existingFile)) {
+                                    unlink($existingFile); // Eliminar el archivo existente
+                                }
+                            }
+                            $file->move(public_path($destinationPath), $filename);
+                            $gymToEdit->photo = $filename;
+                        }
+    
+                    } else {
+                        $gymToEdit->$column = $request[$column];
+                    }
+
                 }
 
                 $gymToEdit->save(); 
-            } elseif ($entity == 'Super mercado') {
+
+            } elseif ($entity == 'Supermercado') {
 
                 $marketToEdit = Supermarket::where('id', $request->id)->first();
                 $markets = Supermarket::all();
-                foreach ($markets as $key => $market) {
-                    if($request['name'] == $market->name && $market->name != $marketToEdit->name) {
-                        Toastr::error('El supermercado ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
-                    }
-                }
+            
                 foreach ($columns as $key => $column) {
-                    $marketToEdit->$column = $request[$column];
-                }
-                if ($request->file('logo')) {
-                    $file = $request->file('logo');
-                    $destinationPath = 'dashboard/assets/img/test';
-                    $filename = $marketToEdit->id . '.' . $file->getClientOriginalExtension();
-                    $existingFiles = glob(public_path($destinationPath) . '/' . $marketToEdit->id . '.*');
-
-                    [$width, $height] = getimagesize($file);
-                
-                    if ($width != $height) {
-                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
-                    }
-
-                    foreach ($existingFiles as $existingFile) {
-                        if (is_file($existingFile)) {
-                            unlink($existingFile); // Eliminar el archivo existente
+                    if ($column == 'name') {
+                        foreach ($markets as $market) {
+                            if($request['name'] == $market->name && $market->name != $marketToEdit->name) {
+                                Toastr::error('Este nombre ya existe en otro supermercado', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
                         }
+                    } 
+
+                    if($column == 'logo') {
+                        if (!empty($request->file('logo'))) {
+                            $file = $request->file('logo');
+                            $destinationPath = 'dashboard/assets/img/test';
+                            $filename = $marketToEdit->id . '.' . $file->getClientOriginalExtension();
+                            $existingFiles = glob(public_path($destinationPath) . '/' . $marketToEdit->id . '.*');
+        
+                            [$width, $height] = getimagesize($file);
+                        
+                            if ($width != $height) {
+                                Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+        
+                            foreach ($existingFiles as $existingFile) {
+                                if (is_file($existingFile)) {
+                                    unlink($existingFile); // Eliminar el archivo existente
+                                }
+                            }
+                            $file->move(public_path($destinationPath), $filename);
+                            $marketToEdit->photo = $filename;
+                        }
+    
+                    } else {
+                        $marketToEdit->$column = $request[$column];
                     }
-                    $file->move(public_path($destinationPath), $filename);
-                    $marketToEdit->logo = $filename;
                 }
+                
                 $marketToEdit->save(); 
+
             } elseif ($request->category == 'admin.trainings-categories') {
                 $category = CategoryOfTraining::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
