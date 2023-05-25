@@ -15,11 +15,12 @@
         @foreach($data as $key => $input)
         <div class="mb-4">
             <label for="{{ $dataInput[$key] }}" class="block text-bold mb-1">
-                @if(is_object($input))
+                {{-- @if(is_object($input))
                 {{ucwords($key)}}
                 @else
                 {{ucwords($input) }}
-                @endif
+                @endif --}}
+                {{ $input }}
 
             </label>
             @if(is_object($input))
@@ -29,18 +30,18 @@
                 @endforeach
             </select>
             @else
-            @if($input == 'Email')
-            <input type="email" pattern="^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
+            @if($input == 'Correo electrónico')
+            <input type="email" pattern="^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
                 @elseif($input == 'Edad')
-                    <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
+                    <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
                 @elseif($input == 'Contraseña')
-                    <input type="password" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" value="No disponible" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
-                @elseif($input == 'Altura en cm')
-                    <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
-                @elseif($input == 'Peso en kg')
-                    <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
+                    <input type="password" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" value="" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
+                @elseif($input == 'Altura (en cm)')
+                    <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
+                @elseif($input == 'Peso (en kg)')
+                    <input type="number" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
                 @elseif($input == 'Foto')
-                    <input type="file" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
+                    <input type="file" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
                 @elseif($input == 'Suscripción')
                 <select name="{{ $dataInput[$key] }}" id="{{ $key }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example">
                     @foreach($extra as $option)
@@ -287,7 +288,7 @@
                                         <option  value="Zimbabue">Zimbabue</option>
                                     </select>
             @else
-                <input type="text" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="Enter your {{ $key }}">
+                <input type="text" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="{{ $key }}" name="{{ $dataInput[$key] }}" placeholder="{{ $input }}" required>
             @endif
             
             @endif
