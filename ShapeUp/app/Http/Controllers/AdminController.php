@@ -24,6 +24,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
@@ -515,14 +516,14 @@ class AdminController extends Controller
             if ($entity == 'Entrenador') {
                 $data = [
                     'Nombre',
-                    'User name',
-                    'email',
+                    'Nombre de usuario',
+                    'Correo electrónico',
                     'Contraseña',
                     'País',
-                    'Año',
-                    'Foto',
+                    'Edad',
+                    'Foto (introducir 1 archivo de dimensión 1:1)',
                     'Biografía',
-                    'Experiencia',
+                    'Experiencia (en años)',
                 ];
                 $dataInput = [
                     'name',
@@ -540,13 +541,13 @@ class AdminController extends Controller
 
                 $data = [
                     'Nombre',
-                    'User name',
-                    'Email',
+                    'Nombre de usuario',
+                    'Correo electrónico',
                     'Contraseña',
                     'País',
                     'Edad',
-                    'Altura en cm',
-                    'Peso en kg',
+                    'Altura (en cm)',
+                    'Peso (en kg)',
                     'Suscripción' // 1 or 2
                 ];
                 $dataInput = [
@@ -563,8 +564,8 @@ class AdminController extends Controller
             } elseif ($entity == 'Administrador') {
                 $data = [
                     'Nombre',
-                    'User name',
-                    'email',
+                    'Nombre de usuario',
+                    'Correo electrónico',
                     'Contraseña',
                     'País',
                 ];
@@ -683,14 +684,14 @@ class AdminController extends Controller
                 $current = User::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
-                    'User name',
-                    'email',
+                    'Nombre de usuario',
+                    'Correo electrónico',
                     'Contraseña',
                     'País',
-                    'Año',
-                    'Foto',
+                    'Edad',
+                    'Foto (introducir 1 archivo de dimensión 1:1)',
                     'Biografía',
-                    'Experiencia',
+                    'Experiencia (en años)',
                 ];
                 $dataInput = [
                     'name',
@@ -708,13 +709,13 @@ class AdminController extends Controller
                 $current = User::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
-                    'User name',
-                    'Email',
+                    'Nombre de usuario',
+                    'Correo electrónico',
                     'Contraseña',
                     'País',
                     'Edad',
-                    'Altura en cm',
-                    'Peso en kg',
+                    'Altura (en cm)',
+                    'Peso (en kg)',
                     'Suscripción' // 1 or 2
                 ];
                 $dataInput = [
@@ -732,8 +733,8 @@ class AdminController extends Controller
                 $current = User::where('id',$request->id)->first();
                 $data = [
                     'Nombre',
-                    'User name',
-                    'email',
+                    'Nombre de usuario',
+                    'Correo electrónico',
                     'Contraseña',
                     'País',
                 ];
@@ -857,7 +858,27 @@ class AdminController extends Controller
             if ($entity == 'Entrenador') {
                 $newCoach = new User();
                 $count = User::all()->count();
+                $coaches = User::where('status', 'Coach')->get();
                 foreach ($columns as $key => $column) {
+
+                    if ($column == 'username') {
+                        foreach($coaches as $coach) {
+                            if ($coach->username == $request[$column]) {
+                                Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'email') {
+                        foreach($coaches as $coach) {
+                            if ($coach->email == $request[$column]) {
+                                Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
                     if ($column == 'password') {
                         $newCoach->$column = bcrypt($request[$column]);
                     } else {
@@ -875,21 +896,64 @@ class AdminController extends Controller
                     $newCoach->photo = $filename . 'jpg';
                 }
                 $newCoach->save();
+
             } elseif ($entity == 'Usuario') {
                 $newCoach = new User();
+                $users = User::where('status', 'User')->get();
                 foreach ($columns as $key => $column) {
-                    if ($column == 'password') {
 
+                    if ($column == 'username') {
+                        foreach($users as $user) {
+                            if ($user->username == $request[$column]) {
+                                Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'email') {
+                        foreach($users as $user) {
+                            if ($user->email == $request[$column]) {
+                                Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'password') {
                         $newCoach->$column = bcrypt($request[$column]);
                     } else {
                         $newCoach->$column = $request[$column];
                     }
                 }
+
                 $newCoach->status = 'User';
                 $newCoach->save();
+
             } elseif ($entity == 'Administrador') {
+
                 $newCoach = new User();
+                $admins = User::where('status', 'Admin')->get();
                 foreach ($columns as $key => $column) {
+
+                    if ($column == 'username') {
+                        foreach($admins as $admin) {
+                            if ($admin->username == $request[$column]) {
+                                Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
+                    if ($column == 'email') {
+                        foreach($admins as $admin) {
+                            if ($admin->email == $request[$column]) {
+                                Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
+
                     if ($column == 'password') {
 
                         $newCoach->$column = bcrypt($request[$column]);
@@ -897,9 +961,11 @@ class AdminController extends Controller
                         $newCoach->$column = $request[$column];
                     }
                 }
+
                 $newCoach->status = 'Admin';
                 $newCoach->suscription_id = 2;
                 $newCoach->save();
+
             } elseif ($entity == 'Entrenamiento') {
                 $newTraining = new Training();
                 foreach ($columns as $key => $column) {
@@ -965,7 +1031,8 @@ class AdminController extends Controller
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            Toastr::success($entity . 'insertado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            // Toastr::success($entity . ' insertado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success($entity . ' - Creación realizada con éxito.', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -994,23 +1061,26 @@ class AdminController extends Controller
                     $file = $request->file('photo');
                     $destinationPath = 'dashboard/assets/img/test';
                     $filename = $coach->id . '.' . $file->getClientOriginalExtension();
+                    $existingFiles = glob(public_path($destinationPath) . '/' . $coach->id . '.*');
+
+                    [$width, $height] = getimagesize($file);
                 
-                    // Eliminar la foto existente si existe
-                    $existingPhotoPath = public_path($destinationPath . '/' . $coach->photo);
-                    if (File::exists($existingPhotoPath)) {
-                        File::delete($existingPhotoPath);
+                    if ($width != $height) {
+                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
                     }
-                
-                    // Mover el archivo temporal al directorio de destino con el nombre deseado
+
+                    foreach ($existingFiles as $existingFile) {
+                        if (is_file($existingFile)) {
+                            unlink($existingFile); // Eliminar el archivo existente
+                        }
+                    }
                     $file->move(public_path($destinationPath), $filename);
-                
-                    // Actualizar el nombre de la foto en el objeto $coach
                     $coach->photo = $filename;
                 }
-                
+
                 $coach->save();
-                
-                $coach->save();
+
             } elseif ($entity == 'Usuario') {
                 $user = User::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
@@ -1025,10 +1095,9 @@ class AdminController extends Controller
                 $user->suscription_id = $request->suscription_id;
                 $user->save();
             } elseif ($entity == 'Administrador') {
-                $user = User::where('id', $request->id);
+                $user = User::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
                     if ($column == 'password') {
-
                         $user->$column = bcrypt($request[$column]);
                     } else {
                         $user->$column = $request[$column];
@@ -1036,6 +1105,7 @@ class AdminController extends Controller
                 }
                 
                 $user->save();
+
             } elseif ($entity == 'Entrenamiento') {
                 $training = Training::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
@@ -1122,7 +1192,7 @@ class AdminController extends Controller
                 Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            Toastr::success($entity . 'editado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success($entity . ' editado' , 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
