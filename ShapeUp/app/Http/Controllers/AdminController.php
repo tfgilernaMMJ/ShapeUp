@@ -48,7 +48,7 @@ class AdminController extends Controller
             }
         }
         unset($result);
-        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios ShuperShapeUp', 'Dinero por Suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
+        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios SuperShapeUp', 'Dinero por Suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
         $resultsIcon = ['bx bxs-user', 'bx bx-dumbbell', 'bx bxs-star', 'bx bx-money-withdraw', 'bx bx-dumbbell', 'bx bx-dumbbell', 'bx bx-bowl-rice', 'bx bx-baguette'];
         $resultsColors = [
             'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
@@ -80,6 +80,7 @@ class AdminController extends Controller
                 'trainingsCount' =>  $trainingsCount,
                 'exerciseCount' =>  $exercisesCount,
                 'ingredientsCount' =>  $ingredientsCount,
+                'dietsCount' =>  $dietsCount,
                 'cardsResults' => $cardsResults,
                 'resultsTitle' => $resultsTitle,
                 'resultsIcon' => $resultsIcon,
@@ -1087,14 +1088,14 @@ class AdminController extends Controller
         $columns = json_decode($request->dataInput);
         try {
             if ($entity == 'Entrenador') {
-                $coach = User::where('id', $request->id)->first();
+                $coachToEdit = User::where('id', $request->id)->first();
                 $count = User::all()->count();
                 $coaches = User::where('status', 'Coach')->get();
                 foreach ($columns as $key => $column) {
 
                     if ($column == 'username') {
                         foreach($coaches as $coach) {
-                            if ($coach->username == $request[$column]) {
+                            if ($coach->username == $request[$column] && $coach->username != $coachToEdit->username) {
                                 Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1103,7 +1104,7 @@ class AdminController extends Controller
 
                     if ($column == 'email') {
                         foreach($coaches as $coach) {
-                            if ($coach->email == $request[$column]) {
+                            if ($coach->email == $request[$column] && $coach->username != $coachToEdit->username) {
                                 Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1112,35 +1113,39 @@ class AdminController extends Controller
 
                     if ($column == 'password') {
 
-                        $coach->$column = bcrypt($request[$column]);
-                    } else {
-                        $coach->$column = $request[$column];
-                    }
-                }
-
-                if ($request->file('photo')) {
-                    $file = $request->file('photo');
-                    $destinationPath = 'dashboard/assets/img/test';
-                    $filename = $coach->id . '.' . $file->getClientOriginalExtension();
-                    $existingFiles = glob(public_path($destinationPath) . '/' . $coach->id . '.*');
-
-                    [$width, $height] = getimagesize($file);
-                
-                    if ($width != $height) {
-                        Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
+                        $coachToEdit->$column = bcrypt($request[$column]);
                     }
 
-                    foreach ($existingFiles as $existingFile) {
-                        if (is_file($existingFile)) {
-                            unlink($existingFile); // Eliminar el archivo existente
+                    if($column == 'photo') {
+                        if (!empty($request->file('photo'))) {
+                            $file = $request->file('photo');
+                            $destinationPath = 'dashboard/assets/img/test';
+                            $filename = $coachToEdit->id . '.' . $file->getClientOriginalExtension();
+                            $existingFiles = glob(public_path($destinationPath) . '/' . $coachToEdit->id . '.*');
+        
+                            [$width, $height] = getimagesize($file);
+                        
+                            if ($width != $height) {
+                                Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+        
+                            foreach ($existingFiles as $existingFile) {
+                                if (is_file($existingFile)) {
+                                    unlink($existingFile); // Eliminar el archivo existente
+                                }
+                            }
+                            $file->move(public_path($destinationPath), $filename);
+                            $coachToEdit->photo = $filename;
                         }
+
+                    } else {
+                        $coachToEdit->$column = $request[$column];
                     }
-                    $file->move(public_path($destinationPath), $filename);
-                    $coach->photo = $filename;
                 }
 
-                $coach->save();
+
+                $coachToEdit->save();
 
             } elseif ($entity == 'Usuario') {
                 $user = User::where('id', $request->id)->first();
