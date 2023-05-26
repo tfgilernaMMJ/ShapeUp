@@ -1309,11 +1309,42 @@ class AdminController extends Controller
                 }
                 $training->save();
             } elseif ($entity == 'Ejercicio') {
-                $exercise = Exercise::where('id', $request->id)->first();
+                $exerciseToEdit = Exercise::where('id', $request->id)->first();
+                $entrenadorSeleccionado = null;
+                $entrenadorOriginal = $exerciseToEdit->user_coach_id;
+
                 foreach ($columns as $key => $column) {
-                    $exercise->$column = $request[$column];
+                    if ($column == 'user_coach_id') {
+                        $entrenadorSeleccionado = $request[$column];
+                    }
+
+                    if ($column == 'explanatory_video') {
+                        $videoUrl = $request[$column];
+
+                        $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}$/';
+
+                        if (!empty($videoUrl) && !preg_match($pattern, $videoUrl)) {
+                            Toastr::error('El enlace debe ser una URL válida de un video de YouTube.', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                            return back();
+                        }
+                    }
+
+                    $exerciseToEdit->$column = $request[$column];
                 }
-                $exercise->save(); 
+
+                // Verificar si el nombre ya existe para el entrenador seleccionado
+                $exerciseName = $request['name'];
+                if ($exerciseName != $exerciseToEdit->name || $entrenadorSeleccionado != $entrenadorOriginal) {
+                    $exercises = Exercise::where('user_coach_id', $entrenadorSeleccionado)->where('name', $exerciseName)->get();
+                    if ($exercises->count() > 0) {
+                        Toastr::error('Este nombre ya existe en otro ejercicio del entrenador seleccionado', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+                }
+
+                $exerciseToEdit->save();
+
+                
             } elseif ($entity == 'Dieta') {
                 $diet = Diet::where('id', $request->id)->first();
                 foreach ($columns as $key => $column) {
