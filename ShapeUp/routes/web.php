@@ -248,6 +248,25 @@ Route::post('/admin-create/{entity}/{category}', [App\Http\Controllers\AdminCont
 Route::put('/admin-edit/{entity}/{category}/{id}', [App\Http\Controllers\AdminController::class, 'editData'])->name('admin.edit');
 
 
+
+Route::middleware(['auth','coach'])->group(function () {
+    Route::get('/coach', [App\Http\Controllers\CoachController::class, 'dashboardPrincipal'])->name('coach');
+    Route::prefix('coach')->name('coach.')->group(function () {
+        // COACH VIEW
+        // ----------------------------
+        Route::get('/coaches', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('coaches');
+        // COACH TRAININGS VIEWS
+        // ----------------------------
+        Route::get('/trainings', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('trainings');
+        Route::get('/exercises', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('exercises');
+
+        // COACH DIETS VIEWS
+        // ----------------------------
+        Route::get('/diets', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('diets');
+        Route::get('/ingredients', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('ingredients');
+    });
+});
+
 Route::get('/admin-formularios', function () {
     return view('admin.forms');
 })->name('admin.forms')->middleware('auth', 'admin');
