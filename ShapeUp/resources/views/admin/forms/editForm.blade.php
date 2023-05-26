@@ -15,12 +15,11 @@
         @foreach($data as $key => $input)
         <div class="mb-4">
             <label for="{{ $dataInput[$key] }}" class="block text-bold mb-1">
-                {{-- @if(is_object($input))
+                @if(is_object($input))
                 {{ucwords($key)}}
                 @else
-                {{ucwords($input) }}
-                @endif --}}
-                {{ $input }}
+                {{$input}}
+                @endif
             </label>
             @if(is_object($input))
             <select name="{{ $dataInput[$key] }}" id="{{ $key }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example">
