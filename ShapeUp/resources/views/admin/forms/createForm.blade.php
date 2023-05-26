@@ -15,12 +15,11 @@
         @foreach($data as $key => $input)
         <div class="mb-4">
             <label for="{{ $dataInput[$key] }}" class="block text-bold mb-1">
-                {{-- @if(is_object($input))
+                @if(is_object($input))
                 {{ucwords($key)}}
                 @else
-                {{ucwords($input) }}
-                @endif --}}
                 {{ $input }}
+                @endif
 
             </label>
             @if(is_object($input))
