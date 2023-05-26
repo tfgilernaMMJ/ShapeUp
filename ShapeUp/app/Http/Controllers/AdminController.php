@@ -1032,8 +1032,17 @@ class AdminController extends Controller
                 }
                 $newDiet->save(); 
             } elseif ($entity == 'Ingrediente') {
+                $ingredients = Ingredient::all();
                 $newIngredient = new Ingredient();
                 foreach ($columns as $key => $column) {
+                    if ($column == 'name') {
+                        foreach ($ingredients as $ingredient) {
+                            if ($ingredient->name == $request[$column]) {
+                                Toastr::error('Este nombre ya existe en otro ingrediente', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
                     $newIngredient->$column = $request[$column];
                 }
                 $newIngredient->save(); 
@@ -1354,13 +1363,15 @@ class AdminController extends Controller
             } elseif ($entity == 'Ingrediente') {
                 $ingredientToEdit = Ingredient::where('id', $request->id)->first();
                 $ingredients = Ingredient::all();
-                foreach ($ingredients as $key => $ingredient) {
-                    if($request['name'] == $ingredient->name) {
-                        Toastr::error('El nombre de ingrediente ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-                        return back();
-                    }
-                }
                 foreach ($columns as $key => $column) {
+                    if ($column == 'name') {
+                        foreach($ingredients as $ingredient) {
+                            if ($ingredient->name == $request[$column] && $ingredient->name != $ingredientToEdit->name) {
+                                Toastr::error('Este nombre ya existe en otro ingrediente', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                                return back();
+                            }
+                        }
+                    }
                     $ingredientToEdit->$column = $request[$column];
                 }
                 $ingredientToEdit->save(); 
