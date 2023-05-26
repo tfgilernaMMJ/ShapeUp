@@ -119,11 +119,11 @@ text-gray-800 dark:text-gray-100
         <!-- Chart legend -->
         <div class="flex items-center">
           <span class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"></span>
-          <span>SuperShapeUp</span>
+          <span>Usuarios SuperShapeUp</span>
         </div>
         <div class="flex items-center">
           <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-          <span>Usuarios Totales</span>
+          <span>Usuarios</span>
         </div>
       </div>
       @endif

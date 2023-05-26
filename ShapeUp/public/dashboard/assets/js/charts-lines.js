@@ -32,7 +32,7 @@ const lineConfig = {
     labels: ['Enero', 'Febrero', 'Marza', 'Abril', 'Mayo', 'Junio', 'July','Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
     datasets: [
       {
-        label: 'SuperShapeUp',
+        label: 'Usuarios SuperShapeUp',
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
@@ -43,7 +43,7 @@ const lineConfig = {
         fill: false,
       },
       {
-        label: 'Usuarios Totales',
+        label: 'Usuarios',
         fill: false,
         /**
          * These colors come from Tailwind CSS palette
