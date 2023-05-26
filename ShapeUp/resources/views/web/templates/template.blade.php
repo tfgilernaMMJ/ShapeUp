@@ -70,7 +70,7 @@
                             @if (Auth::user()->status == 'Admin')   
                                 <li><a href="{{ route('admin') }}">Administración</a></li>
                             @elseif (Auth::user()->status == 'Coach')
-                                <li><a href="{{ route('admin-coach') }}">Administración</a></li>
+                                <li><a href="{{ route('coach') }}">Administración</a></li>
                             @endif
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li></li>
                         </ul>
