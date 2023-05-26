@@ -602,9 +602,9 @@ class AdminController extends Controller
                 $data = [
                     'Nombre',
                     'Duración',
-                    'Repeticiónes',
+                    'Repeticiones',
                     'Series',
-                    'Video',
+                    'Video explicativo (debe ser una URL de un vídeo de Youtube)',
                     'Entrenador' => $coaches,
                     'Tipo' => $types
                 ];
@@ -774,9 +774,9 @@ class AdminController extends Controller
                 $data = [
                     'Nombre',
                     'Duración',
-                    'Repeticiónes',
+                    'Repeticiones',
                     'Series',
-                    'Video',
+                    'Video explicativo (debe ser una URL de un vídeo de Youtube)',
                     'Entrenador' => $coaches,
                     'Tipo' => $types
                 ];
@@ -998,10 +998,33 @@ class AdminController extends Controller
                 $newTraining->save();
             } elseif ($entity == 'Ejercicio') {
                 $newExercise = new Exercise();
+                $entrenadorSeleccionado = null;
                 foreach ($columns as $key => $column) {
+                    if ($column == 'user_coach_id') {
+                        $entrenadorSeleccionado = $request[$column];
+                    }
+            
+                    if ($column == 'explanatory_video') {
+                        $videoUrl = $request[$column];
+                    
+                        $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}$/';
+                    
+                        if (!empty($videoUrl) && !preg_match($pattern, $videoUrl)) {
+                            Toastr::error('El enlace debe ser una URL válida de un video de YouTube.', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                            return back();
+                        }
+                    }
+            
                     $newExercise->$column = $request[$column];
                 }
-                $newExercise->save(); 
+            
+                $exercises = Exercise::where('user_coach_id', $entrenadorSeleccionado)->where('name', $newExercise->name)->get();
+                if ($exercises->count() > 0) {
+                    Toastr::error('Este nombre ya existe en otro ejercicio del entrenador seleccionado', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                    return back();
+                }
+            
+                $newExercise->save();
             } elseif ($entity == 'Dieta') {
                 $newDiet = new Diet();
                 foreach ($columns as $key => $column) {
