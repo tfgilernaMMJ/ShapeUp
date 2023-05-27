@@ -196,7 +196,7 @@ class AdminController extends Controller
         if ($request->route()->getName() == 'admin.coaches') {
             // debe aparecer username y suscription
             $title = 'Entrenadores';
-            $createTexxtButton = 'Entrenador';
+            $createTexxtButton = 'entrenador';
             $rows = User::where('status', 'Coach')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'email', 'age', 'country'];
@@ -224,7 +224,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.users') {
             // debe aparecer username, suscription
             $title = 'Usuarios';
-            $createTexxtButton = 'Usuario';
+            $createTexxtButton = 'usuario';
             $rows = User::where('status', 'User')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['nmae', 'email', 'age', 'country'];
@@ -252,7 +252,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.admins') {
             // debe aparecer username y suscription
             $title = 'Administradores';
-            $createTexxtButton = 'Administrador';
+            $createTexxtButton = 'administrador';
             $rows = User::where('status', 'Admin')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'email', 'age', 'country'];
@@ -279,7 +279,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.trainings') {
             $title = 'Entrenamientos';
-            $createTexxtButton = 'Entrenamiento';
+            $createTexxtButton = 'entrenamiento';
             $rows = Training::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['title', 'duration', 'level', 'coach'];
@@ -302,7 +302,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.exercises') {
             $title = 'Ejercicios';
-            $createTexxtButton = 'Ejercicio';
+            $createTexxtButton = 'ejercicio';
             $rows = Exercise::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'series', 'tag', 'coach'];
@@ -326,7 +326,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.diets') {
             // Debe salir el nombre del coach y categoria
             $title = 'Dietas';
-            $createTexxtButton = 'Dieta';
+            $createTexxtButton = 'dieta';
             $rows = Diet::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['title', 'description', 'category', 'coach'];
@@ -348,7 +348,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.ingredients') {
             $title = 'Ingredientes';
-            $createTexxtButton = 'Ingrediente';
+            $createTexxtButton = 'ingrediente';
             $rows = Ingredient::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'tag'];
@@ -370,7 +370,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.gyms') {
             $title = 'Gimnasios';
-            $createTexxtButton = 'Gimnasio';
+            $createTexxtButton = 'gimnasio';
             $rows = Gym::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -392,7 +392,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.markets') {
             $title = 'Supermercados';
-            $createTexxtButton = 'Supermercado';
+            $createTexxtButton = 'supermercado';
             $rows = Supermarket::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -414,7 +414,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.trainings-categories') {
             $title = 'Categorías de entrenamientos';
-            $createTexxtButton = 'Categoría';
+            $createTexxtButton = 'categoría de entrenamiento';
             $rows = CategoryOfTraining::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -436,8 +436,8 @@ class AdminController extends Controller
                 ]
             );
         } else if ($request->route()->getName() == 'admin.exercises-categories') {
-            $title = 'Categorías de ejercicios';
-            $createTexxtButton = 'Categoría';
+            $title = 'Tipos de ejercicios';
+            $createTexxtButton = 'tipo de ejercicio';
             $rows = TagOfExercise::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -459,7 +459,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.diets-categories') {
             $title = 'Categorías de dietas';
-            $createTexxtButton = 'Categoría';
+            $createTexxtButton = 'categoría de dieta';
             $rows = CategoryOfDiet::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -480,8 +480,8 @@ class AdminController extends Controller
                 ]
             );
         } else if ($request->route()->getName() == 'admin.ingredients-categories') {
-            $title = 'Categorías de ingredientes';
-            $createTexxtButton = 'Categoría';
+            $title = 'Tipos de ingredientes';
+            $createTexxtButton = 'tipo de ingrediente';
             $rows = TagOfIngredient::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -581,9 +581,9 @@ class AdminController extends Controller
                 $coaches = User::where('status', 'Coach')->select('id', 'name')->get();
                 $categories = CategoryOfTraining::select('id', 'name')->get();
                 $data = [
-                    'Titulo',
-                    'Description',
-                    'Duration',
+                    'Título',
+                    'Descripción',
+                    'Duración',
                     'Nivel',
                     'Entrenador' => $coaches,
                     'Categoría' => $categories
@@ -621,7 +621,7 @@ class AdminController extends Controller
                 $coaches = User::where('status','Coach')->select('id', 'name')->get();
                 $categories = CategoryOfDiet::select('id', 'name')->get();
                 $data = [
-                    'Titulo',
+                    'Título',
                     'Descripción',
                     'Entrenador' => $coaches,
                     'Categorías'  => $categories
@@ -752,9 +752,9 @@ class AdminController extends Controller
                 $coaches = User::where('status', 'Coach')->select('id', 'name')->get();
                 $categories = CategoryOfTraining::select('id', 'name')->get();
                 $data = [
-                    'Titulo',
-                    'Description',
-                    'Duration',
+                    'Título',
+                    'Descripción',
+                    'Duración',
                     'Nivel',
                     'Entrenador' => $coaches,
                     'Categoría' => $categories
@@ -794,7 +794,7 @@ class AdminController extends Controller
                 $coaches = User::where('status','Coach')->select('id', 'name')->get();
                 $categories = CategoryOfDiet::select('id', 'name')->get();
                 $data = [
-                    'Titulo',
+                    'Título',
                     'Descripción',
                     'Entrenador' => $coaches,
                     'Categorías'  => $categories

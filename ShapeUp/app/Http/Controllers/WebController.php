@@ -51,7 +51,7 @@ class WebController extends Controller
 
     public function indexTrainings(Request $request)
     {
-        $query = Training::query();
+        $query = Training::has('exercise');
 
         if ($request->filled('category_sort')) {
             $query->where('category_of_training_id', $request->input('category_sort'));
@@ -174,7 +174,7 @@ class WebController extends Controller
 
     public function indexDiets(Request $request)
     {
-        $query = Diet::query();
+        $query = Diet::has('ingredient');
 
         if ($request->filled('category_sort')) {
             $query->where('category_of_diet_id', $request->input('category_sort'));
@@ -483,6 +483,13 @@ class WebController extends Controller
             return redirect()->route('account.profile.password')->with('error', 'Ha ocurrido un error al cambiar la contraseña. Por favor, inténtalo de nuevo más tarde.');
         }
         
+    }
+
+    public function indexMessaging()
+    {
+        $mensajesEnviados = FrequentlyAskedQuestion::where('user_id', Auth::user()->id)->get();
+        // dd($mensajesEnviados);
+        return view('web.messaging', ['mensajes' => $mensajesEnviados]);       
     }
   
 }

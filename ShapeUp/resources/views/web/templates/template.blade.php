@@ -67,6 +67,9 @@
                             @if (Auth::user()->status == 'User')     
                                 <li><a href="{{ route('account.profile') }}" class="@yield('profile-nav')">Perfil</a></li>
                             @endif
+                            @if (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User')
+                                <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')">Mensajería</a></li>
+                            @endif
                             @if (Auth::user()->status == 'Admin')   
                                 <li><a href="{{ route('admin') }}">Administración</a></li>
                             @elseif (Auth::user()->status == 'Coach')
