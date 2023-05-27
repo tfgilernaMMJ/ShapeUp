@@ -254,7 +254,7 @@ Route::middleware(['auth','coach'])->group(function () {
     Route::prefix('coach')->name('coach.')->group(function () {
         // COACH VIEW
         // ----------------------------
-        Route::get('/coaches', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('coaches');
+        Route::get('/coaches', [App\Http\Controllers\CoachController::class, 'coachesViewData'])->name('coaches');
         // COACH TRAININGS VIEWS
         // ----------------------------
         Route::get('/trainings', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('trainings');
