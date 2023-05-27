@@ -51,7 +51,7 @@ class WebController extends Controller
 
     public function indexTrainings(Request $request)
     {
-        $query = Training::query();
+        $query = Training::has('exercise');
 
         if ($request->filled('category_sort')) {
             $query->where('category_of_training_id', $request->input('category_sort'));
@@ -174,7 +174,7 @@ class WebController extends Controller
 
     public function indexDiets(Request $request)
     {
-        $query = Diet::query();
+        $query = Diet::has('ingredient');
 
         if ($request->filled('category_sort')) {
             $query->where('category_of_diet_id', $request->input('category_sort'));
