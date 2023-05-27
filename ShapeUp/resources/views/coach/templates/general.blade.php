@@ -40,9 +40,11 @@
     {{-- INDEX --}}
 
     @yield('index-section')
+    @yield('coaches-nav-lat')
     {{-- FORMS --}}
 
     @yield('training-section')
+    @yield('training-nav-lat')
 
     {{-- FORMS --}}
 

@@ -1539,11 +1539,8 @@ class AdminController extends Controller
         try {
 
             $trainingData = Training::where('id', $request->training_id)->select('user_coach_id', 'title')->first();
-            $trainingExercises = TrainingExercise::where('training_id', $request->training_id)->count();
-            if($trainingExercises > 4) {
-                Toastr::info('Limite de ejercicios alcanzado', 'Debes borrar algún ejercicio', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-                return redirect()->back();
-            }
+            $trainingExercises = TrainingExercise::where('training_id', $request->training_id)->get();
+
             $coach = User::where('id', $trainingData->user_coach_id)->with('exercises')->first();
             $coachExercises = $coach->exercises;
             return view(
@@ -1551,6 +1548,7 @@ class AdminController extends Controller
                 [
                     'coach' => $coach,
                     'coachExercises' => $coachExercises,
+                    'trainingExercises' => $trainingExercises,
                     'title' => $trainingData->title,
                     'request' => $request
                 ]
@@ -1563,19 +1561,34 @@ class AdminController extends Controller
     public function addToTraining(Request $request)
     {
         try {
+            if (count($request->exercises) > 5) {
+                Toastr::error('No se puede añadir más', 'Ya hay 5 ejercicios', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            }
+            
+            TrainingExercise::where('training_id', $request->training_id)->delete();
+        
+            foreach ($request->exercises as $exerciseId) {
+                $coach = Exercise::where('id', $exerciseId)->first();
+                $newTrainingExercise = new TrainingExercise();
+                $newTrainingExercise->training_id = $request->training_id;
+                $newTrainingExercise->exercise_id = $exerciseId;
+                $newTrainingExercise->save();
+            }
 
-            $training = Training::where('id', $request->training_id)->first();
-            $coach = Exercise::where('id', $request->exercise)->first();
-            $newTrainignExercise = new TrainingExercise();
-            $newTrainignExercise->training_id = $request->training_id;
-            $newTrainignExercise->exercise_id = $request->exercise;
-            $newTrainignExercise->save();
-            Toastr::success('Añadido', 'SUUUUUU!', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            if(count($request->exercises) === 1) {
+                Toastr::success('Añadido', count($request->exercises) . ' ejercicio', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            } else {
+                Toastr::success('Añadidos', count($request->exercises) . ' ejercicios', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return back();
-        } catch (PDOException  $e) {
+            }
+        
+        } catch (PDOException $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         }
+        
     }
 
     public function addIngredient(Request $request)
@@ -1583,17 +1596,14 @@ class AdminController extends Controller
         try {
 
             $dietData = Diet::where('id', $request->diet_id)->select('id','title')->first();
-            $dietIngredientsConut = DietIngredient::where('diet_id', $request->diet_id)->count();
-            if($dietIngredientsConut > 5) {
-                Toastr::info('Limite de ingredientes alcanzado', 'Debes borrar algún ingrediente', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-                return redirect()->back();
-            }
+            $dietIngredients = DietIngredient::where('diet_id', $request->diet_id)->get();
             $ingredients = Ingredient::all();
 
             return view(
                 'admin.forms.addIngredient',
                 [
                     'ingredients' => $ingredients,
+                    'dietIngredients' => $dietIngredients,
                     'title' => $dietData->title,
                     'request' => $request
                 ]
@@ -1606,13 +1616,28 @@ class AdminController extends Controller
     public function addToDiet(Request $request)
     {
         try {
-
-            // $diet = Diet::where('id', $request->diet_id)->first();
-            // $exercise = Ingredient::where('id', $request->ingredient)->first();
-            $newDietIngredient = new DietIngredient();
-            $newDietIngredient->diet_id = $request->diet_id;
-            $newDietIngredient->ingredient_id = $request->ingredient;
-            $newDietIngredient->save();
+            if (count($request->ingredients) > 6) {
+                Toastr::error('No se puede añadir más', 'Ya hay 6 ingredientes', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            }
+            
+            DietIngredient::where('diet_id', $request->diet_id)->delete();
+            
+            foreach ($request->ingredients as $ingredientId) {
+                $newDietIngredient = new DietIngredient();
+                $newDietIngredient->diet_id = $request->diet_id;
+                $newDietIngredient->ingredient_id = $ingredientId;
+                $newDietIngredient->save();
+            }
+            
+            if (count($request->ingredients) === 1) {
+                Toastr::success('Añadido', count($request->ingredients) . ' ingrediente', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            } else {
+                Toastr::success('Añadidos', count($request->ingredients) . ' ingredientes', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            }
+            
             Toastr::success('Añadido', 'SUUUUUU!', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
