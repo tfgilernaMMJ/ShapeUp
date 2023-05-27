@@ -78,8 +78,8 @@ const lineConfig = {
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: metricTrainings !== 0 ? '##1c64f2' : 'red',
-        borderColor: metricTrainings !== 0 ? '##1c64f2' : 'red',
+        backgroundColor: metricTrainings !== 0 ? '#1c64f2' : 'red',
+        borderColor: metricTrainings !== 0 ? '#1c64f2' : 'red',
         data: metricTrainings !== 0 ? metricTrainings : [0,0,0,0,0,0,0,0,0,0,0,0],
       },
     ],

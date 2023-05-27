@@ -18,12 +18,15 @@ class CoachController extends Controller
     public function dashboardPrincipal(Request $request)
     {
         // training exercise diet ingredients
+        $trainings = Training::all()->count();
+        $diets = Diet::all()->count();
+        $exercises = Exercise::all()->count();
         $trainingsOfCoachCount = Training::where('user_coach_id',Auth()->user()->id)->count();
         $exercisesOfCoachCount = Exercise::where('user_coach_id',Auth()->user()->id)->count();
         $dietsOfCoachCount = Diet::where('user_coach_id',Auth()->user()->id)->count();
         $followers = UserFollowCoach::where('user_coach_id',Auth()->user()->id)->count();
         $ingredientsCount = Ingredient::all()->count();
-        $cardsResults = array($trainingsOfCoachCount, $exercisesOfCoachCount, $dietsOfCoachCount, $followers, $trainingsOfCoachCount, $exercisesOfCoachCount, $ingredientsCount, $dietsOfCoachCount);
+        $cardsResults = array($trainingsOfCoachCount, $exercisesOfCoachCount, $dietsOfCoachCount, $followers, $trainings, $exercises, $ingredientsCount, $diets);
         
         foreach ($cardsResults as &$result) {
             if (is_null($result)) {
@@ -82,11 +85,12 @@ class CoachController extends Controller
             ]
         );
     }
-    public function searchTrainings(Request $request)
+    public function coachesViewData(Request $request)
     {
-        $trainingsFounded = Training::where('title', $request->title)->get();
-
-        return view('coach.trainings', compact('trainingsFounded'));
+        $coaches = User::where('status', 'Coach')->paginate(10);
+        return view('coach.users.dashCoaches', [
+            'coaches' => $coaches,
+        ]);
     }
 
 }

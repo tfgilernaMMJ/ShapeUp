@@ -5,24 +5,51 @@
 <h2 class="my-6 mt-4 px-3 ml-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
     {{ $coach->name }}
 </h2>
-    {!! Toastr::message() !!}
+{!! Toastr::message() !!}
 <div class="container bg-transparent mt-5">
-    <form action="{{route('admin.addExercise',['training_id' => $request->route('training_id')])}}" method="POST">
-        @csrf
-        @method('POST')
-        <input type="hidden" id="data-input" name="dataInput">
-        <div class="mb-4 d-flex justify-content-center flex-column">
-            <label for="exercises" class="block text-bold mb-1">
-                Ejercicios
-            </label>
-            <select name="exercise" id="exercises" class="block w-75 py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example">
-                <option selected class="bg-purple-600">Open this select menu</option>
-                @foreach($coachExercises as $option)
-                    <option value="{{ $option->id }}" class="fw-bold text-purple-600">{{ $option->name }}</option>
-                @endforeach
-            </select>
+<form action="{{ route('admin.addExercise', ['training_id' => $request->route('training_id')]) }}" method="POST">
+    @csrf
+    @method('POST')
+
+    <div class="accordion" id="exerciseAccordion">
+        @php
+        $shownTags = [];
+        @endphp
+
+        @foreach($coachExercises as $option)
+        @php
+        $tagId = $option->tag_of_exercise_id;
+        $tagExercises = $coachExercises->where('tag_of_exercise_id', $tagId);
+        @endphp
+
+        @if(!in_array($tagId, $shownTags))
+        <div class="accordion-item">
+        <h2 class="accordion-header bg-purple" id="tag{{ $tagId }}Heading">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tag{{ $tagId }}Collapse" aria-expanded="false" aria-controls="tag{{ $tagId }}Collapse">
+            {{ $option->tag->name }}
+        </button>
+    </h2>
+            <div id="tag{{ $tagId }}Collapse" class="accordion-collapse collapse" aria-labelledby="tag{{ $tagId }}Heading" data-bs-parent="#exerciseAccordion">
+                <div class="accordion-body">
+                    @foreach($tagExercises as $tagOption)
+                    <div class="form-check">
+                        <input type="checkbox" name="exercises[]" value="{{ $tagOption->id }}" id="exercise{{ $tagOption->id }}" class="form-check-input" {{ $trainingExercises->contains('exercise_id', $tagOption->id) ? 'checked' : '' }}>
+                        <label for="exercise{{ $tagOption->id }}" class="form-check-label">{{ $tagOption->name }}</label>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Añadir a {{ $title }}</button>
-    </form>
+        @php
+        $shownTags[] = $tagId;
+        @endphp
+        @endif
+        @endforeach
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Añadir a {{ $title }}</button>
+</form>
+
 </div>
+
 @endsection
