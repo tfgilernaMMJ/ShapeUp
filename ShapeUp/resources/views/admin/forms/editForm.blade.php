@@ -55,6 +55,12 @@
                     <option value="{{ $option->id }}" class="fw-bold text-purple-600">{{ $option->name }}</option>
                     @endforeach
                 </select>
+                @elseif($input == 'Nivel')
+                <select name="{{ $dataInput[$key] }}" id="{{ $key }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example">
+                    <option value="Bajo" class="fw-bold text-purple-600">Bajo</option>
+                    <option value="Medio" class="fw-bold text-purple-600">Medio</option>
+                    <option value="Alto" class="fw-bold text-purple-600">Alto</option>
+            </select>
             @elseif($input == 'País')
             <select id="{{ $key }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example" name="{{ $dataInput[$key] }}">
                                         <option value="Afganistán">Afganistán</option>

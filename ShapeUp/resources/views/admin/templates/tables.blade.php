@@ -4,12 +4,21 @@
             {{$title}}
         </h2>
         <!-- CTA -->
+        @if (request()->route()->getName() == 'admin.diets' || request()->route()->getName() == 'admin.trainings-categories' || request()->route()->getName() == 'admin.diets-categories')
+        <a href="{{route('admin.createView' , ['type' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
+            </svg>
+            Nueva {{$createTexxtButton}}
+        </a>
+        @else
         <a href="{{route('admin.createView' , ['type' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
             </svg>
             Nuevo {{$createTexxtButton}}
         </a>
+        @endif
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             {!! Toastr::message() !!}
             <div class="w-full overflow-x-auto">
@@ -117,11 +126,11 @@
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-                                                    <h5 class="fw-4">¿Quieres añadir Ejercicios?</h5>
+                                                    <h5 class="fw-4">¿Quieres añadir/editar ejercicios?</h5>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                                                    <a href="{{route('admin.addExercise',['training_id' => $row->id])}}" type="button" class="btn bg-purple-600 text-light">Si</a>
+                                                    <a href="{{route('admin.addExercise',['training_id' => $row->id])}}" type="button" class="btn btn-secondary text-light">Añadir</a>
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,11 +155,11 @@
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-                                                    <h5 class="fw-4">¿Quieres añadir Ingredientes?</h5>
+                                                    <h5 class="fw-4">¿Quieres añadir/editar dietas?</h5>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                                                    <a href="{{route('admin.addIngredient',['diet_id' => $row->id])}}" type="button" class="btn bg-purple-600 text-light">Si</a>
+                                                    <a href="{{route('admin.addIngredient',['diet_id' => $row->id])}}" type="button" class="btn btn-secondary text-light">Añadir</a>
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
                                                 </div>
                                             </div>
                                         </div>
