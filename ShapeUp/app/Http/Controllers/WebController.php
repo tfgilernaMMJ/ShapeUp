@@ -484,5 +484,12 @@ class WebController extends Controller
         }
         
     }
+
+    public function indexMessaging()
+    {
+        $mensajesEnviados = FrequentlyAskedQuestion::where('user_id', Auth::user()->id)->get();
+        // dd($mensajesEnviados);
+        return view('web.messaging', ['mensajes' => $mensajesEnviados]);       
+    }
   
 }

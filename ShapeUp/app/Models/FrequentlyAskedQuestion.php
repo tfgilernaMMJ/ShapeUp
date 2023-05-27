@@ -25,7 +25,7 @@ class FrequentlyAskedQuestion extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -33,6 +33,6 @@ class FrequentlyAskedQuestion extends Model
      */
     public function coach()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_coach_id');
     }
 }
