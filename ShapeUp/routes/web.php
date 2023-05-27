@@ -144,17 +144,21 @@ Route::post('/contacto/enviarcorreo/', [App\Http\Controllers\WebController::clas
 
 Route::get('/perfil', function () {
     return view('web.profile');
-})->name('account.profile')->middleware('auth');
+})->name('account.profile')->middleware('auth', 'usersuper');
 
-Route::post('/perfil/editar', [App\Http\Controllers\WebController::class, 'editProfile'])->name('account.profile.edit')->middleware('auth');
+Route::post('/perfil/editar', [App\Http\Controllers\WebController::class, 'editProfile'])->name('account.profile.edit')->middleware('auth', 'usersuper');
 
 Route::get('/perfil/cambiar-contraseña', function () {
     return view('web.editpassword');
 })->name('account.profile.password')->middleware('auth');
 
-Route::post('/perfil/editar/cambiar-contraseña', [App\Http\Controllers\WebController::class, 'editPassword'])->name('account.profile.edit.password')->middleware('auth');
+Route::post('/perfil/editar/cambiar-contraseña', [App\Http\Controllers\WebController::class, 'editPassword'])->name('account.profile.edit.password')->middleware('auth', 'usersuper');
 
-Route::get('/perfil/resetear', [App\Http\Controllers\WebController::class, 'resetProfile'])->name('account.profile.reset')->middleware('auth');
+Route::get('/perfil/resetear', [App\Http\Controllers\WebController::class, 'resetProfile'])->name('account.profile.reset')->middleware('auth', 'usersuper');
+
+// MENSAJERÍA
+
+Route::get('/mensajería', [App\Http\Controllers\WebController::class, 'indexMessaging'])->name('account.messaging')->middleware('auth', 'usersuper');
 
 // ------------------------------------------------------------
 
