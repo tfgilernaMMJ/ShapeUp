@@ -47,7 +47,7 @@
         @endforeach
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Añadir a {{ $title }}</button>
+    <button type="submit" class="btn btn-primary mt-3">Añadir</button>
 </form>
 
 </div>
