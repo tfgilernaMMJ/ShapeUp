@@ -160,6 +160,8 @@ Route::get('/perfil/resetear', [App\Http\Controllers\WebController::class, 'rese
 
 Route::get('/mensajería', [App\Http\Controllers\WebController::class, 'indexMessaging'])->name('account.messaging')->middleware('auth', 'usersuper');
 
+Route::post('/mensajería/check', [App\Http\Controllers\WebController::class, 'actualizarCheck'])->name('account.messaging.check')->middleware('auth', 'usersuper');
+
 // ------------------------------------------------------------
 
 // COACH DASHBOARD
