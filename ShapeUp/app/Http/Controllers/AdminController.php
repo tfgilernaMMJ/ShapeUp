@@ -196,7 +196,7 @@ class AdminController extends Controller
         if ($request->route()->getName() == 'admin.coaches') {
             // debe aparecer username y suscription
             $title = 'Entrenadores';
-            $createTexxtButton = 'entrenador';
+            $createTexxtButton = 'Entrenador';
             $rows = User::where('status', 'Coach')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'email', 'age', 'country'];
@@ -224,7 +224,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.users') {
             // debe aparecer username, suscription
             $title = 'Usuarios';
-            $createTexxtButton = 'usuario';
+            $createTexxtButton = 'Usuario';
             $rows = User::where('status', 'User')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['nmae', 'email', 'age', 'country'];
@@ -252,7 +252,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.admins') {
             // debe aparecer username y suscription
             $title = 'Administradores';
-            $createTexxtButton = 'administrador';
+            $createTexxtButton = 'Administrador';
             $rows = User::where('status', 'Admin')->paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'email', 'age', 'country'];
@@ -279,7 +279,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.trainings') {
             $title = 'Entrenamientos';
-            $createTexxtButton = 'entrenamiento';
+            $createTexxtButton = 'Entrenamiento';
             $rows = Training::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['title', 'duration', 'level', 'coach'];
@@ -302,7 +302,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.exercises') {
             $title = 'Ejercicios';
-            $createTexxtButton = 'ejercicio';
+            $createTexxtButton = 'Ejercicio';
             $rows = Exercise::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'series', 'tag', 'coach'];
@@ -326,7 +326,7 @@ class AdminController extends Controller
         } else if ($request->route()->getName() == 'admin.diets') {
             // Debe salir el nombre del coach y categoria
             $title = 'Dietas';
-            $createTexxtButton = 'dieta';
+            $createTexxtButton = 'Dieta';
             $rows = Diet::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['title', 'description', 'category', 'coach'];
@@ -348,7 +348,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.ingredients') {
             $title = 'Ingredientes';
-            $createTexxtButton = 'ingrediente';
+            $createTexxtButton = 'Ingrediente';
             $rows = Ingredient::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'tag'];
@@ -370,7 +370,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.gyms') {
             $title = 'Gimnasios';
-            $createTexxtButton = 'gimnasio';
+            $createTexxtButton = 'Gimnasio';
             $rows = Gym::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -392,7 +392,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.markets') {
             $title = 'Supermercados';
-            $createTexxtButton = 'supermercado';
+            $createTexxtButton = 'Supermercado';
             $rows = Supermarket::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['name', 'logo'];
@@ -414,7 +414,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.trainings-categories') {
             $title = 'Categorías de entrenamientos';
-            $createTexxtButton = 'categoría de entrenamiento';
+            $createTexxtButton = 'Categoría de entrenamiento';
             $rows = CategoryOfTraining::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -437,7 +437,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.exercises-categories') {
             $title = 'Tipos de ejercicios';
-            $createTexxtButton = 'tipo de ejercicio';
+            $createTexxtButton = 'Tipo de ejercicio';
             $rows = TagOfExercise::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -459,7 +459,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.diets-categories') {
             $title = 'Categorías de dietas';
-            $createTexxtButton = 'categoría de dieta';
+            $createTexxtButton = 'Categoría de dieta';
             $rows = CategoryOfDiet::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -481,7 +481,7 @@ class AdminController extends Controller
             );
         } else if ($request->route()->getName() == 'admin.ingredients-categories') {
             $title = 'Tipos de ingredientes';
-            $createTexxtButton = 'tipo de ingrediente';
+            $createTexxtButton = 'Tipo de ingrediente';
             $rows = TagOfIngredient::paginate(10);
             $numberOfRows = count($columns);
             $columns = ['id', 'name'];
@@ -660,7 +660,7 @@ class AdminController extends Controller
                     'name',
                     'logo'
                 ];
-            } elseif ($entity == 'Categoría') {
+            } elseif ($entity == 'Categoría de entrenamiento' || $entity == 'Categoría de dieta' || $entity == 'Tipo de ejercicio' || $entity == 'Tipo de ingrediente') {
                 $data = [
                     'Nombre'
                 ];
@@ -668,7 +668,7 @@ class AdminController extends Controller
                     'name'
                 ];
             } else {
-                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                Toastr::error('No se ha podido acceder a esta página', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
             return view('admin.forms.createForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity, 'extra' => $extra]);
@@ -836,7 +836,7 @@ class AdminController extends Controller
                     'name',
                     'logo'
                 ];
-            } elseif ($entity == 'Categoría') {
+            } elseif ($entity == 'Categoría de entrenamiento' || $entity == 'Categoría de dieta'  || $entity == 'Tipo de ejercicio'  || $entity == 'Tipo de ingrediente') {
                 if($category == 'admin.exercises-categories'){
                     $current = TagOfExercise::where('id',$request->id)->first();
                 }
@@ -858,7 +858,7 @@ class AdminController extends Controller
                 ];
 
             } else {
-                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                Toastr::error('No se ha podido acceder a esta página', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
             return view('admin.forms.editForm', ['data' => $data, 'dataInput' => $dataInput, 'entidad' => $entity, 'current' => $current, 'extra' => $extra]);
@@ -1123,7 +1123,7 @@ class AdminController extends Controller
                 
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name) {
-                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otra categoría de entrenamiento', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1136,7 +1136,7 @@ class AdminController extends Controller
                 }
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name) {
-                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otro tipo de ejercicio', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1149,7 +1149,7 @@ class AdminController extends Controller
                 }
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name) {
-                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otra categoría de dieta', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1162,18 +1162,17 @@ class AdminController extends Controller
                 }
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name) {
-                        Toastr::error('La categoría ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otro tipo de ingrediente', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
                 $newCategory->save(); 
             }
             else {
-                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                Toastr::error('No se ha podido acceder a esta página', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            // Toastr::success($entity . ' insertado', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
-            Toastr::success($entity . ' - Creación realizada con éxito.', 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success($entity . ' - Creación realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -1232,7 +1231,7 @@ class AdminController extends Controller
         
                             foreach ($existingFiles as $existingFile) {
                                 if (is_file($existingFile)) {
-                                    unlink($existingFile); // Eliminar el archivo existente
+                                    unlink($existingFile);
                                 }
                             }
                             $file->move(public_path($destinationPath), $filename);
@@ -1247,13 +1246,13 @@ class AdminController extends Controller
                 $coachToEdit->save();
 
             } elseif ($entity == 'Usuario') {
-                $user = User::where('id', $request->id)->first();
+                $userToEdit = User::where('id', $request->id)->first();
                 $users = User::where('status', 'User')->get();
                 foreach ($columns as $key => $column) {
 
                     if ($column == 'username') {
                         foreach($users as $user) {
-                            if ($user->username == $request[$column]) {
+                            if ($user->username == $request[$column] && $user->username != $userToEdit->username) {
                                 Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1262,7 +1261,7 @@ class AdminController extends Controller
 
                     if ($column == 'email') {
                         foreach($users as $user) {
-                            if ($user->email == $request[$column]) {
+                            if ($user->email == $request[$column] && $user->email != $userToEdit->email) {
                                 Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1271,14 +1270,14 @@ class AdminController extends Controller
 
                     if($request[$column]) {
                         if ($column == 'password') {
-                            $user->$column = bcrypt($request[$column]);
+                            $userToEdit->$column = bcrypt($request[$column]);
                         } else {
-                            $user->$column = $request[$column];
+                            $userToEdit->$column = $request[$column];
                         }
                     }
                 }
-                $user->suscription_id = $request->suscription_id;
-                $user->save();
+                $userToEdit->suscription_id = $request->suscription_id;
+                $userToEdit->save();
             } elseif ($entity == 'Administrador') {
                 $user = User::where('id', $request->id)->first();
                 $admins = User::where('status', 'Admin')->get();
@@ -1406,7 +1405,7 @@ class AdminController extends Controller
         
                             foreach ($existingFiles as $existingFile) {
                                 if (is_file($existingFile)) {
-                                    unlink($existingFile); // Eliminar el archivo existente
+                                    unlink($existingFile);
                                 }
                             }
                             $file->move(public_path($destinationPath), $filename);
@@ -1471,7 +1470,7 @@ class AdminController extends Controller
                 $categories = CategoryOfTraining::all();
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
-                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otra categoría de entrenamiento', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1484,7 +1483,7 @@ class AdminController extends Controller
                 $categories = TagOfExercise::all();
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
-                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otro tipo de ejercicio', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1498,7 +1497,7 @@ class AdminController extends Controller
 
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
-                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otra categoría de dieta', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1513,7 +1512,7 @@ class AdminController extends Controller
 
                 foreach ($categories as $key => $category) {
                     if($request['name'] == $category->name && $category->name != $categoryToEdit->name) {
-                        Toastr::error('La categoria ya existe', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        Toastr::error('Este nombre ya existe en otro tipo de ingrediente', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                         return back();
                     }
                 }
@@ -1523,10 +1522,10 @@ class AdminController extends Controller
                 $categoryToEdit->save(); 
             }
             else {
-                Toastr::error('No se pudo acceder', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                Toastr::error('No se ha podido acceder a esta página', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                 return back();
             }
-            Toastr::success($entity . ' - Edición realizada con éxito.' , 'Super!!', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success($entity . ' - Edición realizada con éxito.' , 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -1561,27 +1560,29 @@ class AdminController extends Controller
     public function addToTraining(Request $request)
     {
         try {
-            if (count($request->exercises) > 5) {
-                Toastr::error('No se puede añadir más', 'Ya hay 5 ejercicios', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-                return back();
-            }
+            if (is_array($request->exercises)) {
+                if (count($request->exercises) > 5) {
+                    Toastr::error('No se pueden añadir más de 5 ejercicios a un entrenamiento', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
+                
+                TrainingExercise::where('training_id', $request->training_id)->delete();
             
-            TrainingExercise::where('training_id', $request->training_id)->delete();
-        
-            foreach ($request->exercises as $exerciseId) {
-                $coach = Exercise::where('id', $exerciseId)->first();
-                $newTrainingExercise = new TrainingExercise();
-                $newTrainingExercise->training_id = $request->training_id;
-                $newTrainingExercise->exercise_id = $exerciseId;
-                $newTrainingExercise->save();
-            }
-
-            if(count($request->exercises) === 1) {
-                Toastr::success('Añadido', count($request->exercises) . ' ejercicio', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-                return back();
+                foreach ($request->exercises as $exerciseId) {
+                    $coach = Exercise::where('id', $exerciseId)->first();
+                    $newTrainingExercise = new TrainingExercise();
+                    $newTrainingExercise->training_id = $request->training_id;
+                    $newTrainingExercise->exercise_id = $exerciseId;
+                    $newTrainingExercise->save();
+                }
+    
+                if(count($request->exercises) > 0) {
+                    Toastr::success('Ejercicios añadidos al entrenamiento con éxito ('.count($request->exercises).' ejercicios)', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
             } else {
-                Toastr::success('Añadidos', count($request->exercises) . ' ejercicios', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-            return back();
+                Toastr::success('Ejercicios de entrenamientos actualizados con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
             }
         
         } catch (PDOException $e) {
@@ -1616,30 +1617,30 @@ class AdminController extends Controller
     public function addToDiet(Request $request)
     {
         try {
-            if (count($request->ingredients) > 6) {
-                Toastr::error('No se puede añadir más', 'Ya hay 6 ingredientes', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-                return back();
-            }
-            
-            DietIngredient::where('diet_id', $request->diet_id)->delete();
-            
-            foreach ($request->ingredients as $ingredientId) {
-                $newDietIngredient = new DietIngredient();
-                $newDietIngredient->diet_id = $request->diet_id;
-                $newDietIngredient->ingredient_id = $ingredientId;
-                $newDietIngredient->save();
-            }
-            
-            if (count($request->ingredients) === 1) {
-                Toastr::success('Añadido', count($request->ingredients) . ' ingrediente', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-                return back();
+            if (is_array($request->ingredients)) {
+                if (count($request->ingredients) > 6) {
+                    Toastr::error('No se pueden añadir más de 6 ingredientes a una dieta', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
+                
+                DietIngredient::where('diet_id', $request->diet_id)->delete();
+                
+                foreach ($request->ingredients as $ingredientId) {
+                    $newDietIngredient = new DietIngredient();
+                    $newDietIngredient->diet_id = $request->diet_id;
+                    $newDietIngredient->ingredient_id = $ingredientId;
+                    $newDietIngredient->save();
+                }
+                
+                if(count($request->ingredients) > 0) {
+                    Toastr::success('Ejercicios añadidos al entrenamiento con éxito ('.count($request->ingredients).' ejercicios)', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
             } else {
-                Toastr::success('Añadidos', count($request->ingredients) . ' ingredientes', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                Toastr::success('Ingredientes de dietas actualizados con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
                 return back();
             }
-            
-            Toastr::success('Añadido', 'SUUUUUU!', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
-            return back();
+
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
