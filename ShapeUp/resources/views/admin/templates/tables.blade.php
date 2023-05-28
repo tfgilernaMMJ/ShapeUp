@@ -115,14 +115,14 @@
                     
 
                                     @if (request()->route()->getName() == 'admin.trainings')
-                                    <button data-bs-toggle="modal" data-bs-target="#modalAddExercise" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ejercicio">
+                                    <button data-bs-toggle="modal" data-bs-target="#modalAddExercise-{{$row->id}}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ejercicio" data-target="#modalAddExercise-{{$row->id}}">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
                                             <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
                                         </svg>
                                     </button>
                                     <!-- Modal Body -->
                                     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                    <div class="modal fade" id="modalAddExercise" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                    <div class="modal fade" id="modalAddExercise-{{$row->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-body">
@@ -136,22 +136,21 @@
                                         </div>
                                     </div>
 
-
                                     <!-- Optional: Place to the bottom of scripts -->
                                     <script>
-                                        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                        const myModal = new bootstrap.Modal(document.getElementById('modalAddExercise-{{$row->id}}'), options)
                                     </script>
                                     @endif
 
                                     @if (request()->route()->getName() == 'admin.diets')
-                                    <button data-bs-toggle="modal" data-bs-target="#modalAddIngredient" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ingrediente">
+                                    <button data-bs-toggle="modal" data-bs-target="#modalAddIngredient-{{$row->id}}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ingrediente">
                                         <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
                                             <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
                                         </svg>
                                     </button>
                                     <!-- Modal Body -->
                                     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                    <div class="modal fade" id="modalAddIngredient" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                    <div class="modal fade" id="modalAddIngredient-{{$row->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-body">
@@ -168,7 +167,7 @@
 
                                     <!-- Optional: Place to the bottom of scripts -->
                                     <script>
-                                        const myModal2 = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                        const myModal2 = new bootstrap.Modal(document.getElementById('modalAddIngredient-{{$row->id}}'), options)
                                     </script>
                                     @endif
 
