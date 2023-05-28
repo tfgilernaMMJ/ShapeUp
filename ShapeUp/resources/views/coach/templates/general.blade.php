@@ -40,7 +40,7 @@
     {{-- INDEX --}}
 
     @yield('index-section')
-    @yield('coaches-nav-lat')
+    @yield('coaches-section')
     @yield('dashboard-editCoach')
     {{-- FORMS --}}
 
