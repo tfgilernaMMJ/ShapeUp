@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Training::class, 'user_coach_id');
     }
+
+    public function frequentlyAskedQuestion()
+    {
+        return $this->belongsTo(FrequentlyAskedQuestion::class, 'frequently_asked_question_id');
+    }
 }

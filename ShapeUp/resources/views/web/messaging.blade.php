@@ -55,7 +55,7 @@
                           <td>{{ $mensaje->coach->name }}</td>
                           <td>{{ $mensaje->message }}</td>
                           <td>
-                            @if ($mensaje->check == 0)
+                            @if ($mensaje->answerQuestion->check == 0)
                               <i class="bx bx-check"></i>
                             @else
                               <i class="bx bx-check-double"></i>
@@ -102,6 +102,17 @@
                 respuesta.style.width = "100%";
                 icono.classList.remove("bi-arrow-down-circle-fill");
                 icono.classList.add("bi-arrow-up-circle-fill");
+                $.ajax({
+                url: '{{ route("account.messaging.check") }}',
+                type: 'POST',
+                data: { mensajeId: idMensaje },
+                success: function(response) {
+                  console.log(response); // Aquí puedes realizar alguna acción adicional si es necesario
+                },
+                error: function(error) {
+                  console.error(error);
+                }
+              });
             } else {
                 respuesta.style.display = "none";
                 icono.classList.remove("bi-arrow-up-circle-fill");

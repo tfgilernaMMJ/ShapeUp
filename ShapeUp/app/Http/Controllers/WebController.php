@@ -491,4 +491,14 @@ class WebController extends Controller
         return view('web.messaging', ['mensajes' => $mensajesEnviados]);       
     }
   
+    public function actualizarCheck(Request $request)
+    {
+        $mensajeId = $request->input('mensajeId');
+
+        $mensaje = FrequentlyAskedQuestion::findOrFail($mensajeId);
+        $mensaje->check = 1;
+        $mensaje->save();
+
+        return response()->json(['success' => true]);
+    }
 }

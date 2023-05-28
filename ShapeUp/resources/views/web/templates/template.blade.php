@@ -64,10 +64,26 @@
                         <li class="dropdown"><a class="active" href="#"><span><i class='bx bx-dumbbell'></i></i>&nbsp{{ Auth::user()->username }}</span> <i class="bi bi-chevron-down"></i></a>
                     @endif
                         <ul>
+                            @php
+                            $tieneNuevosMensajes = false;
+
+                            if (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User') {
+                                $preguntas = Auth::user()->frequentlyAskedQuestion()
+                                                        ->where('check', 0)
+                                                        ->whereHas('answerQuestion', function ($query) {
+                                                        $query->where('check', 1);
+                                                        })
+                                                        ->exists();
+                                $tieneNuevosMensajes = $preguntas;
+                            }
+                            @endphp
+
                             @if (Auth::user()->status == 'User')     
                                 <li><a href="{{ route('account.profile') }}" class="@yield('profile-nav')">Perfil</a></li>
                             @endif
                             @if (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User')
+                                <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')"><span>Mensajería&nbsp<i class='bx bxs-message-rounded-add'></i></span></a></li>
+                            @elseif (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User' && $tieneNuevosMensajes)
                                 <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')">Mensajería</a></li>
                             @endif
                             @if (Auth::user()->status == 'Admin')   
