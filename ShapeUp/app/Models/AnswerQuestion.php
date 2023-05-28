@@ -16,6 +16,6 @@ class AnswerQuestion extends Model
 
     public function frequentlyAskedQuestion()
     {
-        return $this->belongsTo(FrequentlyAskedQuestion::class);
+        return $this->belongsTo(FrequentlyAskedQuestion::class, 'frequently_asked_question_id');
     }
 }
