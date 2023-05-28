@@ -41,6 +41,7 @@
 
     @yield('index-section')
     @yield('coaches-nav-lat')
+    @yield('dashboard-editCoach')
     {{-- FORMS --}}
 
     @yield('training-section')
