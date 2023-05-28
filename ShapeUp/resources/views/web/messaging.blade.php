@@ -37,62 +37,67 @@
 
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
-                <div class="row mt-3">
-                    <div class="col-lg-12 mt-5 mt-lg-0">
+              <div class="row mt-3">
+                <div class="col-lg-12 mt-5 mt-lg-0">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Entrenador</th>
+                        <th scope="col">Mensaje</th>
+                        <th scope="col">Visto</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
                         @foreach ($mensajes as $mensaje)
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Entrenador</th>
-                                <th scope="col">Mensaje</th>
-                                <th scope="col">Visto</th>
-                                @if ($mensaje->check == 1)
-                                <th scope="col"></th>
-                                @endif
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>{{ $mensaje->created_at->format('d-m-Y') }}</td>
-                                <th scope="row">{{ $mensaje->coach->name }}</th>
-                                <td>{{ $mensaje->message}}</td>
-                                @if ($mensaje->check == 0)
-                                <td><i class='bx bx-check'></i></td>
-                                @else
-                                <td><i class='bx bx-check-double' ></i></td>
-                                <td><button class="btn-toggle" onclick="toggleAnswer(event)">
-                                    <i class='bx bxs-caret-down-circle'></i>
-                                </button></td>
-                                @endif
-                              </tr>
-                              <tr>
-                                <td class="table-light">...</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <tr>
+                            <td>{{ $mensaje->created_at->format('d-m-Y') }}</td>
+                            <td>{{ $mensaje->coach->name }}</td>
+                            <td>{{ $mensaje->message }}</td>
+                            <td>
+                              @if ($mensaje->check == 0)
+                                <i class="bx bx-check"></i>
+                              @else
+                                <i class="bx bx-check-double"></i>
+                                <a type="button" onclick="mostrarRespuesta({{ $mensaje->id }})">
+                                    <i id="icono" class="bi bi-arrow-down-circle-fill"></i>
+                                </a>  
+                              @endif
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="table-light" colspan="4" id="respuesta{{ $mensaje->id }}" style="display: none; width: 100%;">
+                                <strong>Respuesta:</strong> dfdsfsdfsdfsd
+                              </td>
+                              
+                        </tr>
+                                         
                         @endforeach
-                    </div>                    
+                      </tbody>                                    
+                  </table>
                 </div>
+              </div>
             </div>
-        </section>       
+          </section>
     </main>
-
-    <script>
-        function mostrarFiltroTrainer() {
-        const iconoFiltro = document.querySelector('#iconofiltertrainer');
-        const contactSection = document.querySelector('.contactfiltertrainer');
-    
-            if (contactSection.style.display === "none") {
-                contactSection.style.display = "block";
-                iconoFiltro.classList.remove("bi-arrow-down-circle-fill");
-                iconoFiltro.classList.add("bi-arrow-up-circle-fill");
+          
+          <script>
+            function mostrarRespuesta(idMensaje) {
+              const respuesta = document.querySelector(`#respuesta${idMensaje}`);
+              const icono = document.querySelector('#icono');
+          
+              if (respuesta.style.display === "none") {
+                respuesta.style.display = "block";
+                respuesta.style.width = "100%";
+                icono.classList.remove("bi-arrow-down-circle-fill");
+                icono.classList.add("bi-arrow-up-circle-fill");
             } else {
-                contactSection.style.display = "none";
-                iconoFiltro.classList.remove("bi-arrow-up-circle-fill");
-                iconoFiltro.classList.add("bi-arrow-down-circle-fill");
+                respuesta.style.display = "none";
+                icono.classList.remove("bi-arrow-up-circle-fill");
+            icono.classList.add("bi-arrow-down-circle-fill");
             }
-        }
-    
-    </script>
+
+            }
+          </script>          
 @endsection
