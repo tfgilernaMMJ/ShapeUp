@@ -46,36 +46,46 @@
                         <th scope="col">Entrenador</th>
                         <th scope="col">Mensaje</th>
                         <th scope="col">Visto</th>
-                        
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($mensajes as $mensaje)
+                      @foreach ($mensajes as $index => $mensaje)
+                        <tr>
+                          <td>{{ $mensaje->created_at->format('d-m-Y') }}</td>
+                          <td>{{ $mensaje->coach->name }}</td>
+                          <td>{{ $mensaje->message }}</td>
+                          <td>
+                            @if ($mensaje->check == 0)
+                              <i class="bx bx-check"></i>
+                            @else
+                              <i class="bx bx-check-double"></i>
+                              <a type="button" onclick="mostrarRespuesta({{ $mensaje->id }})">
+                                <i id="icono" class="bi bi-arrow-down-circle-fill"></i>
+                              </a>  
+                            @endif
+                          </td>
+                        </tr>
+                        @if ($mensaje->answerQuestion)
                           <tr>
-                            <td>{{ $mensaje->created_at->format('d-m-Y') }}</td>
-                            <td>{{ $mensaje->coach->name }}</td>
-                            <td>{{ $mensaje->message }}</td>
-                            <td>
-                              @if ($mensaje->check == 0)
-                                <i class="bx bx-check"></i>
-                              @else
-                                <i class="bx bx-check-double"></i>
-                                <a type="button" onclick="mostrarRespuesta({{ $mensaje->id }})">
-                                    <i id="icono" class="bi bi-arrow-down-circle-fill"></i>
-                                </a>  
-                              @endif
+                            <td colspan="4" style="padding: 0; margin: 0;">
+                              <div class="table-responsive" style="margin: 0; padding: 0;">
+                                <table class="table table-bordered" style="margin: 0; padding: 0;">
+                                  <tbody>
+                                    <tr>
+                                      <td class="table-light" colspan="4" id="respuesta{{ $mensaje->id }}" style="display: none;">
+                                        <strong>Respuesta:</strong> {{ $mensaje->answerQuestion->answer_message }}
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </td>
                           </tr>
-                          <tr>
-                            <td class="table-light" colspan="4" id="respuesta{{ $mensaje->id }}" style="display: none; width: 100%;">
-                                <strong>Respuesta:</strong> dfdsfsdfsdfsd
-                              </td>
-                              
-                        </tr>
-                                         
-                        @endforeach
-                      </tbody>                                    
+                        @endif
+                      @endforeach
+                    </tbody>
                   </table>
+                  
                 </div>
               </div>
             </div>

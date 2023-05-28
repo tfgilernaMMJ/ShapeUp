@@ -35,4 +35,9 @@ class FrequentlyAskedQuestion extends Model
     {
         return $this->belongsTo(User::class, 'user_coach_id');
     }
+
+    public function answerQuestion()
+    {
+        return $this->hasOne(AnswerQuestion::class);
+    }
 }
