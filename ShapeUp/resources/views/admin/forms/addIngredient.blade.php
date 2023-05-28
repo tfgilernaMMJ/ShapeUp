@@ -7,34 +7,34 @@
 </h2>
 {!! Toastr::message() !!}
 <div class="container bg-transparent mt-5">
-    <form action="{{ route('admin.addExercise', ['training_id' => $request->route('training_id')]) }}" method="POST">
+<form action="{{ route('admin.addIngredient', ['diet_id' => $request->route('diet_id')]) }}" method="POST">
         @csrf
         @method('POST')
-
-        <div class="accordion" id="exerciseAccordion">
+        <input type="hidden" id="data-input" name="dataInput">
+        <div class="accordion" id="ingredientsAccordion">
             @php
             $shownTags = [];
             @endphp
-
-            @foreach($coachExercises as $option)
+            @foreach($ingredients as $option)
             @php
-            $tagId = $option->tag_of_exercise_id;
-            $tagExercises = $coachExercises->where('tag_of_exercise_id', $tagId);
+            $tagId = $option->tag_of_ingredient_id;
+            $tagIngredients = $ingredients->where('tag_of_ingredient_id', $tagId);
             @endphp
 
             @if(!in_array($tagId, $shownTags))
             <div class="accordion-item">
                 <h2 class="accordion-header" id="tag{{ $tagId }}Heading">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tag{{ $tagId }}Collapse" aria-expanded="false" aria-controls="tag{{ $tagId }}Collapse">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tag{{ $tagId }}Collapse" aria-expanded="true" aria-controls="tag{{ $tagId }}Collapse">
                         {{ $option->tag->name }}
                     </button>
                 </h2>
-                <div id="tag{{ $tagId }}Collapse" class="accordion-collapse collapse" aria-labelledby="tag{{ $tagId }}Heading" data-bs-parent="#exerciseAccordion">
+                <div id="tag{{ $tagId }}Collapse" class="accordion-collapse collapse" aria-labelledby="tag{{ $tagId }}Heading" data-bs-parent="#ingredientsAccordion">
                     <div class="accordion-body">
-                        @foreach($tagExercises as $tagOption)
+                        @foreach($tagIngredients as $tagOption)
                         <div class="form-check">
-                            <input type="checkbox" name="exercises[]" value="{{ $tagOption->id }}" id="exercise{{ $tagOption->id }}" class="form-check-input" {{ $trainingExercises->contains('exercise_id', $tagOption->id) ? 'checked' : '' }}>
-                            <label for="exercise{{ $tagOption->id }}" class="form-check-label">{{ $tagOption->name }}</label>
+                        <input type="checkbox" name="ingredients[]" value="{{ $tagOption->id }}" id="ingredient{{ $tagOption->id }}" class="form-check-input" {{ $dietIngredients->contains('ingredient_id', $tagOption->id) ? 'checked' : '' }}>
+
+                            <label for="ingredient{{ $tagOption->id }}" class="form-check-label">{{ $tagOption->name }}</label>
                         </div>
                         @endforeach
                     </div>
@@ -47,7 +47,7 @@
             @endforeach
         </div>
 
-        <button type="submit" class="btn btn-primary">Añadir a {{ $title }}</button>
+        <button type="submit" class="btn btn-primary mt-3">Añadir a {{ $title }}</button>
     </form>
 
 </div>
