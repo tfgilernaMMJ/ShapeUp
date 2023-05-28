@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryOfDiet;
+use App\Models\CategoryOfTraining;
 use App\Models\Diet;
 use App\Models\Exercise;
 use App\Models\Ingredient;
+use App\Models\TagOfExercise;
+use App\Models\TagOfIngredient;
 use App\Models\Training;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -95,6 +99,58 @@ class CoachController extends Controller
         ]);
     }
 
+    public function trainingsViewData(Request $request)
+    {
+        $trainings = Training::where('user_coach_id', Auth()->user()->id)->paginate(10);
+
+        $category_ids = $trainings->pluck('category_of_training_id')->unique();
+
+        $categories_of_training = CategoryOfTraining::whereIn('id', $category_ids)->get();
+        return view('coach.trainings.adminTrainings', [
+            'trainings' => $trainings,
+            'categories_of_training' => $categories_of_training
+        ]);
+    }
+
+    public function exercisesViewData(Request $request)
+    {
+        $exercises = Exercise::where('user_coach_id', Auth()->user()->id)->paginate(10);
+
+        $category_ids = $exercises->pluck('tag_of_exercise_id')->unique();
+        
+        $categories_of_exercise = TagOfExercise::whereIn('id', $category_ids)->get();
+        return view('coach.trainings.adminExercises', [
+            'exercises' => $exercises,
+            'categories_of_exercise' => $categories_of_exercise
+        ]);
+    }
+
+    public function dietsViewData(Request $request)
+    {
+        $diets = Diet::where('user_coach_id', Auth()->user()->id)->paginate(10);
+
+        $category_ids = $diets->pluck('category_of_diet_id')->unique();
+        
+        $categories_of_diet = CategoryOfDiet::whereIn('id', $category_ids)->get();
+        return view('coach.diets.adminDiets', [
+            'diets' => $diets,
+            'categories_of_diet' => $categories_of_diet
+        ]);
+    }
+
+    public function ingredientsViewData(Request $request)
+    {
+        $ingredients = Ingredient::paginate(10);
+
+        $category_ids = $ingredients->pluck('tag_of_ingredient_id')->unique();
+        
+        $categories_of_ingredient = TagOfIngredient::whereIn('id', $category_ids)->get();
+        return view('coach.diets.adminIngredients', [
+            'ingredients' => $ingredients,
+            'categories_of_ingredient' => $categories_of_ingredient
+        ]);
+    }
+
 
     public function editCoachView(Request $request)
     {
@@ -103,6 +159,251 @@ class CoachController extends Controller
         return view('coach.users.editCoach', [
             'coach' => $coach,
         ]);
+    }
+
+    public function editTrainingView(Request $request)
+    {
+        $training = Training::where('id', $request->id)->first();
+        $categories = CategoryOfTraining::all();
+
+
+
+        return view('coach.trainings.editTraining', [
+            'training' => $training,
+            'categories' => $categories
+        ]);
+    }
+    public function createTrainingView(Request $request)
+    {
+        $categories = CategoryOfTraining::all();
+
+
+
+        return view('coach.trainings.createTraining', [
+            'categories' => $categories
+        ]);
+    }
+    public function editTraining(Request $request)
+    {
+        try {
+
+            $training = Training::where('id', $request->id)->first();
+            $training->title = $request->input('title');
+            $training->description = $request->input('description');
+            $training->duration = $request->input('duration');
+            $training->level = $request->input('level');
+            $training->category_of_training_id = $request->input('category_of_training_id');
+            $training->save();
+            Toastr::success('Entrenamiento editado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function createTraining(Request $request)
+    {
+        try {
+
+            $training = new Training();
+            $training->title = $request->input('title');
+            $training->description = $request->input('description');
+            $training->duration = $request->input('duration');
+            $training->level = $request->input('level');
+            $training->user_coach_id = Auth()->user()->id;
+            $training->category_of_training_id = $request->input('category_of_training_id');
+            $training->save();
+            Toastr::success('Entrenamiento creado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function deleteTraining(Request $request)
+    {
+        try {
+
+            Training::where('id', $request->id)->first()->delete();
+            Toastr::success('Entrenamiento editado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function editExerciseView(Request $request)
+    {
+        $exercise = Exercise::where('id', $request->id)->first();
+        $categories = TagOfExercise::all();
+
+        return view('coach.trainings.editExercise', [
+            'exercise' => $exercise,
+            'categories' => $categories
+        ]);
+    }
+    public function createExerciseView(Request $request)
+    {
+        $categories = TagOfExercise::all();
+
+        return view('coach.trainings.createExercise', [
+            'categories' => $categories
+        ]);
+    }
+    public function editExercise(Request $request)
+    {
+        try {
+
+            $exercise = Exercise::where('id', $request->id)->first();
+            $exercise->name = $request->input('name');
+            $exercise->duration = $request->input('duration');
+            $exercise->series = $request->input('series');
+            $exercise->repetitions = $request->input('repetitions');
+            $exercise->tag_of_exercise_id = $request->input('tag_of_exercise_id');
+            $exercise->save();
+            Toastr::success('Ejercicio editado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function createExercise(Request $request)
+    {
+        try {
+            $exercise = new Exercise();
+            $exercise->name = $request->input('name');
+            $exercise->duration = $request->input('duration');
+            $exercise->series = $request->input('series');
+            $exercise->repetitions = $request->input('repetitions');
+            $exercise->tag_of_exercise_id = $request->input('tag_of_exercise_id');
+            $exercise->user_coach_id = Auth()->user()->id;
+            $exercise->save();
+            Toastr::success('Ejercicio creado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function deleteExercise(Request $request)
+    {
+        try {
+
+            Exercise::where('id', $request->id)->first()->delete();
+            Toastr::success('Ejercicio eliminado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function editDietView(Request $request)
+    {
+        $diet = Diet::where('id', $request->id)->first();
+        $categories = CategoryOfDiet::all();
+
+        return view('coach.diets.editDiet', [
+            'diet' => $diet,
+            'categories' => $categories
+        ]);
+    }
+    public function createDietView(Request $request)
+    {
+        $categories = CategoryOfDiet::all();
+
+        return view('coach.diets.createDiet', [
+            'categories' => $categories
+        ]);
+    }
+    public function editDiet(Request $request)
+    {
+        try {
+
+            $diet = Diet::where('id', $request->id)->first();
+            $diet->title = $request->input('title');
+            $diet->description = $request->input('description');
+            $diet->user_coach_id = Auth()->user()->id;
+            $diet->category_of_diet_id = $request->input('category_of_diet_id');
+            $diet->save();
+            Toastr::success('Dieta editada', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function createDiet(Request $request)
+    {
+        try {
+            $diet = new Diet();
+            $diet->title = $request->input('title');
+            $diet->description = $request->input('description');
+            $diet->user_coach_id = Auth()->user()->id;
+            $diet->category_of_diet_id = $request->input('category_of_diet_id');
+            $diet->save();
+            Toastr::success('Dieta creada', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function deleteDiet(Request $request)
+    {
+        try {
+
+            Diet::where('id', $request->id)->first()->delete();
+            Toastr::success('Ejercicio eliminado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function createIngredientView(Request $request)
+    {
+        $categories = TagOfIngredient::all();
+
+        return view('coach.diets.createIngredient', [
+            'categories' => $categories
+        ]);
+    }
+    public function createIngredient(Request $request)
+    {
+        try {
+            $ingredient = new Ingredient();
+            $ingredient->name = $request->input('name');
+            $ingredient->tag_of_ingredient_id = $request->input('tag_of_ingredient_id');
+            $ingredient->save();
+            Toastr::success('Ingrediente creado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function deleteIngredient(Request $request)
+    {
+        try {
+
+            Diet::where('id', $request->id)->first()->delete();
+            Toastr::success('Ejercicio eliminado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
     }
     public function editCoach(Request $request)
     {
@@ -137,7 +438,7 @@ class CoachController extends Controller
                 $existingFiles = glob(public_path($destinationPath) . '/' . $coach->id . '.*');
 
                 [$width, $height] = getimagesize($file);
-            
+
                 if ($width != $height) {
                     Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                     return back();
