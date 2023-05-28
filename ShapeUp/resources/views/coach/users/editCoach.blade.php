@@ -37,16 +37,6 @@
         </div>
 
         <div class="mb-4">
-            <label for="height" class="block text-bold mb-1">Altura (en cm)</label>
-            <input type="number" value="{{ old('height', $coach->height) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="height" name="height" placeholder="Altura (en cm)" required>
-        </div>
-
-        <div class="mb-4">
-            <label for="weight" class="block text-bold mb-1">Peso (en kg)</label>
-            <input type="number" value="{{ old('weight', $coach->weight) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="weight" name="weight" placeholder="Peso (en kg)" required>
-        </div>
-
-        <div class="mb-4">
             <label for="photo" class="block text-bold mb-1">Foto (introducir 1 archivo de dimensión 1:1)</label>
             <input type="file" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="photo" name="photo" placeholder="Foto">
         </div>
@@ -301,7 +291,7 @@
                 <option value="Zimbabue">Zimbabue</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary mb-3">Guardar</button>
 
     </form>
 </div>
