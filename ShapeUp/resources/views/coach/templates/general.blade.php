@@ -46,6 +46,16 @@
 
     @yield('training-section')
     @yield('training-nav-lat')
+    @yield('exercise-nav-lat')
+    @yield('ingredient-nav-lat')
+    @yield('diet-nav-lat')
+    @yield('dashboard-editTraining')
+    @yield('dashboard-editExercise')
+    @yield('dashboard-createTraining')
+    @yield('dashboard-createExercise')
+    @yield('dashboard-editDiet')
+    @yield('dashboard-createDiet')
+    @yield('dashboard-createIngredient')
 
     {{-- FORMS --}}
 

@@ -263,13 +263,33 @@ Route::middleware(['auth','coach'])->group(function () {
         Route::put('/edit-coach', [App\Http\Controllers\CoachController::class, 'editCoach'])->name('editCoach');
         // COACH TRAININGS VIEWS
         // ----------------------------
-        Route::get('/trainings', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('trainings');
-        Route::get('/exercises', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('exercises');
+        Route::get('/trainings', [App\Http\Controllers\CoachController::class, 'trainingsViewData'])->name('trainings');
+        Route::get('/edit-training/{id}', [App\Http\Controllers\CoachController::class, 'editTrainingView'])->name('editTrainingView');
+        Route::put('/editTraining/{id}', [App\Http\Controllers\CoachController::class, 'editTraining'])->name('editTraining');
+        Route::get('/create-training', [App\Http\Controllers\CoachController::class, 'createTrainingView'])->name('createTrainingView');
+        Route::post('/createTraining', [App\Http\Controllers\CoachController::class, 'createTraining'])->name('createTraining');
+        Route::get('/deleteTraining/{id}', [App\Http\Controllers\CoachController::class, 'deleteTraining'])->name('deleteTraining');
+        Route::get('/exercises', [App\Http\Controllers\CoachController::class, 'exercisesViewData'])->name('exercises');
+        Route::get('/edit-exercise/{id}', [App\Http\Controllers\CoachController::class, 'editExerciseView'])->name('editExerciseView');
+        Route::put('/editExercise/{id}', [App\Http\Controllers\CoachController::class, 'editExercise'])->name('editExercise');
+        Route::get('/create-exercise', [App\Http\Controllers\CoachController::class, 'createExerciseView'])->name('createExerciseView');
+        Route::post('/createExercise', [App\Http\Controllers\CoachController::class, 'createExercise'])->name('createExercise');
+        Route::get('/deleteExercise/{id}', [App\Http\Controllers\CoachController::class, 'deleteExercise'])->name('deleteExercise');
 
         // COACH DIETS VIEWS
         // ----------------------------
-        Route::get('/diets', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('diets');
-        Route::get('/ingredients', [App\Http\Controllers\AdminController::class, 'bringGeneralData'])->name('ingredients');
+        Route::get('/diets', [App\Http\Controllers\CoachController::class, 'dietsViewData'])->name('diets');
+        Route::get('/edit-diet/{id}', [App\Http\Controllers\CoachController::class, 'editDietView'])->name('editDietView');
+        Route::put('/editDiet/{id}', [App\Http\Controllers\CoachController::class, 'editDiet'])->name('editDiet');
+        Route::get('/create-diet', [App\Http\Controllers\CoachController::class, 'createDietView'])->name('createDietView');
+        Route::post('/createDiet', [App\Http\Controllers\CoachController::class, 'createDiet'])->name('createDiet');
+        Route::get('/deleteDiet/{id}', [App\Http\Controllers\CoachController::class, 'deleteDiet'])->name('deleteDiet');
+        Route::get('/ingredients', [App\Http\Controllers\CoachController::class, 'ingredientsViewData'])->name('ingredients');
+        Route::get('/edit-ingredient/{id}', [App\Http\Controllers\CoachController::class, 'editIngredientView'])->name('editIngredientView');
+        Route::put('/editIngredient/{id}', [App\Http\Controllers\CoachController::class, 'editIngredient'])->name('editIngredient');
+        Route::get('/create-ingredient', [App\Http\Controllers\CoachController::class, 'createIngredientView'])->name('createIngredientView');
+        Route::post('/createIngredient', [App\Http\Controllers\CoachController::class, 'createIngredient'])->name('createIngredient');
+        Route::get('/deleteIngretient/{id}', [App\Http\Controllers\CoachController::class, 'deleteIngretient'])->name('deleteIngretient');
     });
 });
 
