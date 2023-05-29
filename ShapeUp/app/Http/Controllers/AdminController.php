@@ -1409,7 +1409,7 @@ class AdminController extends Controller
                                 }
                             }
                             $file->move(public_path($destinationPath), $filename);
-                            $gymToEdit->photo = $filename;
+                            $gymToEdit->logo = $filename;
                         }
     
                     } else {
@@ -1455,7 +1455,7 @@ class AdminController extends Controller
                                 }
                             }
                             $file->move(public_path($destinationPath), $filename);
-                            $marketToEdit->photo = $filename;
+                            $marketToEdit->logo = $filename;
                         }
     
                     } else {
