@@ -275,6 +275,8 @@ Route::middleware(['auth','coach'])->group(function () {
         Route::get('/create-training', [App\Http\Controllers\CoachController::class, 'createTrainingView'])->name('createTrainingView');
         Route::post('/createTraining', [App\Http\Controllers\CoachController::class, 'createTraining'])->name('createTraining');
         Route::get('/deleteTraining/{id}', [App\Http\Controllers\CoachController::class, 'deleteTraining'])->name('deleteTraining');
+        Route::get('/add-exercise/{training_id}', [App\Http\Controllers\CoachController::class, 'addExercise'])->name('addExercise');
+        Route::post('/add-exercise/{training_id}', [App\Http\Controllers\CoachController::class, 'addToTraining'])->name('addExercise');
         Route::get('/exercises', [App\Http\Controllers\CoachController::class, 'exercisesViewData'])->name('exercises');
         Route::get('/edit-exercise/{id}', [App\Http\Controllers\CoachController::class, 'editExerciseView'])->name('editExerciseView');
         Route::put('/editExercise/{id}', [App\Http\Controllers\CoachController::class, 'editExercise'])->name('editExercise');
@@ -290,6 +292,8 @@ Route::middleware(['auth','coach'])->group(function () {
         Route::get('/create-diet', [App\Http\Controllers\CoachController::class, 'createDietView'])->name('createDietView');
         Route::post('/createDiet', [App\Http\Controllers\CoachController::class, 'createDiet'])->name('createDiet');
         Route::get('/deleteDiet/{id}', [App\Http\Controllers\CoachController::class, 'deleteDiet'])->name('deleteDiet');
+        Route::get('/add-ingredient/{diet_id}', [App\Http\Controllers\CoachController::class, 'addIngredient'])->name('addIngredient');
+        Route::post('/add-ingredient/{diet_id}', [App\Http\Controllers\CoachController::class, 'addToDiet'])->name('addIngredient');
         Route::get('/ingredients', [App\Http\Controllers\CoachController::class, 'ingredientsViewData'])->name('ingredients');
         Route::get('/edit-ingredient/{id}', [App\Http\Controllers\CoachController::class, 'editIngredientView'])->name('editIngredientView');
         Route::put('/editIngredient/{id}', [App\Http\Controllers\CoachController::class, 'editIngredient'])->name('editIngredient');

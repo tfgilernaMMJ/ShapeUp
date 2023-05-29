@@ -6,12 +6,14 @@ use App\Models\AnswerQuestion;
 use App\Models\CategoryOfDiet;
 use App\Models\CategoryOfTraining;
 use App\Models\Diet;
+use App\Models\DietIngredient;
 use App\Models\Exercise;
 use App\Models\FrequentlyAskedQuestion;
 use App\Models\Ingredient;
 use App\Models\TagOfExercise;
 use App\Models\TagOfIngredient;
 use App\Models\Training;
+use App\Models\TrainingExercise;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -542,6 +544,116 @@ class CoachController extends Controller
             Toastr::success($userName . ' ha sido respondido', 'Mensaje enviado', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+    public function addExercise(Request $request)
+    {
+        try {
+
+            $trainingData = Training::where('id', $request->training_id)->select('user_coach_id', 'title')->first();
+            $trainingExercises = TrainingExercise::where('training_id', $request->training_id)->get();
+
+            $coach = User::where('id', $trainingData->user_coach_id)->with('exercises')->first();
+            $coachExercises = $coach->exercises;
+            return view(
+                'coach.trainings.addExercise',
+                [
+                    'coach' => $coach,
+                    'coachExercises' => $coachExercises,
+                    'trainingExercises' => $trainingExercises,
+                    'title' => $trainingData->title,
+                    'request' => $request
+                ]
+            );
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+    public function addToTraining(Request $request)
+    {
+        try {
+            if (is_array($request->exercises)) {
+                if (count($request->exercises) > 5) {
+                    Toastr::error('No se pueden añadir más de 5 ejercicios a un entrenamiento', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
+                
+                TrainingExercise::where('training_id', $request->training_id)->delete();
+            
+                foreach ($request->exercises as $exerciseId) {
+                    $coach = Exercise::where('id', $exerciseId)->first();
+                    $newTrainingExercise = new TrainingExercise();
+                    $newTrainingExercise->training_id = $request->training_id;
+                    $newTrainingExercise->exercise_id = $exerciseId;
+                    $newTrainingExercise->save();
+                }
+                if(count($request->exercises) > 0) {
+                    Toastr::success('Ejercicios añadidos al entrenamiento con éxito ('.count($request->exercises).' ejercicios)', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                    return back();
+                }
+            } else {
+                Toastr::success('Ejercicios de entrenamientos actualizados con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            }
+        
+        } catch (PDOException $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+        
+    }
+
+    public function addIngredient(Request $request)
+    {
+        try {
+
+            $dietData = Diet::where('id', $request->diet_id)->select('id','title')->first();
+            $dietIngredients = DietIngredient::where('diet_id', $request->diet_id)->get();
+            $ingredients = Ingredient::all();
+            return view(
+                'coach.diets.addIngredient',
+                [
+                    'ingredients' => $ingredients,
+                    'dietIngredients' => $dietIngredients,
+                    'title' => $dietData->title,
+                    'request' => $request
+                ]
+            );
+        } catch (PDOException  $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+    public function addToDiet(Request $request)
+    {
+        try {
+            if (is_array($request->ingredients)) {
+                if (count($request->ingredients) > 6) {
+                    Toastr::error('No se pueden añadir más de 6 ingredientes a una dieta', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
+                
+                DietIngredient::where('diet_id', $request->diet_id)->delete();
+                
+                foreach ($request->ingredients as $ingredientId) {
+                    $newDietIngredient = new DietIngredient();
+                    $newDietIngredient->diet_id = $request->diet_id;
+                    $newDietIngredient->ingredient_id = $ingredientId;
+                    $newDietIngredient->save();
+                }
+                
+                if(count($request->ingredients) > 0) {
+                    Toastr::success('Ingredientes añadidos a la dieta con éxito ('.count($request->ingredients).' ingredientes)', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                    return back();
+                }
+            } else {
+                Toastr::success('Ingredientes de dietas actualizados con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            }
+
+        } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         }

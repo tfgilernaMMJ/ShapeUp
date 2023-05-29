@@ -87,6 +87,32 @@ text-gray-800 dark:text-gray-100
                                             </svg>
                                         </button>
 
+                                        <button data-bs-toggle="modal" data-bs-target="#modalAddExercise-{{$training->id}}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ejercicio" data-target="#modalAddExercise-{{$training->id}}">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
+                                            <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
+                                        </svg>
+                                    </button>
+                                    <!-- Modal Body -->
+                                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                    <div class="modal fade" id="modalAddExercise-{{$training->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h5 class="fw-4">¿Quieres añadir/editar ejercicios?</h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="{{route('coach.addExercise',['training_id' => $training->id])}}" type="button" class="btn btn-secondary text-light">Añadir</a>
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Optional: Place to the bottom of scripts -->
+                                    <script>
+                                        const myModal = new bootstrap.Modal(document.getElementById('modalAddExercise-{{$training->id}}'), options)
+                                    </script>
+
                                     <!-- Modal -->
                                     <div class="modal fade" id="modalEditId-{{$training->id}}" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
