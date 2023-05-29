@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
+use App\Models\AnswerQuestion;
 use App\Models\CategoryOfDiet;
 use App\Models\UserFollowCoach;
 use App\Models\Gym;
@@ -491,4 +492,14 @@ class WebController extends Controller
         return view('web.messaging', ['mensajes' => $mensajesEnviados]);       
     }
   
+    public function actualizarCheck(Request $request)
+    {
+        $mensajeId = $request->input('mensajeId');
+
+        $mensaje = AnswerQuestion::where('frequently_asked_question_id', $mensajeId)->first();
+        $mensaje->check = 1;
+        $mensaje->save();
+
+        return response()->json(['success' => true]);
+    }
 }

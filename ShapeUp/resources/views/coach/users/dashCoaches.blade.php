@@ -1,24 +1,20 @@
 @extends('coach.templates.template')
 
-
-
-@section('users-nav')
+@section('coaches-nav')
 text-gray-800 dark:text-gray-100
 @endsection
 
 @section('coaches-nav-lat')
+<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+@endsection
+
+@section('coaches-section')
 <main class="h-full pb-16 overflow-y-auto">
     <div class="container grid px-6 mx-auto">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Entrenadores
         </h2>
         <!-- CTA -->
-        <a href="" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
-            </svg>
-            Nuevo Entrenador
-        </a>
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             {!! Toastr::message() !!}
             <div class="w-full overflow-x-auto">

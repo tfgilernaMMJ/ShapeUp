@@ -10,26 +10,26 @@
         <ul class="mt-6">
             <li class="relative px-6 py-3">
                 @yield('index-nav-lat')
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')" href="{{ route('admin-coach') }}">
-                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                        </path>
-                    </svg>
+                <button><a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')" href="{{ route('admin-coach') }}">
+                    <i class='bx bxs-home w-5 h-5' aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"></i>
                     <span class="ml-4">Inicio</span>
-                </a>
+                </a></button>
             </li>
         </ul>
         <ul>
         <li class="relative px-6 py-3">
-                    <a href="{{route('coach.coaches')}}" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('trainings-nav')" aria-haspopup="true" aria-expanded="false">
-                        <i class='bx bxs-user' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
+            @yield('coaches-nav-lat')
+                    <button><a href="{{route('coach.coaches')}}" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('coaches-nav')" aria-haspopup="true" aria-expanded="false">
+                        <i class='bx bxs-user w-5 h-5' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
                         <span class="ml-4">Entrenadores</span>
-                    </a>
+                    </a></button>
             </li>
         </ul>
         <ul>
             <li class="relative px-6 py-3">
+                @yield('trainings-nav-lat')
                 <div class="dropdown">
+
                     <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dropdown-toggle @yield('trainings-nav')" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class='bx bx-dumbbell w-5 h-5' aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"></i>
                         <span class="ml-4">Entrenamientos</span>
@@ -54,20 +54,21 @@
         </ul>
         <ul>
             <li class="relative px-6 py-3">
+                @yield('diets-nav-lat')
                 <div class="dropdown">
-                    <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dropdown-toggle @yield('trainings-nav')" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dropdown-toggle @yield('diets-nav')" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class='bx bxs-food-menu w-5 h-5' aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"></i>
                         <span class="ml-4">Dietas</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                        <a class="dropdown-item  inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('trainings-nav')" href="{{ route('coach.diets') }}">
+                        <a class="dropdown-item  inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('diets-nav')" href="{{ route('coach.diets') }}">
                             <span>
                                 <i class='bx bx-bowl-rice' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
                             </span>
                             <span class="ml-4">Dietas</span>
                         </a>
 
-                        <a class="dropdown-item  inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('trainings-nav')" href="{{ route('coach.ingredients') }}">
+                        <a class="dropdown-item  inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('diets-nav')" href="{{ route('coach.ingredients') }}">
                             <span>
                                 <i class='bx bx-baguette' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
                             </span>
@@ -80,11 +81,11 @@
         
         <ul>
             <li class="relative px-6 py-3">
-                @yield('index-nav-lat')
-                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('index-nav')" href="{{ route('coach.messages') }}">
-                    <i class='bx bxs-chat' type='solid' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
+                @yield('messaging-nav-lat')
+                <button><a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('messaging-nav')" href="{{ route('admin-coach') }}">
+                    <i class='bx bxs-chat w-5 h-5' type='solid' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
                     <span class="ml-4">Mensajería</span>
-                </a>
+                </a></button>
             </li>
         </ul>
         <div class="px-6 my-6">

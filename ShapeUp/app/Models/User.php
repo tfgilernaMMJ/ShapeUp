@@ -72,4 +72,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(FrequentlyAskedQuestion::class);
     }
+    public function frequentlyAskedQuestion()
+    {
+        return $this->belongsTo(FrequentlyAskedQuestion::class, 'frequently_asked_question_id');
+    }
 }

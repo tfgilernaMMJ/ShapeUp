@@ -1,5 +1,12 @@
 @extends('coach.templates.template')
 
+@section('coaches-nav')
+text-gray-800 dark:text-gray-100
+@endsection
+
+@section('coaches-nav-lat')
+<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+@endsection
 
 @section('dashboard-editCoach')
 <h2 class="my-6 mt-4 px-3 ml-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -34,16 +41,6 @@
         <div class="mb-4">
             <label for="age" class="block text-bold mb-1">Edad</label>
             <input type="number" value="{{ old('age', $coach->age) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="age" name="age" placeholder="Edad" required>
-        </div>
-
-        <div class="mb-4">
-            <label for="height" class="block text-bold mb-1">Altura (en cm)</label>
-            <input type="number" value="{{ old('height', $coach->height) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="height" name="height" placeholder="Altura (en cm)" required>
-        </div>
-
-        <div class="mb-4">
-            <label for="weight" class="block text-bold mb-1">Peso (en kg)</label>
-            <input type="number" value="{{ old('weight', $coach->weight) }}" min="0" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="weight" name="weight" placeholder="Peso (en kg)" required>
         </div>
 
         <div class="mb-4">
@@ -301,7 +298,7 @@
                 <option value="Zimbabue">Zimbabue</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary mb-3">Guardar</button>
 
     </form>
 </div>

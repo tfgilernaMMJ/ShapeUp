@@ -205,7 +205,7 @@ class CoachController extends Controller
             $training->level = $request->input('level');
             $training->category_of_training_id = $request->input('category_of_training_id');
             $training->save();
-            Toastr::success('Entrenamiento editado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Entrenamiento - Edición realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -225,7 +225,7 @@ class CoachController extends Controller
             $training->user_coach_id = Auth()->user()->id;
             $training->category_of_training_id = $request->input('category_of_training_id');
             $training->save();
-            Toastr::success('Entrenamiento creado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Entrenamiento - Creación realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -238,7 +238,7 @@ class CoachController extends Controller
         try {
 
             Training::where('id', $request->id)->first()->delete();
-            Toastr::success('Entrenamiento editado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Entrenamiento - Eliminación realizada con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -275,7 +275,7 @@ class CoachController extends Controller
             $exercise->repetitions = $request->input('repetitions');
             $exercise->tag_of_exercise_id = $request->input('tag_of_exercise_id');
             $exercise->save();
-            Toastr::success('Ejercicio editado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Ejercicio - Edición realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -294,7 +294,7 @@ class CoachController extends Controller
             $exercise->tag_of_exercise_id = $request->input('tag_of_exercise_id');
             $exercise->user_coach_id = Auth()->user()->id;
             $exercise->save();
-            Toastr::success('Ejercicio creado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Ejercicio - Creación realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -307,7 +307,7 @@ class CoachController extends Controller
         try {
 
             Exercise::where('id', $request->id)->first()->delete();
-            Toastr::success('Ejercicio eliminado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Ejercicio - Eliminación realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -343,7 +343,7 @@ class CoachController extends Controller
             $diet->user_coach_id = Auth()->user()->id;
             $diet->category_of_diet_id = $request->input('category_of_diet_id');
             $diet->save();
-            Toastr::success('Dieta editada', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Dieta - Edición realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -360,7 +360,7 @@ class CoachController extends Controller
             $diet->user_coach_id = Auth()->user()->id;
             $diet->category_of_diet_id = $request->input('category_of_diet_id');
             $diet->save();
-            Toastr::success('Dieta creada', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Dieta - Creación realizada con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -373,7 +373,7 @@ class CoachController extends Controller
         try {
 
             Diet::where('id', $request->id)->first()->delete();
-            Toastr::success('Ejercicio eliminado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success('Dieta - Eliminación realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -392,11 +392,20 @@ class CoachController extends Controller
     public function createIngredient(Request $request)
     {
         try {
-            $ingredient = new Ingredient();
-            $ingredient->name = $request->input('name');
-            $ingredient->tag_of_ingredient_id = $request->input('tag_of_ingredient_id');
-            $ingredient->save();
-            Toastr::success('Ingrediente creado', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            $ingredientToCreate = new Ingredient();
+            $ingredients = Ingredient::all();
+            if ($request->input('name')) {
+                foreach ($ingredients as $ingredient) {
+                    if ($ingredient->name == $request->input('name')) {
+                        Toastr::error('Este nombre ya existe en otro ingrediente', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                        return back();
+                    }
+                }
+            }
+            $ingredientToCreate->name = $request->input('name');
+            $ingredientToCreate->tag_of_ingredient_id = $request->input('tag_of_ingredient_id');
+            $ingredientToCreate->save();
+            Toastr::success('Ingrediente - Creación realizada con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -429,48 +438,62 @@ class CoachController extends Controller
             $weight = $request->input('weight');
             $biography = $request->input('biography');
             $experience = $request->input('experience');
-
-            // Obtener el modelo del entrenador
-            $coach = User::where('id', Auth::user()->id)->first();
-
-            // Actualizar los atributos del modelo con los nuevos datos
-            $coach->name = $name;
-            $coach->username = $username;
-            $coach->password = bcrypt($password); // Recuerda encriptar la contraseña si es necesario
-            $coach->email = $email;
-            $coach->age = $age;
-            $coach->height = $height;
-            $coach->weight = $weight;
-            // Procesar y guardar la foto si se ha proporcionado
+        
+            $coachToEdit = User::where('id', Auth::user()->id)->first();
+            $coaches = User::where('status', 'Coach')->get();
+            foreach ($coaches as $coach) {
+                if ($coach->username == $username && $coach->username != $coachToEdit->username) {
+                    Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                    return back();
+                }
+        
+                if ($coach->email == $email && $coach->email != $coachToEdit->email) {
+                    Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                    return back();
+                }
+            }
+        
+            // Actualizar campos en el modelo User
+            $coachToEdit->name = $name;
+            $coachToEdit->username = $username;
+            $coachToEdit->password = bcrypt($password);
+            $coachToEdit->email = $email;
+            $coachToEdit->age = $age;
+            $coachToEdit->height = $height;
+            $coachToEdit->weight = $weight;
+        
             if ($request->file('photo')) {
                 $file = $request->file('photo');
                 $destinationPath = 'dashboard/assets/img/test';
-                $filename = $coach->id . '.' . $file->getClientOriginalExtension();
-                $existingFiles = glob(public_path($destinationPath) . '/' . $coach->id . '.*');
-
+                $filename = $coachToEdit->id . '.' . $file->getClientOriginalExtension();
+                $existingFiles = glob(public_path($destinationPath) . '/' . $coachToEdit->id . '.*');
+        
                 [$width, $height] = getimagesize($file);
-
+        
                 if ($width != $height) {
                     Toastr::error('La foto debe ser de dimensión 1:1', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                     return back();
                 }
-
+        
                 foreach ($existingFiles as $existingFile) {
                     if (is_file($existingFile)) {
                         unlink($existingFile);
                     }
                 }
+        
                 $file->move(public_path($destinationPath), $filename);
-                $coach->photo = $filename;
+                $coachToEdit->photo = $filename;
             }
-            $coach->biography = $biography;
-            $coach->experience = $experience;
-
+        
+            $coachToEdit->biography = $biography;
+            $coachToEdit->experience = $experience;
+        
             // Guardar los cambios en la base de datos
-            $coach->save();
-            Toastr::success('Entrenador editado', 'Exito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            $coachToEdit->save();
+        
+            Toastr::success('Entrenador - Edición realizada con éxito.', 'Exito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
-        } catch (PDOException  $e) {
+        } catch (PDOException $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         }
