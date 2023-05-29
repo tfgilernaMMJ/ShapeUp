@@ -82,7 +82,7 @@
         <ul>
             <li class="relative px-6 py-3">
                 @yield('messaging-nav-lat')
-                <button><a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('messaging-nav')" href="{{ route('admin-coach') }}">
+                <button><a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 @yield('messaging-nav')" href="{{ route('coach.messages') }}">
                     <i class='bx bxs-chat w-5 h-5' type='solid' aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"></i>
                     <span class="ml-4">Mensajería</span>
                 </a></button>
