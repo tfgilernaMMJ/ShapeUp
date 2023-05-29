@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_follow_coaches', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('user_coach_id')->references('id')->on('users');
+            $table->foreignId('user_coach_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -463,6 +463,7 @@ class CoachController extends Controller
             $weight = $request->input('weight');
             $biography = $request->input('biography');
             $experience = $request->input('experience');
+            $country = $request->input('country');
         
             $coachToEdit = User::where('id', Auth::user()->id)->first();
             $coaches = User::where('status', 'Coach')->get();
@@ -512,7 +513,7 @@ class CoachController extends Controller
         
             $coachToEdit->biography = $biography;
             $coachToEdit->experience = $experience;
-        
+            $coachToEdit->country = $country;
             // Guardar los cambios en la base de datos
             $coachToEdit->save();
         

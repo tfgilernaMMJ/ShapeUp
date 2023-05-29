@@ -30,67 +30,72 @@ class AdminController extends Controller
 {
     public function dashboardPrincipal(Request $request)
     {
-        // training exercise diet ingredients
-        $usersCount = User::all()->count();
-        $coachesCount = User::where('status', 'Coach')->count();
-        $superSusCount = User::where('suscription_id', 2)->count();
-        $moneyBySuperSus = $superSusCount * 4.99;
+        try {
+            $usersCount = User::all()->count();
+            $coachesCount = User::where('status', 'Coach')->count();
+            $superSusCount = User::where('suscription_id', 2)->count();
+            $moneyBySuperSus = $superSusCount * 4.99;
 
-        $trainingsCount = Training::all()->count();
-        $exercisesCount = Exercise::all()->count();
-        $ingredientsCount = Ingredient::all()->count();
-        $dietsCount = Diet::all()->count();
-        $cardsResults = array($usersCount, $coachesCount, $superSusCount, $moneyBySuperSus, $trainingsCount, $exercisesCount, $ingredientsCount, $dietsCount);
+            $trainingsCount = Training::all()->count();
+            $exercisesCount = Exercise::all()->count();
+            $ingredientsCount = Ingredient::all()->count();
+            $dietsCount = Diet::all()->count();
+            $cardsResults = array($usersCount, $coachesCount, $superSusCount, $moneyBySuperSus, $trainingsCount, $exercisesCount, $ingredientsCount, $dietsCount);
 
-        foreach ($cardsResults as &$result) {
-            if (is_null($result)) {
-                $result = null;
+            foreach ($cardsResults as &$result) {
+                if (is_null($result)) {
+                    $result = null;
+                }
             }
-        }
-        unset($result);
-        $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios SuperShapeUp', 'Ingresos por suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
-        $resultsIcon = ['bx bxs-user', 'bx bx-dumbbell', 'bx bxs-star', 'bx bx-money-withdraw', 'bx bx-dumbbell', 'bx bx-dumbbell', 'bx bx-bowl-rice', 'bx bx-baguette'];
-        $resultsColors = [
-            'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
-            'p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500',
-            ' p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500',
-            'p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500',
-            'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
-            'p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500',
-            ' p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500',
-            'p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500'
-        ];
-        $userByMonth = User::all()->groupBy(function ($user) {
-            return $user->created_at->format('m');
-        });
-        $userByMonthSus = User::where('suscription_id', 2)->get()->groupBy(function ($user) {
-            return $user->created_at->format('m');
-        });
-        $usersFounded = null;
-        if ($request->name) {
+            unset($result);
+            $resultsTitle = ['Usuarios', 'Entrenadores', 'Usuarios SuperShapeUp', 'Ingresos por suscripción', 'Entrenamientos', 'Ejercicios', 'Ingredientes', 'Dietas'];
+            $resultsIcon = ['bx bxs-user', 'bx bx-dumbbell', 'bx bxs-star', 'bx bx-money-withdraw', 'bx bx-dumbbell', 'bx bx-dumbbell', 'bx bx-bowl-rice', 'bx bx-baguette'];
+            $resultsColors = [
+                'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
+                'p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500',
+                ' p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500',
+                'p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500',
+                'p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500',
+                'p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500',
+                ' p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500',
+                'p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500'
+            ];
+            $userByMonth = User::all()->groupBy(function ($user) {
+                return $user->created_at->format('m');
+            });
+            $userByMonthSus = User::where('suscription_id', 2)->get()->groupBy(function ($user) {
+                return $user->created_at->format('m');
+            });
+            $usersFounded = null;
+            if ($request->name) {
 
-            $usersFounded = User::where('name', 'like', '%' . $request->name . '%')->paginate(10);
-            $allCoaches = null;
+                $usersFounded = User::where('name', 'like', '%' . $request->name . '%')->paginate(10);
+                $allCoaches = null;
+            }
+            return view(
+                'admin.index',
+                [
+                    'superSusCount' => $superSusCount,
+                    'moneyBySuperSus' => $moneyBySuperSus,
+                    'trainingsCount' =>  $trainingsCount,
+                    'exerciseCount' =>  $exercisesCount,
+                    'ingredientsCount' =>  $ingredientsCount,
+                    'dietsCount' =>  $dietsCount,
+                    'cardsResults' => $cardsResults,
+                    'resultsTitle' => $resultsTitle,
+                    'resultsIcon' => $resultsIcon,
+                    'resultsColors' => $resultsColors,
+                    'userByMonth' => $userByMonth,
+                    'userByMonthSus' => $userByMonthSus,
+                    'usersFounded' => $usersFounded,
+                    'coachTrainings' => null
+                ]
+            );
+        } catch (PDOException  $e) {
+            Toastr::error('No se pudo al cargar Inicio', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
         }
-        return view(
-            'admin.index',
-            [
-                'superSusCount' => $superSusCount,
-                'moneyBySuperSus' => $moneyBySuperSus,
-                'trainingsCount' =>  $trainingsCount,
-                'exerciseCount' =>  $exercisesCount,
-                'ingredientsCount' =>  $ingredientsCount,
-                'dietsCount' =>  $dietsCount,
-                'cardsResults' => $cardsResults,
-                'resultsTitle' => $resultsTitle,
-                'resultsIcon' => $resultsIcon,
-                'resultsColors' => $resultsColors,
-                'userByMonth' => $userByMonth,
-                'userByMonthSus' => $userByMonthSus,
-                'usersFounded' => $usersFounded,
-                'coachTrainings' => null
-            ]
-        );
+        
     }
     public function dashboardCoaches(Request $request)
     {
@@ -124,22 +129,9 @@ class AdminController extends Controller
                     }
                 }
             } else if ($request->type == 'diet') {
-
                 Diet::find($request->id)->delete();
             } else if ($request->type == 'ingredient') {
-                // Ingredient::find($request->id)->delete();
-                // 
-                //     $trainingsOfExercise = DietIngre::where('exercise_id', $request->id)->pluck('training_id');
-                //     Ingredient::find($request->id)->delete();
-                //     foreach ($trainingsOfExercise as $trainingId) {
-                //         $trainingCount = TrainingExercise::where('training_id', $trainingId)->count();
-                //         if ($trainingCount == 0) {
-                //             Training::find($trainingId)->delete();
-                //         }
-                //     }
-                // } catch (PDOException $e) {
-                //     return back()->with('error', $e->getMessage());
-                // }
+                Ingredient::find($request->id)->delete();
             } else if ($request->type == 'gym') {
                 Gym::find($request->id)->delete();
             } else if ($request->type == 'market') {
@@ -329,8 +321,8 @@ class AdminController extends Controller
             $createTexxtButton = 'Dieta';
             $rows = Diet::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['title', 'description', 'category', 'coach'];
-            $columnsNames = ['titulo', 'descripción', 'categoría', 'Entrenador'];
+            $columns = ['title', 'category', 'coach'];
+            $columnsNames = ['titulo', 'categoría', 'Entrenador'];
             return view(
                 'admin.diets.adminDiets',
                 [
@@ -417,8 +409,8 @@ class AdminController extends Controller
             $createTexxtButton = 'Categoría de entrenamiento';
             $rows = CategoryOfTraining::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['id', 'name'];
-            $columnsNames = ['id', 'nombre'];
+            $columns = ['name'];
+            $columnsNames = ['nombre'];
             // $extra1 =
             return view(
                 'admin.categories.adminTrainingsCategories',
@@ -440,8 +432,8 @@ class AdminController extends Controller
             $createTexxtButton = 'Tipo de ejercicio';
             $rows = TagOfExercise::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['id', 'name'];
-            $columnsNames = ['id', 'nombre'];
+            $columns = ['name'];
+            $columnsNames = ['nombre'];
             return view(
                 'admin.categories.adminExercisesCategories',
                 [
@@ -462,8 +454,8 @@ class AdminController extends Controller
             $createTexxtButton = 'Categoría de dieta';
             $rows = CategoryOfDiet::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['id', 'name'];
-            $columnsNames = ['id', 'nombre'];
+            $columns = ['name'];
+            $columnsNames = ['nombre'];
             return view(
                 'admin.categories.adminDietsCategories',
                 [
@@ -484,8 +476,8 @@ class AdminController extends Controller
             $createTexxtButton = 'Tipo de ingrediente';
             $rows = TagOfIngredient::paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['id', 'name'];
-            $columnsNames = ['id', 'nombre'];
+            $columns = ['name'];
+            $columnsNames = ['nombre'];
             return view(
                 'admin.categories.adminIngredientsCategories',
                 [
@@ -1279,13 +1271,13 @@ class AdminController extends Controller
                 $userToEdit->suscription_id = $request->suscription_id;
                 $userToEdit->save();
             } elseif ($entity == 'Administrador') {
-                $user = User::where('id', $request->id)->first();
+                $userToEdit = User::where('id', $request->id)->first();
                 $admins = User::where('status', 'Admin')->get();
                 foreach ($columns as $key => $column) {
 
                     if ($column == 'username') {
                         foreach($admins as $admin) {
-                            if ($admin->username == $request[$column]) {
+                            if ($admin->username == $request[$column] && $admin->username != $userToEdit->username) {
                                 Toastr::error('Este nombre de usuario ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1294,7 +1286,7 @@ class AdminController extends Controller
 
                     if ($column == 'email') {
                         foreach($admins as $admin) {
-                            if ($admin->email == $request[$column]) {
+                            if ($admin->email == $request[$column] && $admin->email != $userToEdit->email) {
                                 Toastr::error('Este correo electrónico ya existe en otro usuario', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
                                 return back();
                             }
@@ -1302,13 +1294,13 @@ class AdminController extends Controller
                     }
 
                     if ($column == 'password') {
-                        $user->$column = bcrypt($request[$column]);
+                        $userToEdit->$column = bcrypt($request[$column]);
                     } else {
-                        $user->$column = $request[$column];
+                        $userToEdit->$column = $request[$column];
                     }
                 }
                 
-                $user->save();
+                $userToEdit->save();
 
             } elseif ($entity == 'Entrenamiento') {
                 $training = Training::where('id', $request->id)->first();
