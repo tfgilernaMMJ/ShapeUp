@@ -606,8 +606,7 @@ video {
 }
 .bg-purple-600 {
     --bg-opacity: 1;
-    background-color: #b62bd9;
-    background-color: rgba(126, 58, 242, var(--bg-opacity));
+    background-color: #5fcf90;
 }
 .bg-custom-600 {
     --bg-opacity: 1;
@@ -626,7 +625,6 @@ video {
 .hover\:bg-purple-700:hover {
     --bg-opacity: 1;
     background-color: #5fcf90;
-    background-color: rgba(108, 43, 217, var(--bg-opacity));
 }
 .focus\:bg-white:focus {
     --bg-opacity: 1;
@@ -1402,7 +1400,6 @@ video {
 .text-purple-600 {
     --text-opacity: 1;
     color: #5fcf90;
-    color: rgba(126, 58, 242, var(--text-opacity));
 }
 .focus-within\:text-purple-500:focus-within {
     --text-opacity: 1;
