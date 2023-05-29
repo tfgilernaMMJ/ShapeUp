@@ -39,7 +39,7 @@ text-gray-800 dark:text-gray-100
                                     <div>
                                         @if(!empty($ingredient->name))
                                             <p class="font-semibold">{{$ingredient->name}}</p>
-                                            {{$ingredient->id}}
+                                            {{-- {{$ingredient->id}} --}}
                                         @endif
                                     </div>
                                 </div>
