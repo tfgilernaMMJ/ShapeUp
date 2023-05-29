@@ -45,10 +45,12 @@
     {{-- FORMS --}}
 
     @yield('training-section')
+    @yield('coach-addExercise')
     @yield('training-nav-lat')
     @yield('exercise-nav-lat')
     @yield('ingredient-nav-lat')
     @yield('diet-nav-lat')
+    @yield('coach-addIngredient')
     @yield('dashboard-editTraining')
     @yield('dashboard-editExercise')
     @yield('dashboard-createTraining')
