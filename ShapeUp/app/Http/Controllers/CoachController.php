@@ -489,7 +489,7 @@ class CoachController extends Controller
         
             if ($request->file('photo')) {
                 $file = $request->file('photo');
-                $destinationPath = 'dashboard/assets/img/test';
+                $destinationPath = 'web/assets/img/coaches';
                 $filename = $coachToEdit->id . '.' . $file->getClientOriginalExtension();
                 $existingFiles = glob(public_path($destinationPath) . '/' . $coachToEdit->id . '.*');
         

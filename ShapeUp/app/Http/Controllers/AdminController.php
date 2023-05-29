@@ -906,7 +906,7 @@ class AdminController extends Controller
 
                 if($request->file('photo')){
                     $file = $request->file('photo');
-                    $destinationPath = 'dashboard/assets/img/test';
+                    $destinationPath = 'web/assets/img/coaches';
                     $filename = $newCoach->id . '.' . $file->getClientOriginalExtension();
                     [$width, $height] = getimagesize($file);
                 
@@ -1065,7 +1065,7 @@ class AdminController extends Controller
                 $newGym->save(); 
                 if($request->file('logo')){
                     $file = $request->file('logo');
-                    $destinationPath = 'dashboard/assets/img/test';
+                    $destinationPath = 'web/assets/img/gyms';
                     $filename = $newGym->id . '.' . $file->getClientOriginalExtension();
                     [$width, $height] = getimagesize($file);
 
@@ -1099,7 +1099,7 @@ class AdminController extends Controller
 
                 if($request->file('logo')){
                     $file = $request->file('logo');
-                    $destinationPath = 'dashboard/assets/img/test';
+                    $destinationPath = 'web/assets/img/supermarkets';
                     $filename = $newMarket->id . '.' . $file->getClientOriginalExtension();
                     [$width, $height] = getimagesize($file);
 
@@ -1218,7 +1218,7 @@ class AdminController extends Controller
                     if($column == 'photo') {
                         if (!empty($request->file('photo'))) {
                             $file = $request->file('photo');
-                            $destinationPath = 'dashboard/assets/img/test';
+                            $destinationPath = 'web/assets/img/coaches';
                             $filename = $coachToEdit->id . '.' . $file->getClientOriginalExtension();
                             $existingFiles = glob(public_path($destinationPath) . '/' . $coachToEdit->id . '.*');
         
@@ -1392,7 +1392,7 @@ class AdminController extends Controller
                     if($column == 'logo') {
                         if (!empty($request->file('logo'))) {
                             $file = $request->file('logo');
-                            $destinationPath = 'dashboard/assets/img/test';
+                            $destinationPath = 'web/assets/img/gyms';
                             $filename = $gymToEdit->id . '.' . $file->getClientOriginalExtension();
                             $existingFiles = glob(public_path($destinationPath) . '/' . $gymToEdit->id . '.*');
         
@@ -1438,7 +1438,7 @@ class AdminController extends Controller
                     if($column == 'logo') {
                         if (!empty($request->file('logo'))) {
                             $file = $request->file('logo');
-                            $destinationPath = 'dashboard/assets/img/test';
+                            $destinationPath = 'web/assets/img/supermarkets';
                             $filename = $marketToEdit->id . '.' . $file->getClientOriginalExtension();
                             $existingFiles = glob(public_path($destinationPath) . '/' . $marketToEdit->id . '.*');
         
