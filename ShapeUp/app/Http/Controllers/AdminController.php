@@ -174,7 +174,7 @@ class AdminController extends Controller
             } else {
                 abort(404, 'F al borrar');
             }
-            Toastr::success(ucfirst($request->type) . ' eliminado', 'Eliminación', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            Toastr::success('Eliminación realizada con éxito', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
             return redirect()->back();
         } catch (PDOException  $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
@@ -227,7 +227,7 @@ class AdminController extends Controller
             $createTexxtButton = 'Usuario';
             $rows = User::where('status', 'User')->paginate(10);
             $numberOfRows = count($columns);
-            $columns = ['nmae', 'email', 'age', 'country'];
+            $columns = ['name', 'email', 'age', 'country'];
             $columnsNames = ['nombre', 'correo', 'edad', 'país'];
             $numberOfColumns = count($columns);
             foreach ($rows as $row) {
@@ -1542,7 +1542,6 @@ class AdminController extends Controller
 
             $coach = User::where('id', $trainingData->user_coach_id)->with('exercises')->first();
             $coachExercises = $coach->exercises;
-            Toastr::info('Se pueden añadir 5 ejercicios como máximo', 'Información', ["positionClass" => "toast-top-center","closeButton" => true,]);
             return view(
                 'admin.forms.addExercise',
                 [
@@ -1600,7 +1599,6 @@ class AdminController extends Controller
             $dietData = Diet::where('id', $request->diet_id)->select('id','title')->first();
             $dietIngredients = DietIngredient::where('diet_id', $request->diet_id)->get();
             $ingredients = Ingredient::all();
-            Toastr::info('Se pueden añadir 6 ingredientes como máximo', 'Información', ["positionClass" => "toast-top-center","closeButton" => true,]);
             return view(
                 'admin.forms.addIngredient',
                 [

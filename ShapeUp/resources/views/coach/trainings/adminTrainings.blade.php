@@ -41,7 +41,6 @@ text-gray-800 dark:text-gray-100
                                     <div>
                                         @if(!empty($training->title))
                                             <p class="font-semibold">{{$training->title}}</p>
-                                            {{$training->id}}
                                         @endif
                                     </div>
                                 </div>
