@@ -7,6 +7,7 @@
         <title>ShapeUp | @yield('titulo')</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Favicons -->
         <link href="{{ asset('web/assets/img/logo/favicon.png') }}" rel="icon">
@@ -87,11 +88,12 @@
 
         {{-- SCRIPTS --}}
         <!-- Vendor JS Files -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="{{ asset('web/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
         <script src="{{ asset('web/assets/vendor/aos/aos.js') }}"></script>
         <script src="{{ asset('web/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('web/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-        <script src="{{ asset('web/assets/vendor/php-email-form/validate.js') }}"></script>
+        <script src="{{ asset('web/assets/vendor/php-email-form/validate.js') }}"></script>        
 
         <!-- Template Main JS File -->
         <script src="{{ asset('web/assets/js/main.js') }}"></script>

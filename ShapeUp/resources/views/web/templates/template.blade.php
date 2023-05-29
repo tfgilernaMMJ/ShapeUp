@@ -68,23 +68,27 @@
                             $tieneNuevosMensajes = false;
 
                             if (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User') {
-                                $preguntas = Auth::user()->frequentlyAskedQuestion()
-                                                        ->where('check', 0)
-                                                        ->whereHas('answerQuestion', function ($query) {
-                                                        $query->where('check', 1);
-                                                        })
-                                                        ->exists();
+                                $preguntas = DB::table('frequently_asked_questions AS faq')
+                                    ->join('answer_questions AS aq', 'faq.id', '=', 'aq.frequently_asked_question_id')
+                                    ->where('faq.user_id', Auth::user()->id)
+                                    ->where('faq.check', 1)
+                                    ->where('aq.check', 0)
+                                    ->exists();
+
                                 $tieneNuevosMensajes = $preguntas;
                             }
+
                             @endphp
 
                             @if (Auth::user()->status == 'User')     
                                 <li><a href="{{ route('account.profile') }}" class="@yield('profile-nav')">Perfil</a></li>
                             @endif
-                            @if (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User')
-                                <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')"><span>Mensajería&nbsp<i class='bx bxs-message-rounded-add'></i></span></a></li>
-                            @elseif (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User' && $tieneNuevosMensajes)
-                                <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')">Mensajería</a></li>
+                            @if (Auth::user()->status == 'User' && Auth::user()->suscription_id == 2)
+                                @if ($tieneNuevosMensajes)
+                                    <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')"><span>Mensajería&nbsp<i class='bx bxs-message-rounded-add'></i></span></a></li>
+                                @else
+                                    <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')">Mensajería</a></li>
+                                @endif
                             @endif
                             @if (Auth::user()->status == 'Admin')   
                                 <li><a href="{{ route('admin') }}">Administración</a></li>
