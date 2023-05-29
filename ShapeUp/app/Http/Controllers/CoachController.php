@@ -6,6 +6,7 @@ use App\Models\CategoryOfDiet;
 use App\Models\CategoryOfTraining;
 use App\Models\Diet;
 use App\Models\Exercise;
+use App\Models\FrequentlyAskedQuestion;
 use App\Models\Ingredient;
 use App\Models\TagOfExercise;
 use App\Models\TagOfIngredient;
@@ -90,6 +91,16 @@ class CoachController extends Controller
                 'coachTrainings' => null
             ]
         );
+    }
+
+    public function coachMessagesView(Request $request)
+    {
+        $coachMessages = FrequentlyAskedQuestion::where('user_coach_id', Auth()->user()->id)
+        ->with('user') // Cargar la relación 'user'
+        ->paginate(10);
+        return view('coach.messages.messages', [
+            'coachMessages' => $coachMessages,
+        ]);
     }
     public function coachesViewData(Request $request)
     {

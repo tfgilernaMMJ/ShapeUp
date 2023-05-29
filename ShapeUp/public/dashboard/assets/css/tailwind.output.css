@@ -609,6 +609,10 @@ video {
     background-color: #b62bd9;
     background-color: rgba(126, 58, 242, var(--bg-opacity));
 }
+.bg-custom-600 {
+    --bg-opacity: 1;
+    background-color: #5b0072;
+}
 .bg-green-600 {
     --bg-opacity: 1;
     background-color: #5fcf90;
