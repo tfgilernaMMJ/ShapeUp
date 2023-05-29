@@ -270,7 +270,16 @@ class CoachController extends Controller
     public function editExercise(Request $request)
     {
         try {
-
+            if ($request->input('explanatory_video')) {
+                $videoUrl = $request->input('explanatory_video');
+            
+                $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}$/';
+            
+                if (!empty($videoUrl) && !preg_match($pattern, $videoUrl)) {
+                    Toastr::error('El enlace debe ser una URL válida de un video de YouTube.', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                    return back();
+                }
+            }
             $exercise = Exercise::where('id', $request->id)->first();
             $exercise->name = $request->input('name');
             $exercise->duration = $request->input('duration');
@@ -289,11 +298,22 @@ class CoachController extends Controller
     public function createExercise(Request $request)
     {
         try {
+            if ($request->input('explanatory_video')) {
+                $videoUrl = $request->input('explanatory_video');
+            
+                $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}$/';
+            
+                if (!empty($videoUrl) && !preg_match($pattern, $videoUrl)) {
+                    Toastr::error('El enlace debe ser una URL válida de un video de YouTube.', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+                    return back();
+                }
+            }
             $exercise = new Exercise();
             $exercise->name = $request->input('name');
             $exercise->duration = $request->input('duration');
             $exercise->series = $request->input('series');
             $exercise->repetitions = $request->input('repetitions');
+            $exercise->explanatory_video = $request->input('explanatory_video');
             $exercise->tag_of_exercise_id = $request->input('tag_of_exercise_id');
             $exercise->user_coach_id = Auth()->user()->id;
             $exercise->save();

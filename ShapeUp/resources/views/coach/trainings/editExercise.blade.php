@@ -38,6 +38,11 @@ text-gray-800 dark:text-gray-100
             <input type="number" value="{{ old('series', $exercise->series) }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="series" name="series" placeholder="Series" required>
         </div>
 
+        <div class="mb-4">
+            <label for="explanatory_video" class="block text-bold mb-1">Video explicativo (debe ser una URL de un vídeo de Youtube)</label>
+            <input type="text" value="{{ old('name', $exercise->explanatory_video) }}" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" id="explanatory_video" name="explanatory_video" placeholder="Video explicativo (debe ser una URL de un vídeo de Youtube)" required>
+        </div>
+
         <div class="mb-4 mt-3">
         <label for="category" class="block text-bold mt-3 mb-1">Categorías de ejercicios</label>
         <select id="category" class="block w-full py-2 px-3 bg-gray-100 rounded-lg" aria-label=".form-select-lg example" name="tag_of_exercise_id">
