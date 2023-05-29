@@ -197,13 +197,15 @@ class WebController extends Controller
             $query->whereExists(function ($subquery) {
                 $subquery->select(DB::raw(1))
                     ->from('user_follow_diets')
-                    ->whereColumn('diets.id', 'user_follow_diets.diet_id');
+                    ->whereColumn('diets.id', 'user_follow_diets.diet_id')
+                    ->where('user_follow_diets.user_id', Auth::user()->id);
             });
         } else if ($request->input('dietslike_sort') == 'notlike') {
             $query->whereNotExists(function ($subquery) {
                 $subquery->select(DB::raw(1))
                     ->from('user_follow_diets')
-                    ->whereColumn('diets.id', 'user_follow_diets.diet_id');
+                    ->whereColumn('diets.id', 'user_follow_diets.diet_id')
+                    ->where('user_follow_diets.user_id', Auth::user()->id);
             });
         }
 
