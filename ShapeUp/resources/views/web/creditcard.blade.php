@@ -77,14 +77,14 @@
                         </div>
                         <div class="right">
                             <label for="cvv">CVC/CVV</label>
-                            <input type="text" maxlength="3" placeholder="123" name="cvv" required />
+                            <input type="text" minlength="3" maxlength="3" placeholder="123" name="cvv" required />
                         </div>
                     </div>
                 </div>
             </div>
     
             <div class="button">
-                <button type="submit"><i class="bi bi-lock"></i> Secure pay</button>
+                <button type="submit"><i class="bi bi-lock"></i>Pagar</button>
             </div>
         </form>
         </div>
