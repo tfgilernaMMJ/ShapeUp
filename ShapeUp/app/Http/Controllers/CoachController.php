@@ -542,7 +542,7 @@ class CoachController extends Controller
             $newAnswerQuestion->frequently_asked_question_id = $message;
             $newAnswerQuestion->answer_message = $answer;
             $newAnswerQuestion->save();
-            Toastr::success($userName . ' ha sido respondido', 'Mensaje enviado', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            Toastr::success($userName . ' ha sido respondido con éxito.', 'Éxito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
