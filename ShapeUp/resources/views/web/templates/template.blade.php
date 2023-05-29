@@ -65,7 +65,7 @@
                     @endif
                         <ul>
                             @php
-                            $tieneNuevosMensajes = false;
+                            $tieneNuevosMensajes = 0;
 
                             if (Auth::user()->suscription_id == 2 && Auth::user()->status == 'User') {
                                 $preguntas = DB::table('frequently_asked_questions AS faq')
@@ -73,7 +73,7 @@
                                     ->where('faq.user_id', Auth::user()->id)
                                     ->where('faq.check', 1)
                                     ->where('aq.check', 0)
-                                    ->exists();
+                                    ->count();
 
                                 $tieneNuevosMensajes = $preguntas;
                             }
@@ -84,8 +84,8 @@
                                 <li><a href="{{ route('account.profile') }}" class="@yield('profile-nav')">Perfil</a></li>
                             @endif
                             @if (Auth::user()->status == 'User' && Auth::user()->suscription_id == 2)
-                                @if ($tieneNuevosMensajes)
-                                    <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')"><span>Mensajería&nbsp<i class='bx bxs-message-rounded-add'></i></span></a></li>
+                                @if ($tieneNuevosMensajes > 0)
+                                    <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')"><span>Mensajería&nbsp<span class="badge bg-success rounded-pill"> {{$tieneNuevosMensajes}} </span></span></a></li>
                                 @else
                                     <li><a href="{{ route('account.messaging') }}" class="@yield('messaging-nav')">Mensajería</a></li>
                                 @endif

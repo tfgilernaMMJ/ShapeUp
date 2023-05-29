@@ -22,6 +22,14 @@ INSERT INTO `suscriptions` (`id`, `name`, `description`, `price`, `created_at`, 
 -- Volcado de datos para la tabla `users`
 --
 
+/* CONTRASEÑAS 
+
+ADMIN: marioadmin, manuadmin, joseadmin
+COACHES: coachpassword
+USERS: mipassword
+
+*/
+
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `email_verified_at`, `status`, `country`, `age`, `height`, `weight`, `photo`, `biography`, `experience`, `suscription_id`, `remember_token`, `created_at`, `updated_at`) VALUES 
 (1, 'Mario Rufo', 'mariorufo', '$2a$12$p57BZT0cjQeKfUwMGI3efuFWJ0pMxK2wW9ttPbkPJRi6g.mVDRYYy', 'mario.admin@shapeup.com', NOW(), 'Admin', 'España', null, null, null, null, null, null, 2, null, NOW(), NOW()),
 (2, 'Manuel Moya', 'manuelmoya', '$2a$12$NL5BJzESTRJ3aeE2WHrWf.kfzRNcIhBYfGAUjYLsZLlIeVU.NJlNG', 'manuel.admin@shapeup.com', NOW(), 'Admin', 'España', null, null, null, null, null, null, 2, null, NOW(), NOW()),
