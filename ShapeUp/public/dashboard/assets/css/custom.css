@@ -10,3 +10,9 @@
     transition: .45s all ease-in-out;
     color: #7E3AF2;
 }
+
+.customHover:hover {
+    color: #7E3AF2;
+    font-weight: 700;
+    transition: .7s all ease;
+}

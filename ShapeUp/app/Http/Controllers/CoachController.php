@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnswerQuestion;
 use App\Models\CategoryOfDiet;
 use App\Models\CategoryOfTraining;
 use App\Models\Diet;
@@ -97,7 +98,9 @@ class CoachController extends Controller
     {
         $coachMessages = FrequentlyAskedQuestion::where('user_coach_id', Auth()->user()->id)
         ->with('user') // Cargar la relación 'user'
+        ->groupBy('user_id')
         ->paginate(10);
+        
         return view('coach.messages.messages', [
             'coachMessages' => $coachMessages,
         ]);
@@ -512,6 +515,31 @@ class CoachController extends Controller
             $coachToEdit->save();
         
             Toastr::success('Entrenador - Edición realizada con éxito.', 'Exito', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
+            return back();
+        } catch (PDOException $e) {
+            Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+            return redirect()->back();
+        }
+    }
+
+    public function answerUserMessage(Request $request)
+    {
+        try {
+            $userName = User::where('id',$request->user_id)->pluck('name')->first();
+            if(!$request->frequently_id || !$request->answer_message){
+                Toastr::error('No se pudo enviar el mensaje', 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
+                return back();
+            }
+            $question = FrequentlyAskedQuestion::where('id',$request->frequently_id)->first();
+            $question->check = 1;
+            $question->save();
+            $message = $request->frequently_id;
+            $answer = $request->answer_message;
+            $newAnswerQuestion = new AnswerQuestion();
+            $newAnswerQuestion->frequently_asked_question_id = $message;
+            $newAnswerQuestion->answer_message = $answer;
+            $newAnswerQuestion->save();
+            Toastr::success($userName . ' ha sido respondido', 'Mensaje enviado', ["positionClass" => "toast-top-center", "timeOut" => "4000", "progressBar" => true]);
             return back();
         } catch (PDOException $e) {
             Toastr::error($e->getMessage(), 'Error', ["positionClass" => "toast-top-center", "timeOut" => "5000", "progressBar" => true]);
