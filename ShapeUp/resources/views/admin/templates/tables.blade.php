@@ -5,7 +5,7 @@
         </h2>
         <!-- CTA -->
         @if (request()->route()->getName() == 'admin.diets' || request()->route()->getName() == 'admin.trainings-categories' || request()->route()->getName() == 'admin.diets-categories')
-        <a href="{{route('admin.createView' , ['type' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-800 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
+        <a href="{{route('admin.createView' , ['type' => $createTexxtButton , 'category' => request()->route()->getName()])}}" class="bg-purple-600 hover:bg-purple-700 font-bold px-4 py-3 rounded-full border border-purple-600 hover:border-purple-800 createButton text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M11.5,9.5 L16.5,9.5 L16.5,10.5 L11.5,10.5 L11.5,15.5 L10.5,15.5 L10.5,10.5 L5.5,10.5 L5.5,9.5 L10.5,9.5 L10.5,4.5 L11.5,4.5 L11.5,9.5 Z" />
             </svg>
@@ -118,7 +118,7 @@
 
                                     @if (request()->route()->getName() == 'admin.trainings')
                                     <button data-bs-toggle="modal" data-bs-target="#modalAddExercise-{{$row->id}}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ejercicio" data-target="#modalAddExercise-{{$row->id}}">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="#5fcf90" viewBox="0 0 20 20">
                                             <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
                                         </svg>
                                     </button>
@@ -146,7 +146,7 @@
 
                                     @if (request()->route()->getName() == 'admin.diets')
                                     <button data-bs-toggle="modal" data-bs-target="#modalAddIngredient-{{$row->id}}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ingrediente">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="#5fcf90" viewBox="0 0 20 20">
                                             <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
                                         </svg>
                                     </button>

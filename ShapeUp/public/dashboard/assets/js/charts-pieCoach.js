@@ -20,7 +20,7 @@ const pieConfig = {
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: circularGraficData.length === 1 ? ['red'] : ['#0694a2', '#1c64f2', '#7e3af2'],
+        backgroundColor: circularGraficData.length === 1 ? ['red'] : ['#0694a2', '#00d35b', '#5fcf90'],
         label: 'Dataset 1',
       },
     ],
