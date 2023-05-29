@@ -1,5 +1,13 @@
 @extends('coach.templates.template')
 
+@section('messaging-nav')
+text-gray-800 dark:text-gray-100
+@endsection
+
+@section('messaging-nav-lat')
+<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+@endsection
+
 @section('messages-nav-lat')
 @php
 use App\Models\AnswerQuestion;
@@ -10,9 +18,12 @@ use App\Models\FrequentlyAskedQuestion;
     <div class="container grid px-6 mx-auto">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Mensajería
-            <hr class="bg-custom-600 border-4 h-25">
         </h2>
+        <hr class="bg-custom-600 border-6 h-50">
 
+        @if ($coachMessages->count() == 0)
+        <p class="mt-3">No tienes ninguna conversación</p>
+        @else
         <ol class="list-group list-group-numbered d-flex justify-content-center align-items-center">
             <div id="exerciseAccordion" class="accordion w-75 mt-4">
                 @foreach($coachMessages as $key => $message)
@@ -34,7 +45,7 @@ use App\Models\FrequentlyAskedQuestion;
                             <span class="me-2">{{ $message->user->name }}</span>
                             @if ($answeredCount == $count)
                             <span class="badge bg-primary rounded-pill">
-                                {{ $count }} Respondido
+                                <i class='bx bx-check-square' ></i> Respondido
                             </span>
                             @else
                             <span class="badge bg-primary rounded-pill">
@@ -101,8 +112,7 @@ use App\Models\FrequentlyAskedQuestion;
                 @endforeach
             </div>
         </ol>
-
-
+        @endif
     </div>
 </main>
 @endsection
