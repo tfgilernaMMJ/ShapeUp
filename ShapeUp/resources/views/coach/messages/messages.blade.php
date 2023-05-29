@@ -63,7 +63,7 @@ use App\Models\FrequentlyAskedQuestion;
                             $findAnswer = AnswerQuestion::where('frequently_asked_question_id', $userQuestion->id)->first();
                             @endphp
                             @if ($findAnswer && $findAnswer->frequently_asked_question_id == $userQuestion->id)
-                            <span class="badge bg-success rounded-pill"> Respuesta: {{$findAnswer->answer_message}} </span>
+                            <span class="badge bg-light rounded-pill text-black"> Respuesta: {{$findAnswer->answer_message}} </span>
                             @else
                             <!-- Modal trigger button -->
                             <button type="button" class="btn-lg customHover" data-bs-toggle="modal" data-bs-target="#modal{{$userQuestion->id}}">
