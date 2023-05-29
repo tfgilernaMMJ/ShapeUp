@@ -28,7 +28,7 @@ text-gray-800 dark:text-gray-100
                     <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                 <th class="px-4 py-3">Título</th>
-                                <th class="px-4 py-3">Descripción</th>
+                                {{-- <th class="px-4 py-3">Descripción</th> --}}
                                 <th class="px-4 py-3">Categoría</th>
                         </tr>
                     </thead>
@@ -40,18 +40,18 @@ text-gray-800 dark:text-gray-100
                                     <div>
                                         @if(!empty($diet->title))
                                             <p class="font-semibold">{{$diet->title}}</p>
-                                            {{$diet->id}}
+                                            {{-- {{$diet->id}} --}}
                                         @endif
                                     </div>
                                 </div>
                             </td>
-                            @if(!empty($diet->description))
+                            {{-- @if(!empty($diet->description))
                             <td class="px-4 py-3 text-xs">
                                 <span class="px-2 py-1 font-semibold leading-tight text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
                                     {{$diet->description}}
                                 </span>
                             </td>
-                            @endif
+                            @endif --}}
                             
                             @if(!empty($categories_of_diet))
                                 <td class="px-4 py-3 text-sm">

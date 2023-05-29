@@ -35,7 +35,6 @@ text-gray-800 dark:text-gray-100
                                     <div>
                                         @if(!empty($coach->name))
                                             <p class="font-semibold">{{$coach->name}}</p>
-                                            {{$coach->id}}
                                         @endif
                                     </div>
                                 </div>
