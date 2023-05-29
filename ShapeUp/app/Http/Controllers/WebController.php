@@ -316,15 +316,20 @@ class WebController extends Controller
             $query->whereExists(function ($subquery) {
                 $subquery->select(DB::raw(1))
                     ->from('user_follow_coaches')
-                    ->whereColumn('users.id', 'user_follow_coaches.user_coach_id');
+                    ->whereColumn('users.id', 'user_follow_coaches.user_coach_id')
+                    ->where('user_follow_coaches.user_id', Auth::user()->id);
             });
-        } else if ($request->input('coacheslike_sort') == 'notlike') {
+        } 
+
+        if ($request->input('coacheslike_sort') == 'notlike') {
             $query->whereNotExists(function ($subquery) {
                 $subquery->select(DB::raw(1))
                     ->from('user_follow_coaches')
-                    ->whereColumn('users.id', 'user_follow_coaches.user_coach_id');
+                    ->whereColumn('users.id', 'user_follow_coaches.user_coach_id')
+                    ->where('user_follow_coaches.user_id', Auth::user()->id);
             });
         }
+        
 
         $coaches = $query->paginate(10);
 
