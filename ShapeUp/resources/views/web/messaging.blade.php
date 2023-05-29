@@ -17,24 +17,6 @@
             </div>
         </div>
 
-        @if (session('success'))
-            <div class="d-flex justify-content-center align-items-center mt-3">
-                <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-
-        @if (session('error'))
-        <div class="d-flex justify-content-center align-items-center mt-3">
-            <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-        @endif
-
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
               <div class="row mt-3">
@@ -55,13 +37,18 @@
                           <td>{{ $mensaje->coach->name }}</td>
                           <td>{{ $mensaje->message }}</td>
                           <td>
-                            @if ($mensaje->answerQuestion->check == 0)
+                            @if ($mensaje->check == 0)
                               <i class="bx bx-check"></i>
-                            @else
+                            @elseif ($mensaje->check == 1 && $mensaje->answerQuestion->check == 0)
                               <i class="bx bx-check-double"></i>
                               <a type="button" onclick="mostrarRespuesta({{ $mensaje->id }})">
                                 <i id="icono" class="bi bi-arrow-down-circle-fill"></i>
-                              </a>  
+                              </a>
+                            @else
+                              <i class='bx bxs-user-check'></i>
+                              <a type="button" onclick="mostrarRespuesta({{ $mensaje->id }})">
+                                <i id="icono" class="bi bi-arrow-down-circle-fill"></i>
+                              </a>
                             @endif
                           </td>
                         </tr>
@@ -94,6 +81,7 @@
           
           <script>
             function mostrarRespuesta(idMensaje) {
+              console.log("Mostrar respuesta: " + idMensaje);
               const respuesta = document.querySelector(`#respuesta${idMensaje}`);
               const icono = document.querySelector('#icono');
           
@@ -102,17 +90,23 @@
                 respuesta.style.width = "100%";
                 icono.classList.remove("bi-arrow-down-circle-fill");
                 icono.classList.add("bi-arrow-up-circle-fill");
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
                 $.ajax({
-                url: '{{ route("account.messaging.check") }}',
-                type: 'POST',
-                data: { mensajeId: idMensaje },
-                success: function(response) {
-                  console.log(response); // Aquí puedes realizar alguna acción adicional si es necesario
-                },
-                error: function(error) {
-                  console.error(error);
-                }
-              });
+                    url: '{{ route("account.messaging.check") }}',
+                    type: 'POST',
+                    data: { mensajeId: idMensaje },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
             } else {
                 respuesta.style.display = "none";
                 icono.classList.remove("bi-arrow-up-circle-fill");
