@@ -261,6 +261,7 @@ Route::middleware(['auth','coach'])->group(function () {
         // COACH VIEW
         // ----------------------------
         Route::get('/coach-messages', [App\Http\Controllers\CoachController::class, 'coachMessagesView'])->name('messages');
+        Route::post('/answer-message/{frequently_id}/{user_id}', [App\Http\Controllers\CoachController::class, 'answerUserMessage'])->name('answer');
         // COACH VIEW
         // ----------------------------
         Route::get('/coaches', [App\Http\Controllers\CoachController::class, 'coachesViewData'])->name('coaches');
