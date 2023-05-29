@@ -258,6 +258,9 @@ Route::middleware(['auth','coach'])->group(function () {
     Route::prefix('coach')->name('coach.')->group(function () {
         // COACH VIEW
         // ----------------------------
+        Route::get('/coach-messages', [App\Http\Controllers\CoachController::class, 'coachMessagesView'])->name('messages');
+        // COACH VIEW
+        // ----------------------------
         Route::get('/coaches', [App\Http\Controllers\CoachController::class, 'coachesViewData'])->name('coaches');
         Route::get('/edit-coach', [App\Http\Controllers\CoachController::class, 'editCoachView'])->name('editCoachView');
         Route::put('/edit-coach', [App\Http\Controllers\CoachController::class, 'editCoach'])->name('editCoach');

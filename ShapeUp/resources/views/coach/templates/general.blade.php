@@ -56,31 +56,7 @@
     @yield('dashboard-editDiet')
     @yield('dashboard-createDiet')
     @yield('dashboard-createIngredient')
-
-    {{-- FORMS --}}
-
-    @yield('forms-section')
-
-    {{-- CARDS --}}
-
-    @yield('cards-section')
-
-    {{-- CHARTS --}}
-
-    @yield('charts-section')
-
-    {{-- BUTTONS --}}
-
-    @yield('buttons-section')
-
-    {{-- MODALS --}}
-
-    @yield('modals-section')
-
-    {{-- TABLES --}}
-
-    @yield('tables-section')
-
+    @yield('messages-nav-lat')
     </div>
 </body>
 </html>
