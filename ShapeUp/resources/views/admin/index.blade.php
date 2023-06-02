@@ -80,7 +80,7 @@ text-gray-800 dark:text-gray-100
       <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
         <!-- Chart legend -->
         <div class="flex items-center">
-          <span class="inline-block w-3 h-3 mr-1 bg-blue-600 rounded-full"></span>
+          <span class="inline-block w-3 h-3 mr-1 bg-green-700 rounded-full"></span>
           <span>Ejercicios</span>
         </div>
         <div class="flex items-center">
@@ -92,7 +92,7 @@ text-gray-800 dark:text-gray-100
           <span>Ingredientes</span>
         </div>
         <div class="flex items-center">
-          <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
+          <span class="inline-block w-3 h-3 mr-1 bg-clarito rounded-full"></span>
           <span>Dietas</span>
         </div>
       </div>

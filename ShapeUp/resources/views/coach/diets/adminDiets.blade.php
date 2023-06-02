@@ -81,7 +81,7 @@ text-gray-800 dark:text-gray-100
                                         </button>
 
                                         <button data-bs-toggle="modal" data-bs-target="#modalAddIngredient-{{$diet->id}}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir Ingrediente">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="#6C2BD9" viewBox="0 0 20 20">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="#5fcf90" viewBox="0 0 20 20">
                                             <path d="M20 5h-9.586L8.707 3.293A.997.997 0 0 0 8 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-4 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z"></path>
                                         </svg>
                                     </button>
