@@ -14,19 +14,16 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    {{-- <link href="assets/vendor/aos/aos.css" rel="stylesheet"> --}}
-    <link href="{{ asset('landingpage/assets/vendor/aos/aos.css') }}" rel="icon">
+    <link href="{{ asset('landingpage/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('landingpage/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="icon">
     <link href="{{ asset('landingpage/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="icon">
     <link href="{{ asset('landingpage/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="icon">
     <link href="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="icon">
-    {{-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
-    {{-- <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> --}}
-    {{-- <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> --}}
-    {{-- <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> --}}
-
-    <link href="{{ asset('landing/assets/css/style.css') }}" rel="icon">
-    <link href="{{asset('landing/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingpage/assets/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -78,8 +75,8 @@
               <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="#" class="btn btn-outline-white">Get started</a></p>
             </div>
             <div class="col-lg-4 iphone-wrap">
-              <img src="assets/img/phone_1.png" alt="Image" class="phone-1" data-aos="fade-right">
-              <img src="assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
+              <img src="{{ asset('landingpage/assets/img/phone_1.png')}}" alt="Image" class="phone-1" data-aos="fade-right">
+              <img src="{{ asset('landingpage/assets/img/phone_2.png')}}" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
             </div>
           </div>
         </div>
@@ -138,7 +135,7 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-5" data-aos="fade">
           <div class="col-md-6 mb-5">
-            <img src="assets/img/undraw_svg_1.svg" alt="Image" class="img-fluid">
+            <img src="{{ asset('landingpage/assets/img/undraw_svg_1.svg')}}" alt="Image" class="img-fluid">
           </div>
         </div>
 
@@ -178,7 +175,7 @@
             
           </div>
           <div class="col-md-6" data-aos="fade-left">
-            <img src="assets/img/undraw_svg_2.svg" alt="Image" class="img-fluid">
+            <img src="{{ asset('landingpage/assets/img/undraw_svg_2.svg')}}" alt="Image" class="img-fluid">
           </div>
         </div>
       </div>
@@ -193,7 +190,7 @@
             
           </div>
           <div class="col-md-6" data-aos="fade-right">
-            <img src="assets/img/undraw_svg_3.svg" alt="Image" class="img-fluid">
+            <img src="{{ asset('landingpage/assets/img/undraw_svg_3.svg')}}" alt="Image" class="img-fluid">
           </div>
         </div>
       </div>
@@ -230,7 +227,7 @@
                     </blockquote>
 
                     <p class="review-user">
-                      <img src="assets/img/person_1.jpg" alt="Image" class="img-fluid rounded-circle mb-3">
+                      <img src="{{ asset('landingpage/assets/img/person_1.jpg')}}" alt="Image" class="img-fluid rounded-circle mb-3">
                       <span class="d-block">
                         <span class="text-black">Juana Quevedo</span>
                       </span>
@@ -254,7 +251,7 @@
                     </blockquote>
 
                     <p class="review-user">
-                      <img src="assets/img/person_2.jpg" alt="Image" class="img-fluid rounded-circle mb-3">
+                      <img src="{{ asset('landingpage/assets/img/person_2.jpg')}}" alt="Image" class="img-fluid rounded-circle mb-3">
                       <span class="d-block">
                         <span class="text-black">Pepe Smith</span>,
                       </span>
@@ -278,7 +275,7 @@
                     </blockquote>
 
                     <p class="review-user">
-                      <img src="assets/img/person_3.jpg" alt="Image" class="img-fluid rounded-circle mb-3">
+                      <img src="{{ asset('landingpage/assets/img/person_3.jpg')}}" alt="Image" class="img-fluid rounded-circle mb-3">
                       <span class="d-block">
                         <span class="text-black">Ester Exposito</span>
                       </span>
@@ -303,18 +300,18 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{{ asset('landing/assets/vendor/aos/aos.js') }}"></script>
-  {{-- <script src="assets/vendor/aos/aos.js"></script> --}}
-  <script src="{{ asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
-  {{-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-  {{-- <script src="assets/vendor/swiper/swiper-bundle.min.js"></script> --}}
-  {{-- <script src="assets/vendor/php-email-form/validate.js"></script> --}}
+  <script src="{{ asset('landingpage/assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/vendor/php-email-form/validate.js') }}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ asset('landing/assets/js/main.js') }}"></script>
-  {{-- <script src="assets/js/main.js"></script> --}}
+  <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>
+  <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>
 
 </body>
 </html>
